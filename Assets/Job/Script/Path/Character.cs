@@ -42,7 +42,7 @@ public class Character : MonoBehaviour
     {
         _sType = gameObject.tag;
         _sJob = "Minion";
-        _iWalk_Steps = 5;
+        _iWalk_Steps = 3;
         _iAttack_Distance = 1;
     }
     // Start is called before the first frame update
@@ -59,18 +59,20 @@ public class Character : MonoBehaviour
     }
 
 
-    public void Change_Job(string new_Job)
+    public void Set_Job_Data(string new_Job)
     {
         switch (new_Job)
         {
             case "Warrior":
-
+                
                 break;
             case "Archor":
 
-            break;
+                break;
 
             case "Magician":
+                break;
+            case "Minion":
                 break;
 
         }

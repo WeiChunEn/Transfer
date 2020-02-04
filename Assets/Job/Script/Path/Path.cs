@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Path : MonoBehaviour
 {
-    public GameObject m_Enmey;
-    public GameObject m_Partner;
-    public List<Vector3> _lEnmeyPos_List;    //敵人所在的位置List
-    public List<Vector3> _lPartnerPos_List;   //自己人所在的位置List
-    public List<Vector3> _lCan_Move_List;     //能移動的位置List
-    public List<int> _lMove_Weight_List;      //格子權重的List
+
+    public GameObject _gPlayer;
+
+    public GameObject _gEnmey;
+    public GameObject _gPartner;
+    public List<Vector3> _lEnmeyPos_List = new List<Vector3>();    //敵人所在的位置List
+    public List<Vector3> _lPartnerPos_List = new List<Vector3>();   //自己人所在的位置List
+    public List<Vector3> _lCan_Move_List = new List<Vector3>();     //能移動的位置List
+    public List<int> _lMove_Weight_List = new List<int>();      //格子權重的List
 
     public int _iWalk_Steps; //可移動的數量
     public int _iList_Index = 0; //存入List用的引數
@@ -17,7 +20,7 @@ public class Path : MonoBehaviour
     private bool m_Have_Something; //判斷有沒有東西
     private bool m_Have_Walked;     //判斷這格是不是有走過
     private Vector3 m_Tmp_Pos;  //暫存計算完的下一步
-   
+
     //private int m_Move_Steps;               //能移動的步數
 
     // Start is called before the first frame update
@@ -25,6 +28,7 @@ public class Path : MonoBehaviour
     {
         Save_CharacterPos();
         Find_Way();
+
     }
 
     // Update is called once per frame
@@ -36,106 +40,106 @@ public class Path : MonoBehaviour
     public void Find_Way()
     {
         int Tmp_Count = 0;//用來看是不是第一次走
-        _iWalk_Steps = gameObject.GetComponent<Character>()._iWalk_Steps;
+        _iWalk_Steps = _gPlayer.GetComponent<Character>()._iWalk_Steps;
         //_lCan_Move_List.Add(gameObject.transform.position);
         // for(int i = 0; i<Walk_Steps;i++)
-        while (_iWalk_Steps>=0)
+        while (_iWalk_Steps >= 0)
         {
             //第一輪，上下左右
-            if(Tmp_Count==0)
+            if (Tmp_Count == 0)
             {
-                _lCan_Move_List.Insert(_iList_Index, transform.position);
+                _lCan_Move_List.Insert(_iList_Index, _gPlayer.transform.position);
                 _lMove_Weight_List.Insert(_iList_Index, _iWalk_Steps);
                 _iList_Index++;
                 //向上尋找
                 for (int i = 0; i < _lEnmeyPos_List.Count; i++)
                 {
-                    if (((transform.position.z + 1) == _lEnmeyPos_List[i].z) && (transform.position.x == _lEnmeyPos_List[i].x))
+                    if (((_gPlayer.transform.position.z + 1) == _lEnmeyPos_List[i].z) && (_gPlayer.transform.position.x == _lEnmeyPos_List[i].x))
                     {
                         m_Have_Something = true;
                     }
                 }
                 for (int i = 0; i < _lPartnerPos_List.Count; i++)
                 {
-                    if (((transform.position.z + 1) == _lPartnerPos_List[i].z) && (transform.position.x == _lPartnerPos_List[i].x))
+                    if (((_gPlayer.transform.position.z + 1) == _lPartnerPos_List[i].z) && (_gPlayer.transform.position.x == _lPartnerPos_List[i].x))
                     {
                         m_Have_Something = true;
                     }
                 }
                 if (m_Have_Something == false)
                 {
-                    m_Tmp_Pos = transform.position + new Vector3(0, 0, 1);
+                    m_Tmp_Pos = _gPlayer.transform.position + new Vector3(0, 0, 1);
                     Save_Position();
-                    _iWalk_Steps = gameObject.GetComponent<Character>()._iWalk_Steps;
+                    _iWalk_Steps = _gPlayer.GetComponent<Character>()._iWalk_Steps;
                 }
                 m_Have_Something = false;
 
                 //向下尋找
                 for (int i = 0; i < _lEnmeyPos_List.Count; i++)
                 {
-                    if (((transform.position.z - 1) == _lEnmeyPos_List[i].z) && (transform.position.x == _lEnmeyPos_List[i].x))
+                    if (((_gPlayer.transform.position.z - 1) == _lEnmeyPos_List[i].z) && (_gPlayer.transform.position.x == _lEnmeyPos_List[i].x))
                     {
                         m_Have_Something = true;
                     }
                 }
                 for (int i = 0; i < _lPartnerPos_List.Count; i++)
                 {
-                    if (((transform.position.z - 1) == _lPartnerPos_List[i].z) && (transform.position.x == _lPartnerPos_List[i].x))
+                    if (((_gPlayer.transform.position.z - 1) == _lPartnerPos_List[i].z) && (_gPlayer.transform.position.x == _lPartnerPos_List[i].x))
                     {
                         m_Have_Something = true;
                     }
                 }
                 if (m_Have_Something == false)
                 {
-                    m_Tmp_Pos = transform.position + new Vector3(0, 0, -1);
+                    m_Tmp_Pos = _gPlayer.transform.position + new Vector3(0, 0, -1);
                     Save_Position();
-                    _iWalk_Steps = gameObject.GetComponent<Character>()._iWalk_Steps;
+                    _iWalk_Steps = _gPlayer.GetComponent<Character>()._iWalk_Steps;
                 }
                 m_Have_Something = false;
 
                 //向左尋找
                 for (int i = 0; i < _lEnmeyPos_List.Count; i++)
                 {
-                    if (((transform.position.x - 1) == _lEnmeyPos_List[i].x) && (transform.position.z == _lEnmeyPos_List[i].z))
+                    if (((_gPlayer.transform.position.x - 1) == _lEnmeyPos_List[i].x) && (_gPlayer.transform.position.z == _lEnmeyPos_List[i].z))
                     {
                         m_Have_Something = true;
                     }
                 }
                 for (int i = 0; i < _lPartnerPos_List.Count; i++)
                 {
-                    if (((transform.position.x - 1) == _lPartnerPos_List[i].x) && (transform.position.z == _lPartnerPos_List[i].z))
+                    if (((_gPlayer.transform.position.x - 1) == _lPartnerPos_List[i].x) && (_gPlayer.transform.position.z == _lPartnerPos_List[i].z))
                     {
                         m_Have_Something = true;
                     }
                 }
                 if (m_Have_Something == false)
                 {
-                    m_Tmp_Pos = transform.position + new Vector3(-1, 0, 0);
+                    m_Tmp_Pos = _gPlayer.transform.position + new Vector3(-1, 0, 0);
                     Save_Position();
-                    _iWalk_Steps = gameObject.GetComponent<Character>()._iWalk_Steps;
+                    _iWalk_Steps = _gPlayer.GetComponent<Character>()._iWalk_Steps;
                 }
                 m_Have_Something = false;
 
                 //向右尋找
                 for (int i = 0; i < _lEnmeyPos_List.Count; i++)
                 {
-                    if (((transform.position.x + 1) == _lEnmeyPos_List[i].x) && (transform.position.z == _lEnmeyPos_List[i].z))
+                    if (((_gPlayer.transform.position.x + 1) == _lEnmeyPos_List[i].x) && (_gPlayer.transform.position.z == _lEnmeyPos_List[i].z))
                     {
                         m_Have_Something = true;
                     }
                 }
                 for (int i = 0; i < _lPartnerPos_List.Count; i++)
                 {
-                    if (((transform.position.x + 1) == _lPartnerPos_List[i].x) && (transform.position.z == _lPartnerPos_List[i].z))
+                    if (((_gPlayer.transform.position.x + 1) == _lPartnerPos_List[i].x) && (_gPlayer.transform.position.z == _lPartnerPos_List[i].z))
                     {
                         m_Have_Something = true;
                     }
                 }
                 if (m_Have_Something == false)
                 {
-                    m_Tmp_Pos = transform.position + new Vector3(1, 0, 0);
+                    m_Tmp_Pos = _gPlayer.transform.position + new Vector3(1, 0, 0);
                     Save_Position();
-                    _iWalk_Steps = gameObject.GetComponent<Character>()._iWalk_Steps;
+                    _iWalk_Steps = _gPlayer.GetComponent<Character>()._iWalk_Steps;
                 }
 
                 m_Have_Something = false;
@@ -267,9 +271,9 @@ public class Path : MonoBehaviour
     /// </summary>
     public void Check_Have_Walked()
     {
-        for(int i = 0; i < _iList_Index;i++)
+        for (int i = 0; i < _iList_Index; i++)
         {
-            if(m_Tmp_Pos == _lCan_Move_List[i])
+            if (m_Tmp_Pos == _lCan_Move_List[i])
             {
                 m_Have_Walked = true;
                 break;
@@ -291,16 +295,16 @@ public class Path : MonoBehaviour
 
 
 
-    //存取場上所有腳色的位置
+    //存取場上所有角色的位置
     public void Save_CharacterPos()
     {
-        for (int i = 0; i < m_Enmey.transform.childCount; i++)
+        for (int i = 0; i < _gEnmey.transform.childCount; i++)
         {
-            _lEnmeyPos_List.Add(m_Enmey.transform.GetChild(i).position);
+            _lEnmeyPos_List.Add(_gEnmey.transform.GetChild(i).position);
         }
-        for (int i = 0; i < m_Partner.transform.childCount; i++)
+        for (int i = 0; i < _gPartner.transform.childCount; i++)
         {
-            _lPartnerPos_List.Add(m_Partner.transform.GetChild(i).position);
+            _lPartnerPos_List.Add(_gPartner.transform.GetChild(i).position);
         }
 
     }
