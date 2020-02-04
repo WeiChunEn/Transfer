@@ -15,12 +15,12 @@ public class Character : MonoBehaviour
         protected string m_Job;
         protected int m_Walk_Steps;
         protected int m_Attack_Distance;
-        
+
     }
 
-    public class Set_Character:Character_Data
+    public class Set_Character : Character_Data
     {
-        public Set_Character(string Type,string Job,int Walk_Steps,int Attack_Distance)
+        public Set_Character(string Type, string Job, int Walk_Steps, int Attack_Distance)
         {
             this.m_Type = Type;
             this.m_Job = Job;
@@ -42,29 +42,35 @@ public class Character : MonoBehaviour
     {
         _sType = gameObject.tag;
         _sJob = "Minion";
-        _iWalk_Steps = 3;
+        _iWalk_Steps = 5;
         _iAttack_Distance = 1;
     }
     // Start is called before the first frame update
     void Start()
     {
         Chess = new Set_Character(_sType, _sJob, _iWalk_Steps, _iAttack_Distance);
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
 
     public void Change_Job(string new_Job)
     {
-        switch(new_Job)
+        switch (new_Job)
         {
             case "Warrior":
-                
+
+                break;
+            case "Archor":
+
+            break;
+
+            case "Magician":
                 break;
 
         }
