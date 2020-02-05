@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Path : MonoBehaviour
 {
-
+    public GameObject _gPlane;
     public GameObject _gPlayer;
 
     public GameObject _gEnmey;
@@ -23,12 +23,23 @@ public class Path : MonoBehaviour
 
     //private int m_Move_Steps;               //能移動的步數
 
+
+    private void Awake()
+    {
+        
+    }
     // Start is called before the first frame update
     void Start()
     {
+      
         Save_CharacterPos();
         Find_Way();
-
+        
+        for (int i = 0; i < _lCan_Move_List.Count; i++)
+        {
+            
+            //Instantiate(_gPlane, _lCan_Move_List[i], _gPlane.transform.rotation);
+        }
     }
 
     // Update is called once per frame
@@ -39,12 +50,13 @@ public class Path : MonoBehaviour
 
     public void Find_Way()
     {
-        int Tmp_Count = 0;//用來看是不是第一次走
+        int Tmp_Count = 0;        //用來看是不是第一次走
         _iWalk_Steps = _gPlayer.GetComponent<Character>()._iWalk_Steps;
         //_lCan_Move_List.Add(gameObject.transform.position);
         // for(int i = 0; i<Walk_Steps;i++)
-        while (_iWalk_Steps >= 0)
+        while (true)
         {
+            
             //第一輪，上下左右
             if (Tmp_Count == 0)
             {
@@ -146,10 +158,11 @@ public class Path : MonoBehaviour
                 _iList_Count++;             //改變要取出來的List位置
                 Tmp_Count++;
             }
+            
             //第二~底，上下左右
             if (Tmp_Count != 0)
             {
-
+                
                 //向上找
                 //
                 for (int i = 0; i < _lEnmeyPos_List.Count; i++)
@@ -166,8 +179,10 @@ public class Path : MonoBehaviour
                         m_Have_Something = true;
                     }
                 }
+                
                 if (m_Have_Something == false)
                 {
+                    
                     m_Tmp_Pos = _lCan_Move_List[_iList_Count] + new Vector3(0, 0, 1);
                     Check_Have_Walked();
                     if (m_Have_Walked == false && _lMove_Weight_List[_iList_Count] > 0)
@@ -262,8 +277,17 @@ public class Path : MonoBehaviour
                 m_Have_Walked = false;
                 m_Have_Something = false;
                 _iList_Count++;             //改變要取出來的List位置
+                
             }
+            if (_iList_Count >= _iList_Index)
+            {
+                _gPlayer.GetComponent<Move>().Instant();
+                break;
+            }
+                
         }
+        
+
     }
 
     /// <summary>
@@ -290,6 +314,7 @@ public class Path : MonoBehaviour
         _lMove_Weight_List.Insert(_iList_Index, _iWalk_Steps);      //存格子的權重進去List
         _lCan_Move_List.Insert(_iList_Index, m_Tmp_Pos);            //把計算的下一步存進List裡
         _iList_Index++; //存陣列的引數+1
+       
     }
 
 
@@ -307,6 +332,13 @@ public class Path : MonoBehaviour
             _lPartnerPos_List.Add(_gPartner.transform.GetChild(i).position);
         }
 
+    }
+    public void Reset_List()
+    {
+        _lCan_Move_List.Clear();
+        _lMove_Weight_List.Clear();
+        _iList_Count = 0;
+        _iList_Index = 0;
     }
 
 
