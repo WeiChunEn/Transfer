@@ -22,7 +22,7 @@ public class Path : MonoBehaviour
     private Vector3 m_Tmp_Pos;  //暫存計算完的下一步
 
     //private int m_Move_Steps;               //能移動的步數
-
+   
 
     private void Awake()
     {
@@ -279,6 +279,7 @@ public class Path : MonoBehaviour
                 _iList_Count++;             //改變要取出來的List位置
                 
             }
+            //如果算完後讓方格出現
             if (_iList_Count >= _iList_Index)
             {
                 _gPlayer.GetComponent<Move>().Instant();
@@ -333,12 +334,19 @@ public class Path : MonoBehaviour
         }
 
     }
+
+    /// <summary>
+    /// 重製List
+    /// </summary>
     public void Reset_List()
     {
         _lCan_Move_List.Clear();
         _lMove_Weight_List.Clear();
         _iList_Count = 0;
         _iList_Index = 0;
+        _lPartnerPos_List.Clear();
+        _lEnmeyPos_List.Clear();
+        Save_CharacterPos();
     }
 
 

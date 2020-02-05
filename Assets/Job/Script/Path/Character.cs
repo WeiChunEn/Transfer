@@ -59,6 +59,10 @@ public class Character : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// 寫入職業數據
+    /// </summary>
+    /// <param name="new_Job"></param>
     public void Set_Job_Data(string new_Job)
     {
         switch (new_Job)

@@ -103,6 +103,8 @@ public class Move : MonoBehaviour
         Short_Road_Count = _lShort_Road.Count-1;
        
         _bMove_Finish = true;
+
+        //算完格子開始移動時刪掉格子
         for (int i = 0; i < _gPlane_Group.transform.childCount; i++)
         {
 
@@ -142,8 +144,8 @@ public class Move : MonoBehaviour
             {
                 _bMove_Finish = false;
                 Reset_Data();
-            path.Reset_List();
-            path.Find_Way();
+                path.Reset_List();
+                path.Find_Way();
                 
 
             }
@@ -172,5 +174,12 @@ public class Move : MonoBehaviour
         }
     }
 
-  
+    private void OnMouseEnter()
+    {
+        
+        GetComponent<Renderer>().material.color = Color.black;
+      
+    }
+
+
 }
