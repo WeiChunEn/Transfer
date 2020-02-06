@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player1Turn : GameState
+public class GameSceneState :ISceneState
 {
-    public Player1Turn (GameStateManager StateManager):base(StateManager)
+    public GameSceneState(SceneStateManager StateManager):base(StateManager)
     {
-        this.StateName = "Player1 Turn";
-        Debug.Log("Player1 Turn Start");
+        this.StateName = "GameScene";
     }
     // Start is called before the first frame update
     void Start()

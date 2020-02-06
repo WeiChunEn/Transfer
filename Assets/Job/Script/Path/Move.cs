@@ -146,7 +146,7 @@ public class Move : MonoBehaviour
                 Reset_Data();
                 path.Reset_List();
                 path.Find_Way();
-                
+                GameManager._bSet_Area_Finish_One = true;
 
             }
         

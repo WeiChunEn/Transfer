@@ -15,13 +15,16 @@ public class GameStateManager
     //切換遊戲目前的狀態
     public void Set_GameState(GameState State )
     {
+        m_RunBegin = false;
         Debug.Log("SetState:" + State.ToString());
         if (m_GameState != null)
         {
+            Debug.Log("SetAreaOneEnd");
             m_GameState.StateEnd();
 
         }
         m_GameState = State;
+        Debug.Log(m_GameState);
     }
 
     public void GameStateUpdate()
@@ -38,7 +41,7 @@ public class GameStateManager
         //若開始完了就持續做更新
         if (m_GameState != null)
         {
-            m_GameState.StateBegin();
+            m_GameState.StateUpdate();
 
         }
     }

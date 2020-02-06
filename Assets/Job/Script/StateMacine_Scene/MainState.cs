@@ -1,26 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainState : ISceneState
 {
-    GameStateManager m_GameStateManager = new GameStateManager();
+    private Button m_StartBtn;
+    private Button m_ExitBtn;
+    
     public MainState(SceneStateManager StateManager):base(StateManager)
     {
         this.StateName = "MainState";
-        m_GameStateManager.Set_GameState(new SetArea_One(m_GameStateManager));
+       
+        GameManager._bScene_Transfer_End = true;
     }
 
     public override void StateBegin()
     {
-        
+        m_StartBtn = GameObject.Find("StartBtn").GetComponent<Button>();
+        m_ExitBtn = GameObject.Find("ExitBtn").GetComponent<Button>();
+        m_StartBtn.onClick.AddListener(() => Start_Btn_Click());
+        m_ExitBtn.onClick.AddListener(() => Exit_Btn_Click());
     }
     public override void StateUpdate()
     {
-        m_GameStateManager.GameStateUpdate();
+       
     }
     public override void StateEnd()
     {
-        Debug.Log(123);
+        
+    }
+
+    public void Start_Btn_Click()
+    {
+        m_StateManager.SetState(new GameSceneState(m_StateManager), "GameScene");
+    }
+    public void Exit_Btn_Click()
+    {
+        Application.Quit();
     }
 }
