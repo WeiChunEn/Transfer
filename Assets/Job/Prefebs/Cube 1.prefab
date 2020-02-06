@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 114249026867619030}
   m_Layer: 0
   m_Name: Cube 1
-  m_TagString: Untagged
+  m_TagString: Grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,4 +107,5 @@ MonoBehaviour:
   _vDestination: {x: 0, y: 0, z: 0}
   _gGameManager: {fileID: 0}
   _gNow_Player: {fileID: 0}
-  _bOn_It: 0
+  _bOn_Move_It: 0
+  _bOn_Set_it: 0

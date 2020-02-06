@@ -12,7 +12,7 @@ public class MainState : ISceneState
     {
         this.StateName = "MainState";
        
-        GameManager._bScene_Transfer_End = true;
+        
     }
 
     public override void StateBegin()

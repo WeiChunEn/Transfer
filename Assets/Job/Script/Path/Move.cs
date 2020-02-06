@@ -35,9 +35,9 @@ public class Move : MonoBehaviour
     void Update()
     {
 
-       
-            
-        
+
+
+
         if (_bMove_Finish == true)
         {
             Character_Move();
@@ -52,7 +52,7 @@ public class Move : MonoBehaviour
     public void Cal_Road()
     {
         _bCan_Move = false;
-        
+
         Vector3 NowPos = _gMove_Pos.transform.position; //儲存點擊的位置
         for (int i = 0; i < path._iList_Count; i++)
         {
@@ -66,10 +66,10 @@ public class Move : MonoBehaviour
                 m_ShortRoad_Index++; //存取用的Index+1
                 _bCan_Move = true;
             }
-            
+
 
         }
-        while ((NowPos.x != path._lCan_Move_List[0].x || NowPos.z != path._lCan_Move_List[0].z)&& _bCan_Move==true)
+        while ((NowPos.x != path._lCan_Move_List[0].x || NowPos.z != path._lCan_Move_List[0].z) && _bCan_Move == true)
         {
             for (int i = 0; i < path._iList_Count; i++)
             {
@@ -100,8 +100,8 @@ public class Move : MonoBehaviour
             NowPos = _lShort_Road[m_ShortRoad_Index];
             m_ShortRoad_Index++;
         }
-        Short_Road_Count = _lShort_Road.Count-1;
-       
+        Short_Road_Count = _lShort_Road.Count - 1;
+
         _bMove_Finish = true;
 
         //算完格子開始移動時刪掉格子
@@ -132,25 +132,32 @@ public class Move : MonoBehaviour
     public void Character_Move()
     {
 
-   
-            
-            transform.position = Vector3.MoveTowards(transform.position, _lShort_Road[Short_Road_Count], 2.5f * Time.deltaTime);
-            if (transform.position == _lShort_Road[Short_Road_Count])
-            {
-            
-            Short_Road_Count--;
-            }
-            if(Short_Road_Count<0)
-            {
-                _bMove_Finish = false;
-                Reset_Data();
-                path.Reset_List();
-                path.Find_Way();
-                GameManager._bSet_Area_Finish_One = true;
 
+
+        transform.position = Vector3.MoveTowards(transform.position, _lShort_Road[Short_Road_Count], 2.5f * Time.deltaTime);
+        if (transform.position == _lShort_Road[Short_Road_Count])
+        {
+
+            Short_Road_Count--;
+        }
+        if (Short_Road_Count < 0)
+        {
+            _bMove_Finish = false;
+            Reset_Data();
+           // path.Reset_List();
+            if (GameManager._sPlayer_One_Finish == "Start")
+            {
+                GameManager._sPlayer_One_Finish = "End";
             }
-        
-        
+            else if(GameManager._sPlayer_Two_Finish=="Start")
+            {
+                GameManager._sPlayer_Two_Finish = "End";
+            }
+            //GameManager._bSet_Area_Finish_One = true;
+
+        }
+
+
     }
 
     /// <summary>
@@ -161,7 +168,7 @@ public class Move : MonoBehaviour
         _lShort_Road.Clear();
         m_ShortRoad_Index = 0;
         m_Tmp_Weight = 0;
-        
+
 
     }
 
@@ -174,12 +181,7 @@ public class Move : MonoBehaviour
         }
     }
 
-    private void OnMouseEnter()
-    {
-        
-        GetComponent<Renderer>().material.color = Color.black;
-      
-    }
+
 
 
 }

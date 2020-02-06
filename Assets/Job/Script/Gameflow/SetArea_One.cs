@@ -27,11 +27,20 @@ public class SetArea_One :GameState
     public override void StateUpdate()
     {
         Debug.Log("SetAreaUpdate");
-        if (GameManager._bSet_Area_Finish_One==true)
+        if(GameManager._sSet_Area_Finish_One == "Start")
+        {
+            Debug.Log(GameManager._iPlayer1_Transfer_Area_Count);
+           if( GameManager._iPlayer1_Transfer_Area_Count == 0)
+            {
+                GameManager._sSet_Area_Finish_One = "End";
+            }
+            
+        }
+        else if (GameManager._sSet_Area_Finish_One=="End")
         {
             Debug.Log("SetAreaOneFinish");
             m_GameStateManager.Set_GameState(new SetArea_Two(m_GameStateManager));
-            GameManager._bSet_Area_Finish_One = false;
+            GameManager._sSet_Area_Finish_Two = "Start";
         }
     }
 

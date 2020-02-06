@@ -32,14 +32,11 @@ public class Path : MonoBehaviour
     void Start()
     {
       
-        Save_CharacterPos();
-        Find_Way();
+           // Save_CharacterPos();
+            //Find_Way();
         
-        for (int i = 0; i < _lCan_Move_List.Count; i++)
-        {
-            
-            //Instantiate(_gPlane, _lCan_Move_List[i], _gPlane.transform.rotation);
-        }
+       
+       
     }
 
     // Update is called once per frame
@@ -282,7 +279,7 @@ public class Path : MonoBehaviour
             //如果算完後讓方格出現
             if (_iList_Count >= _iList_Index)
             {
-                _gPlayer.GetComponent<Move>().Instant();
+               // _gPlayer.GetComponent<Move>().Instant();
                 break;
             }
                 
@@ -346,7 +343,7 @@ public class Path : MonoBehaviour
         _iList_Index = 0;
         _lPartnerPos_List.Clear();
         _lEnmeyPos_List.Clear();
-        Save_CharacterPos();
+        
     }
 
 
