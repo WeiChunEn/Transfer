@@ -6,7 +6,7 @@ public class GameLoop : MonoBehaviour
 {
 
     SceneStateManager m_SceneStateManager = new SceneStateManager();
-
+    
 
     private void Awake()
     {
@@ -16,11 +16,13 @@ public class GameLoop : MonoBehaviour
     void Start()
     {
         m_SceneStateManager.SetState(new MainState(m_SceneStateManager), "MainScene");
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         m_SceneStateManager.StateUpdate();
+       
     }
 }

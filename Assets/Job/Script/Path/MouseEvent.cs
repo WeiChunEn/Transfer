@@ -37,7 +37,7 @@ public class MouseEvent : MonoBehaviour
         if((_gNow_Player.transform.position.x != _vDestination.x)||(_gNow_Player.transform.position.z != _vDestination.z))
         {
             GetComponent<Renderer>().material.color = Color.black;
-            _gNow_Player.GetComponent<Move>()._gGrid = gameObject;
+            _gNow_Player.GetComponent<Move>()._gMove_Pos = gameObject;
             _bOn_It = true;
         }
       
@@ -45,7 +45,7 @@ public class MouseEvent : MonoBehaviour
     private void OnMouseExit()
     {
         GetComponent<Renderer>().material.color = _cTmp_Color;
-        _gNow_Player.GetComponent<Move>()._gGrid = null;
+        _gNow_Player.GetComponent<Move>()._gMove_Pos = null;
         _bOn_It = false;
     }
 

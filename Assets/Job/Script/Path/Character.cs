@@ -42,7 +42,7 @@ public class Character : MonoBehaviour
     {
         _sType = gameObject.tag;
         _sJob = "Minion";
-        _iWalk_Steps = 5;
+        _iWalk_Steps = 2;
         _iAttack_Distance = 1;
     }
     // Start is called before the first frame update

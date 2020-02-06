@@ -15,10 +15,10 @@ public class Move : MonoBehaviour
 
     public List<Vector3> _lShort_Road = new List<Vector3>(); //最短路徑的List
     public Path path;        //路徑的Class
-    public GameObject _gPlane; //格子
+    public GameObject _gMove_Grid; //生成的格子
     public GameObject _gGameManager; //遊戲管理器
-    public GameObject _gPlane_Group; //放格子的位置
-    public GameObject _gGrid;  //移動到位置
+    public GameObject _gGrid_Group; //放格子的位置
+    public GameObject _gMove_Pos;  //移動到位置
 
 
 
@@ -53,7 +53,7 @@ public class Move : MonoBehaviour
     {
         _bCan_Move = false;
         
-        Vector3 NowPos = _gGrid.transform.position; //儲存點擊的位置
+        Vector3 NowPos = _gMove_Pos.transform.position; //儲存點擊的位置
         for (int i = 0; i < path._iList_Count; i++)
         {
 
@@ -105,10 +105,10 @@ public class Move : MonoBehaviour
         _bMove_Finish = true;
 
         //算完格子開始移動時刪掉格子
-        for (int i = 0; i < _gPlane_Group.transform.childCount; i++)
+        for (int i = 0; i < _gGrid_Group.transform.childCount; i++)
         {
 
-            Destroy(_gPlane_Group.transform.GetChild(i).gameObject);
+            Destroy(_gGrid_Group.transform.GetChild(i).gameObject);
         }
     }
 
@@ -170,7 +170,7 @@ public class Move : MonoBehaviour
         for (int i = 0; i < path._lCan_Move_List.Count; i++)
         {
 
-            Instantiate(_gPlane, new Vector3(path._lCan_Move_List[i].x, 0, path._lCan_Move_List[i].z), _gPlane.transform.rotation, _gPlane_Group.transform);
+            Instantiate(_gMove_Grid, new Vector3(path._lCan_Move_List[i].x, 0.1f, path._lCan_Move_List[i].z), _gMove_Grid.transform.rotation, _gGrid_Group.transform);
         }
     }
 

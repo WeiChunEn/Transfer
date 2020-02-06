@@ -9,7 +9,7 @@ public class SceneStateManager
 {
     private ISceneState m_State;//State
     private bool m_RunBegin;//是否載入完成並開始
-    private AsyncOperation m_asyncOperation; //載入場景的東東
+    private static AsyncOperation m_asyncOperation; //載入場景的東東
     public SceneStateManager()
     {
 

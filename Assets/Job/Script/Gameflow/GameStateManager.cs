@@ -5,13 +5,41 @@ using UnityEngine;
 public class GameStateManager 
 {
     public GameState m_GameState;
+
+    private bool m_RunBegin;//是否載入完成並開始
     public GameStateManager()
     {
 
     }
 
-    public void Set_GameState()
+    //切換遊戲目前的狀態
+    public void Set_GameState(GameState State )
+    {
+        Debug.Log("SetState:" + State.ToString());
+        if (m_GameState != null)
+        {
+            m_GameState.StateEnd();
+
+        }
+        m_GameState = State;
+    }
+
+    public void GameStateUpdate()
     {
 
+        //新的State開始
+        if (m_GameState != null && m_RunBegin == false)
+        {
+            m_GameState.StateBegin();
+            m_RunBegin = true;
+
+        }
+
+        //若開始完了就持續做更新
+        if (m_GameState != null)
+        {
+            m_GameState.StateBegin();
+
+        }
     }
 }

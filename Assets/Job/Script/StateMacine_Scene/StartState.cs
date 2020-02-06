@@ -16,7 +16,7 @@ public class StartState : ISceneState
 
     public override void StateUpdate()
     {
-        m_StateManager.SetState(new MainState(m_StateManager), "MainScene");
+      //  m_StateManager.SetState(new MainState(m_StateManager), "MainScene");
     }
 
     public override void StateEnd()
