@@ -19,7 +19,7 @@ public class GameStateManager
         Debug.Log("SetState:" + State.ToString());
         if (m_GameState != null)
         {
-            Debug.Log("SetAreaOneEnd");
+            
             m_GameState.StateEnd();
 
         }

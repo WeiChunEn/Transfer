@@ -9,6 +9,9 @@ TagManager:
   - Warrior
   - Archor
   - Grid
+  - Atk_Grid
+  - A
+  - B
   layers:
   - Default
   - TransparentFX
