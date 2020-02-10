@@ -50,14 +50,29 @@ public class MouseEvent : MonoBehaviour
         //如果在格子上面按左鍵
         if (Input.GetButtonDown("Fire1"))
         {
+
+            //移動按鈕滑鼠事件
             if (_bOn_Move_It == true && (GameManager._sPlayer_One_Finish == "Start" || GameManager._sPlayer_Two_Finish == "Start") && tag == "Grid")
             {
                 _gNow_Player.GetComponent<Move>().Cal_Road();
+                _gNow_Player.GetComponent<Character>().Chess.Have_Moved = true;
+                if (_gNow_Player.tag == "A")
+                {
+                    _gGameManager.GetComponent<GameManager>()._gPlayer1_UI.SetActive(false);
+                    _gGameManager.GetComponent<GameManager>().Set_Character_Btn();
+                }
+                else if (_gNow_Player.tag == "B")
+                {
+                    _gGameManager.GetComponent<GameManager>()._gPlayer2_UI.SetActive(false);
+                    _gGameManager.GetComponent<GameManager>().Set_Character_Btn();
+                }
+               
             }
+            //攻擊按鈕滑鼠事件
             if (_bOn_Attack_It == true && (GameManager._sPlayer_One_Finish == "Start" || GameManager._sPlayer_Two_Finish == "Start") && tag == "Atk_Grid")
             {
                 GameObject Enmey;
-                if (_gNow_Player.tag == "A")
+                if (_gNow_Player.GetComponent<Character>().Chess.Type == "A")
                 {
                   
                     for (int i = 0; i < path._gEnmey.transform.childCount;i++ )
@@ -66,12 +81,17 @@ public class MouseEvent : MonoBehaviour
                         {
                             Enmey = path._gEnmey.transform.GetChild(i).gameObject;
                             _gNow_Player.GetComponent<Attack>().Attack_Enmey(Enmey);
+                            _gNow_Player.GetComponent<Character>().Chess.Have_Attacked = true;
+                            _gNow_Player.GetComponent<Character>().Chess.Have_Moved = true;
+                            _gNow_Player.GetComponent<Attack>().Destory_AttackGrid();
+                            _gGameManager.GetComponent<GameManager>().Set_Character_Btn();
+
                         }
                     }
                     
 
                 }
-                else if(_gNow_Player.tag=="B")
+                else if(_gNow_Player.GetComponent<Character>().Chess.Type == "B")
                 {
 
                     for (int i = 0; i < path._gPartner.transform.childCount; i++)
@@ -80,17 +100,23 @@ public class MouseEvent : MonoBehaviour
                         {
                             Enmey = path._gPartner.transform.GetChild(i).gameObject;
                             _gNow_Player.GetComponent<Attack>().Attack_Enmey(Enmey);
+                            _gNow_Player.GetComponent<Character>().Chess.Have_Attacked = true;
+                            _gNow_Player.GetComponent<Character>().Chess.Have_Moved = true;
+                            _gNow_Player.GetComponent<Attack>().Destory_AttackGrid();
+                            _gGameManager.GetComponent<GameManager>().Set_Character_Btn();
                         }
                     }
                 }
                 
                 
             }
+
+            //轉職區按鈕滑鼠事件
             if (_bOn_Set_it == true && GameManager._sSet_Area_Finish_One == "Start" && GameManager._iPlayer1_Transfer_Area_Count > 0 && this.tag == "Area")
             {
 
 
-
+                
                 switch (GameManager._iPlayer1_Transfer_Area_Count)
                 {
                     case 3:

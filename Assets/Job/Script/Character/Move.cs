@@ -145,11 +145,20 @@ public class Move : MonoBehaviour
         }
         if (Short_Road_Count < 0)
         {
+            if(gameObject.tag == "A")
+            {
+                _gGameManager.GetComponent<GameManager>()._gPlayer1_UI.SetActive(true);
+            }
+            else if(gameObject.tag=="B")
+            {
+                _gGameManager.GetComponent<GameManager>()._gPlayer2_UI.SetActive(true);
+            }
+            
             _bMove_Finish = false;
             Reset_Data();
             path.Reset_List();
             path.Save_CharacterPos();
-            path.Find_Attack_Way();
+            
 
             // path.Reset_List();
             //if (GameManager._sPlayer_One_Finish == "Start")

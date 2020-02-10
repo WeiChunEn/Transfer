@@ -20,12 +20,22 @@ public class SetArea_One :GameState
         if(_gStateName==null)
         {
             _gStateName = GameObject.Find("GameState");
+            
         }
+
         _gStateName.GetComponent<TextMeshProUGUI>().text = StateName;
+        Debug.Log(_gStateName.GetComponent<TextMeshProUGUI>().text);
     }
 
     public override void StateUpdate()
     {
+        if (_gStateName == null)
+        {
+            _gStateName = GameObject.Find("GameState");
+
+        }
+
+        _gStateName.GetComponent<TextMeshProUGUI>().text = StateName;
         Debug.Log("SetAreaUpdate");
         if(GameManager._sSet_Area_Finish_One == "Start")
         {
@@ -47,6 +57,8 @@ public class SetArea_One :GameState
     public override void StateEnd()
     {
         Debug.Log("SetAreaOneEnd");
+        
+
     }
 
 }

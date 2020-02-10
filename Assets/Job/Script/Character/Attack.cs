@@ -21,6 +21,9 @@ public class Attack : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// 產生攻擊的地板方塊
+    /// </summary>
     public void Attack_Grid_Instant()
     {
         for (int i = 1; i < path._lCan_Attack_List.Count; i++)
@@ -44,6 +47,9 @@ public class Attack : MonoBehaviour
         //}
     }
 
+    /// <summary>
+    /// 消滅攻擊的地板方塊
+    /// </summary>
     public void Destory_AttackGrid()
     {
         for (int i = 0; i < _gGrid_Group.transform.childCount; i++)
@@ -53,6 +59,10 @@ public class Attack : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 攻擊
+    /// </summary>
+    /// <param name="Enmey"></param>
     public void Attack_Enmey(GameObject Enmey)
     {
         Debug.Log(Enmey.GetComponent<Character>().Chess.HP);

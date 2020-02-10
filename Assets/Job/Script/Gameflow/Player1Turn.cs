@@ -6,6 +6,7 @@ using UnityEngine;
 public class Player1Turn : GameState
 {
     public GameObject _gStateName;
+    private GameObject _gGameManager;
     public Player1Turn(GameStateManager StateManager) : base(StateManager)
     {
         this.StateName = "Player1 Turn";
@@ -19,6 +20,7 @@ public class Player1Turn : GameState
             _gStateName = GameObject.Find("GameState");
         }
         _gStateName.GetComponent<TextMeshProUGUI>().text = StateName;
+        _gGameManager = GameObject.Find("GameManager");
     }
     public override void StateUpdate()
     {
@@ -26,6 +28,7 @@ public class Player1Turn : GameState
         {
             m_GameStateManager.Set_GameState(new Player2Turn(m_GameStateManager));
             GameManager._sPlayer_Two_Finish = "Start";
+            _gGameManager.GetComponent<GameManager>().Set_Now_Team();
         }
     }
 

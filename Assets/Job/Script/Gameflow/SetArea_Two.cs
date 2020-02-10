@@ -6,7 +6,7 @@ using UnityEngine;
 public class SetArea_Two : GameState
 {
     public GameObject _gStateName;
-    
+    private GameObject _gGameManager;
     public SetArea_Two(GameStateManager StateManager) : base(StateManager)
     {
         this.StateName = "Player2 Set Transfer Area";
@@ -20,6 +20,7 @@ public class SetArea_Two : GameState
             _gStateName = GameObject.Find("GameState");
         }
         _gStateName.GetComponent<TextMeshProUGUI>().text = StateName;
+        _gGameManager = GameObject.Find("GameManager");
     }
     public override void StateUpdate()
     {
@@ -36,6 +37,7 @@ public class SetArea_Two : GameState
         {
             m_GameStateManager.Set_GameState(new Player1Turn(m_GameStateManager));
             GameManager._sPlayer_One_Finish = "Start";
+            _gGameManager.GetComponent<GameManager>().Set_Now_Team();
         }
     }
 }

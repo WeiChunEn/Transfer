@@ -24,22 +24,25 @@ public class GameStateManager
 
         }
         m_GameState = State;
+        m_GameState.StateBegin();
+        m_RunBegin = true;
         Debug.Log(m_GameState);
     }
 
     public void GameStateUpdate()
     {
-
+        Debug.Log(m_GameState);
         //新的State開始
-        if (m_GameState != null && m_RunBegin == false)
-        {
-            m_GameState.StateBegin();
-            m_RunBegin = true;
+        //if (m_GameState != null && m_RunBegin == false)
+        //{
+        //    Debug.Log(m_GameState);
+        //    m_GameState.StateBegin();
+        //    m_RunBegin = true;
 
-        }
+        //}
 
         //若開始完了就持續做更新
-        if (m_GameState != null)
+        if (m_GameState != null&& m_RunBegin == true)
         {
             m_GameState.StateUpdate();
 
