@@ -10,7 +10,7 @@ public class GameSceneState :ISceneState
     private GameObject _gGameManager;
     public GameSceneState(SceneStateManager StateManager):base(StateManager)
     {
-        Reset_Data();
+        
         this.StateName = "GameScene";
         GameManager._sScene_Transfer_End = "Start";
     }
@@ -26,7 +26,7 @@ public class GameSceneState :ISceneState
     public void Restart_Btn_Click()
     {
 
-        
+        Reset_Data();
         m_StateManager.SetState(new GameSceneState(m_StateManager), "GameScene");
         
     }

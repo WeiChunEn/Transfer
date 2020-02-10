@@ -29,10 +29,10 @@ public class SetArea_One :GameState
 
     public override void StateUpdate()
     {
-        if (_gStateName == null)
+        if(_gStateName==null)
         {
             _gStateName = GameObject.Find("GameState");
-
+            
         }
 
         _gStateName.GetComponent<TextMeshProUGUI>().text = StateName;

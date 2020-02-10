@@ -45,24 +45,28 @@ public class GameManager : MonoBehaviour
     {
         _iPlayer1_Transfer_Area_Count = 3;
         _iPlayer2_Transfer_Area_Count = 3;
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        print(_sSet_Area_Finish_One);
-        
+        m_GameStateManager.GameStateUpdate();
         if (_sScene_Transfer_End == "Start")
         {
-            
-            m_GameStateManager.Set_GameState(new SetArea_One(m_GameStateManager));
+
+            //m_GameStateManager.Set_GameState(new SetArea_One(m_GameStateManager));
+            m_GameStateManager.Set_GameState(new Player1Turn(m_GameStateManager));
+            _sPlayer_One_Finish = "Start";
+            _sSet_Area_Finish_One = "End";
+            _sSet_Area_Finish_Two = "End";
             _sScene_Transfer_End = "End";
-            _sSet_Area_Finish_One = "Start";
+            Set_Now_Team();
+            //_sScene_Transfer_End = "End";
+            //_sSet_Area_Finish_One = "Start";
             //_sGame_Start = "Start";
         }
-        m_GameStateManager.GameStateUpdate();
-        if (_gPlayer1.transform.childCount==0)
+        if(_gPlayer1.transform.childCount==0)
         {
             _gWin_Menu.SetActive(true);
             _gBWin_Image.SetActive(true);
