@@ -83,9 +83,9 @@ public class Character : MonoBehaviour
     {
         _sType = gameObject.tag;
         _sJob = "Minion";
-        _iWalk_Steps = 5;
+        _iWalk_Steps = 2;
         _iAttack_Distance = 1;
-        _iHP = 5;
+        _iHP = 10;
         _iMP = 5;
         _iAttack = 6;
         _sNow_State = "Idle";

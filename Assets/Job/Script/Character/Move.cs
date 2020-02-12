@@ -62,7 +62,7 @@ public class Move : MonoBehaviour
         {
 
             //判斷點擊的位置是否有在可以移動的陣列裡面
-            if ((NowPos.x == path._lCan_Move_List[i].x) && (NowPos.z == path._lCan_Move_List[i].z))
+            if ((NowPos.x == path._lCan_Move_List[i].x) && (NowPos.z == path._lCan_Move_List[i].z)  )
             {
 
                 m_Tmp_Weight = path._lMove_Weight_List[i];

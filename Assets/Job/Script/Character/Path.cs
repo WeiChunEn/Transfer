@@ -87,6 +87,7 @@ public class Path : MonoBehaviour
                         m_Have_Something = true;
                     }
                 }
+               
                 if (m_Have_Something == false)
                 {
                     m_Tmp_Pos = _gPlayer.transform.position + new Vector3(0, 0, 1);
@@ -110,6 +111,7 @@ public class Path : MonoBehaviour
                         m_Have_Something = true;
                     }
                 }
+                
                 if (m_Have_Something == false)
                 {
                     m_Tmp_Pos = _gPlayer.transform.position + new Vector3(0, 0, -1);
@@ -133,6 +135,7 @@ public class Path : MonoBehaviour
                         m_Have_Something = true;
                     }
                 }
+                
                 if (m_Have_Something == false)
                 {
                     m_Tmp_Pos = _gPlayer.transform.position + new Vector3(-1, 0, 0);
@@ -156,6 +159,7 @@ public class Path : MonoBehaviour
                         m_Have_Something = true;
                     }
                 }
+                
                 if (m_Have_Something == false)
                 {
                     m_Tmp_Pos = _gPlayer.transform.position + new Vector3(1, 0, 0);
@@ -188,7 +192,7 @@ public class Path : MonoBehaviour
                         m_Have_Something = true;
                     }
                 }
-
+                
                 if (m_Have_Something == false)
                 {
 
@@ -217,6 +221,7 @@ public class Path : MonoBehaviour
                         m_Have_Something = true;
                     }
                 }
+                
                 if (m_Have_Something == false)
                 {
                     m_Tmp_Pos = _lCan_Move_List[_iMove_List_Count] + new Vector3(0, 0, -1);
@@ -245,6 +250,7 @@ public class Path : MonoBehaviour
                         m_Have_Something = true;
                     }
                 }
+                
                 if (m_Have_Something == false)
                 {
                     m_Tmp_Pos = _lCan_Move_List[_iMove_List_Count] + new Vector3(-1, 0, 0);
@@ -274,6 +280,7 @@ public class Path : MonoBehaviour
                         m_Have_Something = true;
                     }
                 }
+                
                 if (m_Have_Something == false)
                 {
                     m_Tmp_Pos = _lCan_Move_List[_iMove_List_Count] + new Vector3(1, 0, 0);
@@ -296,6 +303,7 @@ public class Path : MonoBehaviour
             }
 
         }
+        //Check_On_Board();
 
 
     }
@@ -434,21 +442,91 @@ public class Path : MonoBehaviour
             }
 
         }
+       // Check_On_Board();
     }
 
-    public void Check_On_Board(Vector3 List_Vec)
+    /// <summary>
+    /// 確認存的格子有沒有在棋盤上
+    /// </summary>
+    public void Check_On_Board()
     {
-       
-            //if (m_Tmp_Pos == _gPlane.transform.GetChild(i).gameObject.transform.position)
-            //{
-            //    m_On_Board = true;
-            //    break;
-            //}
-            //else
-            //{
-            //    m_On_Board = false;
-            //}
-        
+        //把不在棋盤上的移動格子移除
+        List<Vector3> Tmp_Count = new List<Vector3>();
+        for (int i = 0; i < _lCan_Move_List.Count; i++)
+        {
+            //Debug.Log(Tmp_Count[i]);
+            m_On_Board = false;
+            for (int j = 0; j < _gPlane.transform.childCount; j++)
+            {
+                if (_lCan_Move_List[i] == _gPlane.transform.GetChild(j).transform.position)
+                {
+                    m_On_Board = true;
+                    Tmp_Count.Add(_lCan_Move_List[i]);
+                    Debug.Log(123123);
+                    Debug.Log(Tmp_Count.Count);
+                    //Debug.Log(_gPlane.transform.GetChild(j).transform.position);
+                }
+
+            }
+            if(m_On_Board == false)
+            {
+                
+                //Debug.Log(_lCan_Move_List[i]);
+                //_lCan_Move_List.Remove(_lCan_Move_List[i]);
+                _lMove_Weight_List.Remove(_lMove_Weight_List[i]);
+                _iMove_List_Count--;
+                _iMove_List_Index--;
+                
+                
+            }
+        }
+        _lCan_Move_List.Clear();
+        for(int i = 0; i < Tmp_Count.Count;i++)
+        {
+            Debug.Log(Tmp_Count[i]);
+            _lCan_Move_List.Add(Tmp_Count[i]);
+        }
+
+
+        //把不在棋盤上的攻擊格子移除陣列
+        //Tmp_Count.Clear();
+        //for (int i = 0; i < _lCan_Attack_List.Count; i++)
+        //{
+        //    m_On_Board = false;
+        //    for (int j = 0; j < _gPlane.transform.childCount; j++)
+        //    {
+        //        if (_lCan_Attack_List[i] == _gPlane.transform.GetChild(j).gameObject.transform.position)
+        //        {
+        //            m_On_Board = true;
+        //            Tmp_Count.Add(_lCan_Attack_List[i]);
+        //        }
+
+        //    }
+        //    if (m_On_Board == false)
+        //    {
+        //        //_lCan_Attack_List.Remove(_lCan_Attack_List[i]);
+        //        _lAttack_Weight_List.Remove(_lAttack_Weight_List[i]);
+        //        _iAttack_List_Count--;
+        //        _iAttack_List_Index--;
+
+        //    }
+
+        //}
+        //for (int i = 0; i < Tmp_Count.Count; i++)
+        //{
+        //    _lCan_Attack_List.Add(Tmp_Count[i]);
+        //}
+        //Tmp_Count.Clear();
+        //if (m_Tmp_Pos == _gPlane.transform.GetChild(i).gameObject.transform.position)
+        //{
+        //    m_On_Board = true;
+        //    break;
+        //}
+        //else
+        //{
+        //    m_On_Board = false;
+        //}
+
     }
     /// <summary>
     /// 判斷這一格是否有走過已存在List
@@ -482,12 +560,12 @@ public class Path : MonoBehaviour
     /// </summary>
     public void Save_Move_Position()
     {
-       // Check_On_Board();
+        // Check_On_Board();
         _iWalk_Steps = _lMove_Weight_List[_iMove_List_Count] - 1;        //行動數-1
         _lMove_Weight_List.Insert(_iMove_List_Index, _iWalk_Steps);      //存格子的權重進去List
         _lCan_Move_List.Insert(_iMove_List_Index, m_Tmp_Pos);            //把計算的下一步存進List裡
         _iMove_List_Index++; //存陣列的引數+1
-       
+
 
 
     }
@@ -500,7 +578,7 @@ public class Path : MonoBehaviour
         _lAttack_Weight_List.Insert(_iAttack_List_Index, _iAttack_Distance);
         _lCan_Attack_List.Insert(_iAttack_List_Index, m_Tmp_Pos);
         _iAttack_List_Index++;
-        
+
     }
 
 
