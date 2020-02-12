@@ -55,7 +55,9 @@ public class MouseEvent : MonoBehaviour
             if (_bOn_Move_It == true && (GameManager._sPlayer_One_Finish == "Start" || GameManager._sPlayer_Two_Finish == "Start") && tag == "Grid")
             {
                 _gNow_Player.GetComponent<Move>().Cal_Road();
+                _gNow_Player.GetComponent<Character>().Chess.Now_State = "Have_Moved";
                 _gNow_Player.GetComponent<Character>().Chess.Have_Moved = true;
+                _gGameManager.GetComponent<GameManager>()._gMove_UI.SetActive(false);
                 if (_gNow_Player.tag == "A")
                 {
                     _gGameManager.GetComponent<GameManager>()._gPlayer1_UI.SetActive(false);
@@ -83,9 +85,10 @@ public class MouseEvent : MonoBehaviour
                             _gNow_Player.GetComponent<Attack>().Attack_Enmey(Enmey);
                             _gNow_Player.GetComponent<Character>().Chess.Have_Attacked = true;
                             _gNow_Player.GetComponent<Character>().Chess.Have_Moved = true;
+                            _gNow_Player.GetComponent<Character>().Chess.Now_State = "Have_Attacked";
                             _gNow_Player.GetComponent<Attack>().Destory_AttackGrid();
                             _gGameManager.GetComponent<GameManager>().Set_Character_Btn();
-
+                            _gGameManager.GetComponent<GameManager>().In_And_Out();
                         }
                     }
                     
@@ -102,8 +105,10 @@ public class MouseEvent : MonoBehaviour
                             _gNow_Player.GetComponent<Attack>().Attack_Enmey(Enmey);
                             _gNow_Player.GetComponent<Character>().Chess.Have_Attacked = true;
                             _gNow_Player.GetComponent<Character>().Chess.Have_Moved = true;
+                            _gNow_Player.GetComponent<Character>().Chess.Now_State = "Have_Attacked";
                             _gNow_Player.GetComponent<Attack>().Destory_AttackGrid();
                             _gGameManager.GetComponent<GameManager>().Set_Character_Btn();
+                            _gGameManager.GetComponent<GameManager>().In_And_Out();
                         }
                     }
                 }

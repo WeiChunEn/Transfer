@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 605583932648388690}
   - component: {fileID: 114249026867619030}
   m_Layer: 0
-  m_Name: Cube 1
+  m_Name: Move_Grid
   m_TagString: Grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0752d6fe485da0e45b331d3cd06d4647, type: 2}
+  - {fileID: 2100000, guid: 3efc072f097a0fa4085e39d699277327, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,3 +109,5 @@ MonoBehaviour:
   _gNow_Player: {fileID: 0}
   _bOn_Move_It: 0
   _bOn_Set_it: 0
+  _bOn_Attack_It: 0
+  path: {fileID: 0}

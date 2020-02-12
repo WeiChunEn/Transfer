@@ -12,6 +12,8 @@ TagManager:
   - Atk_Grid
   - A
   - B
+  - In
+  - Out
   layers:
   - Default
   - TransparentFX

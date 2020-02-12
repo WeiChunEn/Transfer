@@ -145,7 +145,8 @@ public class Move : MonoBehaviour
         }
         if (Short_Road_Count < 0)
         {
-            if(gameObject.tag == "A")
+            _gGameManager.GetComponent<GameManager>().In_And_Out();
+            if (gameObject.tag == "A")
             {
                 _gGameManager.GetComponent<GameManager>()._gPlayer1_UI.SetActive(true);
             }
@@ -153,7 +154,7 @@ public class Move : MonoBehaviour
             {
                 _gGameManager.GetComponent<GameManager>()._gPlayer2_UI.SetActive(true);
             }
-            
+            _gGameManager.GetComponent<GameManager>()._gMove_UI.SetActive(true);
             _bMove_Finish = false;
             Reset_Data();
             path.Reset_List();

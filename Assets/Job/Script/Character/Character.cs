@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class Character : MonoBehaviour
     public string _sNow_State;
     public bool _bHave_Moved;
     public bool _bHave_Attacked;
+
+    public GameObject _gPlayer_UI;
 
     public TextMeshPro textMeshPro;
     public class Character_Data
@@ -80,9 +83,9 @@ public class Character : MonoBehaviour
     {
         _sType = gameObject.tag;
         _sJob = "Minion";
-        _iWalk_Steps = 2;
+        _iWalk_Steps = 5;
         _iAttack_Distance = 1;
-        _iHP = 10;
+        _iHP = 5;
         _iMP = 5;
         _iAttack = 6;
         _sNow_State = "Idle";
@@ -101,7 +104,10 @@ public class Character : MonoBehaviour
         Set_Debug();
         if (Chess.HP <= 0)
         {
-            Destroy(gameObject);
+            _gPlayer_UI.GetComponent<Button>().interactable = false;
+            gameObject.SetActive(false);
+            gameObject.transform.position = new Vector3(100, 100, 100);
+            Chess.Now_State = "Death";
         }
     }
 
