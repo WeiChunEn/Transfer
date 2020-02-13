@@ -251,7 +251,7 @@ public class GameManager : MonoBehaviour
             _sPlayer_One_Finish = "End";
             _gPlayer_One_Camera.SetActive(false);
             _gPlayer_Two_Camera.SetActive(true);
-
+            In_And_Out();
         }
         if (_sPlayer_Two_Finish == "Start" && _bCheck_Team_Finish == true)
         {
@@ -268,9 +268,10 @@ public class GameManager : MonoBehaviour
             _gPlayer_One_Camera.SetActive(true);
             _gPlayer_Two_Camera.SetActive(false);
 
-
+            In_And_Out();
         }
         Set_Character_Btn();
+        
     }
 
 

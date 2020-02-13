@@ -111,7 +111,7 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         Set_Debug();
         Look_At_Camera();
         if (Chess.HP <= 0)
@@ -169,19 +169,36 @@ public class Character : MonoBehaviour
 
     public void Look_At_Camera()
     {
-        if(_gGameManager.GetComponent<GameManager>()._gPlayer_One_Camera.activeSelf==true)
+        //Quaternion Tmp_Rota = _g3D_UI.transform.rotation;
+        if (_gGameManager.GetComponent<GameManager>()._gPlayer_One_Camera.activeSelf == true)
         {
 
-
-             _g3D_UI.transform.rotation = Quaternion.LookRotation(_gGameManager.GetComponent<GameManager>()._gPlayer_One_Camera.transform.position);
+            if (Chess.Type == "A")
+            {
+                _g3D_UI.transform.rotation = Quaternion.Euler(60, 180, 0);
+            }
+            else if (Chess.Type == "B")
+            {
+                _g3D_UI.transform.rotation = Quaternion.Euler(60, 180, 0);
+            }
+            // _g3D_UI.transform.rotation = Quaternion.LookRotation(_gGameManager.GetComponent<GameManager>()._gPlayer_One_Camera.transform.position);
+            //_g3D_UI.transform.position = _gGameManager.GetComponent<GameManager>()._gPlayer_One_Camera.GetComponent<Camera>().WorldToScreenPoint(_g3D_UI.transform.position);
             //_g3D_UI.transform.LookAt(_gGameManager.GetComponent<GameManager>()._gPlayer_One_Camera.transform);
             //_g3D_UI.transform.rotation = Quaternion.Euler(_g3D_UI.transform.rotation.x, _g3D_UI.transform.rotation.y-180, _g3D_UI.transform.rotation.z );
 
         }
-        else if(_gGameManager.GetComponent<GameManager>()._gPlayer_Two_Camera.activeSelf == true)
+        else if (_gGameManager.GetComponent<GameManager>()._gPlayer_Two_Camera.activeSelf == true)
         {
-            _g3D_UI.transform.rotation = Quaternion.LookRotation(_gGameManager.GetComponent<GameManager>()._gPlayer_Two_Camera.transform.position);
-           // _g3D_UI.transform.rotation = Quaternion.Euler(_g3D_UI.transform.rotation.x, _g3D_UI.transform.rotation.y - 180, _g3D_UI.transform.rotation.z );
+            if (Chess.Type == "A")
+            {
+                _g3D_UI.transform.rotation = Quaternion.Euler(60, 0, 0);
+            }
+            else if (Chess.Type == "B")
+            {
+                _g3D_UI.transform.rotation = Quaternion.Euler(60, 0, 0);
+            }
+            //_g3D_UI.transform.rotation = Quaternion.LookRotation(_gGameManager.GetComponent<GameManager>()._gPlayer_Two_Camera.transform.position);
+            // _g3D_UI.transform.rotation = Quaternion.Euler(_g3D_UI.transform.rotation.x, _g3D_UI.transform.rotation.y - 180, _g3D_UI.transform.rotation.z );
 
 
         }
