@@ -303,7 +303,7 @@ public class Path : MonoBehaviour
             }
 
         }
-        //Check_On_Board();
+        Check_On_Board();
 
 
     }
@@ -442,7 +442,7 @@ public class Path : MonoBehaviour
             }
 
         }
-       // Check_On_Board();
+       Check_On_Board();
     }
 
     /// <summary>
@@ -450,72 +450,87 @@ public class Path : MonoBehaviour
     /// </summary>
     public void Check_On_Board()
     {
+        
         //把不在棋盤上的移動格子移除
         List<Vector3> Tmp_Count = new List<Vector3>();
+        List<int> Tmp_Weight = new List<int>();
         for (int i = 0; i < _lCan_Move_List.Count; i++)
         {
+            
             //Debug.Log(Tmp_Count[i]);
             m_On_Board = false;
             for (int j = 0; j < _gPlane.transform.childCount; j++)
             {
+                
                 if (_lCan_Move_List[i] == _gPlane.transform.GetChild(j).transform.position)
                 {
                     m_On_Board = true;
                     Tmp_Count.Add(_lCan_Move_List[i]);
-                    Debug.Log(123123);
-                    Debug.Log(Tmp_Count.Count);
+                    Tmp_Weight.Add(_lMove_Weight_List[i]);
+                    Debug.Log(12);
+
                     //Debug.Log(_gPlane.transform.GetChild(j).transform.position);
                 }
 
             }
-            if(m_On_Board == false)
+            
+            if (m_On_Board == false)
             {
-                
+                Debug.Log(_lMove_Weight_List.Count);
+                Debug.Log(_lCan_Move_List.Count);
                 //Debug.Log(_lCan_Move_List[i]);
                 //_lCan_Move_List.Remove(_lCan_Move_List[i]);
-                _lMove_Weight_List.Remove(_lMove_Weight_List[i]);
+                //_lMove_Weight_List.Remove(_lMove_Weight_List[i]);
                 _iMove_List_Count--;
                 _iMove_List_Index--;
                 
                 
             }
+            Debug.Log(_lCan_Move_List.Count);
         }
         _lCan_Move_List.Clear();
+        _lMove_Weight_List.Clear();
         for(int i = 0; i < Tmp_Count.Count;i++)
         {
             Debug.Log(Tmp_Count[i]);
             _lCan_Move_List.Add(Tmp_Count[i]);
+            _lMove_Weight_List.Add(Tmp_Weight[i]);
         }
 
 
         //把不在棋盤上的攻擊格子移除陣列
-        //Tmp_Count.Clear();
-        //for (int i = 0; i < _lCan_Attack_List.Count; i++)
-        //{
-        //    m_On_Board = false;
-        //    for (int j = 0; j < _gPlane.transform.childCount; j++)
-        //    {
-        //        if (_lCan_Attack_List[i] == _gPlane.transform.GetChild(j).gameObject.transform.position)
-        //        {
-        //            m_On_Board = true;
-        //            Tmp_Count.Add(_lCan_Attack_List[i]);
-        //        }
+        Tmp_Count.Clear();
+        Tmp_Weight.Clear();
+        for (int i = 0; i < _lCan_Attack_List.Count; i++)
+        {
+            m_On_Board = false;
+            for (int j = 0; j < _gPlane.transform.childCount; j++)
+            {
+                if (_lCan_Attack_List[i] == _gPlane.transform.GetChild(j).gameObject.transform.position)
+                {
+                    m_On_Board = true;
+                    Tmp_Count.Add(_lCan_Attack_List[i]);
+                    Tmp_Weight.Add(_lAttack_Weight_List[i]);
+                }
 
-        //    }
-        //    if (m_On_Board == false)
-        //    {
-        //        //_lCan_Attack_List.Remove(_lCan_Attack_List[i]);
-        //        _lAttack_Weight_List.Remove(_lAttack_Weight_List[i]);
-        //        _iAttack_List_Count--;
-        //        _iAttack_List_Index--;
+            }
+            if (m_On_Board == false)
+            {
+                //_lCan_Attack_List.Remove(_lCan_Attack_List[i]);
+                //_lAttack_Weight_List.Remove(_lAttack_Weight_List[i]);
+                _iAttack_List_Count--;
+                _iAttack_List_Index--;
 
-        //    }
+            }
 
-        //}
-        //for (int i = 0; i < Tmp_Count.Count; i++)
-        //{
-        //    _lCan_Attack_List.Add(Tmp_Count[i]);
-        //}
+        }
+        _lCan_Attack_List.Clear();
+        _lAttack_Weight_List.Clear();
+        for (int i = 0; i < Tmp_Count.Count; i++)
+        {
+            _lCan_Attack_List.Add(Tmp_Count[i]);
+            _lAttack_Weight_List.Add(Tmp_Weight[i]);
+        }
         //Tmp_Count.Clear();
         //if (m_Tmp_Pos == _gPlane.transform.GetChild(i).gameObject.transform.position)
         //{

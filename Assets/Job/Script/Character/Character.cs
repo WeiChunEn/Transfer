@@ -19,8 +19,15 @@ public class Character : MonoBehaviour
     public bool _bHave_Attacked;
 
     public GameObject _gPlayer_UI;
+    public Slider _sHP_Slider;
+    public TextMeshProUGUI _tHP;
 
+
+    public GameObject _gGameManager;
+    public Slider _sHead_HP;
+    public TextMeshProUGUI _tHead_HP;
     public TextMeshPro textMeshPro;
+    public GameObject _g3D_UI;
     public class Character_Data
     {
         protected string m_Type;
@@ -89,6 +96,10 @@ public class Character : MonoBehaviour
         _iMP = 5;
         _iAttack = 6;
         _sNow_State = "Idle";
+        _sHP_Slider.maxValue = _iHP;
+        _tHP.text = (_iHP / 10.0f * 100).ToString();
+        _sHead_HP.maxValue = _sHP_Slider.maxValue;
+        _tHead_HP.text = _tHP.text;
     }
     // Start is called before the first frame update
     void Start()
@@ -102,6 +113,7 @@ public class Character : MonoBehaviour
     {
         
         Set_Debug();
+        Look_At_Camera();
         if (Chess.HP <= 0)
         {
             _gPlayer_UI.GetComponent<Button>().interactable = false;
@@ -142,6 +154,7 @@ public class Character : MonoBehaviour
 
         _sJob = Chess.Job;
         _iHP = Chess.HP;
+        _sHP_Slider.value = _iHP;
         _sNow_State = Chess.Now_State;
         _iAttack = Chess.Attack;
         _iAttack_Distance = Chess.Attack_Distance;
@@ -149,5 +162,28 @@ public class Character : MonoBehaviour
         _bHave_Moved = Chess.Have_Moved;
         _iWalk_Steps = Chess.Walk_Steps;
         textMeshPro.text = Chess.HP.ToString();
+        _tHP.text = (_iHP / 10.0 * 100).ToString();
+        _sHead_HP.value = _sHP_Slider.value;
+        _tHead_HP.text = _tHP.text;
+    }
+
+    public void Look_At_Camera()
+    {
+        if(_gGameManager.GetComponent<GameManager>()._gPlayer_One_Camera.activeSelf==true)
+        {
+
+
+             _g3D_UI.transform.rotation = Quaternion.LookRotation(_gGameManager.GetComponent<GameManager>()._gPlayer_One_Camera.transform.position);
+            //_g3D_UI.transform.LookAt(_gGameManager.GetComponent<GameManager>()._gPlayer_One_Camera.transform);
+            //_g3D_UI.transform.rotation = Quaternion.Euler(_g3D_UI.transform.rotation.x, _g3D_UI.transform.rotation.y-180, _g3D_UI.transform.rotation.z );
+
+        }
+        else if(_gGameManager.GetComponent<GameManager>()._gPlayer_Two_Camera.activeSelf == true)
+        {
+            _g3D_UI.transform.rotation = Quaternion.LookRotation(_gGameManager.GetComponent<GameManager>()._gPlayer_Two_Camera.transform.position);
+           // _g3D_UI.transform.rotation = Quaternion.Euler(_g3D_UI.transform.rotation.x, _g3D_UI.transform.rotation.y - 180, _g3D_UI.transform.rotation.z );
+
+
+        }
     }
 }
