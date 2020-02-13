@@ -136,7 +136,7 @@ public class Move : MonoBehaviour
     {
 
 
-
+        Set_Rotate();
         transform.position = Vector3.MoveTowards(transform.position, _lShort_Road[Short_Road_Count], 2.5f * Time.deltaTime);
         if (transform.position == _lShort_Road[Short_Road_Count])
         {
@@ -177,6 +177,40 @@ public class Move : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// 轉向
+    /// </summary>
+    public void Set_Rotate()
+    {
+        
+        Vector3 distance = _lShort_Road[Short_Road_Count]-transform.position;
+        distance.Normalize();
+        
+        //右
+        if (distance.x>0.1f)
+        {
+            transform.eulerAngles = new Vector3(0, 90, 0);
+        }
+
+
+        //左
+        if (distance.x < -0.1f)
+        {
+            transform.eulerAngles = new Vector3(0, -90, 0);
+        }
+
+        //上
+        if (distance.z > 0.9f)
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+        }
+
+        //下
+        if (distance.z < -0.9f)
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
+        }
+    }
     /// <summary>
     /// 重製陣列
     /// </summary>

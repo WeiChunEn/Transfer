@@ -16,13 +16,13 @@ public class GameManager : MonoBehaviour
     public static int _iPlayer2_Transfer_Area_Count; //2轉職區域的數量
 
     static GameStateManager m_GameStateManager = new GameStateManager();
-    public Animator _aUI_Anim;
+    public Animator _aUI_Anim;     //UI的動畫
 
-    public GameObject _gTmp_Player_UI;
-    public GameObject _gPlayer1;
-    public GameObject _gPlayer2;
-    public GameObject _gMove_UI;
-    private GameObject m_NowPlayer;
+    //public GameObject _gTmp_Player_UI;
+    public GameObject _gPlayer1;            //A team腳色父物件
+    public GameObject _gPlayer2;            //B team腳色父物件
+    public GameObject _gMove_UI;            //動UI的
+    private GameObject m_NowPlayer;             //現在遊玩的腳色
 
     //public GameObject _gNow_Player_UI;
 
@@ -37,19 +37,19 @@ public class GameManager : MonoBehaviour
     public GameObject _gAWin_Image;
     public GameObject _gBWin_Image;
 
-    public Button _bMove_Btn;
-    public Button _bAttack_Btn;
-    public Button _bPlayer_Btn;
-    public Button _bNew_Game_Btn;
-    public Button _bMain_Menu_Btn;
-    public Button _bMove_In_Btn;
-    public Button _bMove_Out_Btn;
+    public Button _bMove_Btn;           //移動按鈕
+    public Button _bAttack_Btn;         //攻擊按鈕
+    public Button _bPlayer_Btn;         //玩家按鈕
+    public Button _bNew_Game_Btn;       //重玩一次按鈕
+    public Button _bMain_Menu_Btn;      //回首頁按鈕
+    public Button _bMove_In_Btn;        //移進UI按鈕
+    public Button _bMove_Out_Btn;       //移出UI按鈕
 
     public int _iA_Team_Num;
     public int _iB_Team_Num;
 
     public bool _bCheck_Team_Finish; //確認隊伍是否都行動完了
-    public string _sCheck_Win;
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -88,15 +88,17 @@ public class GameManager : MonoBehaviour
             _gWin_Menu.SetActive(true);
             _gAWin_Image.SetActive(true);
         }
+
+        //動畫控制
         AnimatorStateInfo info = _aUI_Anim.GetCurrentAnimatorStateInfo(0);
-        if (info.normalizedTime >= 0.3f && info.IsName("Move_In") && _gMove_UI.tag == "Out")
+        if (info.normalizedTime >= 0.5f && info.IsName("Move_In") && _gMove_UI.tag == "Out")
         {
             _bMove_In_Btn.gameObject.SetActive(false);
             _bMove_Out_Btn.gameObject.SetActive(true);
             _bMove_Out_Btn.interactable = true;
             _gMove_UI.tag = "In";
         }
-        else if (info.normalizedTime >= 0.3f && info.IsName("Move_Out") && _gMove_UI.tag == "In")
+        else if (info.normalizedTime >= 0.5f && info.IsName("Move_Out") && _gMove_UI.tag == "In")
         {
             _bMove_In_Btn.gameObject.SetActive(true);
             _bMove_Out_Btn.gameObject.SetActive(false);

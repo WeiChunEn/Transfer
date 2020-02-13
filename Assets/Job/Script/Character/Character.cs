@@ -19,14 +19,13 @@ public class Character : MonoBehaviour
     public bool _bHave_Attacked;
 
     public GameObject _gPlayer_UI;
-    public Slider _sHP_Slider;
-    public TextMeshProUGUI _tHP;
+    public Slider _sHP_Slider;      //血條Slider
+    public TextMeshProUGUI _tHP;    //血條%數
 
 
-    public GameObject _gGameManager;
-    public Slider _sHead_HP;
-    public TextMeshProUGUI _tHead_HP;
-    public TextMeshPro textMeshPro;
+    public GameObject _gGameManager; //管理器
+    public Slider _sHead_HP;        //頭上的血條Slider
+    public TextMeshProUGUI _tHead_HP; //頭上的血條%
     public GameObject _g3D_UI;
     public class Character_Data
     {
@@ -161,7 +160,7 @@ public class Character : MonoBehaviour
         _bHave_Attacked = Chess.Have_Attacked;
         _bHave_Moved = Chess.Have_Moved;
         _iWalk_Steps = Chess.Walk_Steps;
-        textMeshPro.text = Chess.HP.ToString();
+        
         _tHP.text = (_iHP / 10.0 * 100).ToString();
         _sHead_HP.value = _sHP_Slider.value;
         _tHead_HP.text = _tHP.text;

@@ -165,12 +165,12 @@ public class MouseEvent : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (gameObject.tag == "Area" && (GameManager._sSet_Area_Finish_One == "Start" || GameManager._sSet_Area_Finish_Two == "Start"))
+        if (gameObject.tag == "Area" && (GameManager._sSet_Area_Finish_One == "Start" || GameManager._sSet_Area_Finish_Two == "Start")&&!EventSystem.current.IsPointerOverGameObject())
         {
             GetComponent<Renderer>().material.color = Color.blue;
             _bOn_Set_it = true;
         }
-        if (gameObject.tag == "Grid" && (GameManager._sPlayer_One_Finish == "Start" || GameManager._sPlayer_Two_Finish == "Start"))
+        if (gameObject.tag == "Grid" && (GameManager._sPlayer_One_Finish == "Start" || GameManager._sPlayer_Two_Finish == "Start")&&!EventSystem.current.IsPointerOverGameObject())
         {
             if ((_gNow_Player.transform.position.x != _vDestination.x) || (_gNow_Player.transform.position.z != _vDestination.z))
             {
@@ -179,7 +179,7 @@ public class MouseEvent : MonoBehaviour
                 _bOn_Move_It = true;
             }
         }
-        if (gameObject.tag == "Atk_Grid" && (GameManager._sPlayer_One_Finish == "Start" || GameManager._sPlayer_Two_Finish == "Start"))
+        if (gameObject.tag == "Atk_Grid" && (GameManager._sPlayer_One_Finish == "Start" || GameManager._sPlayer_Two_Finish == "Start")&&!EventSystem.current.IsPointerOverGameObject())
         {
             GetComponent<Renderer>().material.color = Color.yellow;
             _bOn_Attack_It = true;

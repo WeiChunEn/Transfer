@@ -24,20 +24,29 @@ AnimationClip:
         time: 0
         value: 0
         inSlope: 0
-        outSlope: -814.67
-        tangentMode: 5
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: -730
-        inSlope: 24.66247
-        outSlope: 0
+        outSlope: -174.81822
         tangentMode: 1
         weightedMode: 0
-        inWeight: 0.100000024
-        outWeight: 0.33333334
+        inWeight: 0.33333334
+        outWeight: 0.34302792
+      - serializedVersion: 3
+        time: 0.5
+        value: -485.72568
+        inSlope: -934.4503
+        outSlope: -1056.3961
+        tangentMode: 1
+        weightedMode: 0
+        inWeight: 0.14127421
+        outWeight: 0.17451525
+      - serializedVersion: 3
+        time: 1
+        value: -725.54407
+        inSlope: -117.83565
+        outSlope: -1279.8422
+        tangentMode: 1
+        weightedMode: 0
+        inWeight: 0.39889196
+        outWeight: 0.26283428
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -89,20 +98,29 @@ AnimationClip:
         time: 0
         value: 0
         inSlope: 0
-        outSlope: -814.67
-        tangentMode: 5
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: -730
-        inSlope: 24.66247
-        outSlope: 0
+        outSlope: -174.81822
         tangentMode: 1
         weightedMode: 0
-        inWeight: 0.100000024
-        outWeight: 0.33333334
+        inWeight: 0.33333334
+        outWeight: 0.34302792
+      - serializedVersion: 3
+        time: 0.5
+        value: -485.72568
+        inSlope: -934.4503
+        outSlope: -1056.3961
+        tangentMode: 1
+        weightedMode: 0
+        inWeight: 0.14127421
+        outWeight: 0.17451525
+      - serializedVersion: 3
+        time: 1
+        value: -725.54407
+        inSlope: -117.83565
+        outSlope: -1279.8422
+        tangentMode: 1
+        weightedMode: 0
+        inWeight: 0.39889196
+        outWeight: 0.26283428
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
