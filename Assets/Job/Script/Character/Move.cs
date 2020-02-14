@@ -145,6 +145,7 @@ public class Move : MonoBehaviour
         }
         if (Short_Road_Count < 0)
         {
+            
             _gGameManager.GetComponent<GameManager>().In_And_Out();
             if (gameObject.tag == "A")
             {
@@ -156,6 +157,7 @@ public class Move : MonoBehaviour
             }
             _gGameManager.GetComponent<GameManager>()._gMove_UI.SetActive(true);
             _bMove_Finish = false;
+            
             Reset_Data();
             path.Reset_List();
             path.Save_CharacterPos();
@@ -176,7 +178,7 @@ public class Move : MonoBehaviour
 
 
     }
-
+    
     /// <summary>
     /// 轉向
     /// </summary>
@@ -252,7 +254,14 @@ public class Move : MonoBehaviour
     }
 
 
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Transfer"&&gameObject.GetComponent<Character>().Chess.Job=="Minion")
+        {
+            _gGameManager.GetComponent<GameManager>()._gTranfer_UI.SetActive(true);
+        }
+        
+    }
 
 
 }

@@ -27,6 +27,10 @@ public class Character : MonoBehaviour
     public Slider _sHead_HP;        //頭上的血條Slider
     public TextMeshProUGUI _tHead_HP; //頭上的血條%
     public GameObject _g3D_UI;      //頭上的Canvas
+
+    private float _Death_Time;      //死亡分解的時間
+    public int _iNow_Class_Count;
+    public GameObject[] _gClass = new GameObject[4]; //其他職業的模型
     public class Character_Data
     {
         protected string m_Type;
@@ -99,6 +103,8 @@ public class Character : MonoBehaviour
         _tHP.text = (_iHP / 10.0f * 100).ToString();
         _sHead_HP.maxValue = _sHP_Slider.maxValue;
         _tHead_HP.text = _tHP.text;
+        _iNow_Class_Count = 0;
+        _gClass[_iNow_Class_Count].SetActive(true);
     }
     // Start is called before the first frame update
     void Start()
@@ -113,12 +119,26 @@ public class Character : MonoBehaviour
 
         Set_Debug();
         Look_At_Camera();
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            Chess.HP = 0;
+        }
         if (Chess.HP <= 0)
         {
+
+            _Death_Time += Time.deltaTime * 0.5f;
+
+           // gameObject.transform.GetChild(1).GetComponent<Renderer>().material.SetFloat("_DissolveCutoff", _Death_Time);
+            if (_Death_Time >= 0.5)
+            {
+                gameObject.SetActive(false);
+                gameObject.transform.position = new Vector3(100, 100, 100);
+                Chess.Now_State = "Death";
+            }
+            
             _gPlayer_UI.GetComponent<Button>().interactable = false;
-            gameObject.SetActive(false);
-            gameObject.transform.position = new Vector3(100, 100, 100);
-            Chess.Now_State = "Death";
+
+            
         }
     }
 
@@ -132,15 +152,27 @@ public class Character : MonoBehaviour
         switch (new_Job)
         {
             case "Warrior":
-
+                _gClass[_iNow_Class_Count].SetActive(false);
+                _iNow_Class_Count = 1;
+                _gClass[_iNow_Class_Count].SetActive(true);
+                break;
+            case "Magician":
+                _gClass[_iNow_Class_Count].SetActive(false);
+                _iNow_Class_Count = 2;
+                _gClass[_iNow_Class_Count].SetActive(true);
                 break;
             case "Archor":
-
+                _gClass[_iNow_Class_Count].SetActive(false);
+                _iNow_Class_Count = 3;
+                _gClass[_iNow_Class_Count].SetActive(true);
                 break;
 
-            case "Magician":
-                break;
+           
+               
             case "Minion":
+                _gClass[_iNow_Class_Count].SetActive(false);
+                _iNow_Class_Count = 0;
+                _gClass[_iNow_Class_Count].SetActive(true);
                 break;
 
         }
@@ -160,7 +192,7 @@ public class Character : MonoBehaviour
         _bHave_Attacked = Chess.Have_Attacked;
         _bHave_Moved = Chess.Have_Moved;
         _iWalk_Steps = Chess.Walk_Steps;
-        
+
         _tHP.text = (_iHP / 10.0 * 100).ToString();
         _sHead_HP.value = _sHP_Slider.value;
         _tHead_HP.text = _tHP.text;

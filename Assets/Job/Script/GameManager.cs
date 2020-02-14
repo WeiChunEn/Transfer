@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     private GameObject m_NowPlayer;             //現在遊玩的腳色
 
     //public GameObject _gNow_Player_UI;
+    public GameObject _gTranfer_UI;         //轉職的UI
 
     public GameObject _gPlayer1_UI;         //A team 整個UI物件
     public GameObject _gPlayer2_UI;         //B team 整個UI物件
@@ -49,7 +50,7 @@ public class GameManager : MonoBehaviour
     public int _iB_Team_Num;
 
     public bool _bCheck_Team_Finish; //確認隊伍是否都行動完了
-   
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -66,16 +67,16 @@ public class GameManager : MonoBehaviour
         if (_sScene_Transfer_End == "Start")
         {
 
-            //m_GameStateManager.Set_GameState(new SetArea_One(m_GameStateManager));
-            m_GameStateManager.Set_GameState(new Player1Turn(m_GameStateManager));
-            _sPlayer_One_Finish = "Start";
-            _sSet_Area_Finish_One = "End";
-            _sSet_Area_Finish_Two = "End";
-            _sScene_Transfer_End = "End";
-            Set_Now_Team();
+            m_GameStateManager.Set_GameState(new SetArea_One(m_GameStateManager));
+            //m_GameStateManager.Set_GameState(new Player1Turn(m_GameStateManager));
+            //_sPlayer_One_Finish = "Start";
+            //_sSet_Area_Finish_One = "End";
+            //_sSet_Area_Finish_Two = "End";
             //_sScene_Transfer_End = "End";
-            //_sSet_Area_Finish_One = "Start";
-            //_sGame_Start = "Start";
+            Set_Now_Team();
+            _sScene_Transfer_End = "End";
+            _sSet_Area_Finish_One = "Start";
+            _sGame_Start = "Start";
         }
         Check_Win();
         if (_iA_Team_Num == 0)
@@ -382,5 +383,24 @@ public class GameManager : MonoBehaviour
             _aUI_Anim.SetTrigger("In");
         }
     
+    }
+
+    public void Transfer(int index)
+    {
+        switch(index)
+        {
+            case 0:
+                m_NowPlayer.GetComponent<Character>().Set_Job_Data("Warrior") ;
+                _gTranfer_UI.SetActive(false);
+                break;
+            case 1:
+                m_NowPlayer.GetComponent<Character>().Set_Job_Data("Archor");
+                _gTranfer_UI.SetActive(false);
+                break;
+            case 2:
+                m_NowPlayer.GetComponent<Character>().Set_Job_Data("Magician");
+                _gTranfer_UI.SetActive(false);
+                break;
+        }
     }
 }

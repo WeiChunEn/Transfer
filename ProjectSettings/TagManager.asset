@@ -5,15 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Area
-  - Magic
-  - Warrior
-  - Archor
   - Grid
   - Atk_Grid
   - A
   - B
   - In
   - Out
+  - Transfer
   layers:
   - Default
   - TransparentFX
