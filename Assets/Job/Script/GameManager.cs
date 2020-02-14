@@ -91,14 +91,14 @@ public class GameManager : MonoBehaviour
 
         //動畫控制
         AnimatorStateInfo info = _aUI_Anim.GetCurrentAnimatorStateInfo(0);
-        if (info.normalizedTime >= 0.5f && info.IsName("Move_In") && _gMove_UI.tag == "Out")
+        if (info.normalizedTime >= 0.3f && info.IsName("Move_In") && _gMove_UI.tag == "Out")
         {
             _bMove_In_Btn.gameObject.SetActive(false);
             _bMove_Out_Btn.gameObject.SetActive(true);
             _bMove_Out_Btn.interactable = true;
             _gMove_UI.tag = "In";
         }
-        else if (info.normalizedTime >= 0.5f && info.IsName("Move_Out") && _gMove_UI.tag == "In")
+        else if (info.normalizedTime >= 0.3f && info.IsName("Move_Out") && _gMove_UI.tag == "In")
         {
             _bMove_In_Btn.gameObject.SetActive(true);
             _bMove_Out_Btn.gameObject.SetActive(false);
@@ -368,6 +368,7 @@ public class GameManager : MonoBehaviour
 
     }
 
+    //UI進進出出
     public void In_And_Out()
     {
         _bMove_In_Btn.interactable = false;

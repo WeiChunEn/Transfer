@@ -26,7 +26,7 @@ public class Character : MonoBehaviour
     public GameObject _gGameManager; //管理器
     public Slider _sHead_HP;        //頭上的血條Slider
     public TextMeshProUGUI _tHead_HP; //頭上的血條%
-    public GameObject _g3D_UI;
+    public GameObject _g3D_UI;      //頭上的Canvas
     public class Character_Data
     {
         protected string m_Type;

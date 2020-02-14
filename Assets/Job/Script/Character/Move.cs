@@ -228,6 +228,7 @@ public class Move : MonoBehaviour
 
     }
 
+    //生成移動的格子
     public void Move_Grid_Instant()
     {
         for (int i = 1; i < path._lCan_Move_List.Count; i++)
