@@ -8,6 +8,9 @@ public class Path : MonoBehaviour
     public GameObject _gPlayer;
     public GameObject _gEnmey;
     public GameObject _gPartner;
+    public List<Vector3> _lTransfer_A = new List<Vector3>();        //A隊轉職區位置
+    public List<Vector3> _lTransfer_B = new List<Vector3>();        //B隊轉職區位置
+
     public List<Vector3> _lEnmeyPos_List = new List<Vector3>();    //敵人所在的位置List
     public List<Vector3> _lPartnerPos_List = new List<Vector3>();   //自己人所在的位置List
     public List<Vector3> _lCan_Move_List = new List<Vector3>();     //能移動的位置List
@@ -314,11 +317,11 @@ public class Path : MonoBehaviour
     /// </summary>
     public void Find_Attack_Way()
     {
-
-        switch(_gPlayer.GetComponent<Character>().Chess.Job)
+        int Tmp_Count = 0;
+        switch (_gPlayer.GetComponent<Character>().Chess.Job)
         {
             case "Minion":
-                int Tmp_Count = 0;        //用來看是不是第一次算攻擊距離
+                Tmp_Count = 0;    //用來看是不是第一次算攻擊距離
                 _iAttack_Distance = _gPlayer.GetComponent<Character>()._iAttack_Distance;
                 //_lCan_Move_List.Add(gameObject.transform.position);
                 // for(int i = 0; i<Walk_Steps;i++)
@@ -448,7 +451,136 @@ public class Path : MonoBehaviour
                 }
                 Check_On_Board();
                 break;
-            case "Priest":
+            case "Preist":
+                Tmp_Count = 0;    //用來看是不是第一次算攻擊距離
+                _iAttack_Distance = _gPlayer.GetComponent<Character>()._iAttack_Distance;
+                //_lCan_Move_List.Add(gameObject.transform.position);
+                // for(int i = 0; i<Walk_Steps;i++)
+                while (true)
+                {
+
+                    //第一輪，上下左右
+                    if (Tmp_Count == 0)
+                    {
+                        //_lCan_Move_List.Insert(_iList_Index, _gPlayer.transform.position);
+                        _lAttack_Weight_List.Insert(_iAttack_List_Index, _iAttack_Distance);
+                        _lCan_Attack_List.Insert(_iAttack_List_Index, _gPlayer.transform.position);
+                        // _lMove_Weight_List.Insert(_iList_Index, _iWalk_Steps);
+                        _iAttack_List_Index++;
+                        //向上尋找
+
+
+                        m_Tmp_Pos = _gPlayer.transform.position + new Vector3(0, 0, 1);
+                        Save_Attack_Position();
+                        _iAttack_Distance = _gPlayer.GetComponent<Character>()._iAttack_Distance;
+
+
+
+
+                        //向下尋找
+
+
+                        m_Tmp_Pos = _gPlayer.transform.position + new Vector3(0, 0, -1);
+                        Save_Attack_Position();
+                        _iAttack_Distance = _gPlayer.GetComponent<Character>()._iAttack_Distance;
+
+
+
+                        //向左尋找
+
+
+                        m_Tmp_Pos = _gPlayer.transform.position + new Vector3(-1, 0, 0);
+                        Save_Attack_Position();
+                        _iAttack_Distance = _gPlayer.GetComponent<Character>()._iAttack_Distance;
+
+
+
+                        //向右尋找
+
+
+                        m_Tmp_Pos = _gPlayer.transform.position + new Vector3(1, 0, 0);
+                        Save_Attack_Position();
+                        _iAttack_Distance = _gPlayer.GetComponent<Character>()._iAttack_Distance;
+
+
+
+                        _iAttack_List_Count++;             //改變要取出來的List位置
+                        Tmp_Count++;
+                    }
+
+                    //第二~底，上下左右
+                    if (Tmp_Count != 0)
+                    {
+
+                        //向上找
+                        //
+
+
+
+
+                        m_Tmp_Pos = _lCan_Attack_List[_iAttack_List_Count] + new Vector3(0, 0, 1);
+                        Check_Have_Attacked();
+                        if (m_Have_Attacked == false && _lAttack_Weight_List[_iAttack_List_Count] > 0)
+                        {
+                            Save_Attack_Position();
+                        }
+
+                        m_Have_Attacked = false;
+
+                        //向下找
+                        //
+
+
+                        m_Tmp_Pos = _lCan_Attack_List[_iAttack_List_Count] + new Vector3(0, 0, -1);
+                        Check_Have_Attacked();
+                        if (m_Have_Attacked == false && _lAttack_Weight_List[_iAttack_List_Count] > 0)
+                        {
+                            Save_Attack_Position();
+                        }
+
+                        m_Have_Attacked = false;
+
+
+                        //向左找
+                        //
+
+
+                        m_Tmp_Pos = _lCan_Attack_List[_iAttack_List_Count] + new Vector3(-1, 0, 0);
+                        Check_Have_Attacked();
+                        if (m_Have_Attacked == false && _lAttack_Weight_List[_iAttack_List_Count] > 0)
+                        {
+                            Save_Attack_Position();
+                        }
+
+                        m_Have_Attacked = false;
+
+
+
+                        //向右找
+                        //
+
+
+                        m_Tmp_Pos = _lCan_Attack_List[_iAttack_List_Count] + new Vector3(1, 0, 0);
+                        Check_Have_Attacked();
+                        if (m_Have_Attacked == false && _lAttack_Weight_List[_iAttack_List_Count] > 0)
+                        {
+                            Save_Attack_Position();
+                        }
+
+                        m_Have_Attacked = false;
+
+                        _iAttack_List_Count++;             //改變要取出來的List位置
+
+                    }
+                    //如果算完後跳出迴圈
+                    if (_iAttack_List_Count >= _iAttack_List_Index)
+                    {
+                        // _gPlayer.GetComponent<Move>().Instant();
+                        break;
+                    }
+
+                }
+                Check_On_Board();
                 break;
             case "Archor":
 
@@ -456,6 +588,135 @@ public class Path : MonoBehaviour
             case "Warrior":
                 break;
             case "Magician":
+                Tmp_Count = 0;        //用來看是不是第一次算攻擊距離
+                _iAttack_Distance = _gPlayer.GetComponent<Character>()._iAttack_Distance;
+                //_lCan_Move_List.Add(gameObject.transform.position);
+                // for(int i = 0; i<Walk_Steps;i++)
+                while (true)
+                {
+
+                    //第一輪，上下左右
+                    if (Tmp_Count == 0)
+                    {
+                        //_lCan_Move_List.Insert(_iList_Index, _gPlayer.transform.position);
+                        _lAttack_Weight_List.Insert(_iAttack_List_Index, _iAttack_Distance);
+                        _lCan_Attack_List.Insert(_iAttack_List_Index, _gPlayer.transform.position);
+                        // _lMove_Weight_List.Insert(_iList_Index, _iWalk_Steps);
+                        _iAttack_List_Index++;
+                        //向上尋找
+
+
+                        m_Tmp_Pos = _gPlayer.transform.position + new Vector3(0, 0, 1);
+                        Save_Attack_Position();
+                        _iAttack_Distance = _gPlayer.GetComponent<Character>()._iAttack_Distance;
+
+
+
+
+                        //向下尋找
+
+
+                        m_Tmp_Pos = _gPlayer.transform.position + new Vector3(0, 0, -1);
+                        Save_Attack_Position();
+                        _iAttack_Distance = _gPlayer.GetComponent<Character>()._iAttack_Distance;
+
+
+
+                        //向左尋找
+
+
+                        m_Tmp_Pos = _gPlayer.transform.position + new Vector3(-1, 0, 0);
+                        Save_Attack_Position();
+                        _iAttack_Distance = _gPlayer.GetComponent<Character>()._iAttack_Distance;
+
+
+
+                        //向右尋找
+
+
+                        m_Tmp_Pos = _gPlayer.transform.position + new Vector3(1, 0, 0);
+                        Save_Attack_Position();
+                        _iAttack_Distance = _gPlayer.GetComponent<Character>()._iAttack_Distance;
+
+
+
+                        _iAttack_List_Count++;             //改變要取出來的List位置
+                        Tmp_Count++;
+                    }
+
+                    //第二~底，上下左右
+                    if (Tmp_Count != 0)
+                    {
+
+                        //向上找
+                        //
+
+
+
+
+                        m_Tmp_Pos = _lCan_Attack_List[_iAttack_List_Count] + new Vector3(0, 0, 1);
+                        Check_Have_Attacked();
+                        if (m_Have_Attacked == false && _lAttack_Weight_List[_iAttack_List_Count] > 0)
+                        {
+                            Save_Attack_Position();
+                        }
+
+                        m_Have_Attacked = false;
+
+                        //向下找
+                        //
+
+
+                        m_Tmp_Pos = _lCan_Attack_List[_iAttack_List_Count] + new Vector3(0, 0, -1);
+                        Check_Have_Attacked();
+                        if (m_Have_Attacked == false && _lAttack_Weight_List[_iAttack_List_Count] > 0)
+                        {
+                            Save_Attack_Position();
+                        }
+
+                        m_Have_Attacked = false;
+
+
+                        //向左找
+                        //
+
+
+                        m_Tmp_Pos = _lCan_Attack_List[_iAttack_List_Count] + new Vector3(-1, 0, 0);
+                        Check_Have_Attacked();
+                        if (m_Have_Attacked == false && _lAttack_Weight_List[_iAttack_List_Count] > 0)
+                        {
+                            Save_Attack_Position();
+                        }
+
+                        m_Have_Attacked = false;
+
+
+
+                        //向右找
+                        //
+
+
+                        m_Tmp_Pos = _lCan_Attack_List[_iAttack_List_Count] + new Vector3(1, 0, 0);
+                        Check_Have_Attacked();
+                        if (m_Have_Attacked == false && _lAttack_Weight_List[_iAttack_List_Count] > 0)
+                        {
+                            Save_Attack_Position();
+                        }
+
+                        m_Have_Attacked = false;
+
+                        _iAttack_List_Count++;             //改變要取出來的List位置
+
+                    }
+                    //如果算完後跳出迴圈
+                    if (_iAttack_List_Count >= _iAttack_List_Index)
+                    {
+                        // _gPlayer.GetComponent<Move>().Instant();
+                        break;
+                    }
+
+                }
+                Check_On_Board();
                 break;
         }
        

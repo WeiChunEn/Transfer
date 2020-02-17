@@ -65,8 +65,25 @@ public class Attack : MonoBehaviour
     /// <param name="Enmey"></param>
     public void Attack_Enmey(GameObject Enmey)
     {
-        Debug.Log(Enmey.GetComponent<Character>().Chess.HP);
-        Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack;
-        Instantiate(_gEffect, Enmey.transform.position, _gEffect.transform.rotation);
+        if(gameObject.GetComponent<Character>().Chess.Job!="Preist")
+        {
+            Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack;
+            Instantiate(_gEffect, Enmey.transform.position, _gEffect.transform.rotation);
+        }
+        
+        
     }
+
+    public void Recall_Partner(GameObject Partner)
+    {
+        if (gameObject.GetComponent<Character>().Chess.Job == "Preist")
+        {
+            Partner.GetComponent<Character>().Set_Job_Data("Minion");
+            Partner.GetComponent<Character>().Chess.HP += gameObject.GetComponent<Character>().Chess.Attack;
+            Instantiate(_gEffect, Partner.transform.position, _gEffect.transform.rotation);
+        }
+        
+    }
+
+    
 }

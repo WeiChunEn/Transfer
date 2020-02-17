@@ -31,6 +31,7 @@ public class Character : MonoBehaviour
     private float _Death_Time;      //死亡分解的時間
     public int _iNow_Class_Count;
     public GameObject[] _gClass = new GameObject[4]; //其他職業的模型
+    public Sprite[] _gClass_Card = new Sprite[4]; //其他職業的卡牌圖
     public class Character_Data
     {
         protected string m_Type;
@@ -89,32 +90,56 @@ public class Character : MonoBehaviour
 
     public Set_Character Chess;
 
-    public void Awake()
+    public virtual void Awake()
     {
-        _sType = gameObject.tag;
-        _sJob = "Minion";
-        _iWalk_Steps = 2;
-        _iAttack_Distance = 1;
-        _iHP = 10;
-        _iMP = 5;
-        _iAttack = 6;
-        _sNow_State = "Idle";
-        _sHP_Slider.maxValue = _iHP;
-        _tHP.text = (_iHP / 10.0f * 100).ToString();
-        _sHead_HP.maxValue = _sHP_Slider.maxValue;
-        _tHead_HP.text = _tHP.text;
-        _iNow_Class_Count = 0;
-        _gClass[_iNow_Class_Count].SetActive(true);
+        if(_gPlayer_UI.GetComponent<Image>().sprite.name=="Preist_B"|| _gPlayer_UI.GetComponent<Image>().sprite.name == "Preist_A")
+        {
+            _sType = gameObject.tag;
+            _sJob = "Preist";
+            _iWalk_Steps = 1;
+            _iAttack_Distance = 1;
+            _iHP = 10;
+            _iMP = 5;
+            _iAttack = 5;
+            _sNow_State = "Idle";
+            _sHP_Slider.maxValue = _iHP;
+            _tHP.text = ((_iHP / _sHP_Slider.maxValue) *100).ToString();
+            
+            _sHead_HP.maxValue = _sHP_Slider.maxValue;
+            _tHead_HP.text = _tHP.text;
+            _iNow_Class_Count = 0;
+            //_gClass[_iNow_Class_Count].SetActive(true)
+            
+        }
+        else
+        {
+            _sType = gameObject.tag;
+            _sJob = "Minion";
+            _iWalk_Steps = 1;
+            _iAttack_Distance = 1;
+            _iHP = 20;
+            _iMP = 5;
+            _iAttack = 3;
+            _sNow_State = "Idle";
+            _sHP_Slider.maxValue = _iHP;
+            _tHP.text = ((_iHP / _sHP_Slider.maxValue) * 100).ToString();
+            _sHead_HP.maxValue = _sHP_Slider.maxValue;
+            _tHead_HP.text = _tHP.text;
+            _iNow_Class_Count = 0;
+            _gClass[_iNow_Class_Count].SetActive(true);
+            _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
+        }
+        
     }
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         Chess = new Set_Character(_sType, _sJob, _iWalk_Steps, _iAttack_Distance, _iHP, _iMP, _iAttack, _sNow_State);
 
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
 
         Set_Debug();
@@ -155,24 +180,36 @@ public class Character : MonoBehaviour
                 _gClass[_iNow_Class_Count].SetActive(false);
                 _iNow_Class_Count = 1;
                 _gClass[_iNow_Class_Count].SetActive(true);
+                _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
                 break;
             case "Magician":
+                Chess.Job = "Magician";
                 _gClass[_iNow_Class_Count].SetActive(false);
                 _iNow_Class_Count = 2;
                 _gClass[_iNow_Class_Count].SetActive(true);
+                _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
+                Chess.Attack = 6;
+                Chess.Attack_Distance = 2;
+                Chess.Walk_Steps = 2;
                 break;
             case "Archor":
                 _gClass[_iNow_Class_Count].SetActive(false);
                 _iNow_Class_Count = 3;
                 _gClass[_iNow_Class_Count].SetActive(true);
+                _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
                 break;
 
            
                
             case "Minion":
+                Chess.Job = "Minion";
                 _gClass[_iNow_Class_Count].SetActive(false);
                 _iNow_Class_Count = 0;
                 _gClass[_iNow_Class_Count].SetActive(true);
+                _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
+                Chess.Attack = 3;
+                Chess.Attack_Distance = 1;
+                Chess.Walk_Steps = 1;
                 break;
 
         }
@@ -193,24 +230,69 @@ public class Character : MonoBehaviour
         _bHave_Moved = Chess.Have_Moved;
         _iWalk_Steps = Chess.Walk_Steps;
 
-        _tHP.text = (_iHP / 10.0 * 100).ToString();
+        _tHP.text = (_iHP / _sHP_Slider.maxValue * 100).ToString();
         _sHead_HP.value = _sHP_Slider.value;
         _tHead_HP.text = _tHP.text;
     }
 
+    /// <summary>
+    /// 設定腳色碰撞血條位置等等
+    /// </summary>
     public void Look_At_Camera()
     {
         //Quaternion Tmp_Rota = _g3D_UI.transform.rotation;
-        if (_gGameManager.GetComponent<GameManager>()._gPlayer_One_Camera.activeSelf == true)
+        if (_gGameManager.GetComponent<GameManager>()._gMove_Camera.tag == "A")
         {
 
             if (Chess.Type == "A")
             {
                 _g3D_UI.transform.rotation = Quaternion.Euler(60, 180, 0);
+                switch(Chess.Job)
+                {
+                    case "Minion":
+                        _g3D_UI.transform.localPosition = new Vector3(0.1006802f, 1.464f, 0.051f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 0.937f, 0.02f);
+                        gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 0.658f;
+                        break;
+                    case "Priest":
+                        _g3D_UI.transform.localPosition = new Vector3(0.049f, 1.92f, -0.071f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 0.937f, -0.09f);
+                        gameObject.GetComponent<CapsuleCollider>().radius = 0.18f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 1.86f;
+                        break;
+                    case "Magician":
+                        _g3D_UI.transform.localPosition = new Vector3(0.1f, 2.3f, -0.005f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.09f, 0.02f);
+                        gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 2.01f;
+                        break;
+                }
             }
             else if (Chess.Type == "B")
             {
                 _g3D_UI.transform.rotation = Quaternion.Euler(60, 180, 0);
+                switch (Chess.Job)
+                {
+                    case "Minion":
+                        _g3D_UI.transform.localPosition = new Vector3(0.1006802f, 1.464f, 0.051f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 0.937f, 0.02f);
+                        gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 0.658f;
+                        break;
+                    case "Preist":
+                        _g3D_UI.transform.localPosition = new Vector3(0.049f, 1.92f, -0.071f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 0.937f, -0.09f);
+                        gameObject.GetComponent<CapsuleCollider>().radius = 0.18f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 1.86f;
+                        break;
+                    case "Magician":
+                        _g3D_UI.transform.localPosition = new Vector3(-0.022f, 2.3f, -0.005f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.09f, 0.02f);
+                        gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 2.01f;
+                        break;
+                }
             }
             // _g3D_UI.transform.rotation = Quaternion.LookRotation(_gGameManager.GetComponent<GameManager>()._gPlayer_One_Camera.transform.position);
             //_g3D_UI.transform.position = _gGameManager.GetComponent<GameManager>()._gPlayer_One_Camera.GetComponent<Camera>().WorldToScreenPoint(_g3D_UI.transform.position);
@@ -218,15 +300,57 @@ public class Character : MonoBehaviour
             //_g3D_UI.transform.rotation = Quaternion.Euler(_g3D_UI.transform.rotation.x, _g3D_UI.transform.rotation.y-180, _g3D_UI.transform.rotation.z );
 
         }
-        else if (_gGameManager.GetComponent<GameManager>()._gPlayer_Two_Camera.activeSelf == true)
+        else if (_gGameManager.GetComponent<GameManager>()._gMove_Camera.tag == "B")
         {
             if (Chess.Type == "A")
             {
                 _g3D_UI.transform.rotation = Quaternion.Euler(60, 0, 0);
+                switch (Chess.Job)
+                {
+                    case "Minion":
+                        _g3D_UI.transform.localPosition = new Vector3(0.1006802f, 1.464f, 0.051f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 0.937f, 0.02f);
+                        gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 0.658f;
+                        break;
+                    case "Preist":
+                        _g3D_UI.transform.localPosition = new Vector3(0.049f, 1.92f, -0.071f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 0.937f, -0.09f);
+                        gameObject.GetComponent<CapsuleCollider>().radius = 0.18f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 1.86f;
+                        break;
+                    case "Magician":
+                        _g3D_UI.transform.localPosition = new Vector3(0.1f, 2.3f, -0.005f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.09f, 0.02f);
+                        gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 2.01f;
+                        break;
+                }
             }
             else if (Chess.Type == "B")
             {
                 _g3D_UI.transform.rotation = Quaternion.Euler(60, 0, 0);
+                switch (Chess.Job)
+                {
+                    case "Minion":
+                        _g3D_UI.transform.localPosition = new Vector3(0.1006802f, 1.464f, 0.051f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 0.937f, 0.02f);
+                        gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 0.658f;
+                        break;
+                    case "Preist":
+                        _g3D_UI.transform.localPosition = new Vector3(0.049f, 1.92f, -0.071f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 0.937f, -0.09f);
+                        gameObject.GetComponent<CapsuleCollider>().radius = 0.18f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 1.86f;
+                        break;
+                    case "Magician":
+                        _g3D_UI.transform.localPosition = new Vector3(-0.022f, 2.3f, -0.005f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.09f, 0.02f);
+                        gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 2.01f;
+                        break;
+                }
             }
             //_g3D_UI.transform.rotation = Quaternion.LookRotation(_gGameManager.GetComponent<GameManager>()._gPlayer_Two_Camera.transform.position);
             // _g3D_UI.transform.rotation = Quaternion.Euler(_g3D_UI.transform.rotation.x, _g3D_UI.transform.rotation.y - 180, _g3D_UI.transform.rotation.z );

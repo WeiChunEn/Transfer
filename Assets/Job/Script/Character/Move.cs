@@ -157,7 +157,7 @@ public class Move : MonoBehaviour
             }
             _gGameManager.GetComponent<GameManager>()._gMove_UI.SetActive(true);
             _bMove_Finish = false;
-            
+            OnTransfer_Area();
             Reset_Data();
             path.Reset_List();
             path.Save_CharacterPos();
@@ -253,15 +253,25 @@ public class Move : MonoBehaviour
         //}
     }
 
-
-    private void OnTriggerEnter(Collider other)
+    private void OnTransfer_Area()
     {
-        if(other.tag == "Transfer"&&gameObject.GetComponent<Character>().Chess.Job=="Minion")
+        for(int i = 0; i<path._lTransfer_A.Count;i++)
         {
-            _gGameManager.GetComponent<GameManager>()._gTranfer_UI.SetActive(true);
+            if(tag=="A"&&gameObject.transform.position.x== path._lTransfer_A[i].x&& gameObject.transform.position.z == path._lTransfer_A[i].z&&gameObject.GetComponent<Character>().Chess.Job=="Minion")
+            {
+                _gGameManager.GetComponent<GameManager>()._gTranfer_UI.SetActive(true);
+            }
         }
-        
+        for (int i = 0; i < path._lTransfer_B.Count; i++)
+        {
+            if (tag == "B" && gameObject.transform.position.x == path._lTransfer_B[i].x && gameObject.transform.position.z == path._lTransfer_B[i].z&&gameObject.GetComponent<Character>().Chess.Job == "Minion")
+            {
+                _gGameManager.GetComponent<GameManager>()._gTranfer_UI.SetActive(true);
+            }
+        }
+
     }
+    
 
 
 }

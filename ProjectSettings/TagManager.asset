@@ -11,7 +11,8 @@ TagManager:
   - B
   - In
   - Out
-  - Transfer
+  - TransferA
+  - TransferB
   layers:
   - Default
   - TransparentFX

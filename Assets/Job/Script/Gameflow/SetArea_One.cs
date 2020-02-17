@@ -44,8 +44,9 @@ public class SetArea_One :GameState
            if( GameManager._iPlayer1_Transfer_Area_Count == 0)
             {
                 GameManager._sSet_Area_Finish_One = "End";
-                _gGameManager.GetComponent<GameManager>()._gPlayer_One_Camera.SetActive(false);
-                _gGameManager.GetComponent<GameManager>()._gPlayer_Two_Camera.SetActive(true);
+                _gGameManager.GetComponent<GameManager>().Camera_Move_Anim();
+                //_gGameManager.GetComponent<GameManager>()._gPlayer_One_Camera.SetActive(false);
+                //_gGameManager.GetComponent<GameManager>()._gPlayer_Two_Camera.SetActive(true);
 
             }
 

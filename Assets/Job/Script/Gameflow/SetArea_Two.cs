@@ -30,8 +30,10 @@ public class SetArea_Two : GameState
             if(GameManager._iPlayer2_Transfer_Area_Count == 0)
             {
                 GameManager._sSet_Area_Finish_Two = "End";
-                _gGameManager.GetComponent<GameManager>()._gPlayer_Two_Camera.SetActive(false);
-                _gGameManager.GetComponent<GameManager>()._gPlayer_One_Camera.SetActive(true);
+                _gGameManager.GetComponent<GameManager>().Camera_Move_Anim();
+                
+                //_gGameManager.GetComponent<GameManager>()._gPlayer_Two_Camera.SetActive(false);
+                //_gGameManager.GetComponent<GameManager>()._gPlayer_One_Camera.SetActive(true);
             }
            
         }
