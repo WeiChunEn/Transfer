@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public GameObject _gPlayer2;            //B team腳色父物件
     public GameObject _gMove_UI;            //動UI的
     public GameObject _gMove_Camera;        //動Camera的
-    private GameObject m_NowPlayer;             //現在遊玩的腳色
+    public GameObject m_NowPlayer;             //現在遊玩的腳色
 
     public GameObject _gWhole_UI;           //最上層的UI
     //public GameObject _gNow_Player_UI;
@@ -147,7 +147,7 @@ public class GameManager : MonoBehaviour
         if (GameManager._sPlayer_One_Finish == "Start" )
         {
             m_NowPlayer = _gPlayer1.transform.GetChild(index).gameObject;
-            if (m_NowPlayer.GetComponent<Character>().Chess.Now_State != "Finish")
+            if (m_NowPlayer.GetComponent<Character>().Chess.Now_State != "Finish"&& m_NowPlayer.GetComponent<Move>()._bIs_Moving == false)
             {
                 _gNow_Player_UI = _gPlayer1_UI.transform.GetChild(index).gameObject;
                 _gNow_Player_Function_UI = _gNow_Player_UI.transform.GetChild(0).gameObject;
@@ -170,7 +170,7 @@ public class GameManager : MonoBehaviour
         else if (GameManager._sPlayer_Two_Finish == "Start")
         {
             m_NowPlayer = _gPlayer2.transform.GetChild(index).gameObject;
-            if (m_NowPlayer.GetComponent<Character>().Chess.Now_State != "Finish")
+            if (m_NowPlayer.GetComponent<Character>().Chess.Now_State != "Finish" && m_NowPlayer.GetComponent<Move>()._bIs_Moving == false)
             {
                 _gNow_Player_UI = _gPlayer2_UI.transform.GetChild(index).gameObject;
                 _gNow_Player_Function_UI = _gNow_Player_UI.transform.GetChild(0).gameObject;
@@ -482,14 +482,17 @@ public class GameManager : MonoBehaviour
         switch(index)
         {
             case 0:
+                Instantiate(m_NowPlayer.GetComponent<Character>()._gTransfer_Effect, m_NowPlayer.transform.position, m_NowPlayer.GetComponent<Character>()._gTransfer_Effect.transform.rotation);
                 m_NowPlayer.GetComponent<Character>().Set_Job_Data("Warrior") ;
                 _gTranfer_UI.SetActive(false);
                 break;
             case 1:
+                Instantiate(m_NowPlayer.GetComponent<Character>()._gTransfer_Effect, m_NowPlayer.transform.position, m_NowPlayer.GetComponent<Character>()._gTransfer_Effect.transform.rotation);
                 m_NowPlayer.GetComponent<Character>().Set_Job_Data("Archor");
                 _gTranfer_UI.SetActive(false);
                 break;
             case 2:
+                Instantiate(m_NowPlayer.GetComponent<Character>()._gTransfer_Effect, m_NowPlayer.transform.position, m_NowPlayer.GetComponent<Character>()._gTransfer_Effect.transform.rotation);
                 m_NowPlayer.GetComponent<Character>().Set_Job_Data("Magician");
                 _gTranfer_UI.SetActive(false);
                 break;
@@ -519,7 +522,7 @@ public class GameManager : MonoBehaviour
         {
             _gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Have_Attacked = false;
             _gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Have_Moved = false;
-            _gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State ="Idle";
+           // _gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State ="Idle";
             _gNow_Player_UI = _gPlayer1_UI.transform.GetChild(i).gameObject;
             _gNow_Player_Function_UI = _gNow_Player_UI.transform.GetChild(0).gameObject;
             m_NowPlayer = _gPlayer1.transform.GetChild(i).gameObject;
@@ -530,7 +533,7 @@ public class GameManager : MonoBehaviour
             Set_Character_Btn();
             _gPlayer2.transform.GetChild(i).GetComponent<Character>().Chess.Have_Attacked = false;
             _gPlayer2.transform.GetChild(i).GetComponent<Character>().Chess.Have_Moved = false;
-            _gPlayer2.transform.GetChild(i).GetComponent<Character>().Chess.Now_State = "Idle";
+           // _gPlayer2.transform.GetChild(i).GetComponent<Character>().Chess.Now_State = "Idle";
             _gNow_Player_UI = _gPlayer2_UI.transform.GetChild(i).gameObject;
             _gNow_Player_Function_UI = _gNow_Player_UI.transform.GetChild(0).gameObject;
             m_NowPlayer = _gPlayer2.transform.GetChild(i).gameObject;

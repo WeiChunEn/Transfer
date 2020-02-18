@@ -26,12 +26,12 @@ public class GameStateManager
         m_GameState = State;
         m_GameState.StateBegin();
         m_RunBegin = true;
-        Debug.Log(m_GameState);
+        
     }
 
     public void GameStateUpdate()
     {
-        Debug.Log(m_GameState);
+        
         //新的State開始
         //if (m_GameState != null && m_RunBegin == false)
         //{

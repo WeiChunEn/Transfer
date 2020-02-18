@@ -5,6 +5,7 @@ using UnityEngine;
 public class Path : MonoBehaviour
 {
     public GameObject _gPlane; //放棋盤的
+    public GameObject _gInit_Grid; //放生成的格子
     public GameObject _gPlayer;
     public GameObject _gEnmey;
     public GameObject _gPartner;
@@ -586,6 +587,59 @@ public class Path : MonoBehaviour
 
                 break;
             case "Warrior":
+                _iAttack_Distance = _gPlayer.GetComponent<Character>()._iAttack_Distance;
+                //m_Tmp_Pos = _gPlayer.transform.position;
+                m_Tmp_Pos= new Vector3(_gPlayer.transform.position.x + 1, _gPlayer.transform.position.y, _gPlayer.transform.position.z - 1);
+                
+                //_lCan_Move_List.Add(gameObject.transform.position);
+                // for(int i = 0; i<Walk_Steps;i++)
+                for (int i = 0; i < _iAttack_Distance; i++)
+                {
+                    for (int j = 0;j<_iAttack_Distance;j++)
+                    {
+                        
+                        _lCan_Attack_List.Add(new Vector3(m_Tmp_Pos.x - i, 0, m_Tmp_Pos.z + j));
+                        _iAttack_List_Index++;
+                        _iAttack_List_Count++;
+                    }
+                    m_Tmp_Pos = new Vector3(_gPlayer.transform.position.x + 1, _gPlayer.transform.position.y, _gPlayer.transform.position.z - 1);
+                }
+
+                List<Vector3> Count = new List<Vector3>();
+              
+               
+                for (int i = 0; i < _lCan_Attack_List.Count; i++)
+                {
+                    m_On_Board = false;
+                    for (int j = 0; j < _gPlane.transform.childCount; j++)
+                    {
+                        if (_lCan_Attack_List[i] == _gPlane.transform.GetChild(j).gameObject.transform.position)
+                        {
+                            m_On_Board = true;
+                            Count.Add(_lCan_Attack_List[i]);
+                            
+                        }
+
+                    }
+                    if (m_On_Board == false)
+                    {
+                        //_lCan_Attack_List.Remove(_lCan_Attack_List[i]);
+                        //_lAttack_Weight_List.Remove(_lAttack_Weight_List[i]);
+                        _iAttack_List_Count--;
+                        _iAttack_List_Index--;
+
+                    }
+
+                }
+                _lCan_Attack_List.Clear();
+                _lAttack_Weight_List.Clear();
+                for (int i = 0; i < Count.Count; i++)
+                {
+                    _lCan_Attack_List.Add(Count[i]);
+                   
+                }
+
+              
                 break;
             case "Magician":
                 Tmp_Count = 0;        //用來看是不是第一次算攻擊距離
@@ -744,7 +798,7 @@ public class Path : MonoBehaviour
                     m_On_Board = true;
                     Tmp_Count.Add(_lCan_Move_List[i]);
                     Tmp_Weight.Add(_lMove_Weight_List[i]);
-                    Debug.Log(12);
+                    
 
                     //Debug.Log(_gPlane.transform.GetChild(j).transform.position);
                 }
@@ -753,8 +807,7 @@ public class Path : MonoBehaviour
             
             if (m_On_Board == false)
             {
-                Debug.Log(_lMove_Weight_List.Count);
-                Debug.Log(_lCan_Move_List.Count);
+                
                 //Debug.Log(_lCan_Move_List[i]);
                 //_lCan_Move_List.Remove(_lCan_Move_List[i]);
                 //_lMove_Weight_List.Remove(_lMove_Weight_List[i]);
@@ -763,13 +816,13 @@ public class Path : MonoBehaviour
                 
                 
             }
-            Debug.Log(_lCan_Move_List.Count);
+            
         }
         _lCan_Move_List.Clear();
         _lMove_Weight_List.Clear();
         for(int i = 0; i < Tmp_Count.Count;i++)
         {
-            Debug.Log(Tmp_Count[i]);
+          
             _lCan_Move_List.Add(Tmp_Count[i]);
             _lMove_Weight_List.Add(Tmp_Weight[i]);
         }

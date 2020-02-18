@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -32,6 +33,11 @@ public class Character : MonoBehaviour
     public int _iNow_Class_Count;
     public GameObject[] _gClass = new GameObject[4]; //其他職業的模型
     public Sprite[] _gClass_Card = new Sprite[4]; //其他職業的卡牌圖
+
+    public GameObject _gTransfer_Effect;
+    public Material _mDeath_Mat;
+
+    public GameObject[] _gEffect = new GameObject[5]; //被攻擊以及攻擊的特效
     public class Character_Data
     {
         protected string m_Type;
@@ -74,6 +80,10 @@ public class Character : MonoBehaviour
 
                 if (m_HP < 0)
                 { m_HP = 0; }
+                else if(m_HP>=15)
+                {
+                    m_HP = 15;
+                }
             }
 
         }
@@ -107,9 +117,10 @@ public class Character : MonoBehaviour
             
             _sHead_HP.maxValue = _sHP_Slider.maxValue;
             _tHead_HP.text = _tHP.text;
-            _iNow_Class_Count = 0;
+            _iNow_Class_Count = 4;
+            _mDeath_Mat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(1).GetComponent<Renderer>().material;
             //_gClass[_iNow_Class_Count].SetActive(true)
-            
+
         }
         else
         {
@@ -117,9 +128,9 @@ public class Character : MonoBehaviour
             _sJob = "Minion";
             _iWalk_Steps = 1;
             _iAttack_Distance = 1;
-            _iHP = 20;
+            _iHP = 15;
             _iMP = 5;
-            _iAttack = 3;
+            _iAttack = 2;
             _sNow_State = "Idle";
             _sHP_Slider.maxValue = _iHP;
             _tHP.text = ((_iHP / _sHP_Slider.maxValue) * 100).ToString();
@@ -128,6 +139,7 @@ public class Character : MonoBehaviour
             _iNow_Class_Count = 0;
             _gClass[_iNow_Class_Count].SetActive(true);
             _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
+            _mDeath_Mat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(1).GetComponent<Renderer>().material;
         }
         
     }
@@ -152,8 +164,8 @@ public class Character : MonoBehaviour
         {
 
             _Death_Time += Time.deltaTime * 0.5f;
-
-           // gameObject.transform.GetChild(1).GetComponent<Renderer>().material.SetFloat("_DissolveCutoff", _Death_Time);
+            _mDeath_Mat.SetFloat("_DissolveCutoff", _Death_Time);
+           
             if (_Death_Time >= 0.5)
             {
                 gameObject.SetActive(false);
@@ -174,13 +186,18 @@ public class Character : MonoBehaviour
     /// <param name="new_Job"></param>
     public void Set_Job_Data(string new_Job)
     {
+        
         switch (new_Job)
         {
             case "Warrior":
+                Chess.Job = "Warrior";
                 _gClass[_iNow_Class_Count].SetActive(false);
                 _iNow_Class_Count = 1;
                 _gClass[_iNow_Class_Count].SetActive(true);
                 _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
+                Chess.Attack = 5;
+                Chess.Attack_Distance = 3;
+                Chess.Walk_Steps = 5;
                 break;
             case "Magician":
                 Chess.Job = "Magician";
@@ -188,15 +205,19 @@ public class Character : MonoBehaviour
                 _iNow_Class_Count = 2;
                 _gClass[_iNow_Class_Count].SetActive(true);
                 _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
-                Chess.Attack = 6;
+                Chess.Attack = 7;
                 Chess.Attack_Distance = 2;
-                Chess.Walk_Steps = 2;
+                Chess.Walk_Steps = 1;
+                _mDeath_Mat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).transform.GetChild(0).GetComponent<Renderer>().material;
                 break;
             case "Archor":
                 _gClass[_iNow_Class_Count].SetActive(false);
                 _iNow_Class_Count = 3;
                 _gClass[_iNow_Class_Count].SetActive(true);
                 _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
+                Chess.Attack = 3;
+                Chess.Attack_Distance = 3;
+                Chess.Walk_Steps = 2;
                 break;
 
            
@@ -210,6 +231,7 @@ public class Character : MonoBehaviour
                 Chess.Attack = 3;
                 Chess.Attack_Distance = 1;
                 Chess.Walk_Steps = 1;
+                _mDeath_Mat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(1).GetComponent<Renderer>().material;
                 break;
 
         }
@@ -257,15 +279,15 @@ public class Character : MonoBehaviour
                         break;
                     case "Priest":
                         _g3D_UI.transform.localPosition = new Vector3(0.049f, 1.92f, -0.071f);
-                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 0.937f, -0.09f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.2f, -0.05f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.18f;
-                        gameObject.GetComponent<CapsuleCollider>().height = 1.86f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 1.2f;
                         break;
                     case "Magician":
                         _g3D_UI.transform.localPosition = new Vector3(0.1f, 2.3f, -0.005f);
-                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.09f, 0.02f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.5f, 0.02f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
-                        gameObject.GetComponent<CapsuleCollider>().height = 2.01f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 1.4f;
                         break;
                 }
             }
@@ -282,15 +304,15 @@ public class Character : MonoBehaviour
                         break;
                     case "Preist":
                         _g3D_UI.transform.localPosition = new Vector3(0.049f, 1.92f, -0.071f);
-                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 0.937f, -0.09f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.2f, -0.05f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.18f;
-                        gameObject.GetComponent<CapsuleCollider>().height = 1.86f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 1.2f;
                         break;
                     case "Magician":
                         _g3D_UI.transform.localPosition = new Vector3(-0.022f, 2.3f, -0.005f);
-                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.09f, 0.02f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.5f, 0.02f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
-                        gameObject.GetComponent<CapsuleCollider>().height = 2.01f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 1.4f;
                         break;
                 }
             }
@@ -315,15 +337,15 @@ public class Character : MonoBehaviour
                         break;
                     case "Preist":
                         _g3D_UI.transform.localPosition = new Vector3(0.049f, 1.92f, -0.071f);
-                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 0.937f, -0.09f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.2f, -0.05f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.18f;
-                        gameObject.GetComponent<CapsuleCollider>().height = 1.86f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 1.2f;
                         break;
                     case "Magician":
                         _g3D_UI.transform.localPosition = new Vector3(0.1f, 2.3f, -0.005f);
-                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.09f, 0.02f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.5f, 0.02f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
-                        gameObject.GetComponent<CapsuleCollider>().height = 2.01f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 1.4f;
                         break;
                 }
             }
@@ -340,15 +362,15 @@ public class Character : MonoBehaviour
                         break;
                     case "Preist":
                         _g3D_UI.transform.localPosition = new Vector3(0.049f, 1.92f, -0.071f);
-                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 0.937f, -0.09f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.2f, -0.05f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.18f;
-                        gameObject.GetComponent<CapsuleCollider>().height = 1.86f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 1.2f;
                         break;
                     case "Magician":
                         _g3D_UI.transform.localPosition = new Vector3(-0.022f, 2.3f, -0.005f);
-                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.09f, 0.02f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.5f, 0.02f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
-                        gameObject.GetComponent<CapsuleCollider>().height = 2.01f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 1.4f;
                         break;
                 }
             }
@@ -356,6 +378,23 @@ public class Character : MonoBehaviour
             // _g3D_UI.transform.rotation = Quaternion.Euler(_g3D_UI.transform.rotation.x, _g3D_UI.transform.rotation.y - 180, _g3D_UI.transform.rotation.z );
 
 
+        }
+    }
+
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        switch(other.tag)
+        {
+            case "Magician":
+                Destroy(other.gameObject);
+                Instantiate(_gEffect[2], gameObject.transform.position, _gEffect[2].transform.rotation);
+                char Damage = other.name[0];
+               
+                Chess.HP -= (int)Char.GetNumericValue(Damage);
+                
+                break;
         }
     }
 }

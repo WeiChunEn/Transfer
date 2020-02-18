@@ -27,7 +27,7 @@ public class Move : MonoBehaviour
     private int Short_Road_Count;       //最短路徑的格數
     private bool _bMove_Finish;         //是否移動完成
     public bool _bCan_Move;             //是否可以開始移動
-
+    public bool _bIs_Moving;            //是否正在移動
     public Button _bMove_Btn;       //移動的按鈕
     // Start is called before the first frame update
     void Start()
@@ -137,6 +137,7 @@ public class Move : MonoBehaviour
 
 
         Set_Rotate();
+        _bIs_Moving = true;
         transform.position = Vector3.MoveTowards(transform.position, _lShort_Road[Short_Road_Count], 2.5f * Time.deltaTime);
         if (transform.position == _lShort_Road[Short_Road_Count])
         {
@@ -145,7 +146,7 @@ public class Move : MonoBehaviour
         }
         if (Short_Road_Count < 0)
         {
-            
+            _bIs_Moving = false;
             _gGameManager.GetComponent<GameManager>().In_And_Out();
             if (gameObject.tag == "A")
             {

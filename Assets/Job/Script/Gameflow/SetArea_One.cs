@@ -35,12 +35,12 @@ public class SetArea_One :GameState
             _gStateName = GameObject.Find("GameState");
             
         }
-
+        _gGameManager = GameObject.Find("GameManager");
         _gStateName.GetComponent<TextMeshProUGUI>().text = StateName;
         Debug.Log("SetAreaUpdate");
         if(GameManager._sSet_Area_Finish_One == "Start")
         {
-            Debug.Log(GameManager._iPlayer1_Transfer_Area_Count);
+           
            if( GameManager._iPlayer1_Transfer_Area_Count == 0)
             {
                 GameManager._sSet_Area_Finish_One = "End";

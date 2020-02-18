@@ -7,7 +7,7 @@ public class MouseEvent : MonoBehaviour
 {
     private Color _cTmp_Grid_Color; //原本的格子顏色
     private Color _cTmp_Area_Color; //原本的區域顏色
-    private Color _cTmp_Atk_Grid_Color; //原本的攻擊區域顏色
+    public Color _cTmp_Atk_Grid_Color; //原本的攻擊區域顏色
     public Vector3 _vDestination; //格子的位置
     public GameObject _gGameManager; //管理器
     public GameObject _gNow_Player; //現在控制的旗子
@@ -54,18 +54,42 @@ public class MouseEvent : MonoBehaviour
         {
             if (gameObject.tag == "A" && GameManager._sPlayer_One_Finish == "Start" && _bOn_Player_It == true&& !EventSystem.current.IsPointerOverGameObject())
             {
-                _gGameManager.GetComponent<GameManager>().Select_Player(m_Player_Index);
-                if (_gGameManager.GetComponent<GameManager>()._gMove_UI.tag == "In")
+                if(_gGameManager.GetComponent<GameManager>().m_NowPlayer == null)
                 {
-                    _gGameManager.GetComponent<GameManager>().In_And_Out();
+                    _gGameManager.GetComponent<GameManager>().Select_Player(m_Player_Index);
+                    if (_gGameManager.GetComponent<GameManager>()._gMove_UI.tag == "In")
+                    {
+                        _gGameManager.GetComponent<GameManager>().In_And_Out();
+                    }
                 }
+                else if(_gGameManager.GetComponent<GameManager>().m_NowPlayer != null && _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Move>()._bIs_Moving == false)
+                {
+                    _gGameManager.GetComponent<GameManager>().Select_Player(m_Player_Index);
+                    if (_gGameManager.GetComponent<GameManager>()._gMove_UI.tag == "In")
+                    {
+                        _gGameManager.GetComponent<GameManager>().In_And_Out();
+                    }
+                }
+                
+               
             }
             if (gameObject.tag == "B" && GameManager._sPlayer_Two_Finish == "Start" && _bOn_Player_It == true && !EventSystem.current.IsPointerOverGameObject())
             {
-                _gGameManager.GetComponent<GameManager>().Select_Player(m_Player_Index);
-                if (_gGameManager.GetComponent<GameManager>()._gMove_UI.tag == "In")
+                if (_gGameManager.GetComponent<GameManager>().m_NowPlayer == null)
                 {
-                    _gGameManager.GetComponent<GameManager>().In_And_Out();
+                    _gGameManager.GetComponent<GameManager>().Select_Player(m_Player_Index);
+                    if (_gGameManager.GetComponent<GameManager>()._gMove_UI.tag == "In")
+                    {
+                        _gGameManager.GetComponent<GameManager>().In_And_Out();
+                    }
+                }
+                else if (_gGameManager.GetComponent<GameManager>().m_NowPlayer != null && _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Move>()._bIs_Moving == false)
+                {
+                    _gGameManager.GetComponent<GameManager>().Select_Player(m_Player_Index);
+                    if (_gGameManager.GetComponent<GameManager>()._gMove_UI.tag == "In")
+                    {
+                        _gGameManager.GetComponent<GameManager>().In_And_Out();
+                    }
                 }
             }
             //移動按鈕滑鼠事件
@@ -91,6 +115,7 @@ public class MouseEvent : MonoBehaviour
             if (_bOn_Attack_It == true && (GameManager._sPlayer_One_Finish == "Start" || GameManager._sPlayer_Two_Finish == "Start") && tag == "Atk_Grid")
             {
                 GameObject Enmey;
+                
                 if (_gNow_Player.GetComponent<Character>().Chess.Type == "A")
                 {
 
@@ -98,6 +123,7 @@ public class MouseEvent : MonoBehaviour
                     {
                         if ((gameObject.transform.position.x == path._gEnmey.transform.GetChild(i).gameObject.transform.position.x) && (gameObject.transform.position.z == path._gEnmey.transform.GetChild(i).gameObject.transform.position.z))
                         {
+                            
                             Enmey = path._gEnmey.transform.GetChild(i).gameObject;
                             _gNow_Player.GetComponent<Attack>().Attack_Enmey(Enmey);
                             _gNow_Player.GetComponent<Character>().Chess.Have_Attacked = true;
@@ -106,7 +132,7 @@ public class MouseEvent : MonoBehaviour
                             _gNow_Player.GetComponent<Attack>().Destory_AttackGrid();
                             _gGameManager.GetComponent<GameManager>().Set_Character_Btn();
                             _gGameManager.GetComponent<GameManager>().In_And_Out();
-                            _gGameManager.GetComponent<GameManager>().End_Btn_Click();
+                            //_gGameManager.GetComponent<GameManager>().End_Btn_Click();
                         }
                     }
                   
@@ -236,8 +262,23 @@ public class MouseEvent : MonoBehaviour
         }
         if (gameObject.tag == "Atk_Grid" && (GameManager._sPlayer_One_Finish == "Start" || GameManager._sPlayer_Two_Finish == "Start") && !EventSystem.current.IsPointerOverGameObject())
         {
-            GetComponent<Renderer>().material.color = Color.yellow;
-            _bOn_Attack_It = true;
+            if(_gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Character>().Chess.Job=="Warrior")
+            {
+                for(int i = 0;i<path._gInit_Grid.transform.childCount;i++)
+                {
+
+                    path._gInit_Grid.transform.GetChild(i).GetComponent<Renderer>().material.color = Color.yellow;
+
+
+                    path._gInit_Grid.transform.GetChild(i).GetComponent<MouseEvent>()._bOn_Attack_It = true;
+                }
+            }
+            else
+            {
+                GetComponent<Renderer>().material.color = Color.yellow;
+                _bOn_Attack_It = true;
+            }
+           
         }
 
         if (gameObject.tag == "A" && GameManager._sPlayer_One_Finish == "Start"&&!EventSystem.current.IsPointerOverGameObject())
@@ -297,8 +338,23 @@ public class MouseEvent : MonoBehaviour
         }
         if (gameObject.tag == "Atk_Grid")
         {
-            GetComponent<Renderer>().material.color = _cTmp_Atk_Grid_Color;
-            _bOn_Attack_It = false;
+            if (_gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Character>().Chess.Job == "Warrior")
+            {
+                for (int i = 0; i < path._gInit_Grid.transform.childCount; i++)
+                {
+
+                    path._gInit_Grid.transform.GetChild(i).GetComponent<Renderer>().material.color = _cTmp_Atk_Grid_Color;
+
+
+                    path._gInit_Grid.transform.GetChild(i).GetComponent<MouseEvent>()._bOn_Attack_It = false;
+                }
+            }
+            else
+            {
+                GetComponent<Renderer>().material.color = _cTmp_Atk_Grid_Color;
+                _bOn_Attack_It = false;
+            }
+            
         }
         if (gameObject.tag == "A" && GameManager._sPlayer_One_Finish == "Start")
         {
@@ -306,8 +362,8 @@ public class MouseEvent : MonoBehaviour
             {
                 if ((gameObject.name == _gGameManager.GetComponent<GameManager>()._gPlayer1.transform.GetChild(i).name))
                 {
-                    Debug.Log(123);
-                    //GetComponent<Renderer>().material.color = Color.blue;
+                    
+                    
                     _bOn_Player_It = false;
                 }
             }
@@ -320,7 +376,7 @@ public class MouseEvent : MonoBehaviour
                 if ((gameObject.name == _gGameManager.GetComponent<GameManager>()._gPlayer2.transform.GetChild(i).name))
                 {
                     //GetComponent<Renderer>().material.color = Color.blue;
-                    Debug.Log(123);
+                    
                     _bOn_Player_It = false;
                 }
             }
