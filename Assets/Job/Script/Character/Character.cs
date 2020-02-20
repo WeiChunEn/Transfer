@@ -80,9 +80,9 @@ public class Character : MonoBehaviour
 
                 if (m_HP < 0)
                 { m_HP = 0; }
-                else if(m_HP>=15)
+                else if(m_HP>=20)
                 {
-                    m_HP = 15;
+                    m_HP = 20;
                 }
             }
 

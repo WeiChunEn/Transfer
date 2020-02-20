@@ -19,11 +19,10 @@ public class Player1Turn : GameState
         {
             _gStateName = GameObject.Find("GameState");
         }
-        _gStateName.GetComponent<TextMeshProUGUI>().text = StateName;
+    
         _gGameManager = GameObject.Find("GameManager");
-        //_gGameManager.GetComponent<GameManager>()._gNow_State_UI[1].SetActive(false);
-        _gGameManager.GetComponent<GameManager>()._gNow_State_UI[3].SetActive(false);
-        _gGameManager.GetComponent<GameManager>()._gNow_State_UI[2].SetActive(true);
+        _gGameManager.GetComponent<GameManager>()._gNow_State_UI[1].SetActive(false);
+      
     }
     public override void StateUpdate()
     {

@@ -69,6 +69,7 @@ public class Attack : MonoBehaviour
     /// <param name="Enmey"></param>
     public void Attack_Enmey(GameObject Enmey)
     {
+        Debug.Log(1232);
         _iJob_Num = gameObject.GetComponent<Character>()._iNow_Class_Count;
         switch(gameObject.GetComponent<Character>().Chess.Job)
         {
@@ -112,6 +113,7 @@ public class Attack : MonoBehaviour
         _iJob_Num = gameObject.GetComponent<Character>()._iNow_Class_Count;
         if (gameObject.GetComponent<Character>().Chess.Job == "Preist")
         {
+           
             Partner.GetComponent<Character>().Set_Job_Data("Minion");
             Partner.GetComponent<Character>().Chess.HP += gameObject.GetComponent<Character>().Chess.Attack;
             Instantiate(_gEffect[_iJob_Num], Partner.transform.position, _gEffect[_iJob_Num].transform.rotation);

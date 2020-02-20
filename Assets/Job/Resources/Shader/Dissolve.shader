@@ -6,7 +6,7 @@
    	   _Color("Color",Color)=(1,1,1,1)
 	   _MainTextrue("Main Texture",2D)="white"{}
 	   _MaskTextrue("Mask Texture",2D) = "white"{}
-	   _DissolveTextur("Dissolve Texture",2D)="white"{}
+	   _DissloveSize("Dissolve Size",float) = 0
 	   	_BumpMap("Normal Map", 2D) = "bump" {}
 		_BumpScale("Bump Scale", Float) = 1.0
 	   _DissolveCutoff("Dissolve Cutoff",Range(0,1))=1
@@ -21,13 +21,14 @@
    {
    	   Pass
 	   {
-	   Tags{ "LightMode" = "ForwardBase" }
+	   Tags{ "LightMode" = "ForwardBase" "DisableBatching" = "true"}
 	   	   CGPROGRAM
 
 		   #pragma vertex vert
 		   #pragma fragment frag
 		   #include "UnityCG.cginc"
 		   #include "Lighting.cginc" 
+		   #include "SimplexNoise3D.hlsl"
 		   struct a2v
 		   {
 					float4 vertex : POSITION;
@@ -43,11 +44,12 @@
 				float3 lightDir:TEXCOORD1;
 				float3 viewDir : TEXCOORD2;
 				float3 worldNormal : TEXCOORD3;
+				float4 localPos : TEXCOORD4;
 				
 		   };
 
 		  
-		
+		float _DissloveSize;
 		 fixed4 _Color;
 		   
 		   sampler2D _MaskTextrue;
@@ -56,8 +58,7 @@
 		   sampler2D _MainTextrue;
 		   float4 _MainTextrue_ST;
 
-		   sampler2D _DissolveTextur;
-		   float4 _DissolveTextur_ST;
+		   
 
 		   sampler2D _BumpMap;
 			float4 _BumpMap_ST;
@@ -75,6 +76,7 @@
 		   v2f vert(a2v v)
 		   {
 				v2f o;
+				o.localPos = v.vertex;
 				o.pos = UnityObjectToClipPos(v.vertex);
 				o.worldNormal = mul(v.vertex,unity_WorldToObject).xyz;
 				o.uv.xy = v.texcoord.xy* _MainTextrue_ST.xy+_MainTextrue_ST.zw;
@@ -96,9 +98,31 @@
 					
 					float4 Tex = tex2D(_MainTextrue,i.uv);
 					float4 Mask = tex2D(_MaskTextrue,i.uv);
-					float4 Dissolve = tex2D(_DissolveTextur,i.uv);
-					float3 Final = (Tex.rgb*Mask.a)+Mask.rgb*_Color;
-					fixed3 albedo = Final;
+					
+					float opaque = 1;
+					float noiseVal = snoise(i.localPos * _DissloveSize);
+					float blueCol = 0;
+
+					float a = _DissolveCutoff * 2;
+					float4 r = lerp (opaque, noiseVal, saturate(a));
+					a -= 1;
+					r = lerp (r, blueCol, saturate(a));
+
+					clip(r - 0.2);
+
+					float lerpValue = r;
+				
+					if(lerpValue < _ColorFactorA)
+					{
+						return _DissolveColorA;
+					}
+					else if(lerpValue < _ColorFactroB)
+					{
+						return _DissolveColorB;
+					}
+					
+					//float3 Final = (Tex.rgb*Mask.a)+(Mask.rgb*_Color);
+					fixed3 albedo = Tex.rgb;
 
 					fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz * albedo;
 
@@ -108,17 +132,7 @@
 					fixed3 color = ambient +diffuse;
 		   			
 					
-					clip(Dissolve.rgb-_DissolveCutoff);
-					float lerpValue = _DissolveCutoff/Dissolve.rgb;
-					if(lerpValue >_ColorFactorA)
-					{
-			   			if(lerpValue>_ColorFactroB)
-						{
-							return _DissolveColorB;
-						}
-						return _DissolveColorA;
-					}
-			   
+					
 				
 
 			   return fixed4(color,1.0);

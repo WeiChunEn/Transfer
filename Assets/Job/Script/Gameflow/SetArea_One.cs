@@ -23,8 +23,8 @@ public class SetArea_One :GameState
             
         }
 
-        _gStateName.GetComponent<TextMeshProUGUI>().text = StateName;
-        Debug.Log(_gStateName.GetComponent<TextMeshProUGUI>().text);
+       
+        
         _gGameManager = GameObject.Find("GameManager");
     }
 
@@ -36,8 +36,8 @@ public class SetArea_One :GameState
             
         }
         _gGameManager = GameObject.Find("GameManager");
-        _gStateName.GetComponent<TextMeshProUGUI>().text = StateName;
-        //_gGameManager.GetComponent<GameManager>()._gNow_State_UI[0].SetActive(true);
+     
+        _gGameManager.GetComponent<GameManager>()._gNow_State_UI[0].SetActive(true);
         Debug.Log("SetAreaUpdate");
         if(GameManager._sSet_Area_Finish_One == "Start")
         {

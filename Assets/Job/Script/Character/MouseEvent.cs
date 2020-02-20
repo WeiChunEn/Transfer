@@ -118,9 +118,9 @@ public class MouseEvent : MonoBehaviour
                 GameObject Enmey;
 
 
-                if (_gNow_Player.GetComponent<Character>().Chess.Type == "A")
+                if (_gNow_Player.GetComponent<Character>().Chess.Type == "A" && _gNow_Player.GetComponent<Character>().Chess.Job != "Preist")
                 {
-
+                    Debug.Log(1232);
                     for (int i = 0; i < path._gEnmey.transform.childCount; i++)
                     {
                         if ((gameObject.transform.position.x == path._gEnmey.transform.GetChild(i).gameObject.transform.position.x) && (gameObject.transform.position.z == path._gEnmey.transform.GetChild(i).gameObject.transform.position.z))
@@ -164,7 +164,7 @@ public class MouseEvent : MonoBehaviour
 
 
 
-                else if (_gNow_Player.GetComponent<Character>().Chess.Type == "B")
+                else if (_gNow_Player.GetComponent<Character>().Chess.Type == "B" && _gNow_Player.GetComponent<Character>().Chess.Job != "Preist")
                 {
 
                     for (int i = 0; i < path._gPartner.transform.childCount; i++)
@@ -211,6 +211,7 @@ public class MouseEvent : MonoBehaviour
                             Partner = path._gPartner.transform.GetChild(i).gameObject;
                             if (Partner.GetComponent<Character>().Chess.Job != "Minion")
                             {
+                                Debug.Log(1232);
                                 _gNow_Player.GetComponent<Attack>().Recall_Partner(Partner);
                                 _gNow_Player.GetComponent<Character>().Chess.Have_Attacked = true;
                                 _gNow_Player.GetComponent<Character>().Chess.Have_Moved = true;
