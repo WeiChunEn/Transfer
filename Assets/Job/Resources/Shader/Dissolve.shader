@@ -2,17 +2,20 @@
 {
    Properties
    {
+		
    	   _Color("Color",Color)=(1,1,1,1)
 	   _MainTextrue("Main Texture",2D)="white"{}
+	   _MaskTextrue("Mask Texture",2D) = "white"{}
 	   _DissolveTextur("Dissolve Texture",2D)="white"{}
+	   	_BumpMap("Normal Map", 2D) = "bump" {}
+		_BumpScale("Bump Scale", Float) = 1.0
 	   _DissolveCutoff("Dissolve Cutoff",Range(0,1))=1
 	   _DissolveColorA("Dissolve Color A",Color) = (1,1,1,1)
 	   _DissolveColorB("Dissolve Color B",Color) = (1,1,1,1)
 	   _ColorFactorA("ColorFactorA",Range(0,1))=0
 	   _ColorFactroB("ColorFactorB",Range(0,1))=0
-	   _Size("Size", Float) = 0.1 //光暈範圍
-       _OutLightPow("Falloff",Float) = 5 //光暈平方參數
-       _OutLightStrength("Transparency", Float) = 15 //光暈強度
+	   
+	  
    }
    SubShader
    {
@@ -25,20 +28,43 @@
 		   #pragma fragment frag
 		   #include "UnityCG.cginc"
 		   #include "Lighting.cginc" 
-
+		   struct a2v
+		   {
+					float4 vertex : POSITION;
+					float3 normal : NORMAL;
+					float4 tangent : TANGENT;
+					float4 texcoord : TEXCOORD0;
+		   };
 		   struct v2f
 		   {
 				float4 pos : SV_POSITION;
-				float2 uv : TEXCOORD0;
-				float worldNormal :TEXCOORD1;
+				float4 uv : TEXCOORD0;
+				
+				float3 lightDir:TEXCOORD1;
+				float3 viewDir : TEXCOORD2;
+				float3 worldNormal : TEXCOORD3;
+				
 		   };
 
+		  
+		
+		 fixed4 _Color;
+		   
+		   sampler2D _MaskTextrue;
+		   float4 _MaskTextrue_ST;
 
-		   fixed4 _Color;
 		   sampler2D _MainTextrue;
 		   float4 _MainTextrue_ST;
+
 		   sampler2D _DissolveTextur;
 		   float4 _DissolveTextur_ST;
+
+		   sampler2D _BumpMap;
+			float4 _BumpMap_ST;
+
+			float _BumpScale;
+		
+
 		   float _DissolveCutoff;
 		  fixed4 _DissolveColorA;
 			fixed4 _DissolveColorB;
@@ -46,88 +72,59 @@
 			float _ColorFactroB;
 
 			
-		   v2f vert(appdata_base v)
+		   v2f vert(a2v v)
 		   {
 				v2f o;
 				o.pos = UnityObjectToClipPos(v.vertex);
-				o.uv = TRANSFORM_TEX(v.texcoord,_MainTextrue);
-				o.worldNormal = mul(v.normal, (float3x3)unity_WorldToObject);
+				o.worldNormal = mul(v.vertex,unity_WorldToObject).xyz;
+				o.uv.xy = v.texcoord.xy* _MainTextrue_ST.xy+_MainTextrue_ST.zw;
+				o.uv.zw = v.texcoord.xy * _BumpMap_ST.xy + _BumpMap_ST.zw;
+				TANGENT_SPACE_ROTATION;
+				o.lightDir = mul(rotation,normalize(ObjSpaceLightDir(v.vertex))).xyz;
+				//o.viewDir = mul(rotation,normalize(ObjSpaceLightDir(v.vertex))).xyz;
 				return o;
 		   }
 		   fixed4 frag(v2f i):SV_TARGET
 		   {
-				fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz;
-				fixed3 worldNormal = normalize(i.worldNormal);
-				fixed3 worldLightDir = normalize(_WorldSpaceLightPos0.xyz);
-				fixed3 diffuse = _LightColor0.rgb*_Color.rgb*saturate(dot(worldNormal,worldLightDir));
-		   	   float4 Tex = tex2D(_MainTextrue,i.uv);
-			   float4 Dissolve = tex2D(_DissolveTextur,i.uv);
-		       clip(Dissolve.rgb-_DissolveCutoff);
-			   float lerpValue = _DissolveCutoff/Dissolve.rgb;
-		       if(lerpValue >_ColorFactorA)
-			   {
-			     	if(lerpValue>_ColorFactroB)
+					fixed3 LightDir = normalize(i.lightDir);
+	
+					fixed4 packedNormal = tex2D(_BumpMap, i.uv.zw);
+					fixed3 tangentNormal;
+	
+					tangentNormal = UnpackNormal(packedNormal);
+					tangentNormal.xy *= _BumpScale;
+					
+					float4 Tex = tex2D(_MainTextrue,i.uv);
+					float4 Mask = tex2D(_MaskTextrue,i.uv);
+					float4 Dissolve = tex2D(_DissolveTextur,i.uv);
+					float3 Final = (Tex.rgb*Mask.a)+Mask.rgb*_Color;
+					fixed3 albedo = Final;
+
+					fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz * albedo;
+
+					fixed3 diffuse = _LightColor0.rgb * albedo * max(0, dot(tangentNormal, LightDir));
+
+					
+					fixed3 color = ambient +diffuse;
+		   			
+					
+					clip(Dissolve.rgb-_DissolveCutoff);
+					float lerpValue = _DissolveCutoff/Dissolve.rgb;
+					if(lerpValue >_ColorFactorA)
 					{
-						return _DissolveColorB;
+			   			if(lerpValue>_ColorFactroB)
+						{
+							return _DissolveColorB;
+						}
+						return _DissolveColorA;
 					}
-					return _DissolveColorA;
-			   }
-			   fixed3 color = diffuse + ambient;
-			   /*float percentage = _DissolveThreshold / dissolveValue.r;
-		
-				float lerpEdge = sign(percentage - _ColorFactor - _DissolveEdge);
-		
-				fixed3 edgeColor = lerp(_DissolveEdgeColor.rgb, _DissolveColor.rgb, saturate(lerpEdge));
-		
-				float lerpOut = sign(percentage - _ColorFactor);
-		
-				fixed3 colorOut = lerp(color, edgeColor, saturate(lerpOut));*/
+			   
 				
 
-			   return fixed4(Tex*_Color);
+			   return fixed4(color,1.0);
 		   }
 		   ENDCG
 	   }
-	  /* Pass
-	   {
-	   	  
-			 Tags{ "LightMode" = "Always" }
-            Cull Front
-            Blend SrcAlpha One
-			CGPROGRAM
-			#pragma vertex vert
-			#pragma fragment frag
-			#include "UnityCG.cginc"
-			float4 _Color;
-			 uniform float _Size;
-            uniform float _OutLightPow;
-            uniform float _OutLightStrength;
-			struct v2f
-			{
-				float4 pos:SV_POSITION;
-				float3 worldNormal:TEXCOORD0;
-				float3 worldPos:TEXCOORD1;
-			};
-
-			v2f vert(appdata_base v)
-			{
-				v2f o;
-				v.vertex.xyz += v.normal*_Size;
-				o.pos = UnityObjectToClipPos(v.vertex);
-				o.worldNormal = v.normal;
-				o.worldPos = mul(unity_ObjectToWorld,v.vertex);
-				return o;
-			}
-			float4 frag(v2f i):COLOR
-			{
-				i.worldNormal = normalize(i.worldNormal);
-				float3 viewDir = normalize(-UnityWorldSpaceViewDir(i.worldPos));
-				float4 Atom = _Color;
-				Atom.a = pow(saturate(dot(viewDir,i.worldNormal)),_OutLightPow);
-				Atom.a *=_OutLightStrength*dot(viewDir,i.worldNormal);
-				return Atom;
-			}
-			ENDCG
-	   }*/
+	 
    }
 }

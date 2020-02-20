@@ -15,7 +15,8 @@ public class Path : MonoBehaviour
     public List<Vector3> _lEnmeyPos_List = new List<Vector3>();    //敵人所在的位置List
     public List<Vector3> _lPartnerPos_List = new List<Vector3>();   //自己人所在的位置List
     public List<Vector3> _lCan_Move_List = new List<Vector3>();     //能移動的位置List
-    public List<Vector3> _lCan_Attack_List = new List<Vector3>();
+    public List<Vector3> _lCan_Attack_List = new List<Vector3>();      //能攻擊的List
+    public List<GameObject> _lCan_Attack_Enmey = new List<GameObject>(); //在格子上能攻擊到的人
     public List<int> _lMove_Weight_List = new List<int>();      //格子權重的List
     public List<int> _lAttack_Weight_List = new List<int>();  //攻擊格子的權重List
 

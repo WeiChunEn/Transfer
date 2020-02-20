@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ChessB_Minion
-  m_Shader: {fileID: 4800000, guid: f45aa40710b213c46b101e32e327c238, type: 3}
+  m_Shader: {fileID: 4800000, guid: 68e4384d21b517c498319adbb4b16e87, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -49,6 +49,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTextrue:
         m_Texture: {fileID: 2800000, guid: 2b27664e56f405f47a68f32bf2a9eca2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTextrue:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:

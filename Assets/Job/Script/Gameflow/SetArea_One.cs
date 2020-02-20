@@ -37,6 +37,7 @@ public class SetArea_One :GameState
         }
         _gGameManager = GameObject.Find("GameManager");
         _gStateName.GetComponent<TextMeshProUGUI>().text = StateName;
+        //_gGameManager.GetComponent<GameManager>()._gNow_State_UI[0].SetActive(true);
         Debug.Log("SetAreaUpdate");
         if(GameManager._sSet_Area_Finish_One == "Start")
         {

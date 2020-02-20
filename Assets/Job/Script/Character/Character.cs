@@ -106,9 +106,9 @@ public class Character : MonoBehaviour
         {
             _sType = gameObject.tag;
             _sJob = "Preist";
-            _iWalk_Steps = 1;
+            _iWalk_Steps = 2;
             _iAttack_Distance = 1;
-            _iHP = 10;
+            _iHP = 15;
             _iMP = 5;
             _iAttack = 5;
             _sNow_State = "Idle";
@@ -126,9 +126,9 @@ public class Character : MonoBehaviour
         {
             _sType = gameObject.tag;
             _sJob = "Minion";
-            _iWalk_Steps = 1;
+            _iWalk_Steps = 2;
             _iAttack_Distance = 1;
-            _iHP = 15;
+            _iHP = 20;
             _iMP = 5;
             _iAttack = 2;
             _sNow_State = "Idle";
@@ -195,9 +195,9 @@ public class Character : MonoBehaviour
                 _iNow_Class_Count = 1;
                 _gClass[_iNow_Class_Count].SetActive(true);
                 _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
-                Chess.Attack = 5;
+                Chess.Attack = 4;
                 Chess.Attack_Distance = 3;
-                Chess.Walk_Steps = 5;
+                Chess.Walk_Steps = 3;
                 break;
             case "Magician":
                 Chess.Job = "Magician";
@@ -205,7 +205,7 @@ public class Character : MonoBehaviour
                 _iNow_Class_Count = 2;
                 _gClass[_iNow_Class_Count].SetActive(true);
                 _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
-                Chess.Attack = 7;
+                Chess.Attack = 8;
                 Chess.Attack_Distance = 2;
                 Chess.Walk_Steps = 1;
                 _mDeath_Mat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).transform.GetChild(0).GetComponent<Renderer>().material;
@@ -215,7 +215,7 @@ public class Character : MonoBehaviour
                 _iNow_Class_Count = 3;
                 _gClass[_iNow_Class_Count].SetActive(true);
                 _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
-                Chess.Attack = 3;
+                Chess.Attack = 5;
                 Chess.Attack_Distance = 3;
                 Chess.Walk_Steps = 2;
                 break;
@@ -228,9 +228,9 @@ public class Character : MonoBehaviour
                 _iNow_Class_Count = 0;
                 _gClass[_iNow_Class_Count].SetActive(true);
                 _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
-                Chess.Attack = 3;
+                Chess.Attack = 2;
                 Chess.Attack_Distance = 1;
-                Chess.Walk_Steps = 1;
+                Chess.Walk_Steps = 2;
                 _mDeath_Mat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(1).GetComponent<Renderer>().material;
                 break;
 
@@ -252,7 +252,7 @@ public class Character : MonoBehaviour
         _bHave_Moved = Chess.Have_Moved;
         _iWalk_Steps = Chess.Walk_Steps;
 
-        _tHP.text = (_iHP / _sHP_Slider.maxValue * 100).ToString();
+        _tHP.text = Math.Round(_iHP / _sHP_Slider.maxValue * 100).ToString();
         _sHead_HP.value = _sHP_Slider.value;
         _tHead_HP.text = _tHP.text;
     }
@@ -276,6 +276,12 @@ public class Character : MonoBehaviour
                         gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 0.937f, 0.02f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
                         gameObject.GetComponent<CapsuleCollider>().height = 0.658f;
+                        break;
+                    case "Warrior":
+                        _g3D_UI.transform.localPosition = new Vector3(-0.06f, 2.0f, 0.185f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.001f, 1.22f, 0.02f);
+                        gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 1.25f;
                         break;
                     case "Priest":
                         _g3D_UI.transform.localPosition = new Vector3(0.049f, 1.92f, -0.071f);
@@ -301,6 +307,12 @@ public class Character : MonoBehaviour
                         gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 0.937f, 0.02f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
                         gameObject.GetComponent<CapsuleCollider>().height = 0.658f;
+                        break;
+                    case "Warrior":
+                        _g3D_UI.transform.localPosition = new Vector3(-0.06f, 2.0f, 0.185f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.001f, 1.22f, 0.02f);
+                        gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 1.25f;
                         break;
                     case "Preist":
                         _g3D_UI.transform.localPosition = new Vector3(0.049f, 1.92f, -0.071f);
@@ -335,6 +347,12 @@ public class Character : MonoBehaviour
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
                         gameObject.GetComponent<CapsuleCollider>().height = 0.658f;
                         break;
+                    case "Warrior":
+                        _g3D_UI.transform.localPosition = new Vector3(-0.06f, 2.0f, 0.185f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.001f, 1.22f, 0.02f);
+                        gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 1.25f;
+                        break;
                     case "Preist":
                         _g3D_UI.transform.localPosition = new Vector3(0.049f, 1.92f, -0.071f);
                         gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.2f, -0.05f);
@@ -359,6 +377,12 @@ public class Character : MonoBehaviour
                         gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 0.937f, 0.02f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
                         gameObject.GetComponent<CapsuleCollider>().height = 0.658f;
+                        break;
+                    case "Warrior":
+                        _g3D_UI.transform.localPosition = new Vector3(-0.06f, 2.0f, 0.185f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.001f, 1.22f, 0.02f);
+                        gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 1.25f;
                         break;
                     case "Preist":
                         _g3D_UI.transform.localPosition = new Vector3(0.049f, 1.92f, -0.071f);

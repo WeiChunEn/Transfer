@@ -20,6 +20,10 @@ public class GameManager : MonoBehaviour
     public Animator _aCamera_Anim;  //相機的動畫
 
     //public GameObject _gTmp_Player_UI;
+    public GameObject[] _gNow_State_UI;         //現在的狀態UI
+    public GameObject[] _gTransfer_Obj;         //轉職的格子
+
+
     public GameObject _gPlayer1;            //A team腳色父物件
     public GameObject _gPlayer2;            //B team腳色父物件
     public GameObject _gMove_UI;            //動UI的
@@ -54,12 +58,13 @@ public class GameManager : MonoBehaviour
 
     public bool _bCheck_Team_Finish; //確認隊伍是否都行動完了
     public bool _bCamera_Move;  //相機是否在轉動
-    
+
+    public Path path;
     // Start is called before the first frame update
     void Start()
     {
-        _iPlayer1_Transfer_Area_Count = 3;
-        _iPlayer2_Transfer_Area_Count = 3;
+        _iPlayer1_Transfer_Area_Count = 4;
+        _iPlayer2_Transfer_Area_Count = 4;
 
         
     }
@@ -115,6 +120,7 @@ public class GameManager : MonoBehaviour
     {
         if (_sPlayer_One_Finish == "Start")
         {
+
             _gPlayer1_UI.SetActive(true);
             _gPlayer2_UI.SetActive(false);
 
@@ -220,6 +226,7 @@ public class GameManager : MonoBehaviour
         gameObject.GetComponent<Path>().Reset_List();
         gameObject.GetComponent<Path>().Find_Attack_Way();
         m_NowPlayer.GetComponent<Attack>().Attack_Grid_Instant();
+        
         _gNow_Player_Function_UI.SetActive(false);
         Set_Character_Btn();
         In_And_Out();

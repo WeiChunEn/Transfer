@@ -77,16 +77,25 @@ public class Attack : MonoBehaviour
                 Instantiate(_gEffect[_iJob_Num], Enmey.transform.position, _gEffect[_iJob_Num].transform.rotation);
                 break;
             case "Magician":
+               
                 GameObject Tmp_obj;
                 Tmp_obj = _gBallet[_iJob_Num];
                 Tmp_obj.name = gameObject.GetComponent<Character>().Chess.Attack.ToString();
                 Tmp_obj.tag = gameObject.GetComponent<Character>().Chess.Job;
                 Instantiate(Tmp_obj, new Vector3(Enmey.transform.position.x, Enmey.transform.position.y+3.0f, Enmey.transform.position.z), Tmp_obj.transform.rotation);
-                
+               
                 break;
             case "Warrior":
+               
+                path._lCan_Attack_Enmey.Remove(Enmey);
                 Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack;
                 Instantiate(_gEffect[_iJob_Num], Enmey.transform.position, _gEffect[_iJob_Num].transform.rotation);
+                if (path._lCan_Attack_Enmey.Count == 0)
+                {
+                    Destory_AttackGrid();
+                    path.gameObject.GetComponent<GameManager>().Set_Character_Btn();
+                    path.gameObject.GetComponent<GameManager>().In_And_Out();
+                }
                 break;
         }
         

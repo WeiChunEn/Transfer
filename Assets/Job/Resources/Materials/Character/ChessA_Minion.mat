@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ChessA_Minion
-  m_Shader: {fileID: 4800000, guid: f45aa40710b213c46b101e32e327c238, type: 3}
+  m_Shader: {fileID: 4800000, guid: 68e4384d21b517c498319adbb4b16e87, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -51,6 +51,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 8a12e5a7223bba94c8137b95463266f9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MaskTextrue:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -88,6 +92,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 0.9811321, g: 0.83854383, b: 0.45817015, a: 1}
+    - _Diffuse: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveColorA: {r: 0, g: 1, b: 0.6431372, a: 1}
     - _DissolveColorB: {r: 0.18396229, g: 0.36957115, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
