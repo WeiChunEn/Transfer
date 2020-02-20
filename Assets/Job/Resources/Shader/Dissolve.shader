@@ -122,7 +122,7 @@
 					}
 					
 					//float3 Final = (Tex.rgb*Mask.a)+(Mask.rgb*_Color);
-					fixed3 albedo = Tex.rgb;
+					fixed3 albedo = Tex.rgb*_Color;
 
 					fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz * albedo;
 
