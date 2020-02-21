@@ -44,10 +44,8 @@ public class MouseEvent : MonoBehaviour
 
 
         _vDestination = transform.position;
-        if(_gGameManager.GetComponent<Path>()._gPlayer!=null)
-        {
-            _gNow_Player = _gGameManager.GetComponent<Path>()._gPlayer;
-        }
+        _gNow_Player = _gGameManager.GetComponent<Path>()._gPlayer;
+
     }
 
     // Update is called once per frame
@@ -123,7 +121,7 @@ public class MouseEvent : MonoBehaviour
 
                 if (_gNow_Player.GetComponent<Character>().Chess.Type == "A" && _gNow_Player.GetComponent<Character>().Chess.Job != "Preist")
                 {
-                    
+
                     for (int i = 0; i < path._gEnmey.transform.childCount; i++)
                     {
                         if ((gameObject.transform.position.x == path._gEnmey.transform.GetChild(i).gameObject.transform.position.x) && (gameObject.transform.position.z == path._gEnmey.transform.GetChild(i).gameObject.transform.position.z))
@@ -137,8 +135,9 @@ public class MouseEvent : MonoBehaviour
                                 _gNow_Player.GetComponent<Character>().Chess.Have_Moved = true;
                                 _gNow_Player.GetComponent<Character>().Chess.Now_State = "Have_Attacked";
 
+
                             }
-                            else 
+                            else
                             {
                                 Enmey = path._gEnmey.transform.GetChild(i).gameObject;
                                 _gNow_Player.GetComponent<Attack>().Attack_Enmey(Enmey);
@@ -148,6 +147,7 @@ public class MouseEvent : MonoBehaviour
                                 _gNow_Player.GetComponent<Attack>().Destory_AttackGrid();
                                 _gGameManager.GetComponent<GameManager>().Set_Character_Btn();
                                 _gGameManager.GetComponent<GameManager>().In_And_Out();
+                                _gGameManager.GetComponent<GameManager>().End_Btn_Click();
                             }
 
 
@@ -181,6 +181,7 @@ public class MouseEvent : MonoBehaviour
                                 _gNow_Player.GetComponent<Character>().Chess.Have_Attacked = true;
                                 _gNow_Player.GetComponent<Character>().Chess.Have_Moved = true;
                                 _gNow_Player.GetComponent<Character>().Chess.Now_State = "Have_Attacked";
+                                _gGameManager.GetComponent<GameManager>().End_Btn_Click();
 
                             }
                             else
@@ -193,6 +194,7 @@ public class MouseEvent : MonoBehaviour
                                 _gNow_Player.GetComponent<Attack>().Destory_AttackGrid();
                                 _gGameManager.GetComponent<GameManager>().Set_Character_Btn();
                                 _gGameManager.GetComponent<GameManager>().In_And_Out();
+                                _gGameManager.GetComponent<GameManager>().End_Btn_Click();
                             }
 
                             // _gGameManager.GetComponent<GameManager>().End_Btn_Click();
@@ -214,7 +216,7 @@ public class MouseEvent : MonoBehaviour
                             Partner = path._gPartner.transform.GetChild(i).gameObject;
                             if (Partner.GetComponent<Character>().Chess.Job != "Minion")
                             {
-                                
+
                                 _gNow_Player.GetComponent<Attack>().Recall_Partner(Partner);
                                 _gNow_Player.GetComponent<Character>().Chess.Have_Attacked = true;
                                 _gNow_Player.GetComponent<Character>().Chess.Have_Moved = true;
@@ -261,7 +263,7 @@ public class MouseEvent : MonoBehaviour
             if (_bOn_Set_it == true && GameManager._sSet_Area_Finish_One == "Start" && GameManager._iPlayer1_Transfer_Area_Count > 0 && this.tag == "Area")
             {
                 GameObject Trans_Obj;
-                Trans_Obj = Instantiate(_gGameManager.GetComponent<GameManager>()._gTransfer_Obj[0],transform.position, transform.rotation, _gGameManager.GetComponent<Path>()._gPlane.transform);
+                Trans_Obj = Instantiate(_gGameManager.GetComponent<GameManager>()._gTransfer_Obj[0], transform.position, transform.rotation, _gGameManager.GetComponent<Path>()._gPlane.transform);
                 Trans_Obj.tag = "TransferA";
                 Destroy(gameObject);
                 GameManager._iPlayer1_Transfer_Area_Count--;
@@ -280,7 +282,7 @@ public class MouseEvent : MonoBehaviour
 
             }
         }
-        if (Input.GetButtonDown("Fire2") && _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Move>()._bIs_Moving == false && _gGameManager.GetComponent<GameManager>()._bCamera_Move == false) 
+        if (Input.GetButtonDown("Fire2") && _gGameManager.GetComponent<GameManager>().m_NowPlayer != null && _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Move>()._bIs_Moving == false && _gGameManager.GetComponent<GameManager>()._bCamera_Move == false)
         {
             if (_gGameManager.GetComponent<GameManager>()._gNow_Player_Function_UI != null)
             {
@@ -290,7 +292,7 @@ public class MouseEvent : MonoBehaviour
                 _gGameManager.GetComponent<GameManager>().In_And_Out();
 
             }
-           
+
         }
     }
 

@@ -585,6 +585,72 @@ public class Path : MonoBehaviour
                 Check_On_Board();
                 break;
             case "Archor":
+                _iAttack_Distance = _gPlayer.GetComponent<Character>()._iAttack_Distance;
+                m_Tmp_Pos = _gPlayer.transform.position;
+                _lCan_Attack_List.Add(m_Tmp_Pos);
+                _iAttack_List_Index++;
+                _iAttack_List_Count++;
+                //向上算
+                for (int i= 1; i < _iAttack_Distance+1;i++)
+                {
+                    _lCan_Attack_List.Add(new Vector3(m_Tmp_Pos.x, 0, m_Tmp_Pos.z + i));
+                    _iAttack_List_Index++;
+                    _iAttack_List_Count++;
+                }
+                //向下
+                for (int i = 1; i < _iAttack_Distance+1; i++)
+                {
+                    _lCan_Attack_List.Add(new Vector3(m_Tmp_Pos.x, 0, m_Tmp_Pos.z - i));
+                    _iAttack_List_Index++;
+                    _iAttack_List_Count++;
+                }
+                //向左
+                for (int i = 1; i < _iAttack_Distance+1; i++)
+                {
+                    _lCan_Attack_List.Add(new Vector3(m_Tmp_Pos.x-i, 0, m_Tmp_Pos.z ));
+                    _iAttack_List_Index++;
+                    _iAttack_List_Count++;
+                }
+                // 向右
+                for (int i = 1; i < _iAttack_Distance+1; i++)
+                {
+                    _lCan_Attack_List.Add(new Vector3(m_Tmp_Pos.x+i, 0, m_Tmp_Pos.z ));
+                    _iAttack_List_Index++;
+                    _iAttack_List_Count++;
+                }
+                List<Vector3> Archor_Count = new List<Vector3>();
+
+
+                for (int i = 0; i < _lCan_Attack_List.Count; i++)
+                {
+                    m_On_Board = false;
+                    for (int j = 0; j < _gPlane.transform.childCount; j++)
+                    {
+                        if (_lCan_Attack_List[i] == _gPlane.transform.GetChild(j).gameObject.transform.position)
+                        {
+                            m_On_Board = true;
+                            Archor_Count.Add(_lCan_Attack_List[i]);
+
+                        }
+
+                    }
+                    if (m_On_Board == false)
+                    {
+                        //_lCan_Attack_List.Remove(_lCan_Attack_List[i]);
+                        //_lAttack_Weight_List.Remove(_lAttack_Weight_List[i]);
+                        _iAttack_List_Count--;
+                        _iAttack_List_Index--;
+
+                    }
+
+                }
+                _lCan_Attack_List.Clear();
+                _lAttack_Weight_List.Clear();
+                for (int i = 0; i < Archor_Count.Count; i++)
+                {
+                    _lCan_Attack_List.Add(Archor_Count[i]);
+
+                }
 
                 break;
             case "Warrior":

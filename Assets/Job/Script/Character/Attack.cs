@@ -101,6 +101,7 @@ public class Attack : MonoBehaviour
                     Destory_AttackGrid();
                     path.gameObject.GetComponent<GameManager>().Set_Character_Btn();
                     path.gameObject.GetComponent<GameManager>().In_And_Out();
+                    path.gameObject.GetComponent<GameManager>().End_Btn_Click();
                 }
                 break;
 
