@@ -10,6 +10,7 @@ public class Attack : MonoBehaviour
 
     public GameObject[] _gEffect = new GameObject[5]; //攻擊的特效
     public GameObject[] _gBallet = new GameObject[4];   //遠程攻擊的物品
+    public GameObject _gGameManager;
     public int _iJob_Num;
     // Start is called before the first frame update
     void Start()
@@ -69,21 +70,23 @@ public class Attack : MonoBehaviour
     /// <param name="Enmey"></param>
     public void Attack_Enmey(GameObject Enmey)
     {
-        Debug.Log(1232);
+       
         _iJob_Num = gameObject.GetComponent<Character>()._iNow_Class_Count;
         switch(gameObject.GetComponent<Character>().Chess.Job)
         {
             case "Minion":
                 Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack;
                 Instantiate(_gEffect[_iJob_Num], Enmey.transform.position, _gEffect[_iJob_Num].transform.rotation);
+                _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.GetChild(0).GetComponent<CameraShake>().shakeDuration = 0.5f;
+
                 break;
             case "Magician":
                
-                GameObject Tmp_obj;
-                Tmp_obj = _gBallet[_iJob_Num];
-                Tmp_obj.name = gameObject.GetComponent<Character>().Chess.Attack.ToString();
-                Tmp_obj.tag = gameObject.GetComponent<Character>().Chess.Job;
-                Instantiate(Tmp_obj, new Vector3(Enmey.transform.position.x, Enmey.transform.position.y+3.0f, Enmey.transform.position.z), Tmp_obj.transform.rotation);
+                GameObject Tmp_Ball;
+                Tmp_Ball = _gBallet[_iJob_Num];
+                Tmp_Ball.name = gameObject.GetComponent<Character>().Chess.Attack.ToString();
+                Tmp_Ball.tag = gameObject.GetComponent<Character>().Chess.Job;
+                Instantiate(Tmp_Ball, new Vector3(Enmey.transform.position.x, Enmey.transform.position.y+3.0f, Enmey.transform.position.z), Tmp_Ball.transform.rotation);
                
                 break;
             case "Warrior":
@@ -91,12 +94,26 @@ public class Attack : MonoBehaviour
                 path._lCan_Attack_Enmey.Remove(Enmey);
                 Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack;
                 Instantiate(_gEffect[_iJob_Num], Enmey.transform.position, _gEffect[_iJob_Num].transform.rotation);
+                _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.GetChild(0).GetComponent<CameraShake>().shakeDuration = 0.5f;
+
                 if (path._lCan_Attack_Enmey.Count == 0)
                 {
                     Destory_AttackGrid();
                     path.gameObject.GetComponent<GameManager>().Set_Character_Btn();
                     path.gameObject.GetComponent<GameManager>().In_And_Out();
                 }
+                break;
+
+
+            case "Archor":
+
+                GameObject Tmp_Arror;
+                Tmp_Arror = _gBallet[_iJob_Num];
+                Tmp_Arror.name = gameObject.GetComponent<Character>().Chess.Attack.ToString();
+                Tmp_Arror.tag = gameObject.GetComponent<Character>().Chess.Job;
+                Tmp_Arror.transform.LookAt(Enmey.transform);
+                Instantiate(Tmp_Arror,transform.position, Tmp_Arror.transform.rotation);
+
                 break;
         }
         

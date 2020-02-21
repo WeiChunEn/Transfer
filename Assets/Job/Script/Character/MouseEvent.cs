@@ -44,7 +44,10 @@ public class MouseEvent : MonoBehaviour
 
 
         _vDestination = transform.position;
-        _gNow_Player = _gGameManager.GetComponent<Path>()._gPlayer;
+        if(_gGameManager.GetComponent<Path>()._gPlayer!=null)
+        {
+            _gNow_Player = _gGameManager.GetComponent<Path>()._gPlayer;
+        }
     }
 
     // Update is called once per frame
@@ -120,7 +123,7 @@ public class MouseEvent : MonoBehaviour
 
                 if (_gNow_Player.GetComponent<Character>().Chess.Type == "A" && _gNow_Player.GetComponent<Character>().Chess.Job != "Preist")
                 {
-                    Debug.Log(1232);
+                    
                     for (int i = 0; i < path._gEnmey.transform.childCount; i++)
                     {
                         if ((gameObject.transform.position.x == path._gEnmey.transform.GetChild(i).gameObject.transform.position.x) && (gameObject.transform.position.z == path._gEnmey.transform.GetChild(i).gameObject.transform.position.z))
@@ -135,7 +138,7 @@ public class MouseEvent : MonoBehaviour
                                 _gNow_Player.GetComponent<Character>().Chess.Now_State = "Have_Attacked";
 
                             }
-                            else
+                            else 
                             {
                                 Enmey = path._gEnmey.transform.GetChild(i).gameObject;
                                 _gNow_Player.GetComponent<Attack>().Attack_Enmey(Enmey);
@@ -211,7 +214,7 @@ public class MouseEvent : MonoBehaviour
                             Partner = path._gPartner.transform.GetChild(i).gameObject;
                             if (Partner.GetComponent<Character>().Chess.Job != "Minion")
                             {
-                                Debug.Log(1232);
+                                
                                 _gNow_Player.GetComponent<Attack>().Recall_Partner(Partner);
                                 _gNow_Player.GetComponent<Character>().Chess.Have_Attacked = true;
                                 _gNow_Player.GetComponent<Character>().Chess.Have_Moved = true;
@@ -277,7 +280,7 @@ public class MouseEvent : MonoBehaviour
 
             }
         }
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButtonDown("Fire2") && _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Move>()._bIs_Moving == false && _gGameManager.GetComponent<GameManager>()._bCamera_Move == false) 
         {
             if (_gGameManager.GetComponent<GameManager>()._gNow_Player_Function_UI != null)
             {

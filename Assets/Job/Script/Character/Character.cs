@@ -22,11 +22,12 @@ public class Character : MonoBehaviour
     public GameObject _gPlayer_UI;
     public Slider _sHP_Slider;      //血條Slider
     public TextMeshProUGUI _tHP;    //血條%數
-
+    public TextMeshProUGUI _tName;  //血條旁的名字
 
     public GameObject _gGameManager; //管理器
     public Slider _sHead_HP;        //頭上的血條Slider
     public TextMeshProUGUI _tHead_HP; //頭上的血條%
+    public TextMeshProUGUI _tHead_Name;  //血條旁的名字
     public GameObject _g3D_UI;      //頭上的Canvas
 
     private float _Death_Time;      //死亡分解的時間
@@ -166,7 +167,7 @@ public class Character : MonoBehaviour
             _Death_Time += Time.deltaTime * 0.5f;
             _mDeath_Mat.SetFloat("_DissolveCutoff", _Death_Time);
            
-            if (_Death_Time >= 0.5)
+            if (_Death_Time >= 1.0)
             {
                 gameObject.SetActive(false);
                 gameObject.transform.position = new Vector3(100, 100, 100);
@@ -195,9 +196,11 @@ public class Character : MonoBehaviour
                 _iNow_Class_Count = 1;
                 _gClass[_iNow_Class_Count].SetActive(true);
                 _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
-                Chess.Attack = 4;
+                Chess.Attack = 5;
                 Chess.Attack_Distance = 3;
                 Chess.Walk_Steps = 3;
+                _tHead_Name.text = "W" + _tHead_Name.name;
+                _tName.text = "W" + _tName.name;
                 break;
             case "Magician":
                 Chess.Job = "Magician";
@@ -208,6 +211,8 @@ public class Character : MonoBehaviour
                 Chess.Attack = 8;
                 Chess.Attack_Distance = 2;
                 Chess.Walk_Steps = 1;
+                _tHead_Name.text = "M" + _tHead_Name.name;
+                _tName.text = "M" + _tName.name;
                 _mDeath_Mat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).transform.GetChild(0).GetComponent<Renderer>().material;
                 break;
             case "Archor":
@@ -215,9 +220,11 @@ public class Character : MonoBehaviour
                 _iNow_Class_Count = 3;
                 _gClass[_iNow_Class_Count].SetActive(true);
                 _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
-                Chess.Attack = 5;
+                Chess.Attack = 6;
                 Chess.Attack_Distance = 3;
                 Chess.Walk_Steps = 2;
+                _tHead_Name.text = "A" + _tHead_Name.name;
+                _tName.text = "A" + _tName.name;
                 break;
 
            
@@ -228,9 +235,11 @@ public class Character : MonoBehaviour
                 _iNow_Class_Count = 0;
                 _gClass[_iNow_Class_Count].SetActive(true);
                 _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
-                Chess.Attack = 2;
+                Chess.Attack = 3;
                 Chess.Attack_Distance = 1;
                 Chess.Walk_Steps = 2;
+                _tHead_Name.text = "S" + _tHead_Name.name;
+                _tName.text = "S" + _tName.name;
                 _mDeath_Mat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(1).GetComponent<Renderer>().material;
                 break;
 
@@ -415,7 +424,7 @@ public class Character : MonoBehaviour
                 Destroy(other.gameObject);
                 Instantiate(_gEffect[2], gameObject.transform.position, _gEffect[2].transform.rotation);
                 char Damage = other.name[0];
-               
+                _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.GetChild(0).GetComponent<CameraShake>().shakeDuration = 0.5f;
                 Chess.HP -= (int)Char.GetNumericValue(Damage);
                 
                 break;
