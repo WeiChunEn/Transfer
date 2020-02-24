@@ -4,6 +4,8 @@
    {
 		
    	   _Color("Color",Color)=(1,1,1,1)
+	   _MaskColor("MaskColor",Color)=(1,1,1,1)
+	   _AlphaScale("Alpha Scale",Range(0,1)) = 0.5
 	   _MainTextrue("Main Texture",2D)="white"{}
 	   _MaskTextrue("Mask Texture",2D) = "white"{}
 	   _DissloveSize("Dissolve Size",float) = 0
@@ -19,9 +21,12 @@
    }
    SubShader
    {
+			Tags{"Queue" = "Transparent" "IgnoreProjector" = "Ture""RenderType" = "Transparent"}
    	   Pass
 	   {
 	   Tags{ "LightMode" = "ForwardBase" "DisableBatching" = "true"}
+	   ZWrite Off
+			Blend SrcAlpha OneMinusSrcAlpha
 	   	   CGPROGRAM
 
 		   #pragma vertex vert
@@ -51,6 +56,8 @@
 		  
 		float _DissloveSize;
 		fixed4 _Color;
+		fixed4 _MaskColor;
+		float _AlphaScale;
 		   
 		sampler2D _MaskTextrue;
 		float4 _MaskTextrue_ST;
@@ -121,8 +128,8 @@
 					return _DissolveColorB;
 				}
 					
-				//float3 Final = (Tex.rgb*Mask.a)+(Mask.rgb*_Color);
-				fixed3 albedo = Tex.rgb*_Color;
+				//float3 Final = (Tex.rgb*Mask.a)+(Mask.rgb*_MaskColor);
+				fixed3 albedo = Tex.rgb*_Color.rgb;
 
 				fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz * albedo;
 
@@ -135,10 +142,10 @@
 					
 				
 
-			return fixed4(color,1.0);
+			return fixed4(color,Tex.a*_AlphaScale);
 		}
 		ENDCG
 	   }
 	 
-   }
+   }Fallback "Transparent/VertexLit"
 }

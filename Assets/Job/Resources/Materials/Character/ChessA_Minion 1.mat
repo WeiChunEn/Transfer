@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ChessA_Minion
+  m_Name: ChessA_Minion 1
   m_Shader: {fileID: 4800000, guid: f45aa40710b213c46b101e32e327c238, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4

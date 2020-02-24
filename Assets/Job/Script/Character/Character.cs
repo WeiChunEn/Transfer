@@ -36,7 +36,7 @@ public class Character : MonoBehaviour
     public Sprite[] _gClass_Card = new Sprite[4]; //其他職業的卡牌圖
 
     public GameObject _gTransfer_Effect;
-    public Material _mDeath_Mat;
+    public Material _mMat;
 
     public GameObject[] _gEffect = new GameObject[5]; //被攻擊以及攻擊的特效
     public class Character_Data
@@ -119,7 +119,7 @@ public class Character : MonoBehaviour
             _sHead_HP.maxValue = _sHP_Slider.maxValue;
             _tHead_HP.text = _tHP.text;
             _iNow_Class_Count = 4;
-            _mDeath_Mat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(1).GetComponent<Renderer>().material;
+            _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(1).GetComponent<Renderer>().sharedMaterial;
             //_gClass[_iNow_Class_Count].SetActive(true)
 
         }
@@ -140,7 +140,7 @@ public class Character : MonoBehaviour
             _iNow_Class_Count = 0;
             _gClass[_iNow_Class_Count].SetActive(true);
             _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
-            _mDeath_Mat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(1).GetComponent<Renderer>().material;
+            _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(1).GetComponent<Renderer>().sharedMaterial;
         }
         
     }
@@ -165,7 +165,7 @@ public class Character : MonoBehaviour
         {
 
             _Death_Time += Time.deltaTime * 0.5f;
-            _mDeath_Mat.SetFloat("_DissolveCutoff", _Death_Time);
+            _mMat.SetFloat("_DissolveCutoff", _Death_Time);
            
             if (_Death_Time >= 1.0)
             {
@@ -201,6 +201,7 @@ public class Character : MonoBehaviour
                 Chess.Walk_Steps = 3;
                 _tHead_Name.text = "W" + _tHead_Name.name;
                 _tName.text = "W" + _tName.name;
+                _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).GetComponent<Renderer>().sharedMaterial;
                 break;
             case "Magician":
                 Chess.Job = "Magician";
@@ -213,7 +214,7 @@ public class Character : MonoBehaviour
                 Chess.Walk_Steps = 1;
                 _tHead_Name.text = "M" + _tHead_Name.name;
                 _tName.text = "M" + _tName.name;
-                _mDeath_Mat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).transform.GetChild(0).GetComponent<Renderer>().material;
+                _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).transform.GetChild(0).GetComponent<Renderer>().sharedMaterial;
                 break;
             case "Archor":
                 _gClass[_iNow_Class_Count].SetActive(false);
@@ -240,7 +241,7 @@ public class Character : MonoBehaviour
                 Chess.Walk_Steps = 2;
                 _tHead_Name.text = "S" + _tHead_Name.name;
                 _tName.text = "S" + _tName.name;
-                _mDeath_Mat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(1).GetComponent<Renderer>().material;
+                _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(1).GetComponent<Renderer>().sharedMaterial;
                 break;
 
         }

@@ -7,6 +7,7 @@ using TMPro;
 public class SetArea_One :GameState
 {
     public GameObject _gStateName;
+    public GameObject _gTransfer_Count;
     private GameObject _gGameManager;
     public SetArea_One(GameStateManager StateManager):base(StateManager)
     {
@@ -20,7 +21,9 @@ public class SetArea_One :GameState
         if(_gStateName==null)
         {
             _gStateName = GameObject.Find("GameState");
-            
+            _gTransfer_Count = GameObject.Find("Area");
+
+
         }
 
        
@@ -36,7 +39,8 @@ public class SetArea_One :GameState
             
         }
         _gGameManager = GameObject.Find("GameManager");
-     
+        _gTransfer_Count.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = GameManager._iPlayer1_Transfer_Area_Count.ToString();
+        _gStateName.GetComponent<TextMeshProUGUI>().text = StateName;
         _gGameManager.GetComponent<GameManager>()._gNow_State_UI[0].SetActive(true);
         Debug.Log("SetAreaUpdate");
         if(GameManager._sSet_Area_Finish_One == "Start")
