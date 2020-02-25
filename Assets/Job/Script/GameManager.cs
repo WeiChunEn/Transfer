@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
     public Animator _aUI_Anim;     //UI的動畫
     public Animator _aCamera_Anim;  //相機的動畫
 
+
+
+    public Material _mSky_Box;
     //public GameObject _gTmp_Player_UI;
     public GameObject[] _gNow_State_UI;         //現在的狀態UI
     public GameObject[] _gTransfer_Obj;         //轉職的格子
@@ -60,18 +63,31 @@ public class GameManager : MonoBehaviour
     public bool _bCamera_Move;  //相機是否在轉動
 
     public Path path;
+
+    private float Sky_Time;
     // Start is called before the first frame update
     void Start()
     {
         _iPlayer1_Transfer_Area_Count = 4;
         _iPlayer2_Transfer_Area_Count = 4;
+        for (int i = 0; i < _gPlayer1.transform.childCount; i++)
+        {
 
+
+            _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mMat.SetFloat("_AlphaScale", 1.0f);
+            _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mMat.SetFloat("_AlphaScale", 1.0f);
+        }
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Sky_Time>=360)
+        {
+            Sky_Time = 0;
+        }
+        _mSky_Box.SetFloat("_Rotation", Sky_Time += 0.5f * Time.deltaTime);
         m_GameStateManager.GameStateUpdate();
         if (_sScene_Transfer_End == "Start")
         {
@@ -266,7 +282,10 @@ public class GameManager : MonoBehaviour
             }
             _sPlayer_One_Finish = "End";
             In_And_Out();
-            Camera_Move_Anim();
+            if (_gMove_Camera.tag == "A")
+            {
+                Camera_Move_Anim();
+            }
             //_gPlayer_One_Camera.SetActive(false);
             //_gPlayer_Two_Camera.SetActive(true);
 
@@ -284,7 +303,10 @@ public class GameManager : MonoBehaviour
             }
             _sPlayer_Two_Finish = "End";
             In_And_Out();
-            Camera_Move_Anim();
+            if (_gMove_Camera.tag == "B")
+            {
+                Camera_Move_Anim();
+            }
             //_gPlayer_One_Camera.SetActive(true);
             //_gPlayer_Two_Camera.SetActive(false);
 
@@ -322,39 +344,39 @@ public class GameManager : MonoBehaviour
         if (m_NowPlayer.GetComponent<Character>().Chess.Now_State == "Finish")
         {
             _bPlayer_Btn.interactable = false;
-            
+
 
         }
         else if (m_NowPlayer.GetComponent<Character>().Chess.Now_State == "Idle")
         {
             _bPlayer_Btn.interactable = true;
-           
+
         }
         for (int i = 0; i < _gPlayer1.transform.childCount; i++)
         {
-            
+
             if (_gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State == "Finish")
             {
-               
-                _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mMat.SetFloat("_AlphaScale", 0.5f);
+
+                _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mMat.SetFloat("_AlphaScale", 0.4f);
             }
             else if (_gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State == "Idle")
             {
-              
+
                 _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mMat.SetFloat("_AlphaScale", 1.0f);
             }
         }
         for (int i = 0; i < _gPlayer2.transform.childCount; i++)
         {
-            
+
             if (_gPlayer2.transform.GetChild(i).GetComponent<Character>().Chess.Now_State == "Finish")
             {
-               
-                _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mMat.SetFloat("_AlphaScale", 0.5f);
+
+                _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mMat.SetFloat("_AlphaScale", 0.4f);
             }
-            else if(_gPlayer2.transform.GetChild(i).GetComponent<Character>().Chess.Now_State == "Idle")
+            else if (_gPlayer2.transform.GetChild(i).GetComponent<Character>().Chess.Now_State == "Idle")
             {
-               
+
                 _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mMat.SetFloat("_AlphaScale", 1.0f);
             }
         }
@@ -385,7 +407,7 @@ public class GameManager : MonoBehaviour
                 if (_gPlayer2.transform.GetChild(i).GetComponent<Character>().Chess.Now_State != "Finish" && _gPlayer2.transform.GetChild(i).GetComponent<Character>().Chess.Now_State != "Death")
                 {
                     _bCheck_Team_Finish = false;
-                    
+
                 }
 
             }
@@ -604,7 +626,10 @@ public class GameManager : MonoBehaviour
             }
             _sPlayer_One_Finish = "End";
             In_And_Out();
-            Camera_Move_Anim();
+            if (_gMove_Camera.tag == "A")
+            {
+                Camera_Move_Anim();
+            }
             //_gPlayer_One_Camera.SetActive(false);
             //_gPlayer_Two_Camera.SetActive(true);
 
@@ -622,7 +647,10 @@ public class GameManager : MonoBehaviour
             }
             _sPlayer_Two_Finish = "End";
             In_And_Out();
-            Camera_Move_Anim();
+            if (_gMove_Camera.tag == "B")
+            {
+                Camera_Move_Anim();
+            }
             //_gPlayer_One_Camera.SetActive(true);
             //_gPlayer_Two_Camera.SetActive(false);
 
@@ -633,12 +661,12 @@ public class GameManager : MonoBehaviour
 
             if (_gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State == "Finish")
             {
-               
-                _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mMat.SetFloat("_AlphaScale", 0.5f);
+
+                _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mMat.SetFloat("_AlphaScale", 0.4f);
             }
             else if (_gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State == "Idle")
             {
-               
+
                 _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mMat.SetFloat("_AlphaScale", 1.0f);
             }
         }
@@ -647,12 +675,12 @@ public class GameManager : MonoBehaviour
 
             if (_gPlayer2.transform.GetChild(i).GetComponent<Character>().Chess.Now_State == "Finish")
             {
-                
-                _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mMat.SetFloat("_AlphaScale", 0.5f);
+
+                _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mMat.SetFloat("_AlphaScale", 0.4f);
             }
             else if (_gPlayer2.transform.GetChild(i).GetComponent<Character>().Chess.Now_State == "Idle")
             {
-                
+
                 _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mMat.SetFloat("_AlphaScale", 1.0f);
             }
         }

@@ -32,6 +32,7 @@ public class Character : MonoBehaviour
 
     private float _Death_Time;      //死亡分解的時間
     public int _iNow_Class_Count;
+    public GameObject _gBack_Model;
     public GameObject[] _gClass = new GameObject[4]; //其他職業的模型
     public Sprite[] _gClass_Card = new Sprite[4]; //其他職業的卡牌圖
 
@@ -193,8 +194,10 @@ public class Character : MonoBehaviour
             case "Warrior":
                 Chess.Job = "Warrior";
                 _gClass[_iNow_Class_Count].SetActive(false);
+                _gBack_Model.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(false);
                 _iNow_Class_Count = 1;
                 _gClass[_iNow_Class_Count].SetActive(true);
+                _gBack_Model.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(true);
                 _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
                 Chess.Attack = 5;
                 Chess.Attack_Distance = 3;
@@ -206,8 +209,10 @@ public class Character : MonoBehaviour
             case "Magician":
                 Chess.Job = "Magician";
                 _gClass[_iNow_Class_Count].SetActive(false);
+                _gBack_Model.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(false);
                 _iNow_Class_Count = 2;
                 _gClass[_iNow_Class_Count].SetActive(true);
+                _gBack_Model.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(true);
                 _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
                 Chess.Attack = 8;
                 Chess.Attack_Distance = 2;
@@ -218,8 +223,10 @@ public class Character : MonoBehaviour
                 break;
             case "Archor":
                 _gClass[_iNow_Class_Count].SetActive(false);
+                _gBack_Model.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(false);
                 _iNow_Class_Count = 3;
                 _gClass[_iNow_Class_Count].SetActive(true);
+                _gBack_Model.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(true);
                 _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
                 Chess.Attack = 6;
                 Chess.Attack_Distance = 3;
@@ -233,8 +240,10 @@ public class Character : MonoBehaviour
             case "Minion":
                 Chess.Job = "Minion";
                 _gClass[_iNow_Class_Count].SetActive(false);
+                _gBack_Model.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(false);
                 _iNow_Class_Count = 0;
                 _gClass[_iNow_Class_Count].SetActive(true);
+                _gBack_Model.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(true);
                 _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
                 Chess.Attack = 3;
                 Chess.Attack_Distance = 1;
