@@ -141,7 +141,7 @@ public class Character : MonoBehaviour
             _iNow_Class_Count = 0;
             _gClass[_iNow_Class_Count].SetActive(true);
             _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
-            _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(1).GetComponent<Renderer>().sharedMaterial;
+            _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).GetComponent<Renderer>().sharedMaterial;
         }
         
     }
@@ -221,7 +221,8 @@ public class Character : MonoBehaviour
                 _tName.text = "M" + _tName.name;
                 _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).transform.GetChild(0).GetComponent<Renderer>().sharedMaterial;
                 break;
-            case "Archor":
+            case "Archer":
+                Chess.Job = "Archer";
                 _gClass[_iNow_Class_Count].SetActive(false);
                 _gBack_Model.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(false);
                 _iNow_Class_Count = 3;
@@ -250,7 +251,7 @@ public class Character : MonoBehaviour
                 Chess.Walk_Steps = 2;
                 _tHead_Name.text = "S" + _tHead_Name.name;
                 _tName.text = "S" + _tName.name;
-                _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(1).GetComponent<Renderer>().sharedMaterial;
+                _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).GetComponent<Renderer>().sharedMaterial;
                 break;
 
         }
@@ -433,10 +434,18 @@ public class Character : MonoBehaviour
             case "Magician":
                 Destroy(other.gameObject);
                 Instantiate(_gEffect[2], gameObject.transform.position, _gEffect[2].transform.rotation);
-                char Damage = other.name[0];
+                char Magi_Damage = other.name[0];
                 _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.GetChild(0).GetComponent<CameraShake>().shakeDuration = 0.5f;
-                Chess.HP -= (int)Char.GetNumericValue(Damage);
+                Chess.HP -= (int)Char.GetNumericValue(Magi_Damage);
                 
+                break;
+            case "Archer":
+                Destroy(other.gameObject);
+                Instantiate(_gEffect[3], gameObject.transform.position, _gEffect[3].transform.rotation);
+                char Arrow_Damage = other.name[0];
+                _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.GetChild(0).GetComponent<CameraShake>().shakeDuration = 0.5f;
+                Chess.HP -= (int)Char.GetNumericValue(Arrow_Damage);
+
                 break;
         }
     }

@@ -406,9 +406,7 @@ public class MouseEvent : MonoBehaviour
                     {
                         Enmey = path._gEnmey.transform.GetChild(i).gameObject;
                         _gNow_Player.GetComponent<Attack>().Attack_Enmey(Enmey);
-                        _gNow_Player.GetComponent<Character>().Chess.Have_Attacked = true;
-                        _gNow_Player.GetComponent<Character>().Chess.Have_Moved = true;
-                        _gNow_Player.GetComponent<Character>().Chess.Now_State = "Have_Attacked";
+                        
 
 
                     }
@@ -453,9 +451,9 @@ public class MouseEvent : MonoBehaviour
                     {
                         Enmey = path._gPartner.transform.GetChild(i).gameObject;
                         _gNow_Player.GetComponent<Attack>().Attack_Enmey(Enmey);
-                        _gNow_Player.GetComponent<Character>().Chess.Have_Attacked = true;
-                        _gNow_Player.GetComponent<Character>().Chess.Have_Moved = true;
-                        _gNow_Player.GetComponent<Character>().Chess.Now_State = "Have_Attacked";
+                        //_gNow_Player.GetComponent<Character>().Chess.Have_Attacked = true;
+                        //_gNow_Player.GetComponent<Character>().Chess.Have_Moved = true;
+                        //_gNow_Player.GetComponent<Character>().Chess.Now_State = "Have_Attacked";
                         //_gGameManager.GetComponent<GameManager>().End_Btn_Click();
 
                     }

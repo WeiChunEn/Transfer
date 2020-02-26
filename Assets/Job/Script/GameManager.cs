@@ -76,6 +76,8 @@ public class GameManager : MonoBehaviour
 
             _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mMat.SetFloat("_AlphaScale", 1.0f);
             _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mMat.SetFloat("_AlphaScale", 1.0f);
+            _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mMat.SetFloat("_DissolveCutoff", 0.0f);
+            _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mMat.SetFloat("_DissolveCutoff", 0.0f);
         }
 
     }
@@ -554,7 +556,7 @@ public class GameManager : MonoBehaviour
                 break;
             case 1:
                 Instantiate(m_NowPlayer.GetComponent<Character>()._gTransfer_Effect, m_NowPlayer.transform.position, m_NowPlayer.GetComponent<Character>()._gTransfer_Effect.transform.rotation);
-                m_NowPlayer.GetComponent<Character>().Set_Job_Data("Archor");
+                m_NowPlayer.GetComponent<Character>().Set_Job_Data("Archer");
                 _gTranfer_UI.SetActive(false);
                 break;
             case 2:

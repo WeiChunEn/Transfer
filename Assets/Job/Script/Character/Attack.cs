@@ -15,7 +15,7 @@ public class Attack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -70,9 +70,9 @@ public class Attack : MonoBehaviour
     /// <param name="Enmey"></param>
     public void Attack_Enmey(GameObject Enmey)
     {
-       
+
         _iJob_Num = gameObject.GetComponent<Character>()._iNow_Class_Count;
-        switch(gameObject.GetComponent<Character>().Chess.Job)
+        switch (gameObject.GetComponent<Character>().Chess.Job)
         {
             case "Minion":
                 Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack;
@@ -81,16 +81,16 @@ public class Attack : MonoBehaviour
 
                 break;
             case "Magician":
-               
+
                 GameObject Tmp_Ball;
                 Tmp_Ball = _gBallet[_iJob_Num];
                 Tmp_Ball.name = gameObject.GetComponent<Character>().Chess.Attack.ToString();
                 Tmp_Ball.tag = gameObject.GetComponent<Character>().Chess.Job;
-                Instantiate(Tmp_Ball, new Vector3(Enmey.transform.position.x, Enmey.transform.position.y+3.0f, Enmey.transform.position.z), Tmp_Ball.transform.rotation);
-               
+                Instantiate(Tmp_Ball, new Vector3(Enmey.transform.position.x, Enmey.transform.position.y + 3.0f, Enmey.transform.position.z), Tmp_Ball.transform.rotation);
+
                 break;
             case "Warrior":
-               
+
                 path._lCan_Attack_Enmey.Remove(Enmey);
                 Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack;
                 Instantiate(_gEffect[_iJob_Num], Enmey.transform.position, _gEffect[_iJob_Num].transform.rotation);
@@ -99,6 +99,9 @@ public class Attack : MonoBehaviour
                 if (path._lCan_Attack_Enmey.Count == 0)
                 {
                     Destory_AttackGrid();
+                    gameObject.GetComponent<Character>().Chess.Have_Attacked = true;
+                    gameObject.GetComponent<Character>().Chess.Have_Moved = true;
+                    gameObject.GetComponent<Character>().Chess.Now_State = "Have_Attacked";
                     path.gameObject.GetComponent<GameManager>().Set_Character_Btn();
                     path.gameObject.GetComponent<GameManager>().In_And_Out();
                     path.gameObject.GetComponent<GameManager>().End_Btn_Click();
@@ -106,20 +109,18 @@ public class Attack : MonoBehaviour
                 break;
 
 
-            case "Archor":
+            case "Archer":
 
                 GameObject Tmp_Arror;
-                Tmp_Arror = _gBallet[_iJob_Num];
+                Tmp_Arror = Instantiate(_gBallet[_iJob_Num], new Vector3(transform.position.x,transform.position.y+1.0f,transform.position.z), _gBallet[_iJob_Num].transform.rotation); ;
                 Tmp_Arror.name = gameObject.GetComponent<Character>().Chess.Attack.ToString();
                 Tmp_Arror.tag = gameObject.GetComponent<Character>().Chess.Job;
-                Tmp_Arror.transform.LookAt(Enmey.transform);
-                Instantiate(Tmp_Arror,transform.position, Tmp_Arror.transform.rotation);
-
+                Tmp_Arror.GetComponent<Arrow>()._gEmney = Enmey;
                 break;
         }
-        
-        
-        
+
+
+
     }
 
     /// <summary>
@@ -131,13 +132,13 @@ public class Attack : MonoBehaviour
         _iJob_Num = gameObject.GetComponent<Character>()._iNow_Class_Count;
         if (gameObject.GetComponent<Character>().Chess.Job == "Preist")
         {
-           
+
             Partner.GetComponent<Character>().Set_Job_Data("Minion");
             Partner.GetComponent<Character>().Chess.HP += gameObject.GetComponent<Character>().Chess.Attack;
             Instantiate(_gEffect[_iJob_Num], Partner.transform.position, _gEffect[_iJob_Num].transform.rotation);
         }
-        
+
     }
 
-    
+
 }

@@ -16,8 +16,8 @@ TagManager:
   - FxTemporaire
   - Magician
   - Minion
-  - Archor
   - Warrior
+  - Archer
   layers:
   - Default
   - TransparentFX

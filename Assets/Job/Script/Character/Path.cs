@@ -584,7 +584,7 @@ public class Path : MonoBehaviour
                 }
                 Check_On_Board();
                 break;
-            case "Archor":
+            case "Archer":
                 _iAttack_Distance = _gPlayer.GetComponent<Character>()._iAttack_Distance;
                 m_Tmp_Pos = _gPlayer.transform.position;
                 _lCan_Attack_List.Add(m_Tmp_Pos);
