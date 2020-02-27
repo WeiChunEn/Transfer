@@ -31,13 +31,13 @@ public class Character : MonoBehaviour
     public GameObject _g3D_UI;      //頭上的Canvas
 
     private float _Death_Time;      //死亡分解的時間
-    public int _iNow_Class_Count;
-    public GameObject _gBack_Model;
+    public int _iNow_Class_Count;   //轉職的編號
+    public GameObject _gBack_Model; //背景的模型
     public GameObject[] _gClass = new GameObject[4]; //其他職業的模型
     public Sprite[] _gClass_Card = new Sprite[4]; //其他職業的卡牌圖
 
-    public GameObject _gTransfer_Effect;
-    public Material _mMat;
+    public GameObject _gTransfer_Effect;        //轉職特效
+    public Material _mMat;          //角色材質球
 
     public GameObject[] _gEffect = new GameObject[5]; //被攻擊以及攻擊的特效
     public class Character_Data
@@ -82,9 +82,9 @@ public class Character : MonoBehaviour
 
                 if (m_HP < 0)
                 { m_HP = 0; }
-                else if(m_HP>=20)
+                else if(m_HP>=30)
                 {
-                    m_HP = 20;
+                    m_HP = 30;
                 }
             }
 
@@ -110,7 +110,7 @@ public class Character : MonoBehaviour
             _sJob = "Preist";
             _iWalk_Steps = 2;
             _iAttack_Distance = 1;
-            _iHP = 15;
+            _iHP = 20;
             _iMP = 5;
             _iAttack = 5;
             _sNow_State = "Idle";
@@ -130,7 +130,7 @@ public class Character : MonoBehaviour
             _sJob = "Minion";
             _iWalk_Steps = 2;
             _iAttack_Distance = 1;
-            _iHP = 20;
+            _iHP = 30;
             _iMP = 5;
             _iAttack = 2;
             _sNow_State = "Idle";
@@ -258,6 +258,9 @@ public class Character : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// 印數值在Inspector上面
+    /// </summary>
     public void Set_Debug()
     {
 
@@ -315,6 +318,12 @@ public class Character : MonoBehaviour
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
                         gameObject.GetComponent<CapsuleCollider>().height = 1.4f;
                         break;
+                    case "Archer":
+                        _g3D_UI.transform.localPosition = new Vector3(0.22f, 2.45f, -0.02f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.6f, 0.02f);
+                        gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 1.3f;
+                        break;
                 }
             }
             else if (Chess.Type == "B")
@@ -345,6 +354,12 @@ public class Character : MonoBehaviour
                         gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.5f, 0.02f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
                         gameObject.GetComponent<CapsuleCollider>().height = 1.4f;
+                        break;
+                    case "Archer":
+                        _g3D_UI.transform.localPosition = new Vector3(0.22f, 2.45f, -0.02f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.6f, 0.02f);
+                        gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 1.3f;
                         break;
                 }
             }
@@ -385,6 +400,12 @@ public class Character : MonoBehaviour
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
                         gameObject.GetComponent<CapsuleCollider>().height = 1.4f;
                         break;
+                    case "Archer":
+                        _g3D_UI.transform.localPosition = new Vector3(0.22f, 2.45f, -0.02f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.6f, 0.02f);
+                        gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 1.3f;
+                        break;
                 }
             }
             else if (Chess.Type == "B")
@@ -415,6 +436,12 @@ public class Character : MonoBehaviour
                         gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.5f, 0.02f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
                         gameObject.GetComponent<CapsuleCollider>().height = 1.4f;
+                        break;
+                    case "Archer":
+                        _g3D_UI.transform.localPosition = new Vector3(0.22f, 2.45f, -0.02f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.6f, 0.02f);
+                        gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 1.3f;
                         break;
                 }
             }

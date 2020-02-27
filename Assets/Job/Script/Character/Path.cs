@@ -6,9 +6,9 @@ public class Path : MonoBehaviour
 {
     public GameObject _gPlane; //放棋盤的
     public GameObject _gInit_Grid; //放生成的格子
-    public GameObject _gPlayer;
-    public GameObject _gEnmey;
-    public GameObject _gPartner;
+    public GameObject _gPlayer;      //現在操縱的旗子
+    public GameObject _gEnmey;      //放B隊的
+    public GameObject _gPartner;    //放A隊的
     public List<Vector3> _lTransfer_A = new List<Vector3>();        //A隊轉職區位置
     public List<Vector3> _lTransfer_B = new List<Vector3>();        //B隊轉職區位置
 
@@ -37,26 +37,7 @@ public class Path : MonoBehaviour
     //private int m_Move_Steps;               //能移動的步數
 
 
-    private void Awake()
-    {
-
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-
-        // Save_CharacterPos();
-        //Find_Way();
-
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+ 
 
     /// <summary>
     /// 找能移動的位置
@@ -955,6 +936,10 @@ public class Path : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// 判斷是否有在可以攻擊的List裡面
+    /// </summary>
     public void Check_Have_Attacked()
     {
         for (int i = 0; i < _iAttack_List_Index; i++)
@@ -983,6 +968,9 @@ public class Path : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// 存找到的攻擊格子進去陣列
+    /// </summary>
     public void Save_Attack_Position()
     {
         //Check_On_Board();

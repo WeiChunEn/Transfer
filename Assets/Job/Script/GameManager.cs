@@ -68,8 +68,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _iPlayer1_Transfer_Area_Count = 4;
-        _iPlayer2_Transfer_Area_Count = 4;
+        _iPlayer1_Transfer_Area_Count = 5;
+        _iPlayer2_Transfer_Area_Count = 5;
         for (int i = 0; i < _gPlayer1.transform.childCount; i++)
         {
 
@@ -270,50 +270,50 @@ public class GameManager : MonoBehaviour
         m_NowPlayer.GetComponent<Character>().Chess.Have_Moved = false;
         m_NowPlayer.GetComponent<Character>().Chess.Now_State = "Finish";
 
-        Check_Character_Finish();
-        //Set_Character_Btn();
-        if (_sPlayer_One_Finish == "Start" && _bCheck_Team_Finish == true)
-        {
-            for (int i = 0; i < _gPlayer1.transform.childCount; i++)
-            {
-                if (_gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State != "Death")
-                {
-                    _gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State = "Idle";
-                    _gPlayer1_UI.transform.GetChild(i).GetComponent<Button>().interactable = true;
-                }
-            }
-            _sPlayer_One_Finish = "End";
-            In_And_Out();
-            if (_gMove_Camera.tag == "A")
-            {
-                Camera_Move_Anim();
-            }
-            //_gPlayer_One_Camera.SetActive(false);
-            //_gPlayer_Two_Camera.SetActive(true);
+        //Check_Character_Finish();
+        ////Set_Character_Btn();
+        //if (_sPlayer_One_Finish == "Start" && _bCheck_Team_Finish == true)
+        //{
+        //    for (int i = 0; i < _gPlayer1.transform.childCount; i++)
+        //    {
+        //        if (_gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State != "Death")
+        //        {
+        //            _gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State = "Idle";
+        //            _gPlayer1_UI.transform.GetChild(i).GetComponent<Button>().interactable = true;
+        //        }
+        //    }
+        //    _sPlayer_One_Finish = "End";
+        //    In_And_Out();
+        //    if (_gMove_Camera.tag == "A")
+        //    {
+        //        Camera_Move_Anim();
+        //    }
+        //    //_gPlayer_One_Camera.SetActive(false);
+        //    //_gPlayer_Two_Camera.SetActive(true);
 
-        }
-        if (_sPlayer_Two_Finish == "Start" && _bCheck_Team_Finish == true)
-        {
-            for (int i = 0; i < _gPlayer2.transform.childCount; i++)
-            {
-                if (_gPlayer2.transform.GetChild(i).GetComponent<Character>().Chess.Now_State != "Death")
-                {
-                    _gPlayer2.transform.GetChild(i).GetComponent<Character>().Chess.Now_State = "Idle";
-                    _gPlayer2_UI.transform.GetChild(i).GetComponent<Button>().interactable = true;
-                }
+        //}
+        //if (_sPlayer_Two_Finish == "Start" && _bCheck_Team_Finish == true)
+        //{
+        //    for (int i = 0; i < _gPlayer2.transform.childCount; i++)
+        //    {
+        //        if (_gPlayer2.transform.GetChild(i).GetComponent<Character>().Chess.Now_State != "Death")
+        //        {
+        //            _gPlayer2.transform.GetChild(i).GetComponent<Character>().Chess.Now_State = "Idle";
+        //            _gPlayer2_UI.transform.GetChild(i).GetComponent<Button>().interactable = true;
+        //        }
 
-            }
-            _sPlayer_Two_Finish = "End";
-            In_And_Out();
-            if (_gMove_Camera.tag == "B")
-            {
-                Camera_Move_Anim();
-            }
-            //_gPlayer_One_Camera.SetActive(true);
-            //_gPlayer_Two_Camera.SetActive(false);
+        //    }
+        //    _sPlayer_Two_Finish = "End";
+        //    In_And_Out();
+        //    if (_gMove_Camera.tag == "B")
+        //    {
+        //        Camera_Move_Anim();
+        //    }
+        //    //_gPlayer_One_Camera.SetActive(true);
+        //    //_gPlayer_Two_Camera.SetActive(false);
 
 
-        }
+        //}
         Set_Character_Btn();
 
     }

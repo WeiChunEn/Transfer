@@ -2,31 +2,28 @@
 {
    Properties
    {
-		
-   	   _Color("Color",Color)=(1,1,1,1)
-	   _MaskColor("MaskColor",Color)=(1,1,1,1)
-	   _AlphaScale("Alpha Scale",Range(0,1)) = 0.5
-	   _MainTextrue("Main Texture",2D)="white"{}
-	   _MaskTextrue("Mask Texture",2D) = "white"{}
-	   _DissloveSize("Dissolve Size",float) = 0
-	   	_BumpMap("Normal Map", 2D) = "bump" {}
+		_Color("Color",Color)=(1,1,1,1)
+		_MaskColor("MaskColor",Color)=(1,1,1,1)
+		_AlphaScale("Alpha Scale",Range(0,1)) = 0.5
+		_MainTextrue("Main Texture",2D)="white"{}
+		_MaskTextrue("Mask Texture",2D) = "white"{}
+		_DissloveSize("Dissolve Size",float) = 0
+		_BumpMap("Normal Map", 2D) = "bump" {}
 		_BumpScale("Bump Scale", Float) = 1.0
-	   _DissolveCutoff("Dissolve Cutoff",Range(0,1))=1
-	   _DissolveColorA("Dissolve Color A",Color) = (1,1,1,1)
-	   _DissolveColorB("Dissolve Color B",Color) = (1,1,1,1)
-	   _ColorFactorA("ColorFactorA",Range(0,1))=0
-	   _ColorFactroB("ColorFactorB",Range(0,1))=0
-	   
-	  
+		_DissolveCutoff("Dissolve Cutoff",Range(0,1))=1
+		_DissolveColorA("Dissolve Color A",Color) = (1,1,1,1)
+		_DissolveColorB("Dissolve Color B",Color) = (1,1,1,1)
+		_ColorFactorA("ColorFactorA",Range(0,1))=0
+		_ColorFactroB("ColorFactorB",Range(0,1))=0
    }
    SubShader
    {
-			Tags{"Queue" = "Transparent" "IgnoreProjector" = "Ture""RenderType" = "Transparent"}
+	   Tags{"Queue" = "Transparent" "IgnoreProjector" = "Ture""RenderType" = "Transparent"}
    	   Pass
 	   {
-	   Tags{ "LightMode" = "ForwardBase" "DisableBatching" = "true"}
-	   ZWrite Off
-			Blend SrcAlpha OneMinusSrcAlpha
+		   Tags{ "LightMode" = "ForwardBase" "DisableBatching" = "true"}
+		   ZWrite Off
+		   Blend SrcAlpha OneMinusSrcAlpha
 	   	   CGPROGRAM
 
 		   #pragma vertex vert
@@ -36,10 +33,10 @@
 		   #include "SimplexNoise3D.hlsl"
 		   struct a2v
 		   {
-					float4 vertex : POSITION;
-					float3 normal : NORMAL;
-					float4 tangent : TANGENT;
-					float4 texcoord : TEXCOORD0;
+				float4 vertex : POSITION;
+				float3 normal : NORMAL;
+				float4 tangent : TANGENT;
+				float4 texcoord : TEXCOORD0;
 		   };
 		   struct v2f
 		   {

@@ -254,6 +254,10 @@ public class Move : MonoBehaviour
         //}
     }
 
+
+    /// <summary>
+    /// 在轉職區的話
+    /// </summary>
     private void OnTransfer_Area()
     {
         for(int i = 0; i<path._lTransfer_A.Count;i++)

@@ -183,6 +183,9 @@ public class MouseEvent : MonoBehaviour
 
             }
         }
+
+
+        //右鍵的事件
         if (Input.GetButtonDown("Fire2"))
         {
             if (_gGameManager.GetComponent<GameManager>().m_NowPlayer != null && _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Move>()._bIs_Moving == false && _gGameManager.GetComponent<GameManager>()._bCamera_Move == false)
@@ -209,6 +212,9 @@ public class MouseEvent : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 滑鼠進入的事件
+    /// </summary>
     private void OnMouseEnter()
     {
         if (gameObject.tag == "Area" && GameManager._sSet_Area_Finish_One == "Start")
@@ -264,6 +270,11 @@ public class MouseEvent : MonoBehaviour
 
 
     }
+
+
+    /// <summary>
+    /// 滑鼠離開的事件
+    /// </summary>
     private void OnMouseExit()
     {
         if (gameObject.tag == "Area")
@@ -313,7 +324,9 @@ public class MouseEvent : MonoBehaviour
     }
 
 
-
+    /// <summary>
+    /// 攻擊格子滑鼠進入的Function
+    /// </summary>
     public void Atk_Mouse_On()
     {
         if (_gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Character>().Chess.Job == "Warrior")
@@ -367,6 +380,10 @@ public class MouseEvent : MonoBehaviour
         }
 
     }
+
+    /// <summary>
+    /// 攻擊格子滑鼠離開的Function
+    /// </summary>
     public void Atk_Mouse_Out()
     {
         if (_gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Character>().Chess.Job == "Warrior")
@@ -388,7 +405,9 @@ public class MouseEvent : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// 攻擊格子滑鼠左鍵點選的Function
+    /// </summary>
     public void Atk_Mouse_Clk()
     {
         GameObject Enmey;
@@ -531,6 +550,10 @@ public class MouseEvent : MonoBehaviour
 
     }
 
+
+    /// <summary>
+    /// A隊角色滑鼠在上面的Function
+    /// </summary>
     public void PlayerA_Mouse_On()
     {
         for (int i = 0; i < _gGameManager.GetComponent<GameManager>()._gPlayer1.transform.childCount; i++)
@@ -545,6 +568,10 @@ public class MouseEvent : MonoBehaviour
         }
 
     }
+
+    /// <summary>
+    /// A隊角色滑鼠離開的Function
+    /// </summary>
     public void PlayerA_Mouse_Out()
     {
         for (int i = 0; i < _gGameManager.GetComponent<GameManager>()._gPlayer1.transform.childCount; i++)
@@ -558,6 +585,10 @@ public class MouseEvent : MonoBehaviour
         }
 
     }
+
+    /// <summary>
+    /// B隊角色滑鼠在上面的Function
+    /// </summary>
     public void PlayerB_Mouse_On()
     {
         for (int i = 0; i < _gGameManager.GetComponent<GameManager>()._gPlayer2.transform.childCount; i++)
@@ -572,6 +603,10 @@ public class MouseEvent : MonoBehaviour
         }
 
     }
+
+    /// <summary>
+    /// B隊角色滑鼠離開的Function
+    /// </summary>
     public void PlayerB_Mouse_Out()
     {
         for (int i = 0; i < _gGameManager.GetComponent<GameManager>()._gPlayer2.transform.childCount; i++)
@@ -586,6 +621,10 @@ public class MouseEvent : MonoBehaviour
 
     }
 
+
+    /// <summary>
+    /// 敵人在攻擊的格子裡面的滑鼠事件
+    /// </summary>
     public void Player_Atk_On()
     {
 
@@ -601,6 +640,10 @@ public class MouseEvent : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// 敵人在攻擊的格子裡面滑鼠移開的事件
+    /// </summary>
     public void Player_Atk_Out()
     {
         if (_gGameManager.GetComponent<GameManager>().m_NowPlayer != null && _gGameManager.GetComponent<Path>()._lCan_Attack_List.Count != 0)
