@@ -13,7 +13,7 @@ public class Character : MonoBehaviour
     public int _iWalk_Steps;
     public int _iAttack_Distance;
     public int _iHP;
-    public int _iMP;
+    public int _iMax_HP;
     public int _iAttack;
     public string _sNow_State;
     public bool _bHave_Moved;
@@ -47,7 +47,7 @@ public class Character : MonoBehaviour
         protected int m_Walk_Steps;
         protected int m_Attack_Distance;
         protected int m_HP;
-        protected int m_MP;
+        protected int m_Max_HP;
         protected int m_Attack;
         protected string m_Now_State;
         protected bool m_Have_Moved;
@@ -58,14 +58,14 @@ public class Character : MonoBehaviour
     {
 
 
-        public Set_Character(string Type, string Job, int Walk_Steps, int Attack_Distance, int HP, int MP, int Attack, string Now_State)
+        public Set_Character(string Type, string Job, int Walk_Steps, int Attack_Distance, int HP, int Max_HP, int Attack, string Now_State)
         {
             this.m_Type = Type;
             this.m_Job = Job;
             this.m_Walk_Steps = Walk_Steps;
             this.m_Attack_Distance = Attack_Distance;
             this.m_HP = HP;
-            this.m_MP = MP;
+            this.m_Max_HP = Max_HP;
             this.m_Attack = Attack;
             this.m_Now_State = Now_State;
         }
@@ -73,6 +73,7 @@ public class Character : MonoBehaviour
         public string Job { get => m_Job; set => m_Job = value; }
         public int Walk_Steps { get => m_Walk_Steps; set => m_Walk_Steps = value; }
         public int Attack_Distance { get => m_Attack_Distance; set => m_Attack_Distance = value; }
+        public int Max_HP { get => m_Max_HP; set => m_Max_HP = value; }
         public int HP
         {
             get { return this.m_HP; }
@@ -82,14 +83,14 @@ public class Character : MonoBehaviour
 
                 if (m_HP < 0)
                 { m_HP = 0; }
-                else if(m_HP>=30)
+                else if(m_HP>=m_Max_HP)
                 {
-                    m_HP = 30;
+                    m_HP = m_Max_HP;
                 }
             }
 
         }
-        public int MP { get => m_MP; set => m_MP = value; }
+        
         public int Attack { get => this.m_Attack; set => m_Attack = value; }
 
         public string Now_State { get => m_Now_State; set => m_Now_State = value; }
@@ -110,11 +111,12 @@ public class Character : MonoBehaviour
             _sJob = "Preist";
             _iWalk_Steps = 2;
             _iAttack_Distance = 1;
-            _iHP = 20;
-            _iMP = 5;
-            _iAttack = 5;
+            _iHP = 10;
+
+            _iMax_HP = 10;
+            _iAttack = 6;
             _sNow_State = "Idle";
-            _sHP_Slider.maxValue = _iHP;
+            _sHP_Slider.maxValue = _iMax_HP;
             _tHP.text = ((_iHP / _sHP_Slider.maxValue) *100).ToString();
             
             _sHead_HP.maxValue = _sHP_Slider.maxValue;
@@ -130,11 +132,11 @@ public class Character : MonoBehaviour
             _sJob = "Minion";
             _iWalk_Steps = 2;
             _iAttack_Distance = 1;
-            _iHP = 30;
-            _iMP = 5;
+            _iHP = 20;
+            _iMax_HP = 20;
             _iAttack = 2;
             _sNow_State = "Idle";
-            _sHP_Slider.maxValue = _iHP;
+            _sHP_Slider.maxValue = _iMax_HP;
             _tHP.text = ((_iHP / _sHP_Slider.maxValue) * 100).ToString();
             _sHead_HP.maxValue = _sHP_Slider.maxValue;
             _tHead_HP.text = _tHP.text;
@@ -148,7 +150,7 @@ public class Character : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
-        Chess = new Set_Character(_sType, _sJob, _iWalk_Steps, _iAttack_Distance, _iHP, _iMP, _iAttack, _sNow_State);
+        Chess = new Set_Character(_sType, _sJob, _iWalk_Steps, _iAttack_Distance, _iHP, _iMax_HP, _iAttack, _sNow_State);
 
     }
 
@@ -199,9 +201,12 @@ public class Character : MonoBehaviour
                 _gClass[_iNow_Class_Count].SetActive(true);
                 _gBack_Model.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(true);
                 _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
-                Chess.Attack = 5;
+                Chess.Max_HP *= 2;
+                Chess.HP *= 2;
+                
+                Chess.Attack = 2;
                 Chess.Attack_Distance = 3;
-                Chess.Walk_Steps = 3;
+                Chess.Walk_Steps = 2;
                 _tHead_Name.text = "W" + _tHead_Name.name;
                 _tName.text = "W" + _tName.name;
                 _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).GetComponent<Renderer>().sharedMaterial;
@@ -214,6 +219,9 @@ public class Character : MonoBehaviour
                 _gClass[_iNow_Class_Count].SetActive(true);
                 _gBack_Model.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(true);
                 _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
+                //Chess.Max_HP /= 2;
+                //Chess.HP /= 2;
+                
                 Chess.Attack = 8;
                 Chess.Attack_Distance = 2;
                 Chess.Walk_Steps = 1;
@@ -231,7 +239,7 @@ public class Character : MonoBehaviour
                 _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
                 Chess.Attack = 6;
                 Chess.Attack_Distance = 3;
-                Chess.Walk_Steps = 2;
+                Chess.Walk_Steps = 3;
                 _tHead_Name.text = "A" + _tHead_Name.name;
                 _tName.text = "A" + _tName.name;
                 break;
@@ -242,11 +250,24 @@ public class Character : MonoBehaviour
                 Chess.Job = "Minion";
                 _gClass[_iNow_Class_Count].SetActive(false);
                 _gBack_Model.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(false);
+                if(_iNow_Class_Count==1)
+                {
+                    Chess.Max_HP /= 2;
+                    Chess.HP /= 2;
+                  
+                }
+                //else if(_iNow_Class_Count==2)
+                //{
+                //    Chess.Max_HP *= 2;
+                //    Chess.HP *= 2;
+                    
+                //}
                 _iNow_Class_Count = 0;
                 _gClass[_iNow_Class_Count].SetActive(true);
                 _gBack_Model.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(true);
                 _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
-                Chess.Attack = 3;
+                
+                Chess.Attack = 2;
                 Chess.Attack_Distance = 1;
                 Chess.Walk_Steps = 2;
                 _tHead_Name.text = "S" + _tHead_Name.name;
@@ -267,7 +288,9 @@ public class Character : MonoBehaviour
 
         _sJob = Chess.Job;
         _iHP = Chess.HP;
+        _iMax_HP = Chess.Max_HP;
         _sHP_Slider.value = _iHP;
+        _sHP_Slider.maxValue = _iMax_HP;
         _sNow_State = Chess.Now_State;
         _iAttack = Chess.Attack;
         _iAttack_Distance = Chess.Attack_Distance;
@@ -276,6 +299,7 @@ public class Character : MonoBehaviour
         _iWalk_Steps = Chess.Walk_Steps;
 
         _tHP.text = Math.Round(_iHP / _sHP_Slider.maxValue * 100).ToString();
+        _sHead_HP.maxValue = _sHP_Slider.maxValue;
         _sHead_HP.value = _sHP_Slider.value;
         _tHead_HP.text = _tHP.text;
     }
@@ -295,7 +319,7 @@ public class Character : MonoBehaviour
                 switch(Chess.Job)
                 {
                     case "Minion":
-                        _g3D_UI.transform.localPosition = new Vector3(0.1006802f, 1.464f, 0.051f);
+                        _g3D_UI.transform.localPosition = new Vector3(0.1f, 1.6f, 0.036f);
                         gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 0.937f, 0.02f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
                         gameObject.GetComponent<CapsuleCollider>().height = 0.658f;
@@ -332,7 +356,7 @@ public class Character : MonoBehaviour
                 switch (Chess.Job)
                 {
                     case "Minion":
-                        _g3D_UI.transform.localPosition = new Vector3(0.1006802f, 1.464f, 0.051f);
+                        _g3D_UI.transform.localPosition = new Vector3(0.1f, 1.6f, 0.036f);
                         gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 0.937f, 0.02f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
                         gameObject.GetComponent<CapsuleCollider>().height = 0.658f;
@@ -377,7 +401,7 @@ public class Character : MonoBehaviour
                 switch (Chess.Job)
                 {
                     case "Minion":
-                        _g3D_UI.transform.localPosition = new Vector3(0.1006802f, 1.464f, 0.051f);
+                        _g3D_UI.transform.localPosition = new Vector3(0.1f, 1.6f, 0.036f);
                         gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 0.937f, 0.02f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
                         gameObject.GetComponent<CapsuleCollider>().height = 0.658f;
@@ -414,7 +438,7 @@ public class Character : MonoBehaviour
                 switch (Chess.Job)
                 {
                     case "Minion":
-                        _g3D_UI.transform.localPosition = new Vector3(0.1006802f, 1.464f, 0.051f);
+                        _g3D_UI.transform.localPosition = new Vector3(0.1f, 1.6f, 0.036f);
                         gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 0.937f, 0.02f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
                         gameObject.GetComponent<CapsuleCollider>().height = 0.658f;

@@ -15,6 +15,11 @@
 		_DissolveColorB("Dissolve Color B",Color) = (1,1,1,1)
 		_ColorFactorA("ColorFactorA",Range(0,1))=0
 		_ColorFactroB("ColorFactorB",Range(0,1))=0
+
+		_SpecularMask("Specular Mask", 2D) = "white" {}
+	_SpecularScale("Specular Scale", Float) = 1.0
+		_Specular("Specular", Color) = (1, 1, 1, 1)
+		_Gloss("Gloss", Range(8.0, 256)) = 20
    }
    SubShader
    {
@@ -22,7 +27,7 @@
    	   Pass
 	   {
 		   Tags{ "LightMode" = "ForwardBase" "DisableBatching" = "true"}
-		   ZWrite Off
+		   //ZWrite Off
 		   Blend SrcAlpha OneMinusSrcAlpha
 	   	   CGPROGRAM
 
@@ -76,7 +81,11 @@
 		float _ColorFactorA;
 		float _ColorFactroB;
 
-			
+		sampler2D _SpecularMask;
+		float _SpecularScale;
+		fixed4 _Specular;
+		float _Gloss;
+	
 		v2f vert(a2v v)
 		{
 			v2f o;
@@ -85,14 +94,17 @@
 			o.worldNormal = mul(v.vertex,unity_WorldToObject).xyz;
 			o.uv.xy = v.texcoord.xy* _MainTextrue_ST.xy+_MainTextrue_ST.zw;
 			o.uv.zw = v.texcoord.xy * _BumpMap_ST.xy + _BumpMap_ST.zw;
+
 			TANGENT_SPACE_ROTATION;
 			o.lightDir = mul(rotation,normalize(ObjSpaceLightDir(v.vertex))).xyz;
-			//o.viewDir = mul(rotation,normalize(ObjSpaceLightDir(v.vertex))).xyz;
+			o.viewDir = mul(rotation,normalize(ObjSpaceLightDir(v.vertex))).xyz;
 			return o;
 		}
 		fixed4 frag(v2f i):SV_TARGET
 		{
-				fixed3 LightDir = normalize(i.lightDir);
+		fixed3 tangentLightDir = normalize(i.lightDir);
+	fixed3 tangentViewDir = normalize(i.viewDir);
+				//fixed3 LightDir = normalize(i.lightDir);
 	
 				fixed4 packedNormal = tex2D(_BumpMap, i.uv.zw);
 				fixed3 tangentNormal;
@@ -130,10 +142,12 @@
 
 				fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz * albedo;
 
-				fixed3 diffuse = _LightColor0.rgb * albedo * max(0, dot(tangentNormal, LightDir));
+				fixed3 diffuse = _LightColor0.rgb * albedo * max(0, dot(tangentNormal, tangentLightDir));
 
-					
-				fixed3 color = ambient +diffuse;
+				fixed3 halfDir = normalize(tangentLightDir + tangentLightDir);
+				fixed specularMask = tex2D(_SpecularMask,i.uv).r * _SpecularScale;
+				fixed3 specular = _LightColor0.rgb * _Specular.rgb * pow(max(0, dot(tangentNormal, halfDir)), _Gloss) * specularMask;
+				fixed3 color = ambient +diffuse+specular ;
 		   			
 					
 					
