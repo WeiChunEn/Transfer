@@ -93,7 +93,7 @@
 			o.pos = UnityObjectToClipPos(v.vertex);
 			o.worldNormal = mul(v.vertex,unity_WorldToObject).xyz;
 			o.uv.xy = v.texcoord.xy* _MainTextrue_ST.xy+_MainTextrue_ST.zw;
-			o.uv.zw = v.texcoord.xy * _BumpMap_ST.xy + _BumpMap_ST.zw;
+			//o.uv.zw = v.texcoord.xy * _BumpMap_ST.xy + _BumpMap_ST.zw;
 
 			TANGENT_SPACE_ROTATION;
 			o.lightDir = mul(rotation,normalize(ObjSpaceLightDir(v.vertex))).xyz;
@@ -102,16 +102,13 @@
 		}
 		fixed4 frag(v2f i):SV_TARGET
 		{
-		fixed3 tangentLightDir = normalize(i.lightDir);
-	fixed3 tangentViewDir = normalize(i.viewDir);
+				fixed3 tangentLightDir = normalize(i.lightDir);
+				fixed3 tangentViewDir = normalize(i.viewDir);
 				//fixed3 LightDir = normalize(i.lightDir);
 	
-				fixed4 packedNormal = tex2D(_BumpMap, i.uv.zw);
-				fixed3 tangentNormal;
-	
-				tangentNormal = UnpackNormal(packedNormal);
+				fixed3 tangentNormal = UnpackNormal(tex2D(_BumpMap, i.uv));
 				tangentNormal.xy *= _BumpScale;
-					
+				tangentNormal.z = sqrt(1.0 - saturate(dot(tangentNormal.xy, tangentNormal.xy)));
 				float4 Tex = tex2D(_MainTextrue,i.uv);
 				float4 Mask = tex2D(_MaskTextrue,i.uv);
 					
@@ -144,7 +141,7 @@
 
 				fixed3 diffuse = _LightColor0.rgb * albedo * max(0, dot(tangentNormal, tangentLightDir));
 
-				fixed3 halfDir = normalize(tangentLightDir + tangentLightDir);
+				fixed3 halfDir = normalize(tangentLightDir + tangentViewDir);
 				fixed specularMask = tex2D(_SpecularMask,i.uv).r * _SpecularScale;
 				fixed3 specular = _LightColor0.rgb * _Specular.rgb * pow(max(0, dot(tangentNormal, halfDir)), _Gloss) * specularMask;
 				fixed3 color = ambient +diffuse+specular ;
@@ -158,5 +155,5 @@
 		ENDCG
 	   }
 	 
-   }Fallback "Transparent/VertexLit"
+   }Fallback "Specular"
 }

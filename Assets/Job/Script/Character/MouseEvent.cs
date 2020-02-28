@@ -202,13 +202,26 @@ public class MouseEvent : MonoBehaviour
             if (GameManager._sSet_Area_Finish_One == "Start" && gameObject.tag == "TransferA" && _bOn_Tranf_it == true)
             {
                 GameManager._iPlayer1_Transfer_Area_Count++;
-                path._lTransfer_A.RemoveAt(-(GameManager._iPlayer1_Transfer_Area_Count-5));
+                for(int i = 0; i < path._lTransfer_A.Count;i++ )
+                {
+                    if(path._lTransfer_A[i].x == transform.position.x&&path._lTransfer_A[i].z==transform.position.z)
+                    {
+                        path._lTransfer_A.RemoveAt(i);
+                    }
+                }
+              
                Destroy(gameObject);
             }
             if (GameManager._sSet_Area_Finish_Two == "Start" && gameObject.tag == "TransferB" && _bOn_Tranf_it == true)
             {
                 GameManager._iPlayer2_Transfer_Area_Count++;
-                path._lTransfer_B.RemoveAt(-(GameManager._iPlayer2_Transfer_Area_Count - 5));
+                for (int i = 0; i < path._lTransfer_B.Count; i++)
+                {
+                    if (path._lTransfer_B[i].x == transform.position.x && path._lTransfer_B[i].z == transform.position.z)
+                    {
+                        path._lTransfer_B.RemoveAt(i);
+                    }
+                }
                 Destroy(gameObject);
             }
         }

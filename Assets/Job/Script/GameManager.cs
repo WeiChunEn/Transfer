@@ -65,19 +65,20 @@ public class GameManager : MonoBehaviour
     public Path path;
 
     private float Sky_Time;
+
+    public Material[] _mAll_Mat;
     // Start is called before the first frame update
     void Start()
     {
         _iPlayer1_Transfer_Area_Count = 5;
         _iPlayer2_Transfer_Area_Count = 5;
-        for (int i = 0; i < _gPlayer1.transform.childCount; i++)
+        for (int i = 0; i < _mAll_Mat.Length; i++)
         {
 
 
-            _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mMat.SetFloat("_AlphaScale", 1.0f);
-            _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mMat.SetFloat("_AlphaScale", 1.0f);
-            _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mMat.SetFloat("_DissolveCutoff", 0.0f);
-            _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mMat.SetFloat("_DissolveCutoff", 0.0f);
+            _mAll_Mat[i].SetFloat("_AlphaScale", 1.0f);
+            _mAll_Mat[i].SetFloat("_DissolveCutoff", 0.0f);
+            
         }
 
     }
