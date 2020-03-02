@@ -489,15 +489,31 @@ public class Character : MonoBehaviour
                 Instantiate(_gEffect[2], gameObject.transform.position, _gEffect[2].transform.rotation);
                 char Magi_Damage = other.name[0];
                 _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.GetChild(0).GetComponent<CameraShake>().shakeDuration = 0.5f;
-                Chess.HP -= (int)Char.GetNumericValue(Magi_Damage);
-                
+                if(Chess.Now_State=="Defense")
+                {
+                    Chess.HP -= ((int)Char.GetNumericValue(Magi_Damage))/2;
+                }
+                else
+                {
+                    Chess.HP -= (int)Char.GetNumericValue(Magi_Damage);
+
+                }
+
                 break;
             case "Archer":
                 Destroy(other.gameObject);
                 Instantiate(_gEffect[3], gameObject.transform.position, _gEffect[3].transform.rotation);
                 char Arrow_Damage = other.name[0];
                 _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.GetChild(0).GetComponent<CameraShake>().shakeDuration = 0.5f;
-                Chess.HP -= (int)Char.GetNumericValue(Arrow_Damage);
+                if (Chess.Now_State == "Defense")
+                {
+                    Chess.HP -= ((int)Char.GetNumericValue(Arrow_Damage)) / 2;
+                }
+                else
+                {
+                    Chess.HP -= (int)Char.GetNumericValue(Arrow_Damage);
+
+                }
 
                 break;
         }

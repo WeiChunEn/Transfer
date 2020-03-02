@@ -75,7 +75,14 @@ public class Attack : MonoBehaviour
         switch (gameObject.GetComponent<Character>().Chess.Job)
         {
             case "Minion":
-                Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack;
+                if (Enmey.GetComponent<Character>()._sNow_State == "Defense")
+                {
+                    Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack / 2;
+                }
+                else
+                {
+                    Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack;
+                }
                 Instantiate(_gEffect[_iJob_Num], Enmey.transform.position, _gEffect[_iJob_Num].transform.rotation);
                 _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.GetChild(0).GetComponent<CameraShake>().shakeDuration = 0.5f;
 
@@ -92,7 +99,15 @@ public class Attack : MonoBehaviour
             case "Warrior":
 
                 path._lCan_Attack_Enmey.Remove(Enmey);
-                Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack;
+                if(Enmey.GetComponent<Character>()._sNow_State == "Defense")
+                {
+                    Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack/2;
+                }
+                else
+                {
+                    Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack;
+                }
+                
                 Instantiate(_gEffect[_iJob_Num], Enmey.transform.position, _gEffect[_iJob_Num].transform.rotation);
                 _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.GetChild(0).GetComponent<CameraShake>().shakeDuration = 0.5f;
 

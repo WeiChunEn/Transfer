@@ -99,7 +99,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 0.8504689, b: 0.4764151, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Diffuse: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveColorA: {r: 1, g: 0, b: 0, a: 1}
     - _DissolveColorB: {r: 1, g: 0.34117648, b: 0, a: 1}

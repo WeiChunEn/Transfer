@@ -88,7 +88,7 @@ public class MouseEvent : MonoBehaviour
                
                 if (_gGameManager.GetComponent<GameManager>().m_NowPlayer == null)
                 {
-                    if (gameObject.GetComponent<Character>().Chess.Now_State != "Finish" && gameObject.GetComponent<Character>().Chess.Now_State != "Death")
+                    if (gameObject.GetComponent<Character>().Chess.Now_State != "Finish" && gameObject.GetComponent<Character>().Chess.Now_State != "Death" && gameObject.GetComponent<Character>().Chess.Now_State != "Defense")
                     {
                         _gGameManager.GetComponent<GameManager>().Select_Player(m_Player_Index);
                     }
@@ -112,7 +112,7 @@ public class MouseEvent : MonoBehaviour
                 }
                 else if (_gGameManager.GetComponent<GameManager>().m_NowPlayer != null && _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Move>()._bIs_Moving == false)
                 {
-                    if (gameObject.GetComponent<Character>().Chess.Now_State != "Finish" && gameObject.GetComponent<Character>().Chess.Now_State != "Death")
+                    if (gameObject.GetComponent<Character>().Chess.Now_State != "Finish" && gameObject.GetComponent<Character>().Chess.Now_State != "Death" && gameObject.GetComponent<Character>().Chess.Now_State != "Defense")
                     {
                         _gGameManager.GetComponent<GameManager>().Select_Player(m_Player_Index);
                     }
@@ -130,7 +130,7 @@ public class MouseEvent : MonoBehaviour
 
                 if (_gGameManager.GetComponent<GameManager>().m_NowPlayer == null)
                 {
-                    if (gameObject.GetComponent<Character>().Chess.Now_State != "Finish" && gameObject.GetComponent<Character>().Chess.Now_State != "Death")
+                    if (gameObject.GetComponent<Character>().Chess.Now_State != "Finish" && gameObject.GetComponent<Character>().Chess.Now_State != "Death" && gameObject.GetComponent<Character>().Chess.Now_State != "Defense")
                     {
                         _gGameManager.GetComponent<GameManager>().Select_Player(m_Player_Index);
                     }
@@ -152,7 +152,7 @@ public class MouseEvent : MonoBehaviour
                 }
                 else if (_gGameManager.GetComponent<GameManager>().m_NowPlayer != null && _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Move>()._bIs_Moving == false)
                 {
-                    if (gameObject.GetComponent<Character>().Chess.Now_State != "Finish" && gameObject.GetComponent<Character>().Chess.Now_State != "Death")
+                    if (gameObject.GetComponent<Character>().Chess.Now_State != "Finish" && gameObject.GetComponent<Character>().Chess.Now_State != "Death" && gameObject.GetComponent<Character>().Chess.Now_State != "Defense")
                     {
                         _gGameManager.GetComponent<GameManager>().Select_Player(m_Player_Index);
                     }

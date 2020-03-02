@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1860238, g: 0.22617123, b: 0.19409597, a: 1}
+  m_IndirectSpecularColor: {r: 0.18408242, g: 0.22359481, b: 0.19178092, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 11395609}
   - component: {fileID: 11395608}
   m_Layer: 5
-  m_Name: End
+  m_Name: Defense
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -261,7 +261,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1920044690}
-        m_MethodName: End_Btn_Click
+        m_MethodName: Defense_Btn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -513,7 +513,7 @@ GameObject:
   - component: {fileID: 40331740}
   - component: {fileID: 40331739}
   m_Layer: 5
-  m_Name: End
+  m_Name: Defense
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -580,7 +580,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1920044690}
-        m_MethodName: End_Btn_Click
+        m_MethodName: Defense_Btn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1116,7 +1116,7 @@ GameObject:
   - component: {fileID: 74015312}
   - component: {fileID: 74015311}
   m_Layer: 5
-  m_Name: End
+  m_Name: Defense
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1183,7 +1183,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1920044690}
-        m_MethodName: End_Btn_Click
+        m_MethodName: Defense_Btn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5443,7 +5443,7 @@ GameObject:
   - component: {fileID: 284646112}
   - component: {fileID: 284646111}
   m_Layer: 5
-  m_Name: End
+  m_Name: Defense
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5510,7 +5510,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1920044690}
-        m_MethodName: End_Btn_Click
+        m_MethodName: Defense_Btn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -26279,7 +26279,7 @@ GameObject:
   - component: {fileID: 1185744097}
   - component: {fileID: 1185744096}
   m_Layer: 5
-  m_Name: End
+  m_Name: Defense
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26346,7 +26346,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1920044690}
-        m_MethodName: End_Btn_Click
+        m_MethodName: Defense_Btn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -26404,7 +26404,7 @@ GameObject:
   - component: {fileID: 1189443099}
   - component: {fileID: 1189443098}
   m_Layer: 5
-  m_Name: End
+  m_Name: Defense
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26471,7 +26471,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1920044690}
-        m_MethodName: End_Btn_Click
+        m_MethodName: Defense_Btn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -29825,7 +29825,7 @@ GameObject:
   - component: {fileID: 1322225557}
   - component: {fileID: 1322225556}
   m_Layer: 5
-  m_Name: End
+  m_Name: Defense
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29892,7 +29892,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1920044690}
-        m_MethodName: End_Btn_Click
+        m_MethodName: Defense_Btn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -37379,7 +37379,7 @@ GameObject:
   - component: {fileID: 1639196621}
   - component: {fileID: 1639196620}
   m_Layer: 5
-  m_Name: End
+  m_Name: Defense
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37446,7 +37446,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1920044690}
-        m_MethodName: End_Btn_Click
+        m_MethodName: Defense_Btn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
