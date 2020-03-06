@@ -345,7 +345,7 @@ public class Character : MonoBehaviour
                         gameObject.GetComponent<CapsuleCollider>().height = 1.9f;
                         break;
                     case "Archer":
-                        _g3D_UI.transform.localPosition = new Vector3(0.22f, 2.45f, -0.02f);
+                        _g3D_UI.transform.localPosition = new Vector3(0.05f, 2.55f, -0.05f);
                         gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.3f, 0.02f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
                         gameObject.GetComponent<CapsuleCollider>().height = 2f;
@@ -382,7 +382,7 @@ public class Character : MonoBehaviour
                         gameObject.GetComponent<CapsuleCollider>().height = 1.9f;
                         break;
                     case "Archer":
-                        _g3D_UI.transform.localPosition = new Vector3(0.22f, 2.45f, -0.02f);
+                        _g3D_UI.transform.localPosition = new Vector3(0.05f, 2.55f, -0.05f);
                         gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.3f, 0.02f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
                         gameObject.GetComponent<CapsuleCollider>().height = 2f;
@@ -427,7 +427,7 @@ public class Character : MonoBehaviour
                         gameObject.GetComponent<CapsuleCollider>().height = 1.9f;
                         break;
                     case "Archer":
-                        _g3D_UI.transform.localPosition = new Vector3(0.22f, 2.45f, -0.02f);
+                        _g3D_UI.transform.localPosition = new Vector3(0.05f, 2.55f, -0.05f);
                         gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.3f, 0.02f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
                         gameObject.GetComponent<CapsuleCollider>().height = 2f;
@@ -464,7 +464,7 @@ public class Character : MonoBehaviour
                         gameObject.GetComponent<CapsuleCollider>().height = 1.9f;
                         break;
                     case "Archer":
-                        _g3D_UI.transform.localPosition = new Vector3(0.22f, 2.45f, -0.02f);
+                        _g3D_UI.transform.localPosition = new Vector3(0.05f, 2.55f, -0.05f);
                         gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.3f, 0.02f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
                         gameObject.GetComponent<CapsuleCollider>().height = 2f;
