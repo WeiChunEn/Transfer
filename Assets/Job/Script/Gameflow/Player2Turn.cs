@@ -9,7 +9,7 @@ public class Player2Turn : GameState
     private GameObject _gGameManager;
     public Player2Turn(GameStateManager StateManager) : base(StateManager)
     {
-        this.StateName = "";
+        this.StateName = "Player2 Turn Start";
         Debug.Log("Player2 Turn Start");
     }
 
@@ -21,10 +21,12 @@ public class Player2Turn : GameState
         }
         _gStateName.GetComponent<TextMeshProUGUI>().text = StateName;
         _gGameManager = GameObject.Find("GameManager");
+
         
     }
     public override void StateUpdate()
     {
+        
         if (GameManager._sPlayer_Two_Finish == "End")
         {
             m_GameStateManager.Set_GameState(new Player1Turn(m_GameStateManager));

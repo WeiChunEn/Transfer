@@ -39,8 +39,10 @@ public class SetArea_One :GameState
             
         }
         _gGameManager = GameObject.Find("GameManager");
+        _gTransfer_Count = GameObject.Find("Area");
         _gTransfer_Count.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = GameManager._iPlayer1_Transfer_Area_Count.ToString();
         _gStateName.GetComponent<TextMeshProUGUI>().text = StateName;
+        
         _gGameManager.GetComponent<GameManager>()._gNow_State_UI[0].SetActive(true);
         Debug.Log("SetAreaUpdate");
         if(GameManager._sSet_Area_Finish_One == "Start")
@@ -50,6 +52,7 @@ public class SetArea_One :GameState
             {
                 GameManager._sSet_Area_Finish_One = "End";
                 _gGameManager.GetComponent<GameManager>().Camera_Move_Anim();
+              
                 //_gGameManager.GetComponent<GameManager>()._gPlayer_One_Camera.SetActive(false);
                 //_gGameManager.GetComponent<GameManager>()._gPlayer_Two_Camera.SetActive(true);
 

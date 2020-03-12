@@ -161,7 +161,7 @@ public class MouseEvent : MonoBehaviour
 
             }
             //轉職區按鈕滑鼠事件
-            if (_bOn_Set_it == true && GameManager._sSet_Area_Finish_One == "Start" && GameManager._iPlayer1_Transfer_Area_Count > 0 && this.tag == "Area")
+            if (_bOn_Set_it == true && GameManager._sSet_Area_Finish_One == "Start" && GameManager._iPlayer1_Transfer_Area_Count > 0 && this.tag == "Area" &&!EventSystem.current.IsPointerOverGameObject() )
             {
                 GameObject Trans_Obj;
                 Trans_Obj = Instantiate(_gGameManager.GetComponent<GameManager>()._gTransfer_Obj[0], new Vector3(transform.position.x, transform.position.y + 0.02f, transform.position.z), transform.rotation, _gGameManager.GetComponent<Path>()._gPlane.transform);
@@ -171,7 +171,7 @@ public class MouseEvent : MonoBehaviour
                 path._lTransfer_A.Add(transform.position);
 
             }
-            else if (_bOn_Set_it == true && GameManager._sSet_Area_Finish_Two == "Start" && GameManager._iPlayer2_Transfer_Area_Count > 0 && this.tag == "Area")
+            else if (_bOn_Set_it == true && GameManager._sSet_Area_Finish_Two == "Start" && GameManager._iPlayer2_Transfer_Area_Count > 0 && this.tag == "Area" &&!EventSystem.current.IsPointerOverGameObject() )
             {
                 GameObject Trans_Obj;
 
@@ -232,13 +232,13 @@ public class MouseEvent : MonoBehaviour
     /// </summary>
     private void OnMouseEnter()
     {
-        if (gameObject.tag == "Area" && GameManager._sSet_Area_Finish_One == "Start")
+        if (gameObject.tag == "Area" && GameManager._sSet_Area_Finish_One == "Start" && !EventSystem.current.IsPointerOverGameObject())
         {
 
             GetComponent<Renderer>().material.color = Color.gray;
             _bOn_Set_it = true;
         }
-        if (gameObject.tag == "Area" && GameManager._sSet_Area_Finish_Two == "Start" && _gGameManager.GetComponent<GameManager>()._bCamera_Move == false)
+        if (gameObject.tag == "Area" && GameManager._sSet_Area_Finish_Two == "Start" && _gGameManager.GetComponent<GameManager>()._bCamera_Move == false && !EventSystem.current.IsPointerOverGameObject())
         {
 
             GetComponent<Renderer>().material.color = Color.gray;

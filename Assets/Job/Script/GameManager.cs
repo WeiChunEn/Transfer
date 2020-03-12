@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
     public GameObject _gNow_Player_UI;      //Now Player 整個UI物件
     public GameObject _gNow_Player_Function_UI; //Now Player 功能UI物件
 
+    public GameObject _gStateName;
 
     public GameObject _gWin_Menu; //勝利畫面
     public GameObject _gAWin_Image;
@@ -211,7 +212,7 @@ public class GameManager : MonoBehaviour
         {
             m_NowPlayer = _gPlayer1.transform.GetChild(index).gameObject;
             gameObject.GetComponent<Path>().Reset_List();
-            if (m_NowPlayer.GetComponent<Character>().Chess.Now_State != "Finish" && m_NowPlayer.GetComponent<Move>()._bIs_Moving == false)
+            if (m_NowPlayer.GetComponent<Character>().Chess.Now_State != "Finish" && m_NowPlayer.GetComponent<Move>()._bIs_Moving == false && m_NowPlayer.GetComponent<Character>().Chess.Now_State != "Defense")
             {
                 //m_NowPlayer.GetComponent<Character>().Chess.Now_State = "Idle";
                 _gNow_Player_UI = _gPlayer1_UI.transform.GetChild(index).gameObject;
@@ -236,7 +237,7 @@ public class GameManager : MonoBehaviour
         {
             m_NowPlayer = _gPlayer2.transform.GetChild(index).gameObject;
             gameObject.GetComponent<Path>().Reset_List();
-            if (m_NowPlayer.GetComponent<Character>().Chess.Now_State != "Finish" && m_NowPlayer.GetComponent<Move>()._bIs_Moving == false)
+            if (m_NowPlayer.GetComponent<Character>().Chess.Now_State != "Finish" && m_NowPlayer.GetComponent<Move>()._bIs_Moving == false&& m_NowPlayer.GetComponent<Character>().Chess.Now_State != "Defense")
             {
                 //m_NowPlayer.GetComponent<Character>().Chess.Now_State = "Idle";
                 _gNow_Player_UI = _gPlayer2_UI.transform.GetChild(index).gameObject;
@@ -584,7 +585,7 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-
+            _gStateName.GetComponent<Animator>().SetTrigger("Restart");
             _bCamera_Move = false;
             _gMove_Camera.tag = "A";
 
@@ -603,6 +604,7 @@ public class GameManager : MonoBehaviour
             }
             _bCamera_Move = false;
             _gMove_Camera.tag = "B";
+            _gStateName.GetComponent<Animator>().SetTrigger("Restart");
 
         }
     }
