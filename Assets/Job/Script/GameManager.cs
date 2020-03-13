@@ -583,12 +583,23 @@ public class GameManager : MonoBehaviour
                     _gPlayer1.transform.GetChild(i).GetComponent<Character>()._g3D_UI.SetActive(true);
                     _gPlayer2.transform.GetChild(i).GetComponent<Character>()._g3D_UI.SetActive(true);
                 }
+                
+            }
+            if (_sSet_Area_Finish_One == "End" && _sSet_Area_Finish_Two == "End")
+            {
+                _sSet_Area_Finish_One = "";
+                _gStateName.GetComponent<Animator>().SetTrigger("Restart");
             }
 
-            _gStateName.GetComponent<Animator>().SetTrigger("Restart");
+
             _bCamera_Move = false;
             _gMove_Camera.tag = "A";
-
+            if(_bCheck_Team_Finish == true)
+            {
+                _gStateName.GetComponent<Animator>().SetTrigger("Restart");
+                _bCheck_Team_Finish = false;
+            }
+            
         }
         else if (info.normalizedTime >= 1.0f && info.IsName("TeamB") && _gMove_Camera.tag == "A")
         {
@@ -601,10 +612,21 @@ public class GameManager : MonoBehaviour
                     _gPlayer1.transform.GetChild(i).GetComponent<Character>()._g3D_UI.SetActive(true);
                     _gPlayer2.transform.GetChild(i).GetComponent<Character>()._g3D_UI.SetActive(true);
                 }
+                
+            }
+            if (_sSet_Area_Finish_One == "End" && _sSet_Area_Finish_Two == "Start")
+            {
+                _gStateName.GetComponent<Animator>().SetTrigger("Restart");
+            }
+
+            if (_bCheck_Team_Finish == true)
+            {
+                _gStateName.GetComponent<Animator>().SetTrigger("Restart");
+                _bCheck_Team_Finish = false;
             }
             _bCamera_Move = false;
             _gMove_Camera.tag = "B";
-            _gStateName.GetComponent<Animator>().SetTrigger("Restart");
+            
 
         }
     }
@@ -700,6 +722,11 @@ public class GameManager : MonoBehaviour
             {
                 Camera_Move_Anim();
             }
+            else
+            {
+                _gStateName.GetComponent<Animator>().SetTrigger("Restart");
+            }
+            
             //_gPlayer_One_Camera.SetActive(false);
             //_gPlayer_Two_Camera.SetActive(true);
 
@@ -721,6 +748,11 @@ public class GameManager : MonoBehaviour
             {
                 Camera_Move_Anim();
             }
+            else
+            {
+                _gStateName.GetComponent<Animator>().SetTrigger("Restart");
+            }
+            
             //_gPlayer_One_Camera.SetActive(true);
             //_gPlayer_Two_Camera.SetActive(false);
 

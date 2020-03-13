@@ -22,7 +22,7 @@ public class SetArea_Two : GameState
             _gTransfer_Count = GameObject.Find("Area");
         }
       
-
+        
         _gStateName.GetComponent<TextMeshProUGUI>().text = StateName;
         _gGameManager = GameObject.Find("GameManager");
         _gGameManager.GetComponent<GameManager>()._gNow_State_UI[0].SetActive(false);
@@ -33,7 +33,7 @@ public class SetArea_Two : GameState
     public override void StateUpdate()
     {
         _gTransfer_Count.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = GameManager._iPlayer2_Transfer_Area_Count.ToString();
-       
+        
         if (GameManager._sSet_Area_Finish_Two == "Start")
         {
             if (GameManager._iPlayer2_Transfer_Area_Count == 0)

@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 1607359329617238641}
   - component: {fileID: 8777527979805470209}
   m_Layer: 0
-  m_Name: Sphere
-  m_TagString: Untagged
+  m_Name: DeathBall
+  m_TagString: Magician
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
