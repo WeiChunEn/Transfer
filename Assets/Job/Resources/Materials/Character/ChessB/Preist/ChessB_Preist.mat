@@ -20,11 +20,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 701c08607fce1554ab10b2a98855cea2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTextrue:
-        m_Texture: {fileID: 2800000, guid: 2b27664e56f405f47a68f32bf2a9eca2, type: 3}
+        m_Texture: {fileID: 2800000, guid: b9e41250c0ed2f34fa4c3a003f79a478, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTextrue:
@@ -32,7 +32,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecularMask:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: f78bd1420fc0226438f9ea180cfb20f5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -43,7 +43,7 @@ Material:
     - _DissloveSize: 200
     - _DissolveCutoff: 0
     - _Gloss: 20
-    - _SpecularScale: 1
+    - _SpecularScale: 5
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveColorA: {r: 0, g: 1, b: 0.6431372, a: 1}

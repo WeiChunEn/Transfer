@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,8 +19,14 @@ public class GameManager : MonoBehaviour
     static GameStateManager m_GameStateManager = new GameStateManager();
     public Animator _aUI_Anim;     //UI的動畫
     public Animator _aCamera_Anim;  //相機的動畫
+    public Animator _aBattle_Scene_Anim; //切換去戰鬥場景的動畫
 
+    public GameObject[] _gA_Team_Model = new GameObject[5];   //A隊模型
+    public GameObject[] _gB_Team_Model = new GameObject[5];     //B隊模型
 
+    public GameObject _gA_Battle_Pos;   //打的位置
+    public GameObject _gB_Battle_Pos;   //被打的位置
+    public GameObject _gBattle_Camera; //戰鬥的相機
 
     public Material _mSky_Box;
     //public GameObject _gTmp_Player_UI;
@@ -125,6 +132,7 @@ public class GameManager : MonoBehaviour
 
         //相機動畫控制
         Move_Camera_Control();
+        Battle_Trans_Control();
         //if (m_NowPlayer!=null)
         //{
         //    Set_Character_Btn();
@@ -631,6 +639,31 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void Battle_Trans_Control()
+    {
+        
+        AnimatorStateInfo info = _aBattle_Scene_Anim.GetCurrentAnimatorStateInfo(0);
+        if (info.normalizedTime >= 0.5f && info.IsName("Go") && _gBattle_Camera.tag == "Out")
+        {
+            GameObject _A_Model = null;
+           
+                _A_Model = Instantiate(_gA_Team_Model[m_NowPlayer.GetComponent<Character>()._iNow_Class_Count],_gA_Battle_Pos.transform.position, _gA_Battle_Pos.transform.rotation,_gA_Battle_Pos.transform);
+            
+
+            _A_Model.SetActive(true);
+            _gBattle_Camera.SetActive(true);
+
+            //_gBattle_Camera.transform.GetChild(0).GetComponent<CinemachineTargetGroup>().m_Targets.SetValue(_A_Model, 0);
+            _gBattle_Camera.tag = "In";
+        }
+        else if (info.normalizedTime >= 0.5f && info.IsName("Back") && _gBattle_Camera.tag == "In")
+        {
+
+            _gMove_Camera.SetActive(true);
+            _gBattle_Camera.tag = "Out";
+
+        }
+    }
     /// <summary>
     /// 轉職的按鈕
     /// </summary>

@@ -230,7 +230,7 @@ public class MouseEvent : MonoBehaviour
     /// <summary>
     /// 滑鼠進入的事件
     /// </summary>
-    private void OnMouseEnter()
+    private void OnMouseOver()
     {
         if (gameObject.tag == "Area" && GameManager._sSet_Area_Finish_One == "Start" && !EventSystem.current.IsPointerOverGameObject())
         {

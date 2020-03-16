@@ -39,6 +39,9 @@ public class Character : MonoBehaviour
     public GameObject _gTransfer_Effect;        //轉職特效
     public Material _mMat;          //角色材質球
 
+    public GameObject _gBattle_Pos;
+    public Transform _tOri_Pos;
+
     public GameObject[] _gEffect = new GameObject[5]; //被攻擊以及攻擊的特效
     public class Character_Data
     {
@@ -122,7 +125,7 @@ public class Character : MonoBehaviour
             _sHead_HP.maxValue = _sHP_Slider.maxValue;
             _tHead_HP.text = _tHP.text;
             _iNow_Class_Count = 4;
-            _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(1).GetComponent<Renderer>().sharedMaterial;
+            //_mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(1).GetComponent<Renderer>().sharedMaterial;
             //_gClass[_iNow_Class_Count].SetActive(true)
 
         }
@@ -130,7 +133,7 @@ public class Character : MonoBehaviour
         {
             _sType = gameObject.tag;
             _sJob = "Minion";
-            _iWalk_Steps = 1;
+            _iWalk_Steps = 5;
             _iAttack_Distance = 1;
             _iHP = 20;
             _iMax_HP = 20;
@@ -143,7 +146,7 @@ public class Character : MonoBehaviour
             _iNow_Class_Count = 0;
             _gClass[_iNow_Class_Count].SetActive(true);
             _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
-            _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).GetComponent<Renderer>().sharedMaterial;
+            _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<Renderer>().sharedMaterial;
         }
         
     }
@@ -227,7 +230,7 @@ public class Character : MonoBehaviour
                 Chess.Walk_Steps = 2;
                 _tHead_Name.text = "M" + _tHead_Name.name;
                 _tName.text = "M" + _tName.name;
-                _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).transform.GetChild(0).GetComponent<Renderer>().sharedMaterial;
+                _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).GetComponent<Renderer>().sharedMaterial;
                 break;
             case "Archer":
                 Chess.Job = "Archer";
@@ -242,7 +245,7 @@ public class Character : MonoBehaviour
                 Chess.Walk_Steps = 2;
                 _tHead_Name.text = "A" + _tHead_Name.name;
                 _tName.text = "A" + _tName.name;
-                _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(2).transform.GetChild(0).GetComponent<Renderer>().sharedMaterial;
+                _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).GetComponent<Renderer>().sharedMaterial;
 
                 break;
 

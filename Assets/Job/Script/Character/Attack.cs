@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class Attack : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Attack : MonoBehaviour
 
     public GameObject[] _gEffect = new GameObject[5]; //攻擊的特效
     public GameObject[] _gBallet = new GameObject[4];   //遠程攻擊的物品
+    
+
     public GameObject _gGameManager;
     public int _iJob_Num;
     // Start is called before the first frame update
@@ -72,13 +75,20 @@ public class Attack : MonoBehaviour
     {
 
         _iJob_Num = gameObject.GetComponent<Character>()._iNow_Class_Count;
+        GameObject _B_Model;
+        _gGameManager.GetComponent<GameManager>()._aBattle_Scene_Anim.SetTrigger("Go");
+        _gGameManager.GetComponent<GameManager>()._gMove_Camera.SetActive(false);
+        _gGameManager.GetComponent<GameManager>()._gWhole_UI.SetActive(false);
         switch (gameObject.GetComponent<Character>().Chess.Job)
         {
             
             case "Minion":
-
+                _B_Model = Instantiate(_gGameManager.GetComponent<GameManager>()._gB_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation);
+                _B_Model.SetActive(true);
+                //_gGameManager.GetComponent<GameManager>()._gBattle_Camera.transform.GetChild(0).GetComponent<CinemachineTargetGroup>().m_Targets.SetValue(_B_Model, 1);
                 switch (Enmey.GetComponent<Character>().Chess.Job)
                 {
+                    
                     case "Magician":
                         if (Enmey.GetComponent<Character>()._sNow_State == "Defense")
                         {
@@ -144,7 +154,8 @@ public class Attack : MonoBehaviour
 
                 break;
             case "Magician":
-
+                _B_Model = Instantiate(_gGameManager.GetComponent<GameManager>()._gB_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation);
+                _B_Model.SetActive(true);
                 GameObject Tmp_Ball;
                 Tmp_Ball = _gBallet[_iJob_Num];
                 Tmp_Ball.name = gameObject.GetComponent<Character>().Chess.Attack.ToString();
@@ -153,7 +164,7 @@ public class Attack : MonoBehaviour
 
                 break;
             case "Warrior":
-
+                Instantiate(_gGameManager.GetComponent<GameManager>()._gB_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation);
                 path._lCan_Attack_Enmey.Remove(Enmey);
                 switch (Enmey.GetComponent<Character>().Chess.Job)
                 {
@@ -234,6 +245,8 @@ public class Attack : MonoBehaviour
 
 
             case "Archer":
+                _B_Model = Instantiate(_gGameManager.GetComponent<GameManager>()._gB_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation);
+                _B_Model.SetActive(true);
 
                 GameObject Tmp_Arror;
                 Tmp_Arror = Instantiate(_gBallet[_iJob_Num], new Vector3(transform.position.x,transform.position.y+1.0f,transform.position.z), _gBallet[_iJob_Num].transform.rotation); ;
@@ -247,6 +260,12 @@ public class Attack : MonoBehaviour
 
     }
 
+
+
+    public void Battle_Scene_Atk()
+    {
+
+    }
     /// <summary>
     /// 回朔
     /// </summary>
