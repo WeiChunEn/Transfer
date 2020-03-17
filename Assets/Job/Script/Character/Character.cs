@@ -43,6 +43,7 @@ public class Character : MonoBehaviour
     public Transform _tOri_Pos;
 
     public GameObject[] _gEffect = new GameObject[5]; //被攻擊以及攻擊的特效
+    public Animator _aChess_Anime;     //角色的動畫
     public class Character_Data
     {
         protected string m_Type;
@@ -125,8 +126,9 @@ public class Character : MonoBehaviour
             _sHead_HP.maxValue = _sHP_Slider.maxValue;
             _tHead_HP.text = _tHP.text;
             _iNow_Class_Count = 4;
-            //_mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(1).GetComponent<Renderer>().sharedMaterial;
+            _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().sharedMaterial;
             //_gClass[_iNow_Class_Count].SetActive(true)
+
 
         }
         else
@@ -137,7 +139,7 @@ public class Character : MonoBehaviour
             _iAttack_Distance = 1;
             _iHP = 20;
             _iMax_HP = 20;
-            _iAttack = 2;
+            _iAttack = 4;
             _sNow_State = "Idle";
             _sHP_Slider.maxValue = _iMax_HP;
             _tHP.text = ((_iHP / _sHP_Slider.maxValue) * 100).ToString();
@@ -146,6 +148,7 @@ public class Character : MonoBehaviour
             _iNow_Class_Count = 0;
             _gClass[_iNow_Class_Count].SetActive(true);
             _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
+            _aChess_Anime = _gClass[_iNow_Class_Count].GetComponent<Animator>();
             _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<Renderer>().sharedMaterial;
         }
         
@@ -213,6 +216,8 @@ public class Character : MonoBehaviour
                 _tHead_Name.text = "W" + _tHead_Name.name;
                 _tName.text = "W" + _tName.name;
                 _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).GetComponent<Renderer>().sharedMaterial;
+                _aChess_Anime = _gClass[_iNow_Class_Count].GetComponent<Animator>();
+
                 break;
             case "Magician":
                 Chess.Job = "Magician";
@@ -230,7 +235,8 @@ public class Character : MonoBehaviour
                 Chess.Walk_Steps = 2;
                 _tHead_Name.text = "M" + _tHead_Name.name;
                 _tName.text = "M" + _tName.name;
-                _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).GetComponent<Renderer>().sharedMaterial;
+                _aChess_Anime = _gClass[_iNow_Class_Count].GetComponent<Animator>();
+                _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().sharedMaterial;
                 break;
             case "Archer":
                 Chess.Job = "Archer";
@@ -246,7 +252,7 @@ public class Character : MonoBehaviour
                 _tHead_Name.text = "A" + _tHead_Name.name;
                 _tName.text = "A" + _tName.name;
                 _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).GetComponent<Renderer>().sharedMaterial;
-
+                _aChess_Anime = _gClass[_iNow_Class_Count].GetComponent<Animator>();
                 break;
 
            
@@ -272,7 +278,8 @@ public class Character : MonoBehaviour
                 Chess.Walk_Steps = 2;
                 _tHead_Name.text = "S" + _tHead_Name.name;
                 _tName.text = "S" + _tName.name;
-                _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).GetComponent<Renderer>().sharedMaterial;
+                _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<Renderer>().sharedMaterial;
+                _aChess_Anime = _gClass[_iNow_Class_Count].GetComponent<Animator>();
                 break;
 
         }
@@ -325,28 +332,28 @@ public class Character : MonoBehaviour
                         gameObject.GetComponent<CapsuleCollider>().height = 1.3f;
                         break;
                     case "Warrior":
-                        _g3D_UI.transform.localPosition = new Vector3(-0.06f, 2.0f, 0.185f);
-                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.001f, 1.15f, 0.02f);
+                        _g3D_UI.transform.localPosition = new Vector3(0.014f, 1.85f, -0.4f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.001f, 0.85f, -0.1f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
                         gameObject.GetComponent<CapsuleCollider>().height = 1.7f;
                         break;
                     case "Priest":
-                        _g3D_UI.transform.localPosition = new Vector3(0.049f, 1.92f, -0.071f);
+                        _g3D_UI.transform.localPosition = new Vector3(0.01f, 2.3f, -0.29f);
                         gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1f, -0.05f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.18f;
                         gameObject.GetComponent<CapsuleCollider>().height = 1.5f;
                         break;
                     case "Magician":
-                        _g3D_UI.transform.localPosition = new Vector3(-0.022f, 2.4f, -0.02f);
-                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.2f, 0.02f);
+                        _g3D_UI.transform.localPosition = new Vector3(0.014f, 1.9f, -0.15f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.001f, 0.85f, -0.1f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
-                        gameObject.GetComponent<CapsuleCollider>().height = 1.9f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 1.7f;
                         break;
                     case "Archer":
-                        _g3D_UI.transform.localPosition = new Vector3(0.05f, 2.55f, -0.05f);
-                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.3f, 0.02f);
+                        _g3D_UI.transform.localPosition = new Vector3(0.125f, 2.03f, -0.28f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 0.85f, 0f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
-                        gameObject.GetComponent<CapsuleCollider>().height = 2f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 2.2f;
                         break;
                 }
             }
@@ -356,34 +363,34 @@ public class Character : MonoBehaviour
                 switch (Chess.Job)
                 {
                     case "Minion":
-                        _g3D_UI.transform.localPosition = new Vector3(0.014f, 1.708f, -0.069f);
+                        _g3D_UI.transform.localPosition = new Vector3(0.014f, 1.6f, 0.135f);
                         gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 0.8f, 0.02f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
                         gameObject.GetComponent<CapsuleCollider>().height = 1.3f;
                         break;
                     case "Warrior":
-                        _g3D_UI.transform.localPosition = new Vector3(-0.06f, 2.0f, 0.185f);
-                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.001f, 1.15f, 0.02f);
+                        _g3D_UI.transform.localPosition = new Vector3(0.014f, 1.85f, -0.4f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.001f, 0.85f, -0.1f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
                         gameObject.GetComponent<CapsuleCollider>().height = 1.7f;
                         break;
                     case "Preist":
-                        _g3D_UI.transform.localPosition = new Vector3(0.049f, 1.92f, -0.071f);
+                        _g3D_UI.transform.localPosition = new Vector3(0.168f, 2.3f, 0.6f);
                         gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1f, -0.05f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.18f;
                         gameObject.GetComponent<CapsuleCollider>().height = 1.5f;
                         break;
                     case "Magician":
-                        _g3D_UI.transform.localPosition = new Vector3(-0.022f, 2.4f, -0.02f);
-                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.2f, 0.02f);
+                        _g3D_UI.transform.localPosition = new Vector3(0.014f, 1.9f, -0.15f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.001f, 0.85f, -0.1f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
-                        gameObject.GetComponent<CapsuleCollider>().height = 1.9f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 1.7f;
                         break;
                     case "Archer":
-                        _g3D_UI.transform.localPosition = new Vector3(0.05f, 2.55f, -0.05f);
-                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.3f, 0.02f);
+                        _g3D_UI.transform.localPosition = new Vector3(0.125f, 2.03f, -0.28f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 0.85f, 0f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
-                        gameObject.GetComponent<CapsuleCollider>().height = 2f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 2.2f;
                         break;
                 }
             }
@@ -407,28 +414,28 @@ public class Character : MonoBehaviour
                         gameObject.GetComponent<CapsuleCollider>().height = 1.3f;
                         break;
                     case "Warrior":
-                        _g3D_UI.transform.localPosition = new Vector3(-0.06f, 2.0f, 0.185f);
-                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.001f, 1.15f, 0.02f);
+                        _g3D_UI.transform.localPosition = new Vector3(-0.03f, 1.85f, -0.3f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.001f, 0.85f, -0.1f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
                         gameObject.GetComponent<CapsuleCollider>().height = 1.7f;
                         break;
                     case "Preist":
-                        _g3D_UI.transform.localPosition = new Vector3(0.049f, 1.92f, -0.071f);
+                        _g3D_UI.transform.localPosition = new Vector3(0.01f, 2.3f, -0.29f);
                         gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1f, -0.05f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.18f;
                         gameObject.GetComponent<CapsuleCollider>().height = 1.5f;
                         break;
                     case "Magician":
-                        _g3D_UI.transform.localPosition = new Vector3(-0.022f, 2.4f, -0.02f);
-                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.2f, 0.02f);
+                        _g3D_UI.transform.localPosition = new Vector3(0.014f, 1.9f, -0.15f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.001f, 0.85f, -0.1f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
-                        gameObject.GetComponent<CapsuleCollider>().height = 1.9f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 1.7f;
                         break;
                     case "Archer":
-                        _g3D_UI.transform.localPosition = new Vector3(0.05f, 2.55f, -0.05f);
-                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.3f, 0.02f);
+                        _g3D_UI.transform.localPosition = new Vector3(-0.05f, 2.05f, -0.155f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 0.85f, 0f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
-                        gameObject.GetComponent<CapsuleCollider>().height = 2f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 2.2f;
                         break;
                 }
             }
@@ -444,28 +451,28 @@ public class Character : MonoBehaviour
                         gameObject.GetComponent<CapsuleCollider>().height = 1.3f;
                         break;
                     case "Warrior":
-                        _g3D_UI.transform.localPosition = new Vector3(-0.06f, 2.0f, 0.185f);
-                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.001f, 1.15f, 0.02f);
+                        _g3D_UI.transform.localPosition = new Vector3(-0.03f, 2.08f, -0.004f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.001f, 0.85f, -0.1f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
                         gameObject.GetComponent<CapsuleCollider>().height = 1.7f;
                         break;
                     case "Preist":
-                        _g3D_UI.transform.localPosition = new Vector3(0.049f, 1.92f, -0.071f);
+                        _g3D_UI.transform.localPosition = new Vector3(0.01f, 2.3f, -0.29f);
                         gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1f, -0.05f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.18f;
                         gameObject.GetComponent<CapsuleCollider>().height = 1.5f;
                         break;
                     case "Magician":
-                        _g3D_UI.transform.localPosition = new Vector3(-0.022f, 2.4f, -0.02f);
-                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.2f, 0.02f);
+                        _g3D_UI.transform.localPosition = new Vector3(0.014f, 1.9f, -0.15f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.001f, 0.85f, -0.1f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
-                        gameObject.GetComponent<CapsuleCollider>().height = 1.9f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 1.7f;
                         break;
                     case "Archer":
-                        _g3D_UI.transform.localPosition = new Vector3(0.05f, 2.55f, -0.05f);
-                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.3f, 0.02f);
+                        _g3D_UI.transform.localPosition = new Vector3(0.03f, 2.25f, 0.12f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 0.85f, 0f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
-                        gameObject.GetComponent<CapsuleCollider>().height = 2f;
+                        gameObject.GetComponent<CapsuleCollider>().height = 2.2f;
                         break;
                 }
             }
@@ -605,4 +612,11 @@ public class Character : MonoBehaviour
                 break;
         }
     }
+
+
+
+
+
+
+    
 }

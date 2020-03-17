@@ -188,31 +188,60 @@ public class Move : MonoBehaviour
         
         Vector3 distance = _lShort_Road[Short_Road_Count]-transform.position;
         distance.Normalize();
-        
-        //右
-        if (distance.x>0.1f)
+        if(gameObject.tag=="A")
         {
-            transform.eulerAngles = new Vector3(0, 90, 0);
-        }
+            //右
+            if (distance.x > 0.1f)
+            {
+                transform.eulerAngles = new Vector3(0, -90, 0);
+            }
 
 
-        //左
-        if (distance.x < -0.1f)
-        {
-            transform.eulerAngles = new Vector3(0, -90, 0);
-        }
+            //左
+            if (distance.x < -0.1f)
+            {
+                transform.eulerAngles = new Vector3(0, 90, 0);
+            }
 
-        //上
-        if (distance.z > 0.9f)
-        {
-            transform.eulerAngles = new Vector3(0, 0, 0);
-        }
+            //上
+            if (distance.z > 0.9f)
+            {
+                transform.eulerAngles = new Vector3(0, 180, 0);
+            }
 
-        //下
-        if (distance.z < -0.9f)
-        {
-            transform.eulerAngles = new Vector3(0, 180, 0);
+            //下
+            if (distance.z < -0.9f)
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+            }
         }
+        else if(gameObject.tag=="B")
+        {  //右
+            if (distance.x > 0.1f)
+            {
+                transform.eulerAngles = new Vector3(0, 90, 0);
+            }
+
+
+            //左
+            if (distance.x < -0.1f)
+            {
+                transform.eulerAngles = new Vector3(0, -90, 0);
+            }
+
+            //上
+            if (distance.z > 0.9f)
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+            }
+
+            //下
+            if (distance.z < -0.9f)
+            {
+                transform.eulerAngles = new Vector3(0, 180, 0);
+            }
+        }
+       
     }
     /// <summary>
     /// 重製陣列

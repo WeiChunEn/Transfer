@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     public Animator _aUI_Anim;     //UI的動畫
     public Animator _aCamera_Anim;  //相機的動畫
     public Animator _aBattle_Scene_Anim; //切換去戰鬥場景的動畫
+    public Animator _aA_Battle_Anim;  //A戰鬥角色的動畫
+    public Animator _aB_Battle_Anim;  //B戰鬥角色的動畫
 
     public GameObject[] _gA_Team_Model = new GameObject[5];   //A隊模型
     public GameObject[] _gB_Team_Model = new GameObject[5];     //B隊模型
@@ -27,11 +29,14 @@ public class GameManager : MonoBehaviour
     public GameObject _gA_Battle_Pos;   //打的位置
     public GameObject _gB_Battle_Pos;   //被打的位置
     public GameObject _gBattle_Camera; //戰鬥的相機
+    public GameObject _gNormal_Camera; //普通的相機
 
     public Material _mSky_Box;
     //public GameObject _gTmp_Player_UI;
     public GameObject[] _gNow_State_UI;         //現在的狀態UI
     public GameObject[] _gTransfer_Obj;         //轉職的格子
+    public GameObject _A_Model;
+    public GameObject _B_Model;
 
 
     public GameObject _gPlayer1;            //A team腳色父物件
@@ -55,6 +60,7 @@ public class GameManager : MonoBehaviour
     public GameObject _gWin_Menu; //勝利畫面
     public GameObject _gAWin_Image;
     public GameObject _gBWin_Image;
+
 
     public Button _bMove_Btn;           //移動按鈕
     public Button _bAttack_Btn;         //攻擊按鈕
@@ -94,7 +100,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Sky_Time>=360)
+        if (Sky_Time >= 360)
         {
             Sky_Time = 0;
         }
@@ -133,6 +139,7 @@ public class GameManager : MonoBehaviour
         //相機動畫控制
         Move_Camera_Control();
         Battle_Trans_Control();
+        Attack_Anime();
         //if (m_NowPlayer!=null)
         //{
         //    Set_Character_Btn();
@@ -154,7 +161,7 @@ public class GameManager : MonoBehaviour
             _gPlayer2_UI.SetActive(false);
             for (int i = 0; i < _gPlayer1.transform.childCount; i++)
             {
-                if (_gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State != "Death" )
+                if (_gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State != "Death")
                 {
                     _gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State = "Idle";
                     _gPlayer1_UI.transform.GetChild(i).GetComponent<Button>().interactable = true;
@@ -163,7 +170,7 @@ public class GameManager : MonoBehaviour
             }
             for (int i = 0; i < _gPlayer2.transform.childCount; i++)
             {
-                if (_gPlayer2.transform.GetChild(i).GetComponent<Character>().Chess.Now_State != "Defense"&& _gPlayer2.transform.GetChild(i).GetComponent<Character>().Chess.Now_State !="Death")
+                if (_gPlayer2.transform.GetChild(i).GetComponent<Character>().Chess.Now_State != "Defense" && _gPlayer2.transform.GetChild(i).GetComponent<Character>().Chess.Now_State != "Death")
                 {
                     _gPlayer2.transform.GetChild(i).GetComponent<Character>().Chess.Now_State = "Idle";
                     _gPlayer2_UI.transform.GetChild(i).GetComponent<Button>().interactable = true;
@@ -212,6 +219,9 @@ public class GameManager : MonoBehaviour
             _gNow_Player_Function_UI.SetActive(false);
             Set_Character_Btn();
             m_NowPlayer.GetComponent<Move>().Reset_Data();
+            m_NowPlayer.GetComponent<Character>()._aChess_Anime.SetBool("CancelAtk", true);
+            m_NowPlayer.GetComponent<Character>()._aChess_Anime.SetBool("PreAtk", false);
+
 
         }
 
@@ -245,7 +255,7 @@ public class GameManager : MonoBehaviour
         {
             m_NowPlayer = _gPlayer2.transform.GetChild(index).gameObject;
             gameObject.GetComponent<Path>().Reset_List();
-            if (m_NowPlayer.GetComponent<Character>().Chess.Now_State != "Finish" && m_NowPlayer.GetComponent<Move>()._bIs_Moving == false&& m_NowPlayer.GetComponent<Character>().Chess.Now_State != "Defense")
+            if (m_NowPlayer.GetComponent<Character>().Chess.Now_State != "Finish" && m_NowPlayer.GetComponent<Move>()._bIs_Moving == false && m_NowPlayer.GetComponent<Character>().Chess.Now_State != "Defense")
             {
                 //m_NowPlayer.GetComponent<Character>().Chess.Now_State = "Idle";
                 _gNow_Player_UI = _gPlayer2_UI.transform.GetChild(index).gameObject;
@@ -302,6 +312,9 @@ public class GameManager : MonoBehaviour
         Set_Character_Btn();
         In_And_Out();
         Attack_Btn.interactable = false;
+        m_NowPlayer.GetComponent<Character>()._aChess_Anime.SetBool("CancelAtk", false);
+        m_NowPlayer.GetComponent<Character>()._aChess_Anime.SetBool("PreAtk", true);
+        //m_NowPlayer.GetComponent<Character>()._aChess_Anime.sett
     }
 
     /// <summary>
@@ -316,11 +329,11 @@ public class GameManager : MonoBehaviour
         gameObject.GetComponent<Path>().Reset_List();
         m_NowPlayer.GetComponent<Character>().Chess.Have_Attacked = false;
         m_NowPlayer.GetComponent<Character>().Chess.Have_Moved = false;
-        if (m_NowPlayer.GetComponent<Character>().Chess.Now_State!="Defense")
+        if (m_NowPlayer.GetComponent<Character>().Chess.Now_State != "Defense")
         {
             m_NowPlayer.GetComponent<Character>().Chess.Now_State = "Finish";
         }
-        
+
 
         //Check_Character_Finish();
         ////Set_Character_Btn();
@@ -401,7 +414,7 @@ public class GameManager : MonoBehaviour
             _bAttack_Btn.interactable = true;
         }
 
-        if (m_NowPlayer.GetComponent<Character>().Chess.Now_State == "Finish"|| m_NowPlayer.GetComponent<Character>().Chess.Now_State == "Defense")
+        if (m_NowPlayer.GetComponent<Character>().Chess.Now_State == "Finish" || m_NowPlayer.GetComponent<Character>().Chess.Now_State == "Defense")
         {
             _bPlayer_Btn.interactable = false;
 
@@ -412,7 +425,7 @@ public class GameManager : MonoBehaviour
             _bPlayer_Btn.interactable = true;
 
         }
-       
+
     }
 
     public void Set_Mat()
@@ -591,7 +604,7 @@ public class GameManager : MonoBehaviour
                     _gPlayer1.transform.GetChild(i).GetComponent<Character>()._g3D_UI.SetActive(true);
                     _gPlayer2.transform.GetChild(i).GetComponent<Character>()._g3D_UI.SetActive(true);
                 }
-                
+
             }
             if (_sSet_Area_Finish_One == "End" && _sSet_Area_Finish_Two == "End")
             {
@@ -602,12 +615,12 @@ public class GameManager : MonoBehaviour
 
             _bCamera_Move = false;
             _gMove_Camera.tag = "A";
-            if(_bCheck_Team_Finish == true)
+            if (_bCheck_Team_Finish == true)
             {
                 _gStateName.GetComponent<Animator>().SetTrigger("Restart");
                 _bCheck_Team_Finish = false;
             }
-            
+
         }
         else if (info.normalizedTime >= 1.0f && info.IsName("TeamB") && _gMove_Camera.tag == "A")
         {
@@ -620,7 +633,7 @@ public class GameManager : MonoBehaviour
                     _gPlayer1.transform.GetChild(i).GetComponent<Character>()._g3D_UI.SetActive(true);
                     _gPlayer2.transform.GetChild(i).GetComponent<Character>()._g3D_UI.SetActive(true);
                 }
-                
+
             }
             if (_sSet_Area_Finish_One == "End" && _sSet_Area_Finish_Two == "Start")
             {
@@ -634,35 +647,65 @@ public class GameManager : MonoBehaviour
             }
             _bCamera_Move = false;
             _gMove_Camera.tag = "B";
-            
+
 
         }
     }
 
     public void Battle_Trans_Control()
     {
-        
+
         AnimatorStateInfo info = _aBattle_Scene_Anim.GetCurrentAnimatorStateInfo(0);
+
         if (info.normalizedTime >= 0.5f && info.IsName("Go") && _gBattle_Camera.tag == "Out")
         {
-            GameObject _A_Model = null;
-           
-                _A_Model = Instantiate(_gA_Team_Model[m_NowPlayer.GetComponent<Character>()._iNow_Class_Count],_gA_Battle_Pos.transform.position, _gA_Battle_Pos.transform.rotation,_gA_Battle_Pos.transform);
-            
+
+            if (m_NowPlayer.tag == "A")
+            {
+                _A_Model = Instantiate(_gA_Team_Model[m_NowPlayer.GetComponent<Character>()._iNow_Class_Count], _gA_Battle_Pos.transform.position, _gA_Battle_Pos.transform.rotation, _gA_Battle_Pos.transform);
+
+            }
+            else if (m_NowPlayer.tag == "B")
+            {
+                _A_Model = Instantiate(_gB_Team_Model[m_NowPlayer.GetComponent<Character>()._iNow_Class_Count], _gA_Battle_Pos.transform.position, _gA_Battle_Pos.transform.rotation, _gA_Battle_Pos.transform);
+
+            }
+
 
             _A_Model.SetActive(true);
+            _aA_Battle_Anim = _A_Model.GetComponent<Animator>();
             _gBattle_Camera.SetActive(true);
-
+            _aA_Battle_Anim.SetTrigger("Atk");
             //_gBattle_Camera.transform.GetChild(0).GetComponent<CinemachineTargetGroup>().m_Targets.SetValue(_A_Model, 0);
             _gBattle_Camera.tag = "In";
         }
         else if (info.normalizedTime >= 0.5f && info.IsName("Back") && _gBattle_Camera.tag == "In")
         {
 
-            _gMove_Camera.SetActive(true);
+            _gNormal_Camera.SetActive(true);
             _gBattle_Camera.tag = "Out";
+            _gWhole_UI.SetActive(true);
 
         }
+    }
+
+    public void Attack_Anime()
+    {
+        if (_gBattle_Camera.tag == "In")
+        {
+            AnimatorStateInfo info = _aA_Battle_Anim.GetCurrentAnimatorStateInfo(0);
+            if (info.normalizedTime >= 1.3f && info.IsName("Attack"))
+            {
+                _aBattle_Scene_Anim.SetTrigger("Back");
+                Destroy(_A_Model);
+                Destroy(_B_Model);
+                _gBattle_Camera.SetActive(false);
+               
+
+            }
+
+        }
+
     }
     /// <summary>
     /// 轉職的按鈕
@@ -734,11 +777,15 @@ public class GameManager : MonoBehaviour
             _bPlayer_Btn = _gNow_Player_UI.GetComponent<Button>();
             m_NowPlayer = _gPlayer2.transform.GetChild(i).gameObject;
             m_NowPlayer.GetComponent<Move>().Reset_Data();
+            m_NowPlayer.GetComponent<Character>()._aChess_Anime.SetBool("CancelAtk", true);
+            m_NowPlayer.GetComponent<Character>()._aChess_Anime.SetBool("PreAtk", false);
             Set_Character_Btn();
 
         }
 
         gameObject.GetComponent<Path>().Reset_List();
+
+
         if (_sPlayer_One_Finish == "Start" && _bCheck_Team_Finish == true)
         {
             //for (int i = 0; i < _gPlayer1.transform.childCount; i++)
@@ -759,7 +806,7 @@ public class GameManager : MonoBehaviour
             {
                 _gStateName.GetComponent<Animator>().SetTrigger("Restart");
             }
-            
+
             //_gPlayer_One_Camera.SetActive(false);
             //_gPlayer_Two_Camera.SetActive(true);
 
@@ -785,14 +832,14 @@ public class GameManager : MonoBehaviour
             {
                 _gStateName.GetComponent<Animator>().SetTrigger("Restart");
             }
-            
+
             //_gPlayer_One_Camera.SetActive(true);
             //_gPlayer_Two_Camera.SetActive(false);
 
 
         }
         Set_Mat();
-        
+
 
     }
 

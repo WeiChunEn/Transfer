@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 88f2e0674d3f5834a8c436f8e7a3a561, type: 3}
+        m_Texture: {fileID: 2800000, guid: 24414bdf452f08248bc4951218c6cd92, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -48,7 +48,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTextrue:
-        m_Texture: {fileID: 2800000, guid: c9dcc7759e1c3304aa2c8177b119adcf, type: 3}
+        m_Texture: {fileID: 2800000, guid: dd758db68fffdd6489aa466ded93a6b6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTextrue:
@@ -68,7 +68,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecularMask:
-        m_Texture: {fileID: 2800000, guid: 6963ee4e649c21b4793baf1f72402fcf, type: 3}
+        m_Texture: {fileID: 2800000, guid: 222c33f9044a7934f88f3a9a9800ae95, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -94,7 +94,7 @@ Material:
     - _Size: 0.2
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SpecularScale: 5
+    - _SpecularScale: 7.17
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1

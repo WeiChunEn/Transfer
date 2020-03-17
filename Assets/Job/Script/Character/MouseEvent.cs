@@ -195,6 +195,8 @@ public class MouseEvent : MonoBehaviour
                     _gGameManager.GetComponent<GameManager>()._gNow_Player_Function_UI.SetActive(false);
                     _gGameManager.GetComponent<GameManager>().Set_Character_Btn();
                     _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Move>().Reset_Data();
+                    _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Character>()._aChess_Anime.SetBool("CancelAtk", true);
+                    _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Character>()._aChess_Anime.SetBool("PreAtk", false);
                     _gGameManager.GetComponent<GameManager>().In_And_Out();
 
                 }

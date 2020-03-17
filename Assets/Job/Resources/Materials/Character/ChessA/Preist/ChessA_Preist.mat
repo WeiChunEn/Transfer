@@ -24,7 +24,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTextrue:
-        m_Texture: {fileID: 2800000, guid: b9e41250c0ed2f34fa4c3a003f79a478, type: 3}
+        m_Texture: {fileID: 2800000, guid: 68a008657f23bc3419caddbd76242821, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTextrue:
@@ -43,7 +43,7 @@ Material:
     - _DissloveSize: 50
     - _DissolveCutoff: 0
     - _Gloss: 8
-    - _SpecularScale: 8
+    - _SpecularScale: 3.78
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveColorA: {r: 1, g: 0, b: 0, a: 1}

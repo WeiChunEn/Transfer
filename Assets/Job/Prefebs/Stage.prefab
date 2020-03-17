@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1927716799385578157}
   - component: {fileID: 5443076652423129814}
   m_Layer: 0
-  m_Name: pasted__pCylinder3 (1)
+  m_Name: Stage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1494309907473596744}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0000000014478868, y: 0.0005414954, z: 0.0045170295}
-  m_LocalScale: {x: 2.429151, y: 0.08097171, z: 2.429151}
+  m_LocalPosition: {x: -0.0000000013465, y: 0.00054459, z: 0.004517}
+  m_LocalScale: {x: 2.2591105, y: 0.07530369, z: 2.2591105}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -39,7 +39,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1494309907473596744}
-  m_Mesh: {fileID: 4300002, guid: c3e208b9abe88334b9acb7afd502b58f, type: 3}
+  m_Mesh: {fileID: 4300012, guid: a5159d84ca574c14e933bd190cfbbb5b, type: 3}
 --- !u!23 &5443076652423129814
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100002, guid: c3e208b9abe88334b9acb7afd502b58f, type: 3}
+  - {fileID: 2100006, guid: bc7a948d97ff4c54c8ed5f97dc515383, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
