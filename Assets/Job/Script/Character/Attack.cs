@@ -190,7 +190,55 @@ public class Attack : MonoBehaviour
 
                 break;
             case "Warrior":
-                Instantiate(_gGameManager.GetComponent<GameManager>()._gB_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation);
+               
+                if (Enmey.tag == "A")
+                {
+                    switch(path._lCan_Attack_Enmey.Count)
+                    {
+                        case 1:
+                            _gGameManager.GetComponent<GameManager>()._B_Model = Instantiate(_gGameManager.GetComponent<GameManager>()._gA_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform);
+                       break;
+                        case 2:
+                            _gGameManager.GetComponent<GameManager>()._B_Model = Instantiate(_gGameManager.GetComponent<GameManager>()._gA_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], new Vector3(_gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.x-1, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.y, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.z), _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform);
+                        break;
+                        case 3:
+                            _gGameManager.GetComponent<GameManager>()._B_Model = Instantiate(_gGameManager.GetComponent<GameManager>()._gA_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], new Vector3(_gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.x + 1, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.y, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.z), _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform);
+                            break;
+                        case 4:
+                            _gGameManager.GetComponent<GameManager>()._B_Model = Instantiate(_gGameManager.GetComponent<GameManager>()._gA_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], new Vector3(_gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.x + 1, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.y, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.z-1), _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform);
+                            break;
+
+
+                    }
+                    _gGameManager.GetComponent<GameManager>()._aB_Battle_Anim = _gGameManager.GetComponent<GameManager>()._B_Model.GetComponent<Animator>();
+                    _gGameManager.GetComponent<GameManager>()._B_Model.SetActive(true);
+
+                }
+                else if (Enmey.tag == "B")
+                {
+                    switch (path._lCan_Attack_Enmey.Count)
+                    {
+                        case 4:
+                            _gGameManager.GetComponent<GameManager>()._B_Model = Instantiate(_gGameManager.GetComponent<GameManager>()._gB_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform);
+                            break;
+                        case 3:
+                            _gGameManager.GetComponent<GameManager>()._B_Model = Instantiate(_gGameManager.GetComponent<GameManager>()._gB_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], new Vector3(_gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.x - 1, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.y, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.z), _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform);
+                            break;
+                        case 2:
+                            _gGameManager.GetComponent<GameManager>()._B_Model = Instantiate(_gGameManager.GetComponent<GameManager>()._gB_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], new Vector3(_gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.x + 1, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.y, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.z), _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform);
+                            break;
+                        case 1:
+                            _gGameManager.GetComponent<GameManager>()._B_Model = Instantiate(_gGameManager.GetComponent<GameManager>()._gB_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], new Vector3(_gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.x + 1, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.y, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.z - 1), _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform);
+                            break;
+
+
+                    }
+
+                    _gGameManager.GetComponent<GameManager>()._B_Model.SetActive(true);
+                    _gGameManager.GetComponent<GameManager>()._aB_Battle_Anim = _gGameManager.GetComponent<GameManager>()._B_Model.GetComponent<Animator>();
+
+
+                }
                 path._lCan_Attack_Enmey.Remove(Enmey);
                 switch (Enmey.GetComponent<Character>().Chess.Job)
                 {

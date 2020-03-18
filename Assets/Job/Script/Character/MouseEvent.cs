@@ -230,7 +230,7 @@ public class MouseEvent : MonoBehaviour
     }
 
     /// <summary>
-    /// 滑鼠進入的事件
+    /// 滑鼠在上面的事件
     /// </summary>
     private void OnMouseOver()
     {
@@ -442,7 +442,7 @@ public class MouseEvent : MonoBehaviour
                     {
                         Enmey = path._gEnmey.transform.GetChild(i).gameObject;
                         _gNow_Player.GetComponent<Attack>().Attack_Enmey(Enmey);
-                        
+                  
 
 
                     }
