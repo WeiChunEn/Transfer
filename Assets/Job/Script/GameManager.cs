@@ -691,7 +691,7 @@ public class GameManager : MonoBehaviour
 
     public void Attack_Anime()
     {
-        if (_gBattle_Camera.tag == "In")
+        if (_gBattle_Camera.tag == "In"&&_A_Model!=null)
         {
            
               AnimatorStateInfo info = _aA_Battle_Anim.GetCurrentAnimatorStateInfo(0);
@@ -701,7 +701,11 @@ public class GameManager : MonoBehaviour
             {
                 _aBattle_Scene_Anim.SetTrigger("Back");
                 Destroy(_A_Model);
-                Destroy(_B_Model);
+                for(int i = 0; i<_gB_Battle_Pos.transform.childCount;i++)
+                {
+                    Destroy(_gB_Battle_Pos.transform.GetChild(i).gameObject);
+                }
+                
                 _gBattle_Camera.SetActive(false);
                
 
@@ -754,8 +758,7 @@ public class GameManager : MonoBehaviour
 
         _bCheck_Team_Finish = true;
 
-        m_NowPlayer.GetComponent<Character>()._aChess_Anime.SetBool("CancelAtk", true);
-        m_NowPlayer.GetComponent<Character>()._aChess_Anime.SetBool("PreAtk", false);
+        
         for (int i = 0; i < _gPlayer1.transform.childCount; i++)
         {
             _gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Have_Attacked = false;
@@ -781,7 +784,12 @@ public class GameManager : MonoBehaviour
             _bPlayer_Btn = _gNow_Player_UI.GetComponent<Button>();
             m_NowPlayer = _gPlayer2.transform.GetChild(i).gameObject;
             m_NowPlayer.GetComponent<Move>().Reset_Data();
-          
+            if(m_NowPlayer.GetComponent<Character>().Chess.Job!="Preist")
+            {
+                m_NowPlayer.GetComponent<Character>()._aChess_Anime.SetBool("CancelAtk", true);
+                m_NowPlayer.GetComponent<Character>()._aChess_Anime.SetBool("PreAtk", false);
+            }
+            
             Set_Character_Btn();
 
         }

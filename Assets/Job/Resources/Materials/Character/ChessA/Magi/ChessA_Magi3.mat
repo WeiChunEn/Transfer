@@ -94,7 +94,7 @@ Material:
     - _Size: 0.2
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SpecularScale: 5.89
+    - _SpecularScale: 1.5
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1

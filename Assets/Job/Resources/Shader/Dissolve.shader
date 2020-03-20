@@ -137,7 +137,7 @@
 				//float3 Final = (Tex.rgb*Mask.a)+(Mask.rgb*_MaskColor);
 				fixed3 albedo = Tex.rgb*_Color.rgb;
 
-				fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz * albedo;
+				fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT * albedo;
 
 				fixed3 diffuse = _LightColor0.rgb * albedo * max(0, dot(tangentNormal, tangentLightDir));
 

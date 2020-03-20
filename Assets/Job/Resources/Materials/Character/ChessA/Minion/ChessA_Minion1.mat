@@ -43,7 +43,7 @@ Material:
     - _DissloveSize: 200
     - _DissolveCutoff: 0
     - _Gloss: 8
-    - _SpecularScale: 10
+    - _SpecularScale: 2
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveColorA: {r: 1, g: 0, b: 0, a: 1}
