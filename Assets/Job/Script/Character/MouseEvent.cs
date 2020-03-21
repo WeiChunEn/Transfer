@@ -226,6 +226,17 @@ public class MouseEvent : MonoBehaviour
                 }
                 Destroy(gameObject);
             }
+            if (_gGameManager.GetComponent<GameManager>()._gBattle_Camera.tag == "In")
+            {
+                _gGameManager.GetComponent<GameManager>()._aBattle_Scene_Anim.SetTrigger("Back");
+                Destroy(_gGameManager.GetComponent<GameManager>()._A_Model);
+                for (int i = 0; i < _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.childCount; i++)
+                {
+                    Destroy(_gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.GetChild(i).gameObject);
+                }
+
+                _gGameManager.GetComponent<GameManager>()._gBattle_Camera.SetActive(false);
+            }
         }
     }
 

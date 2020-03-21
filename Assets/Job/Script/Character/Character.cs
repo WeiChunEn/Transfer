@@ -135,7 +135,7 @@ public class Character : MonoBehaviour
         {
             _sType = gameObject.tag;
             _sJob = "Minion";
-            _iWalk_Steps = 1;
+            _iWalk_Steps = 2;
             _iAttack_Distance = 1;
             _iHP = 20;
             _iMax_HP = 20;
@@ -170,12 +170,12 @@ public class Character : MonoBehaviour
         {
             Chess.HP = 0;
         }
-        if (Chess.HP <= 0)
+        if (Chess.HP <= 0&& _gGameManager.GetComponent<GameManager>()._gBattle_Camera.tag == "Out")
         {
 
-            _Death_Time += Time.deltaTime * 0.5f;
+            _Death_Time += Time.deltaTime * 0.2f;
             _mMat.SetFloat("_DissolveCutoff", _Death_Time);
-           
+            _gBack_Model.SetActive(false);
             if (_Death_Time >= 1.0)
             {
                 gameObject.SetActive(false);
@@ -212,7 +212,7 @@ public class Character : MonoBehaviour
                 
                 Chess.Attack = 6;
                 Chess.Attack_Distance = 3;
-                Chess.Walk_Steps = 2;
+                Chess.Walk_Steps = 1;
                 _tHead_Name.text = "W" + _tHead_Name.name;
                 _tName.text = "W" + _tName.name;
                 _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).GetComponent<Renderer>().sharedMaterial;

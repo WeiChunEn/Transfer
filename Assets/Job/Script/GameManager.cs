@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     static GameStateManager m_GameStateManager = new GameStateManager();
     public Animator _aUI_Anim;     //UI的動畫
     public Animator _aCamera_Anim;  //相機的動畫
+    public Animator _aScene_Light; //場景的燈光
     public Animator _aBattle_Scene_Anim; //切換去戰鬥場景的動畫
     public Animator _aA_Battle_Anim;  //A戰鬥角色的動畫
     public Animator _aB_Battle_Anim;  //B戰鬥角色的動畫
@@ -581,11 +582,13 @@ public class GameManager : MonoBehaviour
             _gWhole_UI.SetActive(false);
 
             _aCamera_Anim.SetTrigger("TeamB");
+            _aScene_Light.SetTrigger("B");
         }
         else if (_gMove_Camera.tag == "B")
         {
             _gWhole_UI.SetActive(false);
             _aCamera_Anim.SetTrigger("TeamA");
+            _aScene_Light.SetTrigger("A");
         }
     }
     /// <summary>
