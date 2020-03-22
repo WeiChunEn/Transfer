@@ -571,33 +571,271 @@ public class Path : MonoBehaviour
                 _lCan_Attack_List.Add(m_Tmp_Pos);
                 _iAttack_List_Index++;
                 _iAttack_List_Count++;
+                bool _Have_Enmey = false;
+                Save_CharacterPos();
                 //向上算
                 for (int i= 1; i < _iAttack_Distance+1;i++)
                 {
-                    _lCan_Attack_List.Add(new Vector3(m_Tmp_Pos.x, 0, m_Tmp_Pos.z + i));
-                    _iAttack_List_Index++;
-                    _iAttack_List_Count++;
+                    if (_gPlayer.tag == "B")
+                    {
+                        for (int j = 0; j < _lPartnerPos_List.Count; j++)
+                        {
+                            if (_lPartnerPos_List[j] == new Vector3(m_Tmp_Pos.x, 0, m_Tmp_Pos.z + i))
+                            {
+                                _lCan_Attack_List.Add(new Vector3(m_Tmp_Pos.x, 0, m_Tmp_Pos.z + i));
+                                _iAttack_List_Index++;
+                                _iAttack_List_Count++;
+                                _Have_Enmey = true;
+                            }
+                        }
+                        for (int j = 0; j < _lEnmeyPos_List.Count; j++)
+                        {
+                          if (_lEnmeyPos_List[j] == new Vector3(m_Tmp_Pos.x, 0, m_Tmp_Pos.z + i))
+                            {
+                                _lCan_Attack_List.Add(new Vector3(m_Tmp_Pos.x, 0, m_Tmp_Pos.z + i));
+                                _iAttack_List_Index++;
+                                _iAttack_List_Count++;
+                                _Have_Enmey = true;
+                            }
+                        }
+
+
+                    }
+                    
+                    else if(_gPlayer.tag == "A")
+                    {
+                        for (int j = 0; j < _lPartnerPos_List.Count; j++)
+                        {
+                            if (_lPartnerPos_List[j] == new Vector3(m_Tmp_Pos.x, 0, m_Tmp_Pos.z + i))
+                            {
+                                _lCan_Attack_List.Add(new Vector3(m_Tmp_Pos.x, 0, m_Tmp_Pos.z + i));
+                                _iAttack_List_Index++;
+                                _iAttack_List_Count++;
+                                _Have_Enmey = true;
+                            }
+                        }
+                        for (int j = 0; j < _lEnmeyPos_List.Count; j++)
+                        {
+                            if (_lEnmeyPos_List[j] == new Vector3(m_Tmp_Pos.x, 0, m_Tmp_Pos.z + i))
+                            {
+                                _lCan_Attack_List.Add(new Vector3(m_Tmp_Pos.x, 0, m_Tmp_Pos.z + i));
+                                _iAttack_List_Index++;
+                                _iAttack_List_Count++;
+                                _Have_Enmey = true;
+                            }
+                        }
+                    }
+                    
+                    if (_Have_Enmey == true)
+                    {
+                        _Have_Enmey = false;
+                        break;
+                    }
+                    else
+                    {
+                        _lCan_Attack_List.Add(new Vector3(m_Tmp_Pos.x, 0, m_Tmp_Pos.z + i));
+                        _iAttack_List_Index++;
+                        _iAttack_List_Count++;
+                    }
+                 
+
                 }
                 //向下
                 for (int i = 1; i < _iAttack_Distance+1; i++)
                 {
-                    _lCan_Attack_List.Add(new Vector3(m_Tmp_Pos.x, 0, m_Tmp_Pos.z - i));
-                    _iAttack_List_Index++;
-                    _iAttack_List_Count++;
+                    if (_gPlayer.tag == "B")
+                    {
+                        for (int j = 0; j < _lPartnerPos_List.Count; j++)
+                        {
+                            if (_lPartnerPos_List[j] == new Vector3(m_Tmp_Pos.x, 0, m_Tmp_Pos.z - i))
+                            {
+                                _lCan_Attack_List.Add(new Vector3(m_Tmp_Pos.x, 0, m_Tmp_Pos.z - i));
+                                _iAttack_List_Index++;
+                                _iAttack_List_Count++;
+                                _Have_Enmey = true;
+                            }
+                        }
+                        for (int j = 0; j < _lEnmeyPos_List.Count; j++)
+                        {
+                            if (_lEnmeyPos_List[j] == new Vector3(m_Tmp_Pos.x, 0, m_Tmp_Pos.z - i))
+                            {
+                                _lCan_Attack_List.Add(new Vector3(m_Tmp_Pos.x, 0, m_Tmp_Pos.z - i));
+                                _iAttack_List_Index++;
+                                _iAttack_List_Count++;
+                                _Have_Enmey = true;
+                            }
+                        }
+
+
+                    }
+
+                    else if (_gPlayer.tag == "A")
+                    {
+                        for (int j = 0; j < _lPartnerPos_List.Count; j++)
+                        {
+                            if (_lPartnerPos_List[j] == new Vector3(m_Tmp_Pos.x, 0, m_Tmp_Pos.z - i))
+                            {
+                                _lCan_Attack_List.Add(new Vector3(m_Tmp_Pos.x, 0, m_Tmp_Pos.z - i));
+                                _iAttack_List_Index++;
+                                _iAttack_List_Count++;
+                                _Have_Enmey = true;
+                            }
+                        }
+                        for (int j = 0; j < _lEnmeyPos_List.Count; j++)
+                        {
+                            if (_lEnmeyPos_List[j] == new Vector3(m_Tmp_Pos.x, 0, m_Tmp_Pos.z - i))
+                            {
+                                _lCan_Attack_List.Add(new Vector3(m_Tmp_Pos.x, 0, m_Tmp_Pos.z - i));
+                                _iAttack_List_Index++;
+                                _iAttack_List_Count++;
+                                _Have_Enmey = true;
+                            }
+                        }
+                    }
+                    if (_Have_Enmey == true)
+                    {
+                        _Have_Enmey = false;
+                        break;
+                    }
+                    else
+                    {
+                        _lCan_Attack_List.Add(new Vector3(m_Tmp_Pos.x, 0, m_Tmp_Pos.z - i));
+                        _iAttack_List_Index++;
+                        _iAttack_List_Count++;
+                    }
+                   
                 }
                 //向左
-                for (int i = 1; i < _iAttack_Distance+1; i++)
+                for (int i = 1; i < _iAttack_Distance + 1; i++)
                 {
-                    _lCan_Attack_List.Add(new Vector3(m_Tmp_Pos.x-i, 0, m_Tmp_Pos.z ));
-                    _iAttack_List_Index++;
-                    _iAttack_List_Count++;
+
+                    if (_gPlayer.tag == "B")
+                    {
+                        for (int j = 0; j < _lPartnerPos_List.Count; j++)
+                        {
+                            if (_lPartnerPos_List[j] == new Vector3(m_Tmp_Pos.x - i, 0, m_Tmp_Pos.z))
+                            {
+                                _lCan_Attack_List.Add(new Vector3(m_Tmp_Pos.x - i, 0, m_Tmp_Pos.z));
+                                _iAttack_List_Index++;
+                                _iAttack_List_Count++;
+                                _Have_Enmey = true;
+                            }
+                        }
+                        for (int j = 0; j < _lEnmeyPos_List.Count; j++)
+                        {
+                            if (_lEnmeyPos_List[j] == new Vector3(m_Tmp_Pos.x - i, 0, m_Tmp_Pos.z))
+                            {
+                                _lCan_Attack_List.Add(new Vector3(m_Tmp_Pos.x - i, 0, m_Tmp_Pos.z));
+                                _iAttack_List_Index++;
+                                _iAttack_List_Count++;
+                                _Have_Enmey = true;
+                            }
+                        }
+
+
+                    }
+
+                    else if (_gPlayer.tag == "A")
+                    {
+                        for (int j = 0; j < _lPartnerPos_List.Count; j++)
+                        {
+                            if (_lPartnerPos_List[j] == new Vector3(m_Tmp_Pos.x - i, 0, m_Tmp_Pos.z))
+                            {
+                                _lCan_Attack_List.Add(new Vector3(m_Tmp_Pos.x - i, 0, m_Tmp_Pos.z));
+                                _iAttack_List_Index++;
+                                _iAttack_List_Count++;
+                                _Have_Enmey = true;
+                            }
+                        }
+                        for (int j = 0; j < _lEnmeyPos_List.Count; j++)
+                        {
+                            if (_lEnmeyPos_List[j] == new Vector3(m_Tmp_Pos.x - i, 0, m_Tmp_Pos.z))
+                            {
+                                _lCan_Attack_List.Add(new Vector3(m_Tmp_Pos.x - i, 0, m_Tmp_Pos.z));
+                                _iAttack_List_Index++;
+                                _iAttack_List_Count++;
+                                _Have_Enmey = true;
+                            }
+                        }
+                    }
+                    if (_Have_Enmey == true)
+                    {
+                        _Have_Enmey = false;
+                        break;
+                    }
+                    else
+                    {
+                        _lCan_Attack_List.Add(new Vector3(m_Tmp_Pos.x - i, 0, m_Tmp_Pos.z));
+                        _iAttack_List_Index++;
+                        _iAttack_List_Count++;
+                    }
+                 
                 }
                 // 向右
-                for (int i = 1; i < _iAttack_Distance+1; i++)
+                for (int i = 1; i < _iAttack_Distance + 1; i++)
                 {
-                    _lCan_Attack_List.Add(new Vector3(m_Tmp_Pos.x+i, 0, m_Tmp_Pos.z ));
-                    _iAttack_List_Index++;
-                    _iAttack_List_Count++;
+                    if (_gPlayer.tag == "B")
+                    {
+                        for (int j = 0; j < _lPartnerPos_List.Count; j++)
+                        {
+                            if (_lPartnerPos_List[j] == new Vector3(m_Tmp_Pos.x + i, 0, m_Tmp_Pos.z))
+                            {
+                                _lCan_Attack_List.Add(new Vector3(m_Tmp_Pos.x + i, 0, m_Tmp_Pos.z));
+                                _iAttack_List_Index++;
+                                _iAttack_List_Count++;
+                                _Have_Enmey = true;
+                            }
+                        }
+                        for (int j = 0; j < _lEnmeyPos_List.Count; j++)
+                        {
+                            if (_lEnmeyPos_List[j] == new Vector3(m_Tmp_Pos.x + i, 0, m_Tmp_Pos.z))
+                            {
+                                _lCan_Attack_List.Add(new Vector3(m_Tmp_Pos.x + i, 0, m_Tmp_Pos.z));
+                                _iAttack_List_Index++;
+                                _iAttack_List_Count++;
+                                _Have_Enmey = true;
+                            }
+                        }
+
+
+                    }
+
+                    else if (_gPlayer.tag == "A")
+                    {
+                        for (int j = 0; j < _lPartnerPos_List.Count; j++)
+                        {
+                            if (_lPartnerPos_List[j] == new Vector3(m_Tmp_Pos.x + i, 0, m_Tmp_Pos.z))
+                            {
+                                _lCan_Attack_List.Add(new Vector3(m_Tmp_Pos.x + i, 0, m_Tmp_Pos.z));
+                                _iAttack_List_Index++;
+                                _iAttack_List_Count++;
+                                _Have_Enmey = true;
+                            }
+                        }
+                        for (int j = 0; j < _lEnmeyPos_List.Count; j++)
+                        {
+                            if (_lEnmeyPos_List[j] == new Vector3(m_Tmp_Pos.x + i, 0, m_Tmp_Pos.z))
+                            {
+                                _lCan_Attack_List.Add(new Vector3(m_Tmp_Pos.x + i, 0, m_Tmp_Pos.z));
+                                _iAttack_List_Index++;
+                                _iAttack_List_Count++;
+                                _Have_Enmey = true;
+                            }
+                        }
+                    }
+
+                    if (_Have_Enmey == true)
+                    {
+                        _Have_Enmey = false;
+                        break;
+                    }
+                    else
+                    {
+                        _lCan_Attack_List.Add(new Vector3(m_Tmp_Pos.x + i, 0, m_Tmp_Pos.z));
+                        _iAttack_List_Index++;
+                        _iAttack_List_Count++;
+                    }
+                   
                 }
                 List<Vector3> Archor_Count = new List<Vector3>();
 

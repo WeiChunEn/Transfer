@@ -50,6 +50,7 @@ public class SetArea_Two : GameState
         {
             m_GameStateManager.Set_GameState(new Player1Turn(m_GameStateManager));
             GameManager._sPlayer_One_Finish = "Start";
+            _gGameManager.GetComponent<AudioSource>().Play();
             _gGameManager.GetComponent<GameManager>().Set_Now_Team();
             _gTransfer_Count.SetActive(false);
         }

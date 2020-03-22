@@ -78,7 +78,7 @@ Material:
     - _ColorFactroB: 0.31
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DissloveSize: 200
+    - _DissloveSize: 8
     - _DissolveCutoff: 0
     - _DstBlend: 0
     - _Gloss: 8
@@ -102,7 +102,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Diffuse: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveColorA: {r: 1, g: 0, b: 0, a: 1}
-    - _DissolveColorB: {r: 1, g: 0.34117648, b: 0, a: 1}
+    - _DissolveColorB: {r: 1, g: 0.47058824, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MaskColor: {r: 1, g: 1, b: 1, a: 1}
     - _Specular: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 1}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] _gA_Team_Model = new GameObject[5];   //A隊模型
     public GameObject[] _gB_Team_Model = new GameObject[5];     //B隊模型
+
 
     public GameObject _gA_Battle_Pos;   //打的位置
     public GameObject _gB_Battle_Pos;   //被打的位置
@@ -77,11 +79,17 @@ public class GameManager : MonoBehaviour
     public bool _bCheck_Team_Finish; //確認隊伍是否都行動完了
     public bool _bCamera_Move;  //相機是否在轉動
 
+
+    public Image _sCamera_Sprite;
+    public Sprite _sCamera_ASprite;
+    public Sprite _sCamera_BSprite;
     public Path path;
 
     private float Sky_Time;
 
     public Material[] _mAll_Mat;
+
+    public UnityEvent _eSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -580,14 +588,17 @@ public class GameManager : MonoBehaviour
         if (_gMove_Camera.tag == "A")
         {
             _gWhole_UI.SetActive(false);
-
+            _sCamera_Sprite.sprite = _sCamera_BSprite;
             _aCamera_Anim.SetTrigger("TeamB");
             _aScene_Light.SetTrigger("B");
         }
         else if (_gMove_Camera.tag == "B")
         {
             _gWhole_UI.SetActive(false);
+            _sCamera_Sprite.sprite = _sCamera_ASprite;
             _aCamera_Anim.SetTrigger("TeamA");
+           
+
             _aScene_Light.SetTrigger("A");
         }
     }
@@ -818,6 +829,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                _bCheck_Team_Finish = false;
                 _gStateName.GetComponent<Animator>().SetTrigger("Restart");
             }
 
@@ -844,6 +856,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                _bCheck_Team_Finish = false;
                 _gStateName.GetComponent<Animator>().SetTrigger("Restart");
             }
 

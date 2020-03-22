@@ -324,6 +324,23 @@ public class Attack : MonoBehaviour
            
                 if (Enmey.tag == "A")
                 {
+                    //for(int i = 0; i < path._lCan_Attack_Enmey.Count;i++ )
+                    //{
+                    //    if(path._lCan_Attack_Enmey[i].name == Enmey.name)
+                    //    {
+                    //        for(int j = 0; j < path._lCan_Attack_Enmey.Count;j++)
+                    //        {
+                    //            if(Enmey.transform.position.x == path._lCan_Attack_Enmey[j].transform.position.x && j!=i)
+                    //            {
+
+                    //            }
+                    //            else if (Enmey.transform.position.z == path._lCan_Attack_Enmey[j].transform.position.z && j != i)
+                    //            {
+
+                    //            }
+                    //        }
+                    //    }
+                    //}
                     _gGameManager.GetComponent<GameManager>()._B_Model = Instantiate(_gGameManager.GetComponent<GameManager>()._gA_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform);
                     _gGameManager.GetComponent<GameManager>()._aB_Battle_Anim = _gGameManager.GetComponent<GameManager>()._B_Model.GetComponent<Animator>();
                     _gGameManager.GetComponent<GameManager>()._B_Model.SetActive(true);
