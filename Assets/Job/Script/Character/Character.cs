@@ -34,9 +34,12 @@ public class Character : MonoBehaviour
     public int _iNow_Class_Count;   //轉職的編號
     public GameObject _gBack_Model; //背景的模型
     public GameObject[] _gClass = new GameObject[4]; //其他職業的模型
-    public Sprite[] _gClass_Card = new Sprite[4]; //其他職業的卡牌圖
+    public GameObject _gClass_Card; //其他職業的卡牌圖
 
     public GameObject _gTransfer_Effect;        //轉職特效
+    public GameObject _gTrnasferA_Stone_Effect; //石頭A轉職特效
+    public GameObject _gTrnasferB_Stone_Effect; //石頭B轉職特效
+
     public Material _mMat;          //角色材質球
     public Material _mStone_Mat;    //石像材質
 
@@ -110,7 +113,7 @@ public class Character : MonoBehaviour
 
     public virtual void Awake()
     {
-        if(_gPlayer_UI.GetComponent<Image>().sprite.name=="Preist_B"|| _gPlayer_UI.GetComponent<Image>().sprite.name == "Preist_A")
+        if(_gClass_Card.transform.GetChild(4).name=="Preist")
         {
             _sType = gameObject.tag;
             _sJob = "Preist";
@@ -149,7 +152,7 @@ public class Character : MonoBehaviour
             _tHead_HP.text = _tHP.text;
             _iNow_Class_Count = 0;
             _gClass[_iNow_Class_Count].SetActive(true);
-            _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
+            _gClass_Card.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(true);
             _aChess_Anime = _gClass[_iNow_Class_Count].GetComponent<Animator>();
             _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<Renderer>().sharedMaterial;
             _mStone_Mat = _gBack_Model.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterial;
@@ -206,14 +209,25 @@ public class Character : MonoBehaviour
             case "Warrior":
                 Chess.Job = "Warrior";
                 _gClass[_iNow_Class_Count].SetActive(false);
+                _gClass_Card.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(false);
                 _gBack_Model.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(false);
                 _iNow_Class_Count = 1;
                 _gClass[_iNow_Class_Count].SetActive(true);
                 _gBack_Model.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(true);
-                _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
+                _gClass_Card.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(true);
+                if(gameObject.tag=="A")
+                {
+                    Instantiate(_gTrnasferA_Stone_Effect, _gBack_Model.transform.position, _gTrnasferA_Stone_Effect.transform.rotation);
+                }
+                else if(gameObject.tag == "B")
+                {
+                    Instantiate(_gTrnasferB_Stone_Effect, _gBack_Model.transform.position, _gTrnasferB_Stone_Effect.transform.rotation);
+
+                }
+
                 //Chess.Max_HP *= 2;
                 //Chess.HP *= 2;
-                
+
                 Chess.Attack = 6;
                 Chess.Attack_Distance = 3;
                 Chess.Walk_Steps = 1;
@@ -228,14 +242,25 @@ public class Character : MonoBehaviour
             case "Magician":
                 Chess.Job = "Magician";
                 _gClass[_iNow_Class_Count].SetActive(false);
+                _gClass_Card.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(false);
+
                 _gBack_Model.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(false);
                 _iNow_Class_Count = 2;
                 _gClass[_iNow_Class_Count].SetActive(true);
                 _gBack_Model.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(true);
-                _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
+                _gClass_Card.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(true);
+                if (gameObject.tag == "A")
+                {
+                    Instantiate(_gTrnasferA_Stone_Effect, _gBack_Model.transform.position, _gTrnasferA_Stone_Effect.transform.rotation);
+                }
+                else if (gameObject.tag == "B")
+                {
+                    Instantiate(_gTrnasferB_Stone_Effect, _gBack_Model.transform.position, _gTrnasferB_Stone_Effect.transform.rotation);
+
+                }
                 //Chess.Max_HP /= 2;
                 //Chess.HP /= 2;
-                
+
                 Chess.Attack = 6;
                 Chess.Attack_Distance = 2;
                 Chess.Walk_Steps = 2;
@@ -250,10 +275,21 @@ public class Character : MonoBehaviour
                 Chess.Job = "Archer";
                 _gClass[_iNow_Class_Count].SetActive(false);
                 _gBack_Model.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(false);
+                _gClass_Card.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(false);
+
                 _iNow_Class_Count = 3;
                 _gClass[_iNow_Class_Count].SetActive(true);
                 _gBack_Model.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(true);
-                _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
+                _gClass_Card.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(true);
+                if (gameObject.tag == "A")
+                {
+                    Instantiate(_gTrnasferA_Stone_Effect, _gBack_Model.transform.position, _gTrnasferA_Stone_Effect.transform.rotation);
+                }
+                else if (gameObject.tag == "B")
+                {
+                    Instantiate(_gTrnasferB_Stone_Effect, _gBack_Model.transform.position, _gTrnasferB_Stone_Effect.transform.rotation);
+
+                }
                 Chess.Attack = 6;
                 Chess.Attack_Distance = 3;
                 Chess.Walk_Steps = 2;
@@ -270,6 +306,7 @@ public class Character : MonoBehaviour
             case "Minion":
                 Chess.Job = "Minion";
                 _gClass[_iNow_Class_Count].SetActive(false);
+                _gClass_Card.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(false);
                 _gBack_Model.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(false);
                 
                 //else if(_iNow_Class_Count==2)
@@ -281,8 +318,18 @@ public class Character : MonoBehaviour
                 _iNow_Class_Count = 0;
                 _gClass[_iNow_Class_Count].SetActive(true);
                 _gBack_Model.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(true);
-                _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
-                
+                _gClass_Card.transform.GetChild(_iNow_Class_Count).gameObject.SetActive(true);
+
+                if (gameObject.tag == "A")
+                {
+                    Instantiate(_gTrnasferA_Stone_Effect, _gBack_Model.transform.position, _gTrnasferA_Stone_Effect.transform.rotation);
+                }
+                else if (gameObject.tag == "B")
+                {
+                    Instantiate(_gTrnasferB_Stone_Effect, _gBack_Model.transform.position, _gTrnasferB_Stone_Effect.transform.rotation);
+
+                }
+
                 Chess.Attack = 4;
                 Chess.Attack_Distance = 1;
                 Chess.Walk_Steps = 2;

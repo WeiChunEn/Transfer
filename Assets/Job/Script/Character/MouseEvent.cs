@@ -142,7 +142,7 @@ public class MouseEvent : MonoBehaviour
                     {
                         if (gameObject.transform.position.x == _gGameManager.GetComponent<Path>()._gInit_Grid.transform.GetChild(i).transform.position.x && gameObject.transform.position.z == _gGameManager.GetComponent<Path>()._gInit_Grid.transform.GetChild(i).transform.position.z)
                         {
-                            
+
                             Atk_Mouse_Clk();
                         }
                         else if (i == _gGameManager.GetComponent<Path>()._gInit_Grid.transform.childCount - 1)
@@ -202,6 +202,7 @@ public class MouseEvent : MonoBehaviour
                     if (_gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Character>().Chess.Now_State != "Death" && _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Character>().Chess.Now_State != "Defense" && _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Character>().Chess.Now_State != "Finish")
                     {
                         _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Character>().Chess.Now_State = "Idle";
+                        _gGameManager.GetComponent<GameManager>().Set_Mat();
                     }
                     // _gGameManager.GetComponent<GameManager>().m_NowPlayer = null;
                     _gGameManager.GetComponent<GameManager>().Set_Character_Btn();
@@ -237,7 +238,7 @@ public class MouseEvent : MonoBehaviour
                 }
                 Destroy(gameObject);
             }
-            if (_gGameManager.GetComponent<GameManager>()._gBattle_Camera.tag == "In"&& _gGameManager.GetComponent<GameManager>()._gBattle_Camera.activeSelf==true)
+            if (_gGameManager.GetComponent<GameManager>()._gBattle_Camera.tag == "In" && _gGameManager.GetComponent<GameManager>()._gBattle_Camera.activeSelf == true)
             {
                 _gGameManager.GetComponent<GameManager>()._aBattle_Scene_Anim.SetTrigger("Back");
                 Destroy(_gGameManager.GetComponent<GameManager>()._A_Model);
@@ -256,55 +257,59 @@ public class MouseEvent : MonoBehaviour
     /// </summary>
     private void OnMouseOver()
     {
-        if (gameObject.tag == "Area" && GameManager._sSet_Area_Finish_One == "Start" && !EventSystem.current.IsPointerOverGameObject())
+        if (_gGameManager.GetComponent<GameManager>()._bCamera_Move == false)
         {
-
-            GetComponent<Renderer>().material.color = Color.gray;
-            _bOn_Set_it = true;
-        }
-        if (gameObject.tag == "Area" && GameManager._sSet_Area_Finish_Two == "Start" && _gGameManager.GetComponent<GameManager>()._bCamera_Move == false && !EventSystem.current.IsPointerOverGameObject())
-        {
-
-            GetComponent<Renderer>().material.color = Color.gray;
-            _bOn_Set_it = true;
-        }
-        if (gameObject.tag == "TransferA" && GameManager._sSet_Area_Finish_One == "Start")
-        {
-            _bOn_Tranf_it = true;
-        }
-        if (gameObject.tag == "TransferB" && GameManager._sSet_Area_Finish_Two == "Start")
-        {
-            _bOn_Tranf_it = true;
-        }
-        if (gameObject.tag == "Grid" && (GameManager._sPlayer_One_Finish == "Start" || GameManager._sPlayer_Two_Finish == "Start") && !EventSystem.current.IsPointerOverGameObject())
-        {
-            if ((_gNow_Player.transform.position.x != _vDestination.x) || (_gNow_Player.transform.position.z != _vDestination.z))
+            if (gameObject.tag == "Area" && GameManager._sSet_Area_Finish_One == "Start" && !EventSystem.current.IsPointerOverGameObject())
             {
-                GetComponent<Renderer>().material.color = Color.black;
-                _gNow_Player.GetComponent<Move>()._gMove_Pos = gameObject;
-                _bOn_Move_It = true;
+
+                GetComponent<Renderer>().material.color = Color.gray;
+                _bOn_Set_it = true;
+            }
+            if (gameObject.tag == "Area" && GameManager._sSet_Area_Finish_Two == "Start" && _gGameManager.GetComponent<GameManager>()._bCamera_Move == false && !EventSystem.current.IsPointerOverGameObject())
+            {
+
+                GetComponent<Renderer>().material.color = Color.gray;
+                _bOn_Set_it = true;
+            }
+            if (gameObject.tag == "TransferA" && GameManager._sSet_Area_Finish_One == "Start")
+            {
+                _bOn_Tranf_it = true;
+            }
+            if (gameObject.tag == "TransferB" && GameManager._sSet_Area_Finish_Two == "Start")
+            {
+                _bOn_Tranf_it = true;
+            }
+            if (gameObject.tag == "Grid" && (GameManager._sPlayer_One_Finish == "Start" || GameManager._sPlayer_Two_Finish == "Start") && !EventSystem.current.IsPointerOverGameObject())
+            {
+                if ((_gNow_Player.transform.position.x != _vDestination.x) || (_gNow_Player.transform.position.z != _vDestination.z))
+                {
+                    GetComponent<Renderer>().material.color = Color.black;
+                    _gNow_Player.GetComponent<Move>()._gMove_Pos = gameObject;
+                    _bOn_Move_It = true;
+                }
+            }
+            if (gameObject.tag == "Atk_Grid" && (GameManager._sPlayer_One_Finish == "Start" || GameManager._sPlayer_Two_Finish == "Start") && !EventSystem.current.IsPointerOverGameObject())
+            {
+                Atk_Mouse_On();
+            }
+            if ((gameObject.tag == "A" || gameObject.tag == "B") && (GameManager._sPlayer_One_Finish == "Start" || GameManager._sPlayer_Two_Finish == "Start") && !EventSystem.current.IsPointerOverGameObject())
+            {
+                
+                Player_Atk_On();
+
+            }
+            if (gameObject.tag == "A" && GameManager._sPlayer_One_Finish == "Start" && !EventSystem.current.IsPointerOverGameObject())
+            {
+                PlayerA_Mouse_On();
+
+            }
+            if (gameObject.tag == "B" && GameManager._sPlayer_Two_Finish == "Start" && !EventSystem.current.IsPointerOverGameObject())
+            {
+                PlayerB_Mouse_On();
+
             }
         }
-        if (gameObject.tag == "Atk_Grid" && (GameManager._sPlayer_One_Finish == "Start" || GameManager._sPlayer_Two_Finish == "Start") && !EventSystem.current.IsPointerOverGameObject())
-        {
-            Atk_Mouse_On();
-        }
-        if ((gameObject.tag == "A" || gameObject.tag == "B") && (GameManager._sPlayer_One_Finish == "Start" || GameManager._sPlayer_Two_Finish == "Start") && !EventSystem.current.IsPointerOverGameObject())
-        {
 
-            Player_Atk_On();
-
-        }
-        if (gameObject.tag == "A" && GameManager._sPlayer_One_Finish == "Start" && !EventSystem.current.IsPointerOverGameObject())
-        {
-            PlayerA_Mouse_On();
-
-        }
-        if (gameObject.tag == "B" && GameManager._sPlayer_Two_Finish == "Start" && !EventSystem.current.IsPointerOverGameObject())
-        {
-            PlayerB_Mouse_On();
-
-        }
 
 
 
@@ -316,6 +321,7 @@ public class MouseEvent : MonoBehaviour
     /// </summary>
     private void OnMouseExit()
     {
+
         if (gameObject.tag == "Area")
         {
             GetComponent<Renderer>().material.color = _cTmp_Area_Color;
@@ -353,10 +359,18 @@ public class MouseEvent : MonoBehaviour
         }
         if ((gameObject.tag == "A" || gameObject.tag == "B") && (GameManager._sPlayer_One_Finish == "Start" || GameManager._sPlayer_Two_Finish == "Start"))
         {
+          
+                
+            
+
+            
 
             Player_Atk_Out();
 
+
         }
+
+
 
 
 
@@ -373,8 +387,7 @@ public class MouseEvent : MonoBehaviour
 
             if (path._lCan_Attack_Enmey.Count == 0)
             {
-
-
+                
                 for (int i = 0; i < path._gInit_Grid.transform.childCount; i++)
                 {
                     if (_gNow_Player.GetComponent<Character>().Chess.Type == "A")
@@ -410,6 +423,30 @@ public class MouseEvent : MonoBehaviour
 
                     path._gInit_Grid.transform.GetChild(i).GetComponent<MouseEvent>()._bOn_Attack_It = true;
                 }
+                if (_gNow_Player.GetComponent<Character>().Chess.Type == "A")
+                {
+                    for (int i = 0; i < path._lCan_Attack_Enmey.Count; i++)
+                    {
+
+
+
+                        path._lCan_Attack_Enmey[i].GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0, 0.1725f, 0.7254f));
+                        path._lCan_Attack_Enmey[i].GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0, 0.1725f, 0.7254f));
+                    }
+                }
+                else if(_gNow_Player.GetComponent<Character>().Chess.Type == "B")
+                {
+                    for (int i = 0; i < path._lCan_Attack_Enmey.Count; i++)
+                    {
+
+
+
+
+                        path._lCan_Attack_Enmey[i].GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0.8f, 0.2f, 0.2f));
+                        path._lCan_Attack_Enmey[i].GetComponent<Character>()._mStone_Mat.SetColor("_RimColor", new Color(0.8f, 0.2f, 0.2f));
+
+                    }
+                }
             }
         }
         //else if (_gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Character>().Chess.Job == "Archer")
@@ -420,7 +457,7 @@ public class MouseEvent : MonoBehaviour
 
         //        for (int i = 0; i < path._gInit_Grid.transform.childCount; i++)
         //        {
-                    
+
         //                for (int j = 0; j < path._gEnmey.transform.childCount; j++)
         //                {
         //                    if ((path._gInit_Grid.transform.GetChild(i).transform.position.x == path._gEnmey.transform.GetChild(j).gameObject.transform.position.x) && (path._gInit_Grid.transform.GetChild(i).transform.position.z == path._gEnmey.transform.GetChild(j).gameObject.transform.position.z))
@@ -431,8 +468,8 @@ public class MouseEvent : MonoBehaviour
         //                    }
         //                }
 
-                    
-                    
+
+
         //                for (int j = 0; j < path._gPartner.transform.childCount; j++)
         //                {
         //                    if ((path._gInit_Grid.transform.GetChild(i).transform.position.x == path._gPartner.transform.GetChild(j).gameObject.transform.position.x) && (path._gInit_Grid.transform.GetChild(i).transform.position.z == path._gPartner.transform.GetChild(j).gameObject.transform.position.z))
@@ -442,13 +479,13 @@ public class MouseEvent : MonoBehaviour
 
         //                    }
         //                }
-                    
+
 
 
 
 
         //        }
-               
+
         //    }
         //    GetComponent<Renderer>().material.color = Color.yellow;
         //    _bOn_Attack_It = true;
@@ -468,6 +505,12 @@ public class MouseEvent : MonoBehaviour
     {
         if (_gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Character>().Chess.Job == "Warrior")
         {
+            for(int i = 0; i < path._lCan_Attack_Enmey.Count;i++)
+            {
+               
+                path._lCan_Attack_Enmey[i].GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0.0f, 0.0f, 0.0f));
+                path._lCan_Attack_Enmey[i].GetComponent<Character>()._mStone_Mat.SetColor("_RimColor", new Color(0.0f, 0.0f, 0.0f));
+            }
             path._lCan_Attack_Enmey.Clear();
             for (int i = 0; i < path._gInit_Grid.transform.childCount; i++)
             {
@@ -476,6 +519,7 @@ public class MouseEvent : MonoBehaviour
 
 
                 path._gInit_Grid.transform.GetChild(i).GetComponent<MouseEvent>()._bOn_Attack_It = false;
+
             }
         }
         else
@@ -639,12 +683,24 @@ public class MouseEvent : MonoBehaviour
     /// </summary>
     public void PlayerA_Mouse_On()
     {
+
         for (int i = 0; i < _gGameManager.GetComponent<GameManager>()._gPlayer1.transform.childCount; i++)
         {
             if ((gameObject.name == _gGameManager.GetComponent<GameManager>()._gPlayer1.transform.GetChild(i).name))
             {
-
+                if (_gGameManager.GetComponent<GameManager>().m_NowPlayer == null)
+                {
+                    gameObject.GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0.5f, 0.5f, 0.5f));
+                    gameObject.GetComponent<Character>()._mStone_Mat.SetColor("_RimColor", new Color(1.0f, 1.0f, 1.0f));
+                }
                 //GetComponent<Renderer>().material.color = Color.blue;
+                else if (gameObject.GetComponent<Character>().Chess.Now_State != "Active" && gameObject.GetComponent<Character>().Chess.Now_State != "Defense" && gameObject.GetComponent<Character>().Chess.Now_State != "Finish" && _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Move>()._bIs_Moving == false)
+                {
+                    gameObject.GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0.5f, 0.5f, 0.5f));
+                    gameObject.GetComponent<Character>()._mStone_Mat.SetColor("_RimColor", new Color(1.0f, 1.0f, 1.0f));
+
+                }
+
                 _bOn_Player_It = true;
                 m_Player_Index = i;
             }
@@ -661,8 +717,17 @@ public class MouseEvent : MonoBehaviour
         {
             if ((gameObject.name == _gGameManager.GetComponent<GameManager>()._gPlayer1.transform.GetChild(i).name))
             {
+                if (_gGameManager.GetComponent<GameManager>().m_NowPlayer == null)
+                {
+                    gameObject.GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0.0f, 0.0f, 0.0f));
+                    gameObject.GetComponent<Character>()._mStone_Mat.SetColor("_RimColor", new Color(0.0f, 0.0f, 0.0f));
+                }
+                else if (gameObject.GetComponent<Character>().Chess.Now_State != "Active" && gameObject.GetComponent<Character>().Chess.Now_State != "Defense" && gameObject.GetComponent<Character>().Chess.Now_State != "Finish" && _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Move>()._bIs_Moving == false)
+                {
 
-
+                    gameObject.GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0.0f, 0.0f, 0.0f));
+                    gameObject.GetComponent<Character>()._mStone_Mat.SetColor("_RimColor", new Color(0.0f, 0.0f, 0.0f));
+                }
                 _bOn_Player_It = false;
             }
         }
@@ -679,6 +744,18 @@ public class MouseEvent : MonoBehaviour
             if ((gameObject.name == _gGameManager.GetComponent<GameManager>()._gPlayer2.transform.GetChild(i).name))
             {
                 //GetComponent<Renderer>().material.color = Color.blue;
+                if (_gGameManager.GetComponent<GameManager>().m_NowPlayer == null)
+                {
+                    gameObject.GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0.5f, 0.5f, 0.5f));
+                    gameObject.GetComponent<Character>()._mStone_Mat.SetColor("_RimColor", new Color(1.0f, 1.0f, 1.0f));
+                }
+                //GetComponent<Renderer>().material.color = Color.blue;
+                else if (gameObject.GetComponent<Character>().Chess.Now_State != "Active" && gameObject.GetComponent<Character>().Chess.Now_State != "Defense" && gameObject.GetComponent<Character>().Chess.Now_State != "Finish" && _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Move>()._bIs_Moving == false)
+                {
+                    gameObject.GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0.5f, 0.5f, 0.5f));
+                    gameObject.GetComponent<Character>()._mStone_Mat.SetColor("_RimColor", new Color(1.0f, 1.0f, 1.0f));
+
+                }
 
                 _bOn_Player_It = true;
                 m_Player_Index = i;
@@ -697,6 +774,17 @@ public class MouseEvent : MonoBehaviour
             if ((gameObject.name == _gGameManager.GetComponent<GameManager>()._gPlayer2.transform.GetChild(i).name))
             {
                 //GetComponent<Renderer>().material.color = Color.blue;
+                if (_gGameManager.GetComponent<GameManager>().m_NowPlayer == null)
+                {
+                    gameObject.GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0.0f, 0.0f, 0.0f));
+                    gameObject.GetComponent<Character>()._mStone_Mat.SetColor("_RimColor", new Color(0.0f, 0.0f, 0.0f));
+                }
+                else if (gameObject.GetComponent<Character>().Chess.Now_State != "Active" && gameObject.GetComponent<Character>().Chess.Now_State != "Defense" && gameObject.GetComponent<Character>().Chess.Now_State != "Finish" && _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Move>()._bIs_Moving == false)
+                {
+
+                    gameObject.GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0.0f, 0.0f, 0.0f));
+                    gameObject.GetComponent<Character>()._mStone_Mat.SetColor("_RimColor", new Color(0.0f, 0.0f, 0.0f));
+                }
 
                 _bOn_Player_It = false;
             }
@@ -719,6 +807,18 @@ public class MouseEvent : MonoBehaviour
                 if (gameObject.transform.position.x == _gGameManager.GetComponent<Path>()._gInit_Grid.transform.GetChild(i).transform.position.x && gameObject.transform.position.z == _gGameManager.GetComponent<Path>()._gInit_Grid.transform.GetChild(i).transform.position.z)
                 {
                     _gGameManager.GetComponent<Path>()._gInit_Grid.transform.GetChild(i).GetComponent<MouseEvent>().Atk_Mouse_On();
+                    if (gameObject.tag == "A")
+                    {
+                        gameObject.GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0.8f, 0.2f, 0.2f));
+                        gameObject.GetComponent<Character>()._mStone_Mat.SetColor("_RimColor", new Color(0.8f, 0.2f, 0.2f));
+
+                    }
+                    else if (gameObject.tag == "B")
+                    {
+                        gameObject.GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0, 0.1725f, 0.7254f));
+                        gameObject.GetComponent<Character>()._mStone_Mat.SetColor("_RimColor", new Color(0, 0.1725f, 0.7254f));
+
+                    }
                 }
             }
         }
@@ -736,6 +836,9 @@ public class MouseEvent : MonoBehaviour
                 if (gameObject.transform.position.x == _gGameManager.GetComponent<Path>()._gInit_Grid.transform.GetChild(i).transform.position.x && gameObject.transform.position.z == _gGameManager.GetComponent<Path>()._gInit_Grid.transform.GetChild(i).transform.position.z)
                 {
                     _gGameManager.GetComponent<Path>()._gInit_Grid.transform.GetChild(i).GetComponent<MouseEvent>().Atk_Mouse_Out();
+                    gameObject.GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0.0f, 0.0f, 0.0f));
+                    gameObject.GetComponent<Character>()._mStone_Mat.SetColor("_RimColor", new Color(0.0f, 0.0f, 0.0f));
+
                 }
             }
         }

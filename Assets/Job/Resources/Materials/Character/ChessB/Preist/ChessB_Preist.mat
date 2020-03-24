@@ -50,5 +50,5 @@ Material:
     - _DissolveColorA: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveColorB: {r: 0.18396229, g: 0.36957115, b: 1, a: 1}
     - _MaskColor: {r: 1, g: 1, b: 1, a: 1}
-    - _RimColor: {r: 1, g: 1, b: 0, a: 1}
+    - _RimColor: {r: 0, g: 0, b: 0, a: 1}
     - _Specular: {r: 1, g: 1, b: 1, a: 1}
