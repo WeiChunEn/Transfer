@@ -38,6 +38,7 @@ public class Character : MonoBehaviour
 
     public GameObject _gTransfer_Effect;        //轉職特效
     public Material _mMat;          //角色材質球
+    public Material _mStone_Mat;    //石像材質
 
     public GameObject _gBattle_Pos;
     public Transform _tOri_Pos;
@@ -127,6 +128,7 @@ public class Character : MonoBehaviour
             _tHead_HP.text = _tHP.text;
             _iNow_Class_Count = 4;
             _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().sharedMaterial;
+            _mStone_Mat = _gBack_Model.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterial;
             //_gClass[_iNow_Class_Count].SetActive(true)
 
 
@@ -150,8 +152,10 @@ public class Character : MonoBehaviour
             _gPlayer_UI.GetComponent<Image>().sprite = _gClass_Card[_iNow_Class_Count];
             _aChess_Anime = _gClass[_iNow_Class_Count].GetComponent<Animator>();
             _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<Renderer>().sharedMaterial;
+            _mStone_Mat = _gBack_Model.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterial;
+
         }
-        
+
     }
     // Start is called before the first frame update
     public virtual void Start()
@@ -216,6 +220,8 @@ public class Character : MonoBehaviour
                 _tHead_Name.text = "W" + _tHead_Name.name;
                 _tName.text = "W" + _tName.name;
                 _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).GetComponent<Renderer>().sharedMaterial;
+                _mStone_Mat = _gBack_Model.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterial;
+
                 _aChess_Anime = _gClass[_iNow_Class_Count].GetComponent<Animator>();
 
                 break;
@@ -237,6 +243,8 @@ public class Character : MonoBehaviour
                 _tName.text = "M" + _tName.name;
                 _aChess_Anime = _gClass[_iNow_Class_Count].GetComponent<Animator>();
                 _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().sharedMaterial;
+                _mStone_Mat = _gBack_Model.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterial;
+
                 break;
             case "Archer":
                 Chess.Job = "Archer";
@@ -252,6 +260,8 @@ public class Character : MonoBehaviour
                 _tHead_Name.text = "A" + _tHead_Name.name;
                 _tName.text = "A" + _tName.name;
                 _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).GetComponent<Renderer>().sharedMaterial;
+                _mStone_Mat = _gBack_Model.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterial;
+
                 _aChess_Anime = _gClass[_iNow_Class_Count].GetComponent<Animator>();
                 break;
 
@@ -279,6 +289,8 @@ public class Character : MonoBehaviour
                 _tHead_Name.text = "S" + _tHead_Name.name;
                 _tName.text = "S" + _tName.name;
                 _mMat = gameObject.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<Renderer>().sharedMaterial;
+                _mStone_Mat = _gBack_Model.transform.GetChild(_iNow_Class_Count).transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterial;
+
                 _aChess_Anime = _gClass[_iNow_Class_Count].GetComponent<Animator>();
                 break;
 
@@ -493,8 +505,8 @@ public class Character : MonoBehaviour
                 Destroy(other.gameObject);
                 Instantiate(_gEffect[2], gameObject.transform.position, _gEffect[2].transform.rotation);
                 char Magi_Damage = other.name[0];
-                _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.GetChild(0).GetComponent<CameraShake>().shakeDuration = 0.5f;
-                switch(Chess.Job)
+                _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.parent.GetComponent<CameraShake>().shakeDuration = 0.5f;
+                switch (Chess.Job)
                 {
                     case "Magician":
                         if (Chess.Now_State == "Defense")
@@ -554,7 +566,7 @@ public class Character : MonoBehaviour
                 Destroy(other.gameObject);
                 Instantiate(_gEffect[3], gameObject.transform.position, _gEffect[3].transform.rotation);
                 char Arrow_Damage = other.name[0];
-                _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.GetChild(0).GetComponent<CameraShake>().shakeDuration = 0.5f;
+                _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.parent.gameObject.GetComponent<CameraShake>().shakeDuration = 0.5f;
                 switch (Chess.Job)
                 {
                     case "Magician":

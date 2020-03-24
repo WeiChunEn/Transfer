@@ -66,12 +66,12 @@ public class MouseEvent : MonoBehaviour
                 //_gGameManager.GetComponent<GameManager>()._gMove_UI.SetActive(false);
                 if (_gNow_Player.tag == "A")
                 {
-                    _gGameManager.GetComponent<GameManager>()._gPlayer1_UI.SetActive(false);
+                    _gGameManager.GetComponent<GameManager>()._gWhole_UI.SetActive(false);
                     _gGameManager.GetComponent<GameManager>().Set_Character_Btn();
                 }
                 else if (_gNow_Player.tag == "B")
                 {
-                    _gGameManager.GetComponent<GameManager>()._gPlayer2_UI.SetActive(false);
+                    _gGameManager.GetComponent<GameManager>()._gWhole_UI.SetActive(false);
                     _gGameManager.GetComponent<GameManager>().Set_Character_Btn();
                 }
 
@@ -101,6 +101,7 @@ public class MouseEvent : MonoBehaviour
                     {
                         if (gameObject.transform.position.x == _gGameManager.GetComponent<Path>()._gInit_Grid.transform.GetChild(i).transform.position.x && gameObject.transform.position.z == _gGameManager.GetComponent<Path>()._gInit_Grid.transform.GetChild(i).transform.position.z)
                         {
+
                             Atk_Mouse_Clk();
                         }
                         else if (i == _gGameManager.GetComponent<Path>()._gInit_Grid.transform.childCount - 1)
@@ -141,6 +142,7 @@ public class MouseEvent : MonoBehaviour
                     {
                         if (gameObject.transform.position.x == _gGameManager.GetComponent<Path>()._gInit_Grid.transform.GetChild(i).transform.position.x && gameObject.transform.position.z == _gGameManager.GetComponent<Path>()._gInit_Grid.transform.GetChild(i).transform.position.z)
                         {
+                            
                             Atk_Mouse_Clk();
                         }
                         else if (i == _gGameManager.GetComponent<Path>()._gInit_Grid.transform.childCount - 1)
@@ -169,8 +171,9 @@ public class MouseEvent : MonoBehaviour
                 //Destroy(gameObject);
                 GameManager._iPlayer1_Transfer_Area_Count--;
                 path._lTransfer_A.Add(transform.position);
-                _gGameManager.GetComponent<Music>()._eSet_Transfer_Area_Sound.Invoke();
 
+                Instantiate(_gGameManager.GetComponent<Music>()._eSet_Transfer_Area_Sound);
+                //_gGameManager.GetComponent<Music>()._eTransfer_Sound.Invoke();
             }
             else if (_bOn_Set_it == true && GameManager._sSet_Area_Finish_Two == "Start" && GameManager._iPlayer2_Transfer_Area_Count > 0 && this.tag == "Area" && !EventSystem.current.IsPointerOverGameObject())
             {
@@ -180,7 +183,8 @@ public class MouseEvent : MonoBehaviour
                 Trans_Obj.tag = "TransferB";
                 // Destroy(gameObject);
                 GameManager._iPlayer2_Transfer_Area_Count--;
-                _gGameManager.GetComponent<Music>()._eSet_Transfer_Area_Sound.Invoke();
+                Instantiate(_gGameManager.GetComponent<Music>()._eSet_Transfer_Area_Sound);
+                //_gGameManager.GetComponent<Music>()._eTransfer_Sound.Invoke();
                 path._lTransfer_B.Add(transform.position);
 
             }
@@ -195,6 +199,11 @@ public class MouseEvent : MonoBehaviour
                 if (_gGameManager.GetComponent<GameManager>()._gNow_Player_Function_UI != null)
                 {
                     _gGameManager.GetComponent<GameManager>()._gNow_Player_Function_UI.SetActive(false);
+                    if (_gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Character>().Chess.Now_State != "Death" && _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Character>().Chess.Now_State != "Defense" && _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Character>().Chess.Now_State != "Finish")
+                    {
+                        _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Character>().Chess.Now_State = "Idle";
+                    }
+                    // _gGameManager.GetComponent<GameManager>().m_NowPlayer = null;
                     _gGameManager.GetComponent<GameManager>().Set_Character_Btn();
                     _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Move>().Reset_Data();
                     _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Character>()._aChess_Anime.SetBool("CancelAtk", true);
@@ -228,7 +237,7 @@ public class MouseEvent : MonoBehaviour
                 }
                 Destroy(gameObject);
             }
-            if (_gGameManager.GetComponent<GameManager>()._gBattle_Camera.tag == "In")
+            if (_gGameManager.GetComponent<GameManager>()._gBattle_Camera.tag == "In"&& _gGameManager.GetComponent<GameManager>()._gBattle_Camera.activeSelf==true)
             {
                 _gGameManager.GetComponent<GameManager>()._aBattle_Scene_Anim.SetTrigger("Back");
                 Destroy(_gGameManager.GetComponent<GameManager>()._A_Model);
@@ -579,7 +588,8 @@ public class MouseEvent : MonoBehaviour
                     Partner = path._gPartner.transform.GetChild(i).gameObject;
                     if (Partner.GetComponent<Character>().Chess.Job != "Minion")
                     {
-
+                        _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Character>()._aChess_Anime.SetTrigger("Recall");
+                        _gGameManager.GetComponent<Music>()._eRecall_Sound.Invoke();
                         _gNow_Player.GetComponent<Attack>().Recall_Partner(Partner);
                         _gNow_Player.GetComponent<Character>().Chess.Have_Attacked = true;
                         _gNow_Player.GetComponent<Character>().Chess.Have_Moved = true;
@@ -606,6 +616,8 @@ public class MouseEvent : MonoBehaviour
                     Partner = path._gEnmey.transform.GetChild(i).gameObject;
                     if (Partner.GetComponent<Character>().Chess.Job != "Minion")
                     {
+                        _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Character>()._aChess_Anime.SetTrigger("Recall");
+                        _gGameManager.GetComponent<Music>()._eRecall_Sound.Invoke();
                         _gNow_Player.GetComponent<Attack>().Recall_Partner(Partner);
                         _gNow_Player.GetComponent<Character>().Chess.Have_Attacked = true;
                         _gNow_Player.GetComponent<Character>().Chess.Have_Moved = true;

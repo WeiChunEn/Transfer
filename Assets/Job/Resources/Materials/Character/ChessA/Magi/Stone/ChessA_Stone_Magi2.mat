@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ChessA_Stone_Magi
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: ChessA_Stone_Magi2
+  m_Shader: {fileID: 4800000, guid: 35d5faeb9678419458c45b409e89ca42, type: 3}
   m_ShaderKeywords: _NORMALMAP _PARALLAXMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -91,6 +91,7 @@ Material:
     - _OutLightPow: 5
     - _OutLightStrength: 15
     - _Parallax: 0.08
+    - _RimPower: 0.7
     - _Size: 0.2
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -105,4 +106,5 @@ Material:
     - _DissolveColorB: {r: 1, g: 0.34117648, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MaskColor: {r: 1, g: 1, b: 1, a: 1}
+    - _RimColor: {r: 0, g: 0, b: 0, a: 1}
     - _Specular: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}

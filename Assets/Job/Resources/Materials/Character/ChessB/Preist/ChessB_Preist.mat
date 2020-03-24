@@ -43,10 +43,12 @@ Material:
     - _DissloveSize: 8
     - _DissolveCutoff: 0
     - _Gloss: 20
+    - _RimPower: 8
     - _SpecularScale: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveColorA: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveColorB: {r: 0.18396229, g: 0.36957115, b: 1, a: 1}
     - _MaskColor: {r: 1, g: 1, b: 1, a: 1}
+    - _RimColor: {r: 1, g: 1, b: 0, a: 1}
     - _Specular: {r: 1, g: 1, b: 1, a: 1}

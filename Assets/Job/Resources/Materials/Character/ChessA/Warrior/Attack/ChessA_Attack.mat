@@ -8,8 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ChessA_Attack
-  m_Shader: {fileID: 4800000, guid: f45aa40710b213c46b101e32e327c238, type: 3}
-  m_ShaderKeywords: 
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 24414bdf452f08248bc4951218c6cd92, type: 3}
+        m_Texture: {fileID: 2800000, guid: 88f2e0674d3f5834a8c436f8e7a3a561, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -44,7 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: dd758db68fffdd6489aa466ded93a6b6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTextrue:
@@ -56,7 +56,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 404f7555bd57dbb4685e34435b45d9e6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -64,7 +64,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 222c33f9044a7934f88f3a9a9800ae95, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecularMask:
@@ -82,7 +82,7 @@ Material:
     - _DissolveCutoff: 0
     - _DstBlend: 0
     - _Gloss: 8
-    - _GlossMapScale: 1
+    - _GlossMapScale: 0.366
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
@@ -94,7 +94,7 @@ Material:
     - _Size: 0.2
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SpecularScale: 5
+    - _SpecularScale: 1.6
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1

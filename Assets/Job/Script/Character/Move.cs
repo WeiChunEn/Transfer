@@ -150,11 +150,11 @@ public class Move : MonoBehaviour
             _gGameManager.GetComponent<GameManager>().In_And_Out();
             if (gameObject.tag == "A")
             {
-                _gGameManager.GetComponent<GameManager>()._gPlayer1_UI.SetActive(true);
+                _gGameManager.GetComponent<GameManager>()._gWhole_UI.SetActive(true);
             }
             else if(gameObject.tag=="B")
             {
-                _gGameManager.GetComponent<GameManager>()._gPlayer2_UI.SetActive(true);
+                _gGameManager.GetComponent<GameManager>()._gWhole_UI.SetActive(true);
             }
             //_gGameManager.GetComponent<GameManager>()._gMove_UI.SetActive(true);
             _bMove_Finish = false;

@@ -20,9 +20,13 @@
 	_SpecularScale("Specular Scale", Float) = 1.0
 		_Specular("Specular", Color) = (1, 1, 1, 1)
 		_Gloss("Gloss", Range(8.0, 256)) = 20
+
+		_RimColor("Rim Color", Color) = (0.26,0.19, 0.13, 0.0)
+		_RimPower("Rim Power", Range(0.01, 8.0)) = 3.0
    }
    SubShader
    {
+   
 	   Tags{"Queue" = "Transparent" "IgnoreProjector" = "Ture""RenderType" = "Transparent"}
    	   Pass
 	   {
@@ -56,52 +60,56 @@
 		   };
 
 		  
-		float _DissloveSize;
-		fixed4 _Color;
-		fixed4 _MaskColor;
-		float _AlphaScale;
+			float _DissloveSize;
+			fixed4 _Color;
+			fixed4 _MaskColor;
+			float _AlphaScale;
 		   
-		sampler2D _MaskTextrue;
-		float4 _MaskTextrue_ST;
+			sampler2D _MaskTextrue;
+			float4 _MaskTextrue_ST;
 
-		sampler2D _MainTextrue;
-		float4 _MainTextrue_ST;
+			sampler2D _MainTextrue;
+			float4 _MainTextrue_ST;
 
 		   
 
-		sampler2D _BumpMap;
-		float4 _BumpMap_ST;
+			sampler2D _BumpMap;
+			float4 _BumpMap_ST;
 
-		float _BumpScale;
+			float _BumpScale;
 		
 
-		float _DissolveCutoff;
-		fixed4 _DissolveColorA;
-		fixed4 _DissolveColorB;
-		float _ColorFactorA;
-		float _ColorFactroB;
+			float _DissolveCutoff;
+			fixed4 _DissolveColorA;
+			fixed4 _DissolveColorB;
+			float _ColorFactorA;
+			float _ColorFactroB;
 
-		sampler2D _SpecularMask;
-		float _SpecularScale;
-		fixed4 _Specular;
-		float _Gloss;
+			sampler2D _SpecularMask;
+			float _SpecularScale;
+			fixed4 _Specular;
+			float _Gloss;
+
+			float _RimPower;
+			float4 _RimColor;
 	
-		v2f vert(a2v v)
-		{
-			v2f o;
-			o.localPos = v.vertex;
-			o.pos = UnityObjectToClipPos(v.vertex);
-			o.worldNormal = mul(v.vertex,unity_WorldToObject).xyz;
-			o.uv.xy = v.texcoord.xy* _MainTextrue_ST.xy+_MainTextrue_ST.zw;
-			//o.uv.zw = v.texcoord.xy * _BumpMap_ST.xy + _BumpMap_ST.zw;
+			v2f vert(a2v v)
+			{
+				v2f o;
+				o.localPos = v.vertex;
+				o.pos = UnityObjectToClipPos(v.vertex);
+				o.worldNormal = mul(v.vertex,unity_WorldToObject).xyz;
+				o.uv.xy = v.texcoord.xy* _MainTextrue_ST.xy+_MainTextrue_ST.zw;
+				//o.uv.zw = v.texcoord.xy * _BumpMap_ST.xy + _BumpMap_ST.zw;
 
-			TANGENT_SPACE_ROTATION;
-			o.lightDir = mul(rotation,normalize(ObjSpaceLightDir(v.vertex))).xyz;
-			o.viewDir = mul(rotation,normalize(ObjSpaceLightDir(v.vertex))).xyz;
-			return o;
-		}
-		fixed4 frag(v2f i):SV_TARGET
-		{
+				TANGENT_SPACE_ROTATION;
+				o.lightDir = mul(rotation,normalize(ObjSpaceLightDir(v.vertex))).xyz;
+				o.viewDir = mul(rotation,normalize(ObjSpaceLightDir(v.vertex))).xyz;
+				return o;
+			}
+			fixed4 frag(v2f i):SV_TARGET
+			{
+				fixed3 worldNormal = normalize(i.worldNormal);
 				fixed3 tangentLightDir = normalize(i.lightDir);
 				fixed3 tangentViewDir = normalize(i.viewDir);
 				//fixed3 LightDir = normalize(i.lightDir);
@@ -110,6 +118,7 @@
 				tangentNormal.xy *= _BumpScale;
 				tangentNormal.z = sqrt(1.0 - saturate(dot(tangentNormal.xy, tangentNormal.xy)));
 				float4 Tex = tex2D(_MainTextrue,i.uv);
+				
 				float4 Mask = tex2D(_MaskTextrue,i.uv);
 					
 				float opaque = 1;
@@ -136,7 +145,7 @@
 					
 				//float3 Final = (Tex.rgb*Mask.a)+(Mask.rgb*_MaskColor);
 				fixed3 albedo = Tex.rgb*_Color.rgb;
-
+				//clipe(Tex.a-_RimPower);
 				fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT * albedo;
 
 				fixed3 diffuse = _LightColor0.rgb * albedo * max(0, dot(tangentNormal, tangentLightDir));
@@ -144,16 +153,27 @@
 				fixed3 halfDir = normalize(tangentLightDir + tangentViewDir);
 				fixed specularMask = tex2D(_SpecularMask,i.uv).r * _SpecularScale;
 				fixed3 specular = _LightColor0.rgb * _Specular.rgb * pow(max(0, dot(tangentNormal, halfDir)), _Gloss) * specularMask;
-				fixed3 color = ambient +diffuse+specular ;
+				float rim = 1-max(0,dot(tangentViewDir,worldNormal));
+				fixed3 rimColor = _RimColor *pow(rim,1/_RimPower);
+				fixed3 color = ambient +diffuse+specular+rimColor ;
 		   			
 					
 					
 				
 
-			return fixed4(color,Tex.a*_AlphaScale);
-		}
-		ENDCG
+				return fixed4(color,Tex.a*_AlphaScale);
+			}
+			ENDCG
 	   }
+	  
+	  
+			
+			
+			
+	   
+
+		
+	   
 	 
    }Fallback "Specular"
 }

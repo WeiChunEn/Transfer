@@ -8,8 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ChessA_Attack
-  m_Shader: {fileID: 4800000, guid: f45aa40710b213c46b101e32e327c238, type: 3}
-  m_ShaderKeywords: 
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP _SPECGLOSSMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -44,7 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 1ed986e259a8b824b84030f9d5bac002, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTextrue:
@@ -56,7 +56,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 38738d51d2f1b544fab5339d8196f141, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -64,7 +64,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: bdab14923804cfe4ea930f6aee9da820, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 2800000, guid: 899d8000ccc08f44890d8e7692a20723, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecularMask:
@@ -82,7 +86,7 @@ Material:
     - _DissolveCutoff: 0
     - _DstBlend: 0
     - _Gloss: 20
-    - _GlossMapScale: 1
+    - _GlossMapScale: 0.295
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
@@ -90,7 +94,7 @@ Material:
     - _OcclusionStrength: 1
     - _OutLightPow: 5
     - _OutLightStrength: 15
-    - _Parallax: 0.02
+    - _Parallax: 0.0421
     - _Size: 0.2
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -105,4 +109,5 @@ Material:
     - _DissolveColorB: {r: 1, g: 0.34117648, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MaskColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _Specular: {r: 1, g: 1, b: 1, a: 1}

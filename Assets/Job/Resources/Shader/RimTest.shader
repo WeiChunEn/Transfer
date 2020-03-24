@@ -2,6 +2,7 @@
  Properties {
   _MainTex ("Base (RGB)", 2D) = "white" {}
   _BumpMap ("Bumpmap", 2D) = "bump" {} 
+    _Color("Color", Color) = (0.26,0.19, 0.13, 0.0)
   _RimColor("Rim Color", Color) = (0.26,0.19, 0.13, 0.0)
   _RimPower("Rim Power", Range(0.1, 8.0)) = 3.0
  }
@@ -15,6 +16,7 @@
   sampler2D _MainTex;
   sampler2D _BumpMap; 
   float4 _RimColor;
+  float4 _Color;
   float _RimPower;
   struct Input {
    float2 uv_MainTex; 
@@ -23,7 +25,7 @@
   };
   void surf (Input IN, inout SurfaceOutput o) {
    half4 c = tex2D (_MainTex, IN.uv_MainTex);
-   o.Albedo = c.rgb;
+   o.Albedo = c.rgb*_Color;
    o.Alpha = c.a;
    //获取法线值【UnpackNormal是unity自带的标准解压法线用的】
    o.Normal = UnpackNormal (tex2D (_BumpMap, IN.uv_BumpMap)); 
