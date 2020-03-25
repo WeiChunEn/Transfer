@@ -541,8 +541,8 @@ public class GameManager : MonoBehaviour
                 _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0, 0, 0));
                 _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mMat.SetColor("_Color", new Color(0, 0, 0));
 
-                _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mStone_Mat.SetColor("_Color", new Color(0, 0, 0));
-                _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mStone_Mat.SetColor("_RimColor", new Color(0.392f, 0.392f, 0.392f));
+                _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mStone_Mat.SetColor("_Color", new Color(0.5f, 0.5f, 0.5f));
+                _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mStone_Mat.SetColor("_RimColor", new Color(0.0f, 0.0f, 0.0f));
 
 
             }
@@ -583,8 +583,8 @@ public class GameManager : MonoBehaviour
                 _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0, 0, 0));
                 _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mMat.SetColor("_Color", new Color(0, 0, 0));
 
-                _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mStone_Mat.SetColor("_Color", new Color(0, 0, 0));
-                _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mStone_Mat.SetColor("_RimColor", new Color(0.392f, 0.392f, 0.392f));
+                _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mStone_Mat.SetColor("_Color", new Color(0.5f, 0.5f, 0.5f));
+                _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mStone_Mat.SetColor("_RimColor", new Color(0.0f, 0.0f, 0.0f));
 
 
             }
