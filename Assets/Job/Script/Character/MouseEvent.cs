@@ -261,7 +261,7 @@ public class MouseEvent : MonoBehaviour
         {
             if (gameObject.tag == "Area" && GameManager._sSet_Area_Finish_One == "Start" && !EventSystem.current.IsPointerOverGameObject())
             {
-
+                
                 GetComponent<Renderer>().material.color = Color.gray;
                 _bOn_Set_it = true;
             }

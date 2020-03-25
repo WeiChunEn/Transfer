@@ -320,10 +320,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 700d81c6cd35257468fcc8ea7958d446,
+    m_HighlightedSprite: {fileID: 21300000, guid: 9bff7493faa5a0d4488a0531c3d7503e,
       type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: b7c4b0ddd245d904f9bb7af971472fe5, type: 3}
-    m_DisabledSprite: {fileID: 21300000, guid: a44c17116ca107e4a9a5199cc1b6e68e, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 62f12048100703a4e944c31bcb760cca, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: 0ec88337146f2074c8c8f2bbd8994e30, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -363,7 +363,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9ebace349c1a6c24aaef52556c58ca7c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c8ce170f84f185045b963f3982f26c58, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -941,10 +941,10 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1920044693}
           m_MethodName: Set_Card_Hight
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 50066099}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -4834,6 +4834,7 @@ GameObject:
   - component: {fileID: 266445135}
   - component: {fileID: 266445134}
   - component: {fileID: 266445133}
+  - component: {fileID: 266445136}
   m_Layer: 5
   m_Name: Main_Menu
   m_TagString: Untagged
@@ -4888,7 +4889,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 21300000, guid: 9293ce659c168924fa3a8be998583bcf, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: dba1fd35854872e48885021ad24870bd, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -4918,7 +4919,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: feb6b3b435bf9764e86cb7bec17b6a9c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f807369d658082f42bd9d8b2f4de7174, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4935,6 +4936,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 266445131}
   m_CullTransparentMesh: 0
+--- !u!114 &266445136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266445131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1920044693}
+          m_MethodName: Set_Button_Hight
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  delegates: []
 --- !u!1 &275910775
 GameObject:
   m_ObjectHideFlags: 0
@@ -7310,10 +7340,10 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1920044693}
           m_MethodName: Set_Card_Hight
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 333085746}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -7656,10 +7686,10 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1920044693}
           m_MethodName: Set_Card_Hight
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 345615743}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -8577,10 +8607,10 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1920044693}
           m_MethodName: Set_Card_Hight
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 375191180}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -10931,10 +10961,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 700d81c6cd35257468fcc8ea7958d446,
+    m_HighlightedSprite: {fileID: 21300000, guid: 9bff7493faa5a0d4488a0531c3d7503e,
       type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: b7c4b0ddd245d904f9bb7af971472fe5, type: 3}
-    m_DisabledSprite: {fileID: 21300000, guid: a44c17116ca107e4a9a5199cc1b6e68e, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 62f12048100703a4e944c31bcb760cca, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: 0ec88337146f2074c8c8f2bbd8994e30, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -10974,7 +11004,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9ebace349c1a6c24aaef52556c58ca7c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c8ce170f84f185045b963f3982f26c58, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12468,10 +12498,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 700d81c6cd35257468fcc8ea7958d446,
+    m_HighlightedSprite: {fileID: 21300000, guid: 9bff7493faa5a0d4488a0531c3d7503e,
       type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: b7c4b0ddd245d904f9bb7af971472fe5, type: 3}
-    m_DisabledSprite: {fileID: 21300000, guid: a44c17116ca107e4a9a5199cc1b6e68e, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 62f12048100703a4e944c31bcb760cca, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: 0ec88337146f2074c8c8f2bbd8994e30, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -12511,7 +12541,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9ebace349c1a6c24aaef52556c58ca7c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c8ce170f84f185045b963f3982f26c58, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12791,10 +12821,10 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1920044693}
           m_MethodName: Set_Card_Hight
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 470238365}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -12980,10 +13010,10 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1920044693}
           m_MethodName: Set_Card_Hight
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 479687685}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -14189,6 +14219,7 @@ GameObject:
   - component: {fileID: 522271930}
   - component: {fileID: 522271929}
   - component: {fileID: 522271928}
+  - component: {fileID: 522271931}
   m_Layer: 5
   m_Name: New_Game
   m_TagString: Untagged
@@ -14290,6 +14321,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 522271926}
   m_CullTransparentMesh: 0
+--- !u!114 &522271931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522271926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1920044693}
+          m_MethodName: Set_Button_Hight
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  delegates: []
 --- !u!1 &524015720
 GameObject:
   m_ObjectHideFlags: 0
@@ -15467,10 +15527,10 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1920044693}
           m_MethodName: Set_Card_Hight
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 560016114}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -18671,10 +18731,10 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1920044693}
           m_MethodName: Set_Card_Hight
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 617891910}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -20466,8 +20526,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10, y: 70}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0.0035706, y: -0.0017395}
+  m_SizeDelta: {x: 518.47, y: 291.51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &672494529
 MonoBehaviour:
@@ -20487,7 +20547,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 52b899c55a236244ba01c9a30752f005, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e33d87bc881c856498acb6194f4ecaea, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -21323,10 +21383,10 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1920044693}
           m_MethodName: Set_Card_Hight
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 692150218}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -24459,10 +24519,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 700d81c6cd35257468fcc8ea7958d446,
+    m_HighlightedSprite: {fileID: 21300000, guid: 9bff7493faa5a0d4488a0531c3d7503e,
       type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: b7c4b0ddd245d904f9bb7af971472fe5, type: 3}
-    m_DisabledSprite: {fileID: 21300000, guid: a44c17116ca107e4a9a5199cc1b6e68e, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 62f12048100703a4e944c31bcb760cca, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: 0ec88337146f2074c8c8f2bbd8994e30, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -24502,7 +24562,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9ebace349c1a6c24aaef52556c58ca7c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c8ce170f84f185045b963f3982f26c58, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -24768,10 +24828,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 700d81c6cd35257468fcc8ea7958d446,
+    m_HighlightedSprite: {fileID: 21300000, guid: 9bff7493faa5a0d4488a0531c3d7503e,
       type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: b7c4b0ddd245d904f9bb7af971472fe5, type: 3}
-    m_DisabledSprite: {fileID: 21300000, guid: a44c17116ca107e4a9a5199cc1b6e68e, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 62f12048100703a4e944c31bcb760cca, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: 0ec88337146f2074c8c8f2bbd8994e30, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -24811,7 +24871,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9ebace349c1a6c24aaef52556c58ca7c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c8ce170f84f185045b963f3982f26c58, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -26058,10 +26118,10 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1920044693}
           m_MethodName: Set_Card_Hight
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 861368562}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -26226,8 +26286,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10, y: 70}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0.0035706, y: -0.0017395}
+  m_SizeDelta: {x: 518.47, y: 291.51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &863517783
 MonoBehaviour:
@@ -26247,7 +26307,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c07d41ac0d6778440a9080fb889f6c3c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 205cd8f85bb29b04ab2e2363de757652, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -26409,10 +26469,10 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1920044693}
           m_MethodName: Set_Card_Hight
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 866327573}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -33276,20 +33336,20 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1425617799}
-          m_MethodName: SetActive
-          m_Mode: 6
+        - m_Target: {fileID: 1920044693}
+          m_MethodName: Set_Card_Hight
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 2058835824}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
-            m_BoolArgument: 1
+            m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1920044693}
-          m_MethodName: Set_Card_Hight
-          m_Mode: 1
+        - m_Target: {fileID: 1425617799}
+          m_MethodName: SetActive
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -33313,28 +33373,13 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - eventID: 2
+  - eventID: 4
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1425617801}
           m_MethodName: SetTrigger
           m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Burn
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1425617799}
-          m_MethodName: SetActive
-          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -33587,20 +33632,20 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 422495233}
-          m_MethodName: SetActive
-          m_Mode: 6
+        - m_Target: {fileID: 1920044693}
+          m_MethodName: Set_Card_Hight
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 2058835824}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
-            m_BoolArgument: 1
+            m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1920044693}
-          m_MethodName: Set_Card_Hight
-          m_Mode: 1
+        - m_Target: {fileID: 422495233}
+          m_MethodName: SetActive
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -33624,28 +33669,13 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - eventID: 2
+  - eventID: 4
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 422495235}
           m_MethodName: SetTrigger
           m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Burn
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 5
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 422495233}
-          m_MethodName: SetActive
-          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -35348,10 +35378,10 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1920044693}
           m_MethodName: Set_Card_Hight
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 1058971550}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -36613,10 +36643,10 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1920044693}
           m_MethodName: Set_Card_Hight
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 1105440461}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -39457,10 +39487,10 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1920044693}
           m_MethodName: Set_Card_Hight
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 1142871189}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -41073,10 +41103,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 700d81c6cd35257468fcc8ea7958d446,
+    m_HighlightedSprite: {fileID: 21300000, guid: 9bff7493faa5a0d4488a0531c3d7503e,
       type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: b7c4b0ddd245d904f9bb7af971472fe5, type: 3}
-    m_DisabledSprite: {fileID: 21300000, guid: a44c17116ca107e4a9a5199cc1b6e68e, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 62f12048100703a4e944c31bcb760cca, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: 0ec88337146f2074c8c8f2bbd8994e30, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -41116,7 +41146,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9ebace349c1a6c24aaef52556c58ca7c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c8ce170f84f185045b963f3982f26c58, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -41151,11 +41181,11 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1920044693}
-          m_MethodName: Set_Button_Hight
-          m_Mode: 1
+          m_MethodName: Set_Card_Hight
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 2106529748}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -41307,10 +41337,10 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1920044693}
           m_MethodName: Set_Card_Hight
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 1163288181}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -43645,10 +43675,10 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1920044693}
           m_MethodName: Set_Card_Hight
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 1237151095}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -44718,10 +44748,10 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1920044693}
           m_MethodName: Set_Card_Hight
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 1256290626}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -51969,10 +51999,10 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1920044693}
           m_MethodName: Set_Card_Hight
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 1391933611}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -56849,10 +56879,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 700d81c6cd35257468fcc8ea7958d446,
+    m_HighlightedSprite: {fileID: 21300000, guid: 9bff7493faa5a0d4488a0531c3d7503e,
       type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: b7c4b0ddd245d904f9bb7af971472fe5, type: 3}
-    m_DisabledSprite: {fileID: 21300000, guid: a44c17116ca107e4a9a5199cc1b6e68e, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 62f12048100703a4e944c31bcb760cca, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: 0ec88337146f2074c8c8f2bbd8994e30, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -56892,7 +56922,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9ebace349c1a6c24aaef52556c58ca7c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c8ce170f84f185045b963f3982f26c58, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -57830,10 +57860,10 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1920044693}
           m_MethodName: Set_Card_Hight
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 1591955501}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -60963,10 +60993,10 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1920044693}
           m_MethodName: Set_Card_Hight
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 1715926390}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -63244,10 +63274,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 700d81c6cd35257468fcc8ea7958d446,
+    m_HighlightedSprite: {fileID: 21300000, guid: 9bff7493faa5a0d4488a0531c3d7503e,
       type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: b7c4b0ddd245d904f9bb7af971472fe5, type: 3}
-    m_DisabledSprite: {fileID: 21300000, guid: a44c17116ca107e4a9a5199cc1b6e68e, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 62f12048100703a4e944c31bcb760cca, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: 0ec88337146f2074c8c8f2bbd8994e30, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -63287,7 +63317,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9ebace349c1a6c24aaef52556c58ca7c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c8ce170f84f185045b963f3982f26c58, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -65975,10 +66005,10 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1920044693}
           m_MethodName: Set_Card_Hight
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 1860448126}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -68614,6 +68644,8 @@ MonoBehaviour:
     type: 3}
   _eButton_Hight: {fileID: 5830639143532130849, guid: 177e13426d5fb4b419f2e1f98419dc36,
     type: 3}
+  _eCursor_Hight: {fileID: 5830639143532130849, guid: 29a1bc0c5d8b8c74383ade917b48375e,
+    type: 3}
   _aBattle_Bgm: {fileID: 8300000, guid: 881f51f468412a7489b3787ac0693e5f, type: 3}
   _aVictory_Bgm: {fileID: 8300000, guid: 4e611a97b168aa249b06784e71eaa92a, type: 3}
   _eTransfer_Sound:
@@ -69761,7 +69793,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1965597867
 RectTransform:
   m_ObjectHideFlags: 0
@@ -69799,7 +69831,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8ad5303fba956404d993d7a0a46f4862, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -71634,10 +71666,10 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1920044693}
           m_MethodName: Set_Card_Hight
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 2012514381}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -71789,10 +71821,10 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1920044693}
           m_MethodName: Set_Card_Hight
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 2013900473}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -73684,20 +73716,20 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 2014516411}
-          m_MethodName: SetActive
-          m_Mode: 6
+        - m_Target: {fileID: 1920044693}
+          m_MethodName: Set_Card_Hight
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 2058835824}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
-            m_BoolArgument: 1
+            m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1920044693}
-          m_MethodName: Set_Card_Hight
-          m_Mode: 1
+        - m_Target: {fileID: 2014516411}
+          m_MethodName: SetActive
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -73721,28 +73753,13 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - eventID: 2
+  - eventID: 4
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 2014516413}
           m_MethodName: SetTrigger
           m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Burn
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2014516411}
-          m_MethodName: SetActive
-          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -75577,10 +75594,10 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1920044693}
           m_MethodName: Set_Card_Hight
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 2106529748}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -75768,10 +75785,10 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1920044693}
           m_MethodName: Set_Card_Hight
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 2114049565}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -77129,10 +77146,10 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1920044693}
           m_MethodName: Set_Card_Hight
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 2138315318}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
