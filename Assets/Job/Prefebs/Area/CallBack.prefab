@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8477511238119112417}
   - component: {fileID: 8477511238110866373}
   m_Layer: 0
-  m_Name: CFX3_MagicAura_B_Runic 1 1
+  m_Name: CallBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5375,7 +5375,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.6
+      value: 0.38549197
       mode: 0
       spread: 0
       speed:

@@ -240,7 +240,7 @@ public class MouseEvent : MonoBehaviour
             }
             if (_gGameManager.GetComponent<GameManager>()._gBattle_Camera.tag == "In" && _gGameManager.GetComponent<GameManager>()._gBattle_Camera.activeSelf == true)
             {
-                _gGameManager.GetComponent<GameManager>()._aBattle_Scene_Anim.SetTrigger("Back");
+                //_gGameManager.GetComponent<GameManager>()._aBattle_Scene_Anim.SetTrigger("Back");
                 Destroy(_gGameManager.GetComponent<GameManager>()._A_Model);
                 for (int i = 0; i < _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.childCount; i++)
                 {

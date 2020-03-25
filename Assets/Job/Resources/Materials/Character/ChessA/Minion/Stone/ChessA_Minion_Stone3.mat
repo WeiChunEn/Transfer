@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ChessA_Minion_Stone3
-  m_Shader: {fileID: 4800000, guid: 35d5faeb9678419458c45b409e89ca42, type: 3}
+  m_Shader: {fileID: 4800000, guid: 1fbcb9caa77259f4cb5c8773f2981698, type: 3}
   m_ShaderKeywords: _NORMALMAP _PARALLAXMAP _SPECGLOSSMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -77,13 +77,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AlphaScale: 1
-    - _BumpScale: 4.8
+    - _BumpScale: 2
     - _ColorFactor: 0.47
     - _ColorFactorA: 0.28
     - _ColorFactroB: 0.31
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DissloveSize: 2
+    - _DissloveSize: 5
     - _DissolveCutoff: 0
     - _DissolveEdge: 0.29
     - _DissolveThreshold: 0
@@ -98,7 +98,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.08
-    - _RimPower: 0.7
+    - _RimPower: 16
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SpecularScale: 4.32

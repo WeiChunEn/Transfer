@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public Animator _aCamera_Anim;  //相機的動畫
     public Animator _aScene_Light; //場景的燈光
     public Animator _aBattle_Scene_Anim; //切換去戰鬥場景的動畫
-    
+
     public Animator _aA_Battle_Anim;  //A戰鬥角色的動畫
     public Animator _aB_Battle_Anim;  //B戰鬥角色的動畫
 
@@ -80,6 +80,7 @@ public class GameManager : MonoBehaviour
     public bool _bCheck_Team_Finish; //確認隊伍是否都行動完了
     public bool _bCamera_Move;  //相機是否在轉動
     public bool _bGameState_Check;  //確認GameState結束
+    public bool _bGameOver_Check;  //確認GameState結束
 
 
     public Image _sCamera_Sprite;
@@ -110,10 +111,10 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < _mAll_Stone_Mat.Length; i++)
         {
 
-
+            _mAll_Stone_Mat[i].SetFloat("_DissolveCutoff", 0.0f);
             _mAll_Stone_Mat[i].SetColor("_Color", new Color(1.0f, 1.0f, 1.0f));
             _mAll_Stone_Mat[i].SetColor("_RimColor", new Color(0.0f, 0.0f, 0.0f));
-            _mAll_Stone_Mat[i].SetFloat("_RimPower", 0.7f);
+            //_mAll_Stone_Mat[i].SetFloat("_RimPower", 0.7f);
         }
 
     }
@@ -141,18 +142,22 @@ public class GameManager : MonoBehaviour
             _sSet_Area_Finish_One = "Start";
             _sGame_Start = "Start";
         }
-        Check_Win();
-      
-        
-        
+        if(_bGameOver_Check == false)
+        {
+            Check_Win();
 
-        //UI移動動畫控制
-        //Move_UI_Control();
 
-        //相機動畫控制
-        Move_Camera_Control();
-        Battle_Trans_Control();
-        Attack_Anime();
+
+
+            //UI移動動畫控制
+            //Move_UI_Control();
+
+            //相機動畫控制
+            Move_Camera_Control();
+            //Battle_Trans_Control();
+            //Attack_Anime();
+        }
+       
         //GameState_Control();
         //if (m_NowPlayer!=null)
         //{
@@ -178,7 +183,7 @@ public class GameManager : MonoBehaviour
                 if (_gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State != "Death")
                 {
                     _gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State = "Idle";
-                    if(i!=3)
+                    if (i != 3)
                     {
                         for (int j = 0; j < 4; j++)
                         {
@@ -190,7 +195,7 @@ public class GameManager : MonoBehaviour
                     {
                         _gPlayer1_UI.transform.GetChild(i).transform.GetChild(4).GetComponent<Button>().interactable = true;
                     }
-                    
+
                 }
 
             }
@@ -214,7 +219,7 @@ public class GameManager : MonoBehaviour
                 }
 
             }
-           Set_Mat();
+            Set_Mat();
         }
         else if (_sPlayer_Two_Finish == "Start")
         {
@@ -276,7 +281,7 @@ public class GameManager : MonoBehaviour
         if (_gNow_Player_Function_UI != null)
         {
             _gNow_Player_Function_UI.SetActive(false);
-            if(m_NowPlayer.GetComponent<Character>().Chess.Now_State!="Death"&& m_NowPlayer.GetComponent<Character>().Chess.Now_State != "Defense"&& m_NowPlayer.GetComponent<Character>().Chess.Now_State != "Finish")
+            if (m_NowPlayer.GetComponent<Character>().Chess.Now_State != "Death" && m_NowPlayer.GetComponent<Character>().Chess.Now_State != "Defense" && m_NowPlayer.GetComponent<Character>().Chess.Now_State != "Finish")
             {
                 m_NowPlayer.GetComponent<Character>().Chess.Now_State = "Idle";
             }
@@ -285,9 +290,9 @@ public class GameManager : MonoBehaviour
             m_NowPlayer.GetComponent<Move>().Reset_Data();
             m_NowPlayer.GetComponent<Character>()._aChess_Anime.SetBool("CancelAtk", true);
             m_NowPlayer.GetComponent<Character>()._aChess_Anime.SetBool("PreAtk", false);
-           // m_NowPlayer.GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0 / 255, 0 / 255, 0 / 255));
-         //   m_NowPlayer.GetComponent<Character>()._mStone_Mat.SetColor("_RimColor", new Color(0 / 255, 0 / 255, 0 / 255));
-          //  m_NowPlayer.GetComponent<Character>()._mStone_Mat.SetFloat("_RimPower", 0.7f);
+            // m_NowPlayer.GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0 / 255, 0 / 255, 0 / 255));
+            //   m_NowPlayer.GetComponent<Character>()._mStone_Mat.SetColor("_RimColor", new Color(0 / 255, 0 / 255, 0 / 255));
+            //  m_NowPlayer.GetComponent<Character>()._mStone_Mat.SetFloat("_RimPower", 0.7f);
 
         }
 
@@ -320,7 +325,7 @@ public class GameManager : MonoBehaviour
                 _bPlayer_Btn = _gNow_Player_UI.transform.GetChild(m_NowPlayer.GetComponent<Character>()._iNow_Class_Count).GetComponent<Button>();
                 m_NowPlayer.GetComponent<Character>()._gPlayer_UI = _gNow_Player_UI;
                 m_NowPlayer.GetComponent<Character>().Chess.Now_State = "Active";
-          
+
 
 
 
@@ -359,8 +364,8 @@ public class GameManager : MonoBehaviour
                 _bPlayer_Btn = _gNow_Player_UI.transform.GetChild(m_NowPlayer.GetComponent<Character>()._iNow_Class_Count).GetComponent<Button>();
                 m_NowPlayer.GetComponent<Character>()._gPlayer_UI = _gNow_Player_UI;
                 m_NowPlayer.GetComponent<Character>().Chess.Now_State = "Active";
-                
-              
+
+
 
             }
 
@@ -536,7 +541,7 @@ public class GameManager : MonoBehaviour
                 _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0, 0, 0));
                 _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mMat.SetColor("_Color", new Color(0, 0, 0));
 
-                _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mStone_Mat.SetColor("_Color", new Color(0, 0 , 0 ));
+                _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mStone_Mat.SetColor("_Color", new Color(0, 0, 0));
                 _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mStone_Mat.SetColor("_RimColor", new Color(0.392f, 0.392f, 0.392f));
 
 
@@ -544,27 +549,27 @@ public class GameManager : MonoBehaviour
             else if (_gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State == "Defense")
             {
                 _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0.4f, 0.3f, 0));
-                _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mStone_Mat.SetColor("_RimColor", new Color(0.4f, 0.3f,  0));
+                _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mStone_Mat.SetColor("_RimColor", new Color(0.4f, 0.3f, 0));
 
             }
 
-            else if ((_gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State == "Active"|| _gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State == "Ready_Attack" || _gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State == "Ready_Move")&& _gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State !="Finish")
+            else if ((_gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State == "Active" || _gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State == "Ready_Attack" || _gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State == "Ready_Move") && _gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State != "Finish")
             {
-               
-                _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mMat.SetColor("_RimColor",  new Color(0.8f, 0.2f, 0.2f));
+
+                _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0.8f, 0.2f, 0.2f));
                 _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mStone_Mat.SetColor("_RimColor", new Color(0.8f, 0.2f, 0.2f));
                 Debug.Log(123);
             }
 
-            else if (_gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State != "Defense" || _gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State != "Finish"||_gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State != "Active" )
+            else if (_gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State != "Defense" || _gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State != "Finish" || _gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State != "Active")
             {
 
                 _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mMat.SetFloat("_AlphaScale", 1.0f);
                 _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0, 0, 0));
                 _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mMat.SetColor("_Color", new Color(1, 1, 1));
 
-                _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mStone_Mat.SetColor("_Color", new Color(1,1,1));
-                _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mStone_Mat.SetColor("_RimColor", new Color(0,0,0));
+                _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mStone_Mat.SetColor("_Color", new Color(1, 1, 1));
+                _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mStone_Mat.SetColor("_RimColor", new Color(0, 0, 0));
 
             }
         }
@@ -575,10 +580,10 @@ public class GameManager : MonoBehaviour
             {
 
                 _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mMat.SetFloat("_AlphaScale", 0.8f);
-                _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0, 0 , 0 ));
+                _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0, 0, 0));
                 _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mMat.SetColor("_Color", new Color(0, 0, 0));
 
-                _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mStone_Mat.SetColor("_Color", new Color(0 , 0, 0 ));
+                _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mStone_Mat.SetColor("_Color", new Color(0, 0, 0));
                 _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mStone_Mat.SetColor("_RimColor", new Color(0.392f, 0.392f, 0.392f));
 
 
@@ -592,7 +597,7 @@ public class GameManager : MonoBehaviour
             else if ((_gPlayer2.transform.GetChild(i).GetComponent<Character>().Chess.Now_State == "Active" || _gPlayer2.transform.GetChild(i).GetComponent<Character>().Chess.Now_State == "Ready_Attack" || _gPlayer2.transform.GetChild(i).GetComponent<Character>().Chess.Now_State == "Ready_Move") && _gPlayer2.transform.GetChild(i).GetComponent<Character>().Chess.Now_State != "Finish")
             {
 
-                _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0,0.1725f,0.7254f));
+                _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0, 0.1725f, 0.7254f));
                 _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mStone_Mat.SetColor("_RimColor", new Color(0, 0.1725f, 0.7254f));
                 Debug.Log(123);
             }
@@ -602,7 +607,7 @@ public class GameManager : MonoBehaviour
             {
 
                 _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mMat.SetFloat("_AlphaScale", 1.0f);
-                _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0,0,0));
+                _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0, 0, 0));
                 _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mMat.SetColor("_Color", new Color(1, 1, 1));
 
                 _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mStone_Mat.SetColor("_Color", new Color(1, 1, 1));
@@ -666,25 +671,46 @@ public class GameManager : MonoBehaviour
                 _iB_Team_Num--;
             }
         }
-        if(_iA_Team_Num==1&&_gPlayer1.transform.GetChild(3).GetComponent<Character>().Chess.Now_State!="Death")
+        if (_iA_Team_Num == 1 && _gPlayer1.transform.GetChild(3).GetComponent<Character>().Chess.Now_State != "Death")
         {
             _gWin_Menu.SetActive(true);
             _gBWin_Image.SetActive(true);
+            gameObject.GetComponent<AudioSource>().clip = gameObject.GetComponent<Music>()._aVictory_Bgm;
+            gameObject.GetComponent<AudioSource>().loop = false;
+            gameObject.GetComponent<AudioSource>().Play();
+
+            _bGameOver_Check = true;
+
         }
         else if (_iA_Team_Num == 0)
         {
             _gWin_Menu.SetActive(true);
             _gBWin_Image.SetActive(true);
+            gameObject.GetComponent<AudioSource>().clip = gameObject.GetComponent<Music>()._aVictory_Bgm;
+            gameObject.GetComponent<AudioSource>().loop = false;
+            gameObject.GetComponent<AudioSource>().Play();
+
+            _bGameOver_Check = true;
         }
-        if(_iB_Team_Num == 1 && _gPlayer2.transform.GetChild(3).GetComponent<Character>().Chess.Now_State != "Death")
+        if (_iB_Team_Num == 1 && _gPlayer2.transform.GetChild(3).GetComponent<Character>().Chess.Now_State != "Death")
         {
             _gWin_Menu.SetActive(true);
             _gAWin_Image.SetActive(true);
+            gameObject.GetComponent<AudioSource>().clip = gameObject.GetComponent<Music>()._aVictory_Bgm;
+            gameObject.GetComponent<AudioSource>().loop = false;
+            gameObject.GetComponent<AudioSource>().Play();
+
+            _bGameOver_Check = true;
         }
         else if (_iB_Team_Num == 0)
         {
             _gWin_Menu.SetActive(true);
             _gAWin_Image.SetActive(true);
+            gameObject.GetComponent<AudioSource>().clip = gameObject.GetComponent<Music>()._aVictory_Bgm;
+            gameObject.GetComponent<AudioSource>().loop = false;
+            gameObject.GetComponent<AudioSource>().Play();
+
+            _bGameOver_Check = true;
         }
 
     }
@@ -730,12 +756,12 @@ public class GameManager : MonoBehaviour
     public void GameState_Control()
     {
         AnimatorStateInfo GameState_info = _gStateName.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
-        if (GameState_info.normalizedTime >= 2.0f && GameState_info.IsName("GameState") && _bGameState_Check == true )
+        if (GameState_info.normalizedTime >= 2.0f && GameState_info.IsName("GameState") && _bGameState_Check == true)
         {
             //_bGameState_Check = false;
             Debug.Log(123);
         }
-       
+
     }
 
 
@@ -762,7 +788,7 @@ public class GameManager : MonoBehaviour
             _gWhole_UI.SetActive(false);
             _sCamera_Sprite.sprite = _sCamera_ASprite;
             _aCamera_Anim.SetTrigger("TeamA");
-           
+
 
             _aScene_Light.SetTrigger("A");
         }
@@ -826,7 +852,7 @@ public class GameManager : MonoBehaviour
 
             if (_bCheck_Team_Finish == true)
             {
-               // _bGameState_Check = true;
+                // _bGameState_Check = true;
 
                 _gStateName.GetComponent<Animator>().SetTrigger("Restart");
                 _bCheck_Team_Finish = false;
@@ -871,7 +897,7 @@ public class GameManager : MonoBehaviour
         {
 
             _gNormal_Camera.SetActive(true);
-           _gMove_Camera.transform.parent.GetComponent<CameraShake>().shakeDuration = 0.5f;
+            _gMove_Camera.transform.parent.GetComponent<CameraShake>().shakeDuration = 0.8f;
 
             _gBattle_Camera.tag = "Out";
             _gWhole_UI.SetActive(true);
@@ -885,23 +911,23 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void Attack_Anime()
     {
-        if (_gBattle_Camera.tag == "In"&&_A_Model!=null)
+        if (_gBattle_Camera.tag == "In" && _A_Model != null)
         {
-           
-              AnimatorStateInfo info = _aA_Battle_Anim.GetCurrentAnimatorStateInfo(0);
 
-            
-            if (_A_Model != null&& info.normalizedTime >= 1.3f && info.IsName("Attack"))
+            AnimatorStateInfo info = _aA_Battle_Anim.GetCurrentAnimatorStateInfo(0);
+
+
+            if (_A_Model != null && info.normalizedTime >= 1.3f && info.IsName("Attack"))
             {
-                _aBattle_Scene_Anim.SetTrigger("Back");
+               // _aBattle_Scene_Anim.SetTrigger("Back");
                 Destroy(_A_Model);
-                for(int i = 0; i<_gB_Battle_Pos.transform.childCount;i++)
+                for (int i = 0; i < _gB_Battle_Pos.transform.childCount; i++)
                 {
                     Destroy(_gB_Battle_Pos.transform.GetChild(i).gameObject);
                 }
-                
+
                 _gBattle_Camera.SetActive(false);
-               
+
 
             }
 
@@ -955,14 +981,14 @@ public class GameManager : MonoBehaviour
 
         _bCheck_Team_Finish = true;
 
-        
+
         for (int i = 0; i < _gPlayer1.transform.childCount; i++)
         {
             _gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Have_Attacked = false;
             _gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Have_Moved = false;
             // _gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State ="Idle";
             _gNow_Player_UI = _gPlayer1_UI.transform.GetChild(i).gameObject;
-            if (i==3)
+            if (i == 3)
             {
                 _gNow_Player_Function_UI = _gNow_Player_UI.transform.GetChild(5).gameObject;
 
@@ -1000,12 +1026,12 @@ public class GameManager : MonoBehaviour
             _bPlayer_Btn = _gNow_Player_UI.transform.GetChild(m_NowPlayer.GetComponent<Character>()._iNow_Class_Count).GetComponent<Button>();
             m_NowPlayer = _gPlayer2.transform.GetChild(i).gameObject;
             m_NowPlayer.GetComponent<Move>().Reset_Data();
-            if(m_NowPlayer.GetComponent<Character>().Chess.Job!="Preist")
+            if (m_NowPlayer.GetComponent<Character>().Chess.Job != "Preist")
             {
                 m_NowPlayer.GetComponent<Character>()._aChess_Anime.SetBool("CancelAtk", true);
                 m_NowPlayer.GetComponent<Character>()._aChess_Anime.SetBool("PreAtk", false);
             }
-            
+
             Set_Character_Btn();
 
         }

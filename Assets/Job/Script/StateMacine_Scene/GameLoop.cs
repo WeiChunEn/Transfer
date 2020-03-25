@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class GameLoop : MonoBehaviour
 {
-
+    public Texture2D _tCursor_tex;
+    public CursorMode cursorMode = CursorMode.Auto;
+    public Vector2 hotSpot = Vector2.zero;
     SceneStateManager m_SceneStateManager = new SceneStateManager();
     
 
@@ -15,8 +17,9 @@ public class GameLoop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         m_SceneStateManager.SetState(new MainState(m_SceneStateManager), "MainScene");
-        
+        Cursor.SetCursor(_tCursor_tex, hotSpot, cursorMode);
     }
 
     // Update is called once per frame

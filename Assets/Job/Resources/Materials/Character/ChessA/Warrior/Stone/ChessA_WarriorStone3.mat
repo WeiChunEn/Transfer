@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ChessA_WarriorStone3
-  m_Shader: {fileID: 4800000, guid: 35d5faeb9678419458c45b409e89ca42, type: 3}
+  m_Shader: {fileID: 4800000, guid: 1fbcb9caa77259f4cb5c8773f2981698, type: 3}
   m_ShaderKeywords: _NORMALMAP _PARALLAXMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -78,7 +78,7 @@ Material:
     - _ColorFactroB: 0.31
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DissloveSize: 200
+    - _DissloveSize: 0.05
     - _DissolveCutoff: 0
     - _DstBlend: 0
     - _Gloss: 8
@@ -91,7 +91,7 @@ Material:
     - _OutLightPow: 5
     - _OutLightStrength: 15
     - _Parallax: 0.08
-    - _RimPower: 0.7
+    - _RimPower: 8
     - _Size: 0.2
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

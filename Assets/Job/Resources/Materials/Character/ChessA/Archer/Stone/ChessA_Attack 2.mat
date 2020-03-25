@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ChessA_Attack 2
-  m_Shader: {fileID: 4800000, guid: 35d5faeb9678419458c45b409e89ca42, type: 3}
+  m_Shader: {fileID: 4800000, guid: 1fbcb9caa77259f4cb5c8773f2981698, type: 3}
   m_ShaderKeywords: _NORMALMAP _PARALLAXMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -35,6 +35,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _DissolveMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _DissolveTextur:
         m_Texture: {fileID: 2800000, guid: 5f61328e000caa144a599dd675553e2a, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -48,7 +52,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTextrue:
-        m_Texture: {fileID: 2800000, guid: 1ed986e259a8b824b84030f9d5bac002, type: 3}
+        m_Texture: {fileID: 2800000, guid: d3c941506757db94e89e02b939f2e52f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTextrue:
@@ -73,14 +77,19 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AlphaScale: 1
-    - _BumpScale: 1.5
+    - _BumpScale: 2
+    - _ColorFactor: 0.7
     - _ColorFactorA: 0.28
     - _ColorFactroB: 0.31
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DissloveSize: 200
+    - _DissloveSize: 0.05
     - _DissolveCutoff: 0
+    - _DissolveEdge: 0.8
+    - _DissolveThreshold: 0
     - _DstBlend: 0
+    - _FlyFactor: 0
+    - _FlyThreshold: 0
     - _Gloss: 20
     - _GlossMapScale: 0.54
     - _Glossiness: 0
@@ -91,7 +100,7 @@ Material:
     - _OutLightPow: 5
     - _OutLightStrength: 15
     - _Parallax: 0.08
-    - _RimPower: 0.7
+    - _RimPower: 8
     - _Size: 0.2
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -102,8 +111,10 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Diffuse: {r: 1, g: 1, b: 1, a: 1}
+    - _DissolveColor: {r: 0, g: 0, b: 0, a: 0}
     - _DissolveColorA: {r: 1, g: 0, b: 0, a: 1}
     - _DissolveColorB: {r: 1, g: 0.34117648, b: 0, a: 1}
+    - _DissolveEdgeColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MaskColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 0, g: 0, b: 0, a: 1}

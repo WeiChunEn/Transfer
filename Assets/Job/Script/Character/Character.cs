@@ -176,21 +176,27 @@ public class Character : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F1))
         {
             Chess.HP = 0;
+           
         }
         if (Chess.HP <= 0&& _gGameManager.GetComponent<GameManager>()._gBattle_Camera.tag == "Out")
         {
-
+            if(_Death_Time == 0.0f)
+            {
+                _gGameManager.GetComponent<Music>()._eDissolve.Invoke();
+            }
             _Death_Time += Time.deltaTime * 0.2f;
             _mMat.SetFloat("_DissolveCutoff", _Death_Time);
-            _gBack_Model.SetActive(false);
+            _mStone_Mat.SetFloat("_DissolveCutoff", _Death_Time);
+            //_gBack_Model.SetActive(false);
             if (_Death_Time >= 1.0)
             {
                 gameObject.SetActive(false);
                 gameObject.transform.position = new Vector3(100, 100, 100);
                 Chess.Now_State = "Death";
+               
             }
             
-            _gPlayer_UI.GetComponent<Button>().interactable = false;
+            _gPlayer_UI.transform.GetChild(_iNow_Class_Count).GetComponent<Button>().interactable = false;
 
             
         }
@@ -228,7 +234,7 @@ public class Character : MonoBehaviour
                 //Chess.Max_HP *= 2;
                 //Chess.HP *= 2;
 
-                Chess.Attack = 6;
+                Chess.Attack = 4;
                 Chess.Attack_Distance = 3;
                 Chess.Walk_Steps = 1;
                 _tHead_Name.text = "W" + _tHead_Name.name;

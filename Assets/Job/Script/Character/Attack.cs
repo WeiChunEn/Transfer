@@ -77,9 +77,9 @@ public class Attack : MonoBehaviour
     {
 
         _iJob_Num = gameObject.GetComponent<Character>()._iNow_Class_Count;
-        _gGameManager.GetComponent<GameManager>()._aBattle_Scene_Anim.SetTrigger("Go");
-        _gGameManager.GetComponent<GameManager>()._gNormal_Camera.SetActive(false);
-        _gGameManager.GetComponent<GameManager>()._gWhole_UI.SetActive(false);
+        //_gGameManager.GetComponent<GameManager>()._aBattle_Scene_Anim.SetTrigger("Go");
+        //_gGameManager.GetComponent<GameManager>()._gNormal_Camera.SetActive(false);
+        //_gGameManager.GetComponent<GameManager>()._gWhole_UI.SetActive(false);
         switch (gameObject.GetComponent<Character>().Chess.Job)
         {
             

@@ -6,7 +6,7 @@ public class Destory_Sound : MonoBehaviour
 {
     [SerializeField]
     private float _fStart_Time = 0.0f;
-    private float _fDestory_Time = 5.0f;
+    private float _fDestory_Time = 2.5f;
     // Start is called before the first frame update
     void Start()
     {
