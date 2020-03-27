@@ -7,12 +7,13 @@ public class GameLoop : MonoBehaviour
     public Texture2D _tCursor_tex;
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
-    SceneStateManager m_SceneStateManager = new SceneStateManager();
+    SceneStateManager m_SceneStateManager ;
     
 
     private void Awake()
     {
         GameObject.DontDestroyOnLoad(this.gameObject);
+        m_SceneStateManager = gameObject.GetComponent<SceneStateManager>();
     }
     // Start is called before the first frame update
     void Start()

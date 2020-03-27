@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.UI;
 
 public class Attack : MonoBehaviour
 {
@@ -366,13 +367,27 @@ public class Attack : MonoBehaviour
         _iJob_Num = gameObject.GetComponent<Character>()._iNow_Class_Count;
         if (gameObject.GetComponent<Character>().Chess.Job == "Preist")
         {
-
+         //   _gGameManager.GetComponent<GameManager>().Set_Character_Btn();
             Partner.GetComponent<Character>().Set_Job_Data("Minion");
             Partner.GetComponent<Character>().Chess.HP += gameObject.GetComponent<Character>().Chess.Attack;
+            
+
+
+
+            // _gTmp_Player_UI = _gPlayer2_UI.transform.GetChild(index).gameObject.transform.GetChild(0).gameObject;
+
+            _gGameManager.GetComponent<GameManager>()._bPlayer_Btn = Partner.GetComponent<Character>()._gClass_Card.transform.GetChild(Partner.GetComponent<Character>()._iNow_Class_Count).GetComponent<Button>();
+            _gGameManager.GetComponent<GameManager>().m_NowPlayer = Partner;
+            _gGameManager.GetComponent<GameManager>().Set_Character_Btn();
+            _gGameManager.GetComponent<GameManager>().m_NowPlayer = gameObject;
+            _gGameManager.GetComponent<GameManager>()._bPlayer_Btn = _gGameManager.GetComponent<GameManager>()._gNow_Player_UI.transform.GetChild(_gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Character>()._iNow_Class_Count).GetComponent<Button>();
+
             Instantiate(_gEffect[_iJob_Num], Partner.transform.position, _gEffect[_iJob_Num].transform.rotation);
+        }
+        
         }
 
     }
 
 
-}
+

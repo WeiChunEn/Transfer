@@ -19,7 +19,7 @@ public class Player2Turn : GameState
         {
             _gStateName = GameObject.Find("GameState");
         }
-        _gStateName.GetComponent<TextMeshProUGUI>().text = StateName;
+       
         _gGameManager = GameObject.Find("GameManager");
 
         

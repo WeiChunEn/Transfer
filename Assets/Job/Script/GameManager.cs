@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviour
         {
             Sky_Time = 0;
         }
-        _mSky_Box.SetFloat("_Rotation", Sky_Time += 0.5f * Time.deltaTime);
+       // _mSky_Box.SetFloat("_Rotation", Sky_Time += 0.5f * Time.deltaTime);
         m_GameStateManager.GameStateUpdate();
         if (_sScene_Transfer_End == "Start")
         {

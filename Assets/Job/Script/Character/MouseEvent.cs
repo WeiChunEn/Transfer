@@ -639,7 +639,7 @@ public class MouseEvent : MonoBehaviour
                         _gNow_Player.GetComponent<Character>().Chess.Have_Moved = true;
                         _gNow_Player.GetComponent<Character>().Chess.Now_State = "Have_Attacked";
                         _gNow_Player.GetComponent<Attack>().Destory_AttackGrid();
-                        _gGameManager.GetComponent<GameManager>().Set_Character_Btn();
+                       // _gGameManager.GetComponent<GameManager>().Set_Character_Btn();
                         _gGameManager.GetComponent<GameManager>().In_And_Out();
                         _gGameManager.GetComponent<GameManager>().End_Btn_Click();
                     }
@@ -667,7 +667,7 @@ public class MouseEvent : MonoBehaviour
                         _gNow_Player.GetComponent<Character>().Chess.Have_Moved = true;
                         _gNow_Player.GetComponent<Character>().Chess.Now_State = "Have_Attacked";
                         _gNow_Player.GetComponent<Attack>().Destory_AttackGrid();
-                        _gGameManager.GetComponent<GameManager>().Set_Character_Btn();
+                       // _gGameManager.GetComponent<GameManager>().Set_Character_Btn();
                         _gGameManager.GetComponent<GameManager>().In_And_Out();
                         _gGameManager.GetComponent<GameManager>().End_Btn_Click();
                     }

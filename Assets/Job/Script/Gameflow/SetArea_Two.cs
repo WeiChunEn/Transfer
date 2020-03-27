@@ -23,7 +23,7 @@ public class SetArea_Two : GameState
         }
       
         
-        _gStateName.GetComponent<TextMeshProUGUI>().text = StateName;
+        
         _gGameManager = GameObject.Find("GameManager");
         _gGameManager.GetComponent<GameManager>()._gNow_State_UI[0].SetActive(false);
         _gGameManager.GetComponent<GameManager>()._gNow_State_UI[1].SetActive(true);

@@ -7,7 +7,7 @@ public class MainState : ISceneState
 {
     private Button m_StartBtn;
     private Button m_ExitBtn;
-    
+   public GameObject _gLoading;
     public MainState(SceneStateManager StateManager):base(StateManager)
     {
         this.StateName = "MainState";
@@ -19,6 +19,7 @@ public class MainState : ISceneState
     {
         m_StartBtn = GameObject.Find("StartBtn").GetComponent<Button>();
         m_ExitBtn = GameObject.Find("ExitBtn").GetComponent<Button>();
+        _gLoading = GameObject.Find("Canvas").transform.Find("Loading").gameObject;
         m_StartBtn.onClick.AddListener(() => Start_Btn_Click());
         m_ExitBtn.onClick.AddListener(() => Exit_Btn_Click());
     }
@@ -33,7 +34,9 @@ public class MainState : ISceneState
 
     public void Start_Btn_Click()
     {
+        _gLoading.SetActive(true);
         m_StateManager.SetState(new GameSceneState(m_StateManager), "GameScene");
+        
     }
     public void Exit_Btn_Click()
     {

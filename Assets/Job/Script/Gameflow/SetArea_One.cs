@@ -45,7 +45,7 @@ public class SetArea_One :GameState
             _gTransfer_Count.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = GameManager._iPlayer1_Transfer_Area_Count.ToString();
         }
 
-        _gStateName.GetComponent<TextMeshProUGUI>().text = StateName;
+ 
         
         _gGameManager.GetComponent<GameManager>()._gNow_State_UI[0].SetActive(true);
         Debug.Log("SetAreaUpdate");
