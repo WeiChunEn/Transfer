@@ -12,8 +12,9 @@ public class Attack : MonoBehaviour
 
     public GameObject[] _gEffect = new GameObject[5]; //攻擊的特效
     public GameObject[] _gBallet = new GameObject[4];   //遠程攻擊的物品
-    
+    public GameObject _gEnmey;
 
+    public List<GameObject> _lAttacked;
     public GameObject _gGameManager;
     public int _iJob_Num;
     // Start is called before the first frame update
@@ -101,71 +102,71 @@ public class Attack : MonoBehaviour
 
                 }
                 //_gGameManager.GetComponent<GameManager>()._gBattle_Camera.transform.GetChild(0).GetComponent<CinemachineTargetGroup>().m_Targets.SetValue(_B_Model, 1);
-                switch (Enmey.GetComponent<Character>().Chess.Job)
-                {
-                    
-                    case "Magician":
-                        if (Enmey.GetComponent<Character>()._sNow_State == "Defense")
-                        {
-                            Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack / 2;
-                        }
-                        else
-                        {
-                            Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack;
-                        }
-                        Instantiate(_gEffect[_iJob_Num], Enmey.transform.position, _gEffect[_iJob_Num].transform.rotation);
-                        _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.parent.GetComponent<CameraShake>().shakeDuration = 0.5f;
-                        break;
-                    case "Minion":
-                        if (Enmey.GetComponent<Character>()._sNow_State == "Defense")
-                        {
-                            Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack / 2;
-                        }
-                        else
-                        {
-                            Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack;
-                        }
-                        Instantiate(_gEffect[_iJob_Num], Enmey.transform.position, _gEffect[_iJob_Num].transform.rotation);
-                        _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.parent.GetComponent<CameraShake>().shakeDuration = 0.5f;
-                        break;
-                    case "Warrior":
-                        if (Enmey.GetComponent<Character>()._sNow_State == "Defense")
-                        {
-                            Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack / 2;
-                        }
-                        else
-                        {
-                            Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack;
-                        }
-                        Instantiate(_gEffect[_iJob_Num], Enmey.transform.position, _gEffect[_iJob_Num].transform.rotation);
-                        _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.parent.GetComponent<CameraShake>().shakeDuration = 0.5f;
-                        break;
-                    case "Archer":
-                        if (Enmey.GetComponent<Character>()._sNow_State == "Defense")
-                        {
-                            Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack / 2;
-                        }
-                        else
-                        {
-                            Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack;
-                        }
-                        Instantiate(_gEffect[_iJob_Num], Enmey.transform.position, _gEffect[_iJob_Num].transform.rotation);
-                        _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.parent.GetComponent<CameraShake>().shakeDuration = 0.5f;
-                        break;
-                    case "Preist":
-                        if (Enmey.GetComponent<Character>()._sNow_State == "Defense")
-                        {
-                            Enmey.GetComponent<Character>().Chess.HP -= (gameObject.GetComponent<Character>().Chess.Attack+2) / 2;
-                        }
-                        else
-                        {
-                            Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack + 2;
-                        }
-                        Instantiate(_gEffect[_iJob_Num], Enmey.transform.position, _gEffect[_iJob_Num].transform.rotation);
-                        _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.parent.GetComponent<CameraShake>().shakeDuration = 0.5f;
-                        break;
-                }
-               
+                //switch (Enmey.GetComponent<Character>().Chess.Job)
+                //{
+
+                //    case "Magician":
+                //        if (Enmey.GetComponent<Character>()._sNow_State == "Defense")
+                //        {
+                //            Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack / 2;
+                //        }
+                //        else
+                //        {
+                //            Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack;
+                //        }
+                //        Instantiate(_gEffect[_iJob_Num], Enmey.transform.position, _gEffect[_iJob_Num].transform.rotation);
+                //        _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.parent.GetComponent<CameraShake>().shakeDuration = 0.5f;
+                //        break;
+                //    case "Minion":
+                //        if (Enmey.GetComponent<Character>()._sNow_State == "Defense")
+                //        {
+                //            Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack / 2;
+                //        }
+                //        else
+                //        {
+                //            Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack;
+                //        }
+                //        Instantiate(_gEffect[_iJob_Num], Enmey.transform.position, _gEffect[_iJob_Num].transform.rotation);
+                //        _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.parent.GetComponent<CameraShake>().shakeDuration = 0.5f;
+                //        break;
+                //    case "Warrior":
+                //        if (Enmey.GetComponent<Character>()._sNow_State == "Defense")
+                //        {
+                //            Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack / 2;
+                //        }
+                //        else
+                //        {
+                //            Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack;
+                //        }
+                //        Instantiate(_gEffect[_iJob_Num], Enmey.transform.position, _gEffect[_iJob_Num].transform.rotation);
+                //        _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.parent.GetComponent<CameraShake>().shakeDuration = 0.5f;
+                //        break;
+                //    case "Archer":
+                //        if (Enmey.GetComponent<Character>()._sNow_State == "Defense")
+                //        {
+                //            Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack / 2;
+                //        }
+                //        else
+                //        {
+                //            Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack;
+                //        }
+                //        Instantiate(_gEffect[_iJob_Num], Enmey.transform.position, _gEffect[_iJob_Num].transform.rotation);
+                //        _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.parent.GetComponent<CameraShake>().shakeDuration = 0.5f;
+                //        break;
+                //    case "Preist":
+                //        if (Enmey.GetComponent<Character>()._sNow_State == "Defense")
+                //        {
+                //            Enmey.GetComponent<Character>().Chess.HP -= (gameObject.GetComponent<Character>().Chess.Attack + 2) / 2;
+                //        }
+                //        else
+                //        {
+                //            Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack + 2;
+                //        }
+                //        Instantiate(_gEffect[_iJob_Num], Enmey.transform.position, _gEffect[_iJob_Num].transform.rotation);
+                //        _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.parent.GetComponent<CameraShake>().shakeDuration = 0.5f;
+                //        break;
+                //}
+
 
                 break;
             case "Magician":
@@ -194,126 +195,127 @@ public class Attack : MonoBehaviour
                 break;
             case "Warrior":
                
-                if (Enmey.tag == "A")
-                {
-                    switch(path._lCan_Attack_Enmey.Count)
-                    {
-                        case 1:
-                            _gGameManager.GetComponent<GameManager>()._B_Model = Instantiate(_gGameManager.GetComponent<GameManager>()._gA_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], new Vector3(_gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.x - 1, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.y, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.z-1), _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform);
-                            break;
-                        case 2:
-                            _gGameManager.GetComponent<GameManager>()._B_Model = Instantiate(_gGameManager.GetComponent<GameManager>()._gA_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], new Vector3(_gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.x-1, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.y, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.z), _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform);
-                        break;
-                        case 3:
-                            _gGameManager.GetComponent<GameManager>()._B_Model = Instantiate(_gGameManager.GetComponent<GameManager>()._gA_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], new Vector3(_gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.x + 1, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.y, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.z), _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform);
-                            break;
-                        case 4:
-                            _gGameManager.GetComponent<GameManager>()._B_Model = Instantiate(_gGameManager.GetComponent<GameManager>()._gA_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], new Vector3(_gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.x + 1, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.y, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.z-1), _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform);
-                            break;
+                //if (Enmey.tag == "A")
+                //{
+                //    switch(path._lCan_Attack_Enmey.Count)
+                //    {
+                //        case 1:
+                //            _gGameManager.GetComponent<GameManager>()._B_Model = Instantiate(_gGameManager.GetComponent<GameManager>()._gA_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], new Vector3(_gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.x - 1, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.y, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.z-1), _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform);
+                //            break;
+                //        case 2:
+                //            _gGameManager.GetComponent<GameManager>()._B_Model = Instantiate(_gGameManager.GetComponent<GameManager>()._gA_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], new Vector3(_gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.x-1, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.y, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.z), _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform);
+                //        break;
+                //        case 3:
+                //            _gGameManager.GetComponent<GameManager>()._B_Model = Instantiate(_gGameManager.GetComponent<GameManager>()._gA_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], new Vector3(_gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.x + 1, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.y, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.z), _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform);
+                //            break;
+                //        case 4:
+                //            _gGameManager.GetComponent<GameManager>()._B_Model = Instantiate(_gGameManager.GetComponent<GameManager>()._gA_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], new Vector3(_gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.x + 1, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.y, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.z-1), _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform);
+                //            break;
 
 
-                    }
-                    _gGameManager.GetComponent<GameManager>()._aB_Battle_Anim = _gGameManager.GetComponent<GameManager>()._B_Model.GetComponent<Animator>();
-                    _gGameManager.GetComponent<GameManager>()._B_Model.SetActive(true);
+                //    }
+                //    _gGameManager.GetComponent<GameManager>()._aB_Battle_Anim = _gGameManager.GetComponent<GameManager>()._B_Model.GetComponent<Animator>();
+                //    _gGameManager.GetComponent<GameManager>()._B_Model.SetActive(true);
 
-                }
-                else if (Enmey.tag == "B")
-                {
-                    switch (path._lCan_Attack_Enmey.Count)
-                    {
-                        case 4:
-                            _gGameManager.GetComponent<GameManager>()._B_Model = Instantiate(_gGameManager.GetComponent<GameManager>()._gB_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], new Vector3(_gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.x - 1, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.y, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.z-1), _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform);
-                            break;
-                        case 3:
-                            _gGameManager.GetComponent<GameManager>()._B_Model = Instantiate(_gGameManager.GetComponent<GameManager>()._gB_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], new Vector3(_gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.x - 1, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.y, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.z), _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform);
-                            break;
-                        case 2:
-                            _gGameManager.GetComponent<GameManager>()._B_Model = Instantiate(_gGameManager.GetComponent<GameManager>()._gB_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], new Vector3(_gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.x + 1, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.y, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.z), _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform);
-                            break;
-                        case 1:
-                            _gGameManager.GetComponent<GameManager>()._B_Model = Instantiate(_gGameManager.GetComponent<GameManager>()._gB_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], new Vector3(_gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.x + 1, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.y, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.z - 1), _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform);
-                            break;
-
-
-                    }
-
-                    _gGameManager.GetComponent<GameManager>()._B_Model.SetActive(true);
-                    _gGameManager.GetComponent<GameManager>()._aB_Battle_Anim = _gGameManager.GetComponent<GameManager>()._B_Model.GetComponent<Animator>();
+                //}
+                //else if (Enmey.tag == "B")
+                //{
+                //    switch (path._lCan_Attack_Enmey.Count)
+                //    {
+                //        case 4:
+                //            _gGameManager.GetComponent<GameManager>()._B_Model = Instantiate(_gGameManager.GetComponent<GameManager>()._gB_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], new Vector3(_gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.x - 1, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.y, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.z-1), _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform);
+                //            break;
+                //        case 3:
+                //            _gGameManager.GetComponent<GameManager>()._B_Model = Instantiate(_gGameManager.GetComponent<GameManager>()._gB_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], new Vector3(_gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.x - 1, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.y, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.z), _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform);
+                //            break;
+                //        case 2:
+                //            _gGameManager.GetComponent<GameManager>()._B_Model = Instantiate(_gGameManager.GetComponent<GameManager>()._gB_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], new Vector3(_gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.x + 1, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.y, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.z), _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform);
+                //            break;
+                //        case 1:
+                //            _gGameManager.GetComponent<GameManager>()._B_Model = Instantiate(_gGameManager.GetComponent<GameManager>()._gB_Team_Model[Enmey.GetComponent<Character>()._iNow_Class_Count], new Vector3(_gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.x + 1, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.y, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.position.z - 1), _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform.rotation, _gGameManager.GetComponent<GameManager>()._gB_Battle_Pos.transform);
+                //            break;
 
 
-                }
-                path._lCan_Attack_Enmey.Remove(Enmey);
-                switch (Enmey.GetComponent<Character>().Chess.Job)
-                {
-                    case "Magician":
-                        if (Enmey.GetComponent<Character>()._sNow_State == "Defense")
-                        {
-                            Enmey.GetComponent<Character>().Chess.HP -= (gameObject.GetComponent<Character>().Chess.Attack-2) / 2;
-                        }
-                        else
-                        {
-                            Enmey.GetComponent<Character>().Chess.HP -= (gameObject.GetComponent<Character>().Chess.Attack - 2);
-                        }
-                        Instantiate(_gEffect[_iJob_Num], Enmey.transform.position, _gEffect[_iJob_Num].transform.rotation);
-                        _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.parent.GetComponent<CameraShake>().shakeDuration = 0.5f;
-                        break;
-                    case "Minion":
-                        if (Enmey.GetComponent<Character>()._sNow_State == "Defense")
-                        {
-                            Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack / 2;
-                        }
-                        else
-                        {
-                            Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack;
-                        }
-                        Instantiate(_gEffect[_iJob_Num], Enmey.transform.position, _gEffect[_iJob_Num].transform.rotation);
-                        _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.parent.GetComponent<CameraShake>().shakeDuration = 0.5f;
-                        break;
-                    case "Warrior":
-                        if (Enmey.GetComponent<Character>()._sNow_State == "Defense")
-                        {
-                            Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack / 2;
-                        }
-                        else
-                        {
-                            Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack;
-                        }
-                        Instantiate(_gEffect[_iJob_Num], Enmey.transform.position, _gEffect[_iJob_Num].transform.rotation);
-                        _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.parent.GetComponent<CameraShake>().shakeDuration = 0.5f;
-                        break;
-                    case "Archer":
-                        if (Enmey.GetComponent<Character>()._sNow_State == "Defense")
-                        {
-                            Enmey.GetComponent<Character>().Chess.HP -= (gameObject.GetComponent<Character>().Chess.Attack + 2) / 2;
-                        }
-                        else
-                        {
-                            Enmey.GetComponent<Character>().Chess.HP -= (gameObject.GetComponent<Character>().Chess.Attack + 2);
-                        }
-                        Instantiate(_gEffect[_iJob_Num], Enmey.transform.position, _gEffect[_iJob_Num].transform.rotation);
-                        _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.parent.GetComponent<CameraShake>().shakeDuration = 0.5f;
-                        break;
-                    case "Preist":
-                        if (Enmey.GetComponent<Character>()._sNow_State == "Defense")
-                        {
-                            Enmey.GetComponent<Character>().Chess.HP -= (gameObject.GetComponent<Character>().Chess.Attack + 2) / 2;
-                        }
-                        else
-                        {
-                            Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack + 2;
-                        }
-                        Instantiate(_gEffect[_iJob_Num], Enmey.transform.position, _gEffect[_iJob_Num].transform.rotation);
-                        _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.parent.GetComponent<CameraShake>().shakeDuration = 0.5f;
-                        break;
-                }
-            
+                //    }
+
+                //    _gGameManager.GetComponent<GameManager>()._B_Model.SetActive(true);
+                //    _gGameManager.GetComponent<GameManager>()._aB_Battle_Anim = _gGameManager.GetComponent<GameManager>()._B_Model.GetComponent<Animator>();
+
+
+                //}
+               // path._lCan_Attack_Enmey.Remove(Enmey);
+              
+                //switch (Enmey.GetComponent<Character>().Chess.Job)
+                //{
+                //    case "Magician":
+                //        if (Enmey.GetComponent<Character>()._sNow_State == "Defense")
+                //        {
+                //            Enmey.GetComponent<Character>().Chess.HP -= (gameObject.GetComponent<Character>().Chess.Attack-2) / 2;
+                //        }
+                //        else
+                //        {
+                //            Enmey.GetComponent<Character>().Chess.HP -= (gameObject.GetComponent<Character>().Chess.Attack - 2);
+                //        }
+                //        Instantiate(_gEffect[_iJob_Num], Enmey.transform.position, _gEffect[_iJob_Num].transform.rotation);
+                //        _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.parent.GetComponent<CameraShake>().shakeDuration = 0.5f;
+                //        break;
+                //    case "Minion":
+                //        if (Enmey.GetComponent<Character>()._sNow_State == "Defense")
+                //        {
+                //            Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack / 2;
+                //        }
+                //        else
+                //        {
+                //            Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack;
+                //        }
+                //        Instantiate(_gEffect[_iJob_Num], Enmey.transform.position, _gEffect[_iJob_Num].transform.rotation);
+                //        _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.parent.GetComponent<CameraShake>().shakeDuration = 0.5f;
+                //        break;
+                //    case "Warrior":
+                //        if (Enmey.GetComponent<Character>()._sNow_State == "Defense")
+                //        {
+                //            Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack / 2;
+                //        }
+                //        else
+                //        {
+                //            Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack;
+                //        }
+                //        Instantiate(_gEffect[_iJob_Num], Enmey.transform.position, _gEffect[_iJob_Num].transform.rotation);
+                //        _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.parent.GetComponent<CameraShake>().shakeDuration = 0.5f;
+                //        break;
+                //    case "Archer":
+                //        if (Enmey.GetComponent<Character>()._sNow_State == "Defense")
+                //        {
+                //            Enmey.GetComponent<Character>().Chess.HP -= (gameObject.GetComponent<Character>().Chess.Attack + 2) / 2;
+                //        }
+                //        else
+                //        {
+                //            Enmey.GetComponent<Character>().Chess.HP -= (gameObject.GetComponent<Character>().Chess.Attack + 2);
+                //        }
+                //        Instantiate(_gEffect[_iJob_Num], Enmey.transform.position, _gEffect[_iJob_Num].transform.rotation);
+                //        _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.parent.GetComponent<CameraShake>().shakeDuration = 0.5f;
+                //        break;
+                //    case "Preist":
+                //        if (Enmey.GetComponent<Character>()._sNow_State == "Defense")
+                //        {
+                //            Enmey.GetComponent<Character>().Chess.HP -= (gameObject.GetComponent<Character>().Chess.Attack + 2) / 2;
+                //        }
+                //        else
+                //        {
+                //            Enmey.GetComponent<Character>().Chess.HP -= gameObject.GetComponent<Character>().Chess.Attack + 2;
+                //        }
+                //        Instantiate(_gEffect[_iJob_Num], Enmey.transform.position, _gEffect[_iJob_Num].transform.rotation);
+                //        _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.parent.GetComponent<CameraShake>().shakeDuration = 0.5f;
+                //        break;
+                //}
+
 
                 if (path._lCan_Attack_Enmey.Count == 0)
                 {
                     Destory_AttackGrid();
                     gameObject.GetComponent<Character>().Chess.Have_Attacked = true;
                     gameObject.GetComponent<Character>().Chess.Have_Moved = true;
-                    gameObject.GetComponent<Character>().Chess.Now_State = "Have_Attacked";
+                    
                     path.gameObject.GetComponent<GameManager>().Set_Character_Btn();
                     path.gameObject.GetComponent<GameManager>().In_And_Out();
                     path.gameObject.GetComponent<GameManager>().End_Btn_Click();
@@ -352,7 +354,7 @@ public class Attack : MonoBehaviour
 
     }
 
-
+    
 
     public void Battle_Scene_Atk()
     {

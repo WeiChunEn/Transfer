@@ -1,5 +1,66 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5563289446699952167
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9058356061880512955}
+  - component: {fileID: 8854466726166997122}
+  - component: {fileID: 7722572248494812802}
+  m_Layer: 0
+  m_Name: 4
+  m_TagString: Minion
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9058356061880512955
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5563289446699952167}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.00046, y: -0.00078, z: -0.0015}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5566675721594508793}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &8854466726166997122
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5563289446699952167}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &7722572248494812802
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5563289446699952167}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0017749614, y: 0.0009999977, z: 0.0014174755}
+  m_Center: {x: 0.012387465, y: -0.0049999934, z: 0.009208714}
 --- !u!1 &5566675721594144769
 GameObject:
   m_ObjectHideFlags: 0
@@ -1434,7 +1495,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5566675721594508391}
-  - {fileID: 5566675721594508409}
   m_Father: {fileID: 5566675721594508711}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1726,6 +1786,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5566675721594508409}
   - component: {fileID: 5566675721599419715}
+  - component: {fileID: 890070875405625844}
   m_Layer: 0
   m_Name: pCube1
   m_TagString: Untagged
@@ -1740,12 +1801,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5566675721594144857}
-  m_LocalRotation: {x: 0.8251479, y: -0.37471342, z: 0.10889668, w: 0.4084879}
-  m_LocalPosition: {x: 0.018184282, y: 0.0018095941, z: 0.008779787}
+  m_LocalRotation: {x: -0.8439363, y: 0.06252095, z: -0.30431354, w: 0.4373282}
+  m_LocalPosition: {x: 0.013842917, y: -0.0062689604, z: 0.00822307}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 5566675721594508389}
-  m_RootOrder: 1
+  m_Father: {fileID: 5566675721594508793}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &5566675721599419715
 SkinnedMeshRenderer:
@@ -1805,6 +1866,20 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.00053463876, y: 0.002393407, z: -0.007929813}
     m_Extent: {x: 0.017079342, y: 0.008730969, z: 0.013608286}
   m_DirtyAABB: 0
+--- !u!64 &890070875405625844
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5566675721594144857}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: 5e27a5d4d5fd54148bd2d02ed6d2f1e0, type: 3}
 --- !u!1 &5566675721594144859
 GameObject:
   m_ObjectHideFlags: 0
@@ -2114,7 +2189,7 @@ GameObject:
   - component: {fileID: 5566675721594508711}
   - component: {fileID: 5566675721603545991}
   m_Layer: 0
-  m_Name: solder.breath
+  m_Name: Solider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2718,7 +2793,7 @@ GameObject:
   - component: {fileID: 5566675721594508773}
   m_Layer: 0
   m_Name: QuickRigCharacter_Hips
-  m_TagString: Untagged
+  m_TagString: Minion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3042,7 +3117,9 @@ Transform:
   m_LocalRotation: {x: 0, y: -0.00000084680624, z: -0, w: 1}
   m_LocalPosition: {x: 0.0043270173, y: 2.1816997e-10, z: 0.0000000018085506}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 5566675721594508409}
+  - {fileID: 9058356061880512955}
   m_Father: {fileID: 5566675721594508795}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

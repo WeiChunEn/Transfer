@@ -54,14 +54,16 @@ public class GameScene : MonoBehaviour
     public void Music_On()
     {
         _gMusic_On_Btn.SetActive(false);
-        gameObject.GetComponent<AudioListener>().enabled = true;
+        AudioListener.volume = 1;
+        //gameObject.GetComponent<AudioListener>().volum = true;
         _gMusic_Off_Btn.SetActive(true);
 
     }
     public void Music_Off()
     {
         _gMusic_Off_Btn.SetActive(false);
-        gameObject.GetComponent<AudioListener>().enabled = false;
+        AudioListener.volume = 0;
+       // gameObject.GetComponent<AudioListener>().enabled = false;
         _gMusic_On_Btn.SetActive(true);
 
 

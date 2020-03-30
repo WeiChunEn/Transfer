@@ -558,7 +558,7 @@ public class GameManager : MonoBehaviour
 
                 _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0.8f, 0.2f, 0.2f));
                 _gPlayer1.transform.GetChild(i).GetComponent<Character>()._mStone_Mat.SetColor("_RimColor", new Color(0.8f, 0.2f, 0.2f));
-                Debug.Log(123);
+                
             }
 
             else if (_gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State != "Defense" || _gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State != "Finish" || _gPlayer1.transform.GetChild(i).GetComponent<Character>().Chess.Now_State != "Active")
@@ -599,7 +599,7 @@ public class GameManager : MonoBehaviour
 
                 _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mMat.SetColor("_RimColor", new Color(0, 0.1725f, 0.7254f));
                 _gPlayer2.transform.GetChild(i).GetComponent<Character>()._mStone_Mat.SetColor("_RimColor", new Color(0, 0.1725f, 0.7254f));
-                Debug.Log(123);
+                
             }
 
 

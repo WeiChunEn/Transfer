@@ -548,7 +548,19 @@ public class MouseEvent : MonoBehaviour
                     if (_gNow_Player.GetComponent<Character>().Chess.Job == "Warrior")
                     {
                         Enmey = path._gEnmey.transform.GetChild(i).gameObject;
-                        _gNow_Player.GetComponent<Attack>().Attack_Enmey(Enmey);
+                        _gNow_Player.GetComponent<Attack>()._gEnmey = Enmey;
+                        _gNow_Player.GetComponent<Character>().Chess.Now_State = "Have_Attacked";
+                        _gNow_Player.GetComponent<Character>()._aChess_Anime.SetBool("PreAtk", false);
+                        _gNow_Player.GetComponent<Character>()._aChess_Anime.SetBool("Atk", true);
+                        _gNow_Player.GetComponent<Character>().Chess.Have_Attacked = true;
+                        _gNow_Player.GetComponent<Character>().Chess.Have_Moved = true;
+
+                        _gNow_Player.GetComponent<Attack>().Destory_AttackGrid();
+                        _gGameManager.GetComponent<GameManager>().Set_Character_Btn();
+                        _gGameManager.GetComponent<GameManager>().In_And_Out();
+
+
+                        // _gNow_Player.GetComponent<Attack>().Attack_Enmey(Enmey);
 
 
 
@@ -556,14 +568,55 @@ public class MouseEvent : MonoBehaviour
                     else
                     {
                         Enmey = path._gEnmey.transform.GetChild(i).gameObject;
-                        _gNow_Player.GetComponent<Attack>().Attack_Enmey(Enmey);
+                        _gNow_Player.GetComponent<Attack>()._gEnmey = Enmey;
+                        if(_gNow_Player.transform.position.x == Enmey.transform.position.x)
+                        {
+                            if((_gNow_Player.transform.position.z - Enmey.transform.position.z) < 0)
+                            {
+                               
+                                    _gNow_Player.transform.eulerAngles = new Vector3(0, 180, 0);
+                               
+                               
+                                  
+                                
+                                
+                            }
+                            else if ((_gNow_Player.transform.position.z - Enmey.transform.position.z) > 0)
+                            {
+                               
+                                    _gNow_Player.transform.eulerAngles = new Vector3(0, 0, 0);
+                                
+                                  
+                               
+                            }
+                        }
+                        else if(_gNow_Player.transform.position.z == Enmey.transform.position.z)
+                        {
+                            if ((_gNow_Player.transform.position.x - Enmey.transform.position.x )< 0)
+                            {
+                               
+                                    _gNow_Player.transform.eulerAngles = new Vector3(0, -90, 0);
+                               
+                               
+                            }
+                            else if ((_gNow_Player.transform.position.x - Enmey.transform.position.x) > 0)
+                            {
+                                
+                                    _gNow_Player.transform.eulerAngles = new Vector3(0, 90, 0);
+                                
+                            }
+                        }
+                        _gNow_Player.GetComponent<Character>().Chess.Now_State = "Have_Attacked";
+                        _gNow_Player.GetComponent<Character>()._aChess_Anime.SetBool("PreAtk", false);
+                        _gNow_Player.GetComponent<Character>()._aChess_Anime.SetBool("Atk", true);
+                        // _gNow_Player.GetComponent<Attack>().Attack_Enmey(Enmey);
                         _gNow_Player.GetComponent<Character>().Chess.Have_Attacked = true;
                         _gNow_Player.GetComponent<Character>().Chess.Have_Moved = true;
-                        _gNow_Player.GetComponent<Character>().Chess.Now_State = "Have_Attacked";
+                       
                         _gNow_Player.GetComponent<Attack>().Destory_AttackGrid();
                         _gGameManager.GetComponent<GameManager>().Set_Character_Btn();
                         _gGameManager.GetComponent<GameManager>().In_And_Out();
-                        _gGameManager.GetComponent<GameManager>().End_Btn_Click();
+                        
                     }
 
 
@@ -592,8 +645,19 @@ public class MouseEvent : MonoBehaviour
                 {
                     if (_gNow_Player.GetComponent<Character>().Chess.Job == "Warrior")
                     {
-                        Enmey = path._gPartner.transform.GetChild(i).gameObject;
-                        _gNow_Player.GetComponent<Attack>().Attack_Enmey(Enmey);
+                        Enmey = path._gEnmey.transform.GetChild(i).gameObject;
+                        // _gNow_Player.GetComponent<Attack>()._gEnmey = Enmey;
+                        _gNow_Player.GetComponent<Attack>()._gEnmey = Enmey;
+                        _gNow_Player.GetComponent<Character>().Chess.Now_State = "Have_Attacked";
+                        _gNow_Player.GetComponent<Character>()._aChess_Anime.SetBool("PreAtk", false);
+                        _gNow_Player.GetComponent<Character>()._aChess_Anime.SetBool("Atk", true);
+                        _gNow_Player.GetComponent<Character>().Chess.Have_Attacked = true;
+                        _gNow_Player.GetComponent<Character>().Chess.Have_Moved = true;
+
+                        _gNow_Player.GetComponent<Attack>().Destory_AttackGrid();
+                        _gGameManager.GetComponent<GameManager>().Set_Character_Btn();
+                        _gGameManager.GetComponent<GameManager>().In_And_Out();
+                        //_gNow_Player.GetComponent<Attack>().Attack_Enmey(Enmey);
                         //_gNow_Player.GetComponent<Character>().Chess.Have_Attacked = true;
                         //_gNow_Player.GetComponent<Character>().Chess.Have_Moved = true;
                         //_gNow_Player.GetComponent<Character>().Chess.Now_State = "Have_Attacked";
@@ -603,14 +667,51 @@ public class MouseEvent : MonoBehaviour
                     else
                     {
                         Enmey = path._gPartner.transform.GetChild(i).gameObject;
-                        _gNow_Player.GetComponent<Attack>().Attack_Enmey(Enmey);
+                        // _gNow_Player.GetComponent<Attack>().Attack_Enmey(Enmey);
+                        if (_gNow_Player.transform.position.x == Enmey.transform.position.x)
+                        {
+                            if ((_gNow_Player.transform.position.z - Enmey.transform.position.z) < 0)
+                            {
+                               
+                                    _gNow_Player.transform.eulerAngles = new Vector3(0, 0, 0);
+                                
+
+                            }
+                            else if ((_gNow_Player.transform.position.z - Enmey.transform.position.z) > 0)
+                            {
+                               
+                                
+                                    _gNow_Player.transform.eulerAngles = new Vector3(0, 180, 0);
+                                
+                            }
+                        }
+                        else if (_gNow_Player.transform.position.z == Enmey.transform.position.z)
+                        {
+                            if ((_gNow_Player.transform.position.x - Enmey.transform.position.x) < 0)
+                            {
+                               
+                                    _gNow_Player.transform.eulerAngles = new Vector3(0, 90, 0);
+                                
+                            }
+                            else if ((_gNow_Player.transform.position.x - Enmey.transform.position.x) > 0)
+                            {
+                                
+                                
+                                    _gNow_Player.transform.eulerAngles = new Vector3(0, -90, 0);
+                                
+                            }
+                        }
+                        _gNow_Player.GetComponent<Attack>()._gEnmey = Enmey;
+                        _gNow_Player.GetComponent<Character>().Chess.Now_State = "Have_Attacked";
+                        _gNow_Player.GetComponent<Character>()._aChess_Anime.SetBool("PreAtk", false);
+                        _gNow_Player.GetComponent<Character>()._aChess_Anime.SetBool("Atk", true);
                         _gNow_Player.GetComponent<Character>().Chess.Have_Attacked = true;
                         _gNow_Player.GetComponent<Character>().Chess.Have_Moved = true;
-                        _gNow_Player.GetComponent<Character>().Chess.Now_State = "Have_Attacked";
+                        
                         _gNow_Player.GetComponent<Attack>().Destory_AttackGrid();
                         _gGameManager.GetComponent<GameManager>().Set_Character_Btn();
                         _gGameManager.GetComponent<GameManager>().In_And_Out();
-                        _gGameManager.GetComponent<GameManager>().End_Btn_Click();
+                        
                     }
 
                     // _gGameManager.GetComponent<GameManager>().End_Btn_Click();
@@ -634,6 +735,43 @@ public class MouseEvent : MonoBehaviour
                     {
                         _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Character>()._aChess_Anime.SetTrigger("Recall");
                         _gGameManager.GetComponent<Music>()._eRecall_Sound.Invoke();
+                        if (_gNow_Player.transform.position.x == Partner.transform.position.x)
+                        {
+                            if ((_gNow_Player.transform.position.z - Partner.transform.position.z) < 0)
+                            {
+
+                                _gNow_Player.transform.eulerAngles = new Vector3(0, 180, 0);
+
+
+
+
+
+                            }
+                            else if ((_gNow_Player.transform.position.z - Partner.transform.position.z) > 0)
+                            {
+
+                                _gNow_Player.transform.eulerAngles = new Vector3(0, 0, 0);
+
+
+
+                            }
+                        }
+                        else if (_gNow_Player.transform.position.z == Partner.transform.position.z)
+                        {
+                            if ((_gNow_Player.transform.position.x - Partner.transform.position.x) < 0)
+                            {
+
+                                _gNow_Player.transform.eulerAngles = new Vector3(0, -90, 0);
+
+
+                            }
+                            else if ((_gNow_Player.transform.position.x - Partner.transform.position.x) > 0)
+                            {
+
+                                _gNow_Player.transform.eulerAngles = new Vector3(0, 90, 0);
+
+                            }
+                        }
                         _gNow_Player.GetComponent<Attack>().Recall_Partner(Partner);
                         _gNow_Player.GetComponent<Character>().Chess.Have_Attacked = true;
                         _gNow_Player.GetComponent<Character>().Chess.Have_Moved = true;
@@ -662,6 +800,39 @@ public class MouseEvent : MonoBehaviour
                     {
                         _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Character>()._aChess_Anime.SetTrigger("Recall");
                         _gGameManager.GetComponent<Music>()._eRecall_Sound.Invoke();
+                        if (_gNow_Player.transform.position.x == Partner.transform.position.x)
+                        {
+                            if ((_gNow_Player.transform.position.z - Partner.transform.position.z) < 0)
+                            {
+
+                                _gNow_Player.transform.eulerAngles = new Vector3(0, 0, 0);
+
+
+                            }
+                            else if ((_gNow_Player.transform.position.z - Partner.transform.position.z) > 0)
+                            {
+
+
+                                _gNow_Player.transform.eulerAngles = new Vector3(0, 180, 0);
+
+                            }
+                        }
+                        else if (_gNow_Player.transform.position.z == Partner.transform.position.z)
+                        {
+                            if ((_gNow_Player.transform.position.x - Partner.transform.position.x) < 0)
+                            {
+
+                                _gNow_Player.transform.eulerAngles = new Vector3(0, 90, 0);
+
+                            }
+                            else if ((_gNow_Player.transform.position.x - Partner.transform.position.x) > 0)
+                            {
+
+
+                                _gNow_Player.transform.eulerAngles = new Vector3(0, -90, 0);
+
+                            }
+                        }
                         _gNow_Player.GetComponent<Attack>().Recall_Partner(Partner);
                         _gNow_Player.GetComponent<Character>().Chess.Have_Attacked = true;
                         _gNow_Player.GetComponent<Character>().Chess.Have_Moved = true;

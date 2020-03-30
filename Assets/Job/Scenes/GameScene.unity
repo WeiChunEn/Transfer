@@ -12354,6 +12354,21 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3991323611584172198, guid: a573dd12062e11e4ea1dc11f2bc95617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.106853075
+      objectReference: {fileID: 0}
+    - target: {fileID: 3991323611584172198, guid: a573dd12062e11e4ea1dc11f2bc95617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: -0.22525501
+      objectReference: {fileID: 0}
+    - target: {fileID: 3991323611584172198, guid: a573dd12062e11e4ea1dc11f2bc95617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -2.2490902
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a573dd12062e11e4ea1dc11f2bc95617, type: 3}
 --- !u!4 &443388680 stripped
@@ -13815,6 +13830,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 1607359329617238640, guid: 8288d85503ee6a545ac09afdf15846aa, type: 3}
   - {fileID: 3835076106825682523, guid: 6e3007832e672654b8c5e279e4f402e9, type: 3}
+  _gEnmey: {fileID: 0}
   _gGameManager: {fileID: 1920044687}
   _iJob_Num: 0
 --- !u!114 &504546176
@@ -13896,6 +13912,8 @@ MonoBehaviour:
   - {fileID: 1280141305896002, guid: ed9948bed189dfb43891d921d6bef7e6, type: 3}
   - {fileID: 8477511238100098593, guid: c50904892f850004586107984401f877, type: 3}
   _aChess_Anime: {fileID: 0}
+  meshRenderer: {fileID: 0}
+  collider: {fileID: 0}
 --- !u!136 &504546178
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -21887,6 +21905,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 1607359329617238640, guid: 8288d85503ee6a545ac09afdf15846aa, type: 3}
   - {fileID: 3835076106825682523, guid: 6e3007832e672654b8c5e279e4f402e9, type: 3}
+  _gEnmey: {fileID: 0}
   _gGameManager: {fileID: 1920044687}
   _iJob_Num: 0
 --- !u!114 &700100498
@@ -21968,6 +21987,8 @@ MonoBehaviour:
   - {fileID: 1280141305896002, guid: ed9948bed189dfb43891d921d6bef7e6, type: 3}
   - {fileID: 8477511238100098593, guid: c50904892f850004586107984401f877, type: 3}
   _aChess_Anime: {fileID: 0}
+  meshRenderer: {fileID: 0}
+  collider: {fileID: 0}
 --- !u!136 &700100500
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -27615,6 +27636,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 1607359329617238640, guid: 8288d85503ee6a545ac09afdf15846aa, type: 3}
   - {fileID: 3835076106825682523, guid: 6e3007832e672654b8c5e279e4f402e9, type: 3}
+  _gEnmey: {fileID: 0}
   _gGameManager: {fileID: 1920044687}
   _iJob_Num: 0
 --- !u!114 &872896256
@@ -27696,6 +27718,8 @@ MonoBehaviour:
   - {fileID: 1280141305896002, guid: ed9948bed189dfb43891d921d6bef7e6, type: 3}
   - {fileID: 8477511238100098593, guid: c50904892f850004586107984401f877, type: 3}
   _aChess_Anime: {fileID: 0}
+  meshRenderer: {fileID: 0}
+  collider: {fileID: 0}
 --- !u!136 &872896258
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -32024,7 +32048,19 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d4ca5c196fbd85a40881a5f1db8ea84c, type: 2}
-    m_RemovedComponents: []
+    - target: {fileID: 890070875405625844, guid: 482f006127894c74e80b1bf0a760fda1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7722572248494812802, guid: 482f006127894c74e80b1bf0a760fda1,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 949330890714291051, guid: 482f006127894c74e80b1bf0a760fda1, type: 3}
+    - {fileID: 2536742372163716768, guid: 482f006127894c74e80b1bf0a760fda1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 482f006127894c74e80b1bf0a760fda1, type: 3}
 --- !u!4 &945186680 stripped
 Transform:
@@ -32144,6 +32180,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 1607359329617238640, guid: 8288d85503ee6a545ac09afdf15846aa, type: 3}
   - {fileID: 0}
+  _gEnmey: {fileID: 0}
   _gGameManager: {fileID: 1920044687}
   _iJob_Num: 0
 --- !u!114 &945243733
@@ -32225,6 +32262,8 @@ MonoBehaviour:
   - {fileID: 1280141305896002, guid: ed9948bed189dfb43891d921d6bef7e6, type: 3}
   - {fileID: 8477511238100098593, guid: c50904892f850004586107984401f877, type: 3}
   _aChess_Anime: {fileID: 1075333859}
+  meshRenderer: {fileID: 0}
+  collider: {fileID: 0}
 --- !u!4 &945475098 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5228919854865944536, guid: 8a78be4ff854cd34f911e5c55080f644,
@@ -34464,6 +34503,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 1607359329617238640, guid: 8288d85503ee6a545ac09afdf15846aa, type: 3}
   - {fileID: 3835076106825682523, guid: 6e3007832e672654b8c5e279e4f402e9, type: 3}
+  _gEnmey: {fileID: 0}
   _gGameManager: {fileID: 1920044687}
   _iJob_Num: 0
 --- !u!114 &1013298435
@@ -34545,6 +34585,8 @@ MonoBehaviour:
   - {fileID: 1280141305896002, guid: ed9948bed189dfb43891d921d6bef7e6, type: 3}
   - {fileID: 8477511238100098593, guid: c50904892f850004586107984401f877, type: 3}
   _aChess_Anime: {fileID: 0}
+  meshRenderer: {fileID: 0}
+  collider: {fileID: 0}
 --- !u!1 &1013970007
 GameObject:
   m_ObjectHideFlags: 0
@@ -35217,7 +35259,7 @@ PrefabInstance:
     - target: {fileID: 1100799313149878956, guid: 916a3c797e86e594a8c4476a926268d0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1100799313149878956, guid: 916a3c797e86e594a8c4476a926268d0,
         type: 3}
@@ -47965,6 +48007,21 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 06b559d9f391bf94d9b42323807bf559, type: 2}
+    - target: {fileID: 5566675721603545991, guid: 482f006127894c74e80b1bf0a760fda1,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563289446699952167, guid: 482f006127894c74e80b1bf0a760fda1,
+        type: 3}
+      propertyPath: m_Name
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7722572248494812802, guid: 482f006127894c74e80b1bf0a760fda1,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 482f006127894c74e80b1bf0a760fda1, type: 3}
 --- !u!4 &1288975515 stripped
@@ -62727,6 +62784,21 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3991323611584172198, guid: a573dd12062e11e4ea1dc11f2bc95617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.89314693
+      objectReference: {fileID: 0}
+    - target: {fileID: 3991323611584172198, guid: a573dd12062e11e4ea1dc11f2bc95617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: -0.22525501
+      objectReference: {fileID: 0}
+    - target: {fileID: 3991323611584172198, guid: a573dd12062e11e4ea1dc11f2bc95617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -3.2490902
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a573dd12062e11e4ea1dc11f2bc95617, type: 3}
 --- !u!4 &1734981557 stripped
@@ -63543,6 +63615,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 1607359329617238640, guid: 8288d85503ee6a545ac09afdf15846aa, type: 3}
   - {fileID: 0}
+  _gEnmey: {fileID: 0}
   _gGameManager: {fileID: 1920044687}
   _iJob_Num: 0
 --- !u!114 &1782789270
@@ -63624,6 +63697,8 @@ MonoBehaviour:
   - {fileID: 1280141305896002, guid: ed9948bed189dfb43891d921d6bef7e6, type: 3}
   - {fileID: 8477511238100098593, guid: c50904892f850004586107984401f877, type: 3}
   _aChess_Anime: {fileID: 1274454050}
+  meshRenderer: {fileID: 0}
+  collider: {fileID: 0}
 --- !u!1 &1786402471
 GameObject:
   m_ObjectHideFlags: 0
@@ -64040,6 +64115,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 1607359329617238640, guid: 8288d85503ee6a545ac09afdf15846aa, type: 3}
   - {fileID: 3835076106825682523, guid: 6e3007832e672654b8c5e279e4f402e9, type: 3}
+  _gEnmey: {fileID: 0}
   _gGameManager: {fileID: 1920044687}
   _iJob_Num: 0
 --- !u!114 &1791420798
@@ -64121,6 +64197,8 @@ MonoBehaviour:
   - {fileID: 1280141305896002, guid: ed9948bed189dfb43891d921d6bef7e6, type: 3}
   - {fileID: 8477511238100098593, guid: c50904892f850004586107984401f877, type: 3}
   _aChess_Anime: {fileID: 0}
+  meshRenderer: {fileID: 0}
+  collider: {fileID: 0}
 --- !u!136 &1791420800
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -71392,6 +71470,21 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3991323611584172198, guid: a573dd12062e11e4ea1dc11f2bc95617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 1.1068531
+      objectReference: {fileID: 0}
+    - target: {fileID: 3991323611584172198, guid: a573dd12062e11e4ea1dc11f2bc95617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: -0.22525501
+      objectReference: {fileID: 0}
+    - target: {fileID: 3991323611584172198, guid: a573dd12062e11e4ea1dc11f2bc95617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -3.2490902
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a573dd12062e11e4ea1dc11f2bc95617, type: 3}
 --- !u!4 &1967202695 stripped
@@ -71701,6 +71794,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 1607359329617238640, guid: 8288d85503ee6a545ac09afdf15846aa, type: 3}
   - {fileID: 3835076106825682523, guid: 6e3007832e672654b8c5e279e4f402e9, type: 3}
+  _gEnmey: {fileID: 0}
   _gGameManager: {fileID: 1920044687}
   _iJob_Num: 0
 --- !u!114 &1979234555
@@ -71782,6 +71876,8 @@ MonoBehaviour:
   - {fileID: 1280141305896002, guid: ed9948bed189dfb43891d921d6bef7e6, type: 3}
   - {fileID: 8477511238100098593, guid: c50904892f850004586107984401f877, type: 3}
   _aChess_Anime: {fileID: 0}
+  meshRenderer: {fileID: 0}
+  collider: {fileID: 0}
 --- !u!1 &1987918003
 GameObject:
   m_ObjectHideFlags: 0
@@ -74245,7 +74341,7 @@ Transform:
   - {fileID: 475314468}
   - {fileID: 653567261}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2037486087
 GameObject:
