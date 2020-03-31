@@ -278,7 +278,7 @@ public class GameManager : MonoBehaviour
         //{
         //    _gTmp_Player_UI.SetActive(false);
         //}
-        if (_gNow_Player_Function_UI != null)
+        if (_gNow_Player_Function_UI != null && _gWhole_UI.activeSelf == true)
         {
             _gNow_Player_Function_UI.SetActive(false);
             if (m_NowPlayer.GetComponent<Character>().Chess.Now_State != "Death" && m_NowPlayer.GetComponent<Character>().Chess.Now_State != "Defense" && m_NowPlayer.GetComponent<Character>().Chess.Now_State != "Finish")
@@ -297,7 +297,7 @@ public class GameManager : MonoBehaviour
         }
 
 
-        if (GameManager._sPlayer_One_Finish == "Start")
+        if (GameManager._sPlayer_One_Finish == "Start" &&_gWhole_UI.activeSelf == true)
         {
             m_NowPlayer = _gPlayer1.transform.GetChild(index).gameObject;
             gameObject.GetComponent<Path>().Reset_List();
@@ -336,7 +336,7 @@ public class GameManager : MonoBehaviour
 
 
         }
-        else if (GameManager._sPlayer_Two_Finish == "Start")
+        else if (GameManager._sPlayer_Two_Finish == "Start" && _gWhole_UI.activeSelf == true)
         {
             m_NowPlayer = _gPlayer2.transform.GetChild(index).gameObject;
             gameObject.GetComponent<Path>().Reset_List();

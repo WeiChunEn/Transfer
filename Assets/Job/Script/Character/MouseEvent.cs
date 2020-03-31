@@ -194,7 +194,7 @@ public class MouseEvent : MonoBehaviour
         //右鍵的事件
         if (Input.GetButtonDown("Fire2"))
         {
-            if (_gGameManager.GetComponent<GameManager>().m_NowPlayer != null && _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Move>()._bIs_Moving == false && _gGameManager.GetComponent<GameManager>()._bCamera_Move == false)
+            if (_gGameManager.GetComponent<GameManager>().m_NowPlayer != null && _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Move>()._bIs_Moving == false && _gGameManager.GetComponent<GameManager>()._bCamera_Move == false&& _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Character>()._sNow_State!="Have_Attacked")
             {
                 if (_gGameManager.GetComponent<GameManager>()._gNow_Player_Function_UI != null)
                 {
@@ -548,8 +548,9 @@ public class MouseEvent : MonoBehaviour
                     if (_gNow_Player.GetComponent<Character>().Chess.Job == "Warrior")
                     {
                         Enmey = path._gEnmey.transform.GetChild(i).gameObject;
-                        _gNow_Player.GetComponent<Attack>()._gEnmey = Enmey;
+                        //_gNow_Player.GetComponent<Attack>()._gEnmey = Enmey;
                         _gNow_Player.GetComponent<Character>().Chess.Now_State = "Have_Attacked";
+                        _gGameManager.GetComponent<GameManager>()._gWhole_UI.SetActive(false);
                         _gNow_Player.GetComponent<Character>()._aChess_Anime.SetBool("PreAtk", false);
                         _gNow_Player.GetComponent<Character>()._aChess_Anime.SetBool("Atk", true);
                         _gNow_Player.GetComponent<Character>().Chess.Have_Attacked = true;
@@ -561,7 +562,7 @@ public class MouseEvent : MonoBehaviour
 
 
                         // _gNow_Player.GetComponent<Attack>().Attack_Enmey(Enmey);
-
+                        _gNow_Player.transform.eulerAngles = new Vector3(0, _gNow_Player.transform.eulerAngles.y-90, 0);
 
 
                     }
@@ -569,7 +570,9 @@ public class MouseEvent : MonoBehaviour
                     {
                         Enmey = path._gEnmey.transform.GetChild(i).gameObject;
                         _gNow_Player.GetComponent<Attack>()._gEnmey = Enmey;
-                        if(_gNow_Player.transform.position.x == Enmey.transform.position.x)
+                        _gGameManager.GetComponent<GameManager>()._gWhole_UI.SetActive(false);
+
+                        if (_gNow_Player.transform.position.x == Enmey.transform.position.x)
                         {
                             if((_gNow_Player.transform.position.z - Enmey.transform.position.z) < 0)
                             {
@@ -648,6 +651,8 @@ public class MouseEvent : MonoBehaviour
                         Enmey = path._gEnmey.transform.GetChild(i).gameObject;
                         // _gNow_Player.GetComponent<Attack>()._gEnmey = Enmey;
                         _gNow_Player.GetComponent<Attack>()._gEnmey = Enmey;
+                        _gGameManager.GetComponent<GameManager>()._gWhole_UI.SetActive(false);
+
                         _gNow_Player.GetComponent<Character>().Chess.Now_State = "Have_Attacked";
                         _gNow_Player.GetComponent<Character>()._aChess_Anime.SetBool("PreAtk", false);
                         _gNow_Player.GetComponent<Character>()._aChess_Anime.SetBool("Atk", true);
@@ -662,12 +667,15 @@ public class MouseEvent : MonoBehaviour
                         //_gNow_Player.GetComponent<Character>().Chess.Have_Moved = true;
                         //_gNow_Player.GetComponent<Character>().Chess.Now_State = "Have_Attacked";
                         //_gGameManager.GetComponent<GameManager>().End_Btn_Click();
+                        _gNow_Player.transform.eulerAngles = new Vector3(0, _gNow_Player.transform.eulerAngles.y + 90, 0);
 
                     }
                     else
                     {
                         Enmey = path._gPartner.transform.GetChild(i).gameObject;
                         // _gNow_Player.GetComponent<Attack>().Attack_Enmey(Enmey);
+                        _gGameManager.GetComponent<GameManager>()._gWhole_UI.SetActive(false);
+
                         if (_gNow_Player.transform.position.x == Enmey.transform.position.x)
                         {
                             if ((_gNow_Player.transform.position.z - Enmey.transform.position.z) < 0)

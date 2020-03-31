@@ -427,11 +427,11 @@ public class Character : MonoBehaviour
                     case "Preist":
                         _g3D_UI.transform.localPosition = new Vector3(0.01f, 2.3f, -0.29f);
                         gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.1f, -0.1f);
-                        gameObject.GetComponent<CapsuleCollider>().radius = 0.18f;
+                        gameObject.GetComponent<CapsuleCollider>().radius = 0.35f;
                         gameObject.GetComponent<CapsuleCollider>().height = 2.2f;
                         break;
                     case "Magician":
-                        _g3D_UI.transform.localPosition = new Vector3(0.014f, 1.9f, -0.15f);
+                        _g3D_UI.transform.localPosition = new Vector3(0.014f, 1.9f, 0.17f);
                         gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.001f, 0.85f, -0.1f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
                         gameObject.GetComponent<CapsuleCollider>().height = 1.7f;
@@ -464,12 +464,12 @@ public class Character : MonoBehaviour
                     case "Preist":
                         _g3D_UI.transform.localPosition = new Vector3(0.168f, 2.3f, 0.6f);
                         gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.1f, 0.05f);
-                        gameObject.GetComponent<CapsuleCollider>().radius = 0.18f;
+                        gameObject.GetComponent<CapsuleCollider>().radius = 0.35f;
                         gameObject.GetComponent<CapsuleCollider>().height = 2.2f;
                         break;
                     case "Magician":
-                        _g3D_UI.transform.localPosition = new Vector3(0.014f, 1.9f, -0.15f);
-                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.001f, 0.85f, -0.1f);
+                        _g3D_UI.transform.localPosition = new Vector3(0.014f, 1.9f, 0.17f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.001f, 0.85f, 0.25f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
                         gameObject.GetComponent<CapsuleCollider>().height = 1.7f;
                         break;
@@ -509,11 +509,11 @@ public class Character : MonoBehaviour
                     case "Preist":
                         _g3D_UI.transform.localPosition = new Vector3(-0.15f, 2.39f, -0.5f);
                         gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.1f, -0.1f);
-                        gameObject.GetComponent<CapsuleCollider>().radius = 0.18f;
+                        gameObject.GetComponent<CapsuleCollider>().radius = 0.35f;
                         gameObject.GetComponent<CapsuleCollider>().height = 2.2f;
                         break;
                     case "Magician":
-                        _g3D_UI.transform.localPosition = new Vector3(0.014f, 1.9f, -0.15f);
+                        _g3D_UI.transform.localPosition = new Vector3(0.014f, 1.9f, 0.17f);
                         gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.001f, 0.85f, -0.1f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
                         gameObject.GetComponent<CapsuleCollider>().height = 1.7f;
@@ -546,12 +546,12 @@ public class Character : MonoBehaviour
                     case "Preist":
                         _g3D_UI.transform.localPosition = new Vector3(0.01f, 2.58f, 0.2f);
                         gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.01f, 1.1f, 0.05f);
-                        gameObject.GetComponent<CapsuleCollider>().radius = 0.18f;
+                        gameObject.GetComponent<CapsuleCollider>().radius = 0.35f;
                         gameObject.GetComponent<CapsuleCollider>().height = 2.2f;
                         break;
                     case "Magician":
-                        _g3D_UI.transform.localPosition = new Vector3(0.014f, 1.9f, -0.15f);
-                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.001f, 0.85f, -0.1f);
+                        _g3D_UI.transform.localPosition = new Vector3(0.014f, 1.9f, 0.17f);
+                        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0.001f, 0.85f, 0.25f);
                         gameObject.GetComponent<CapsuleCollider>().radius = 0.304f;
                         gameObject.GetComponent<CapsuleCollider>().height = 1.7f;
                         break;
@@ -581,6 +581,7 @@ public class Character : MonoBehaviour
                 switch (other.tag)
                 {
                     case "Magician":
+                        _gGameManager.GetComponent<GameManager>()._gWhole_UI.SetActive(true);
                         Destroy(other.gameObject);
                         Instantiate(_gEffect[2], gameObject.transform.position, _gEffect[2].transform.rotation);
                         char Magi_Damage = other.name[0];
@@ -643,6 +644,7 @@ public class Character : MonoBehaviour
 
                         break;
                     case "Archer":
+                        _gGameManager.GetComponent<GameManager>()._gWhole_UI.SetActive(true);
                         Destroy(other.gameObject);
                         Instantiate(_gEffect[3], gameObject.transform.position, _gEffect[3].transform.rotation);
                         char Arrow_Damage = other.name[0];
@@ -704,7 +706,7 @@ public class Character : MonoBehaviour
 
                         break;
                     case "Minion":
-                        Destroy(other.gameObject);
+                        _gGameManager.GetComponent<GameManager>()._gWhole_UI.SetActive(true);
                         Instantiate(_gEffect[0], gameObject.transform.position, _gEffect[_iNow_Class_Count].transform.rotation);
                         _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.parent.gameObject.GetComponent<CameraShake>().shakeDuration = 0.5f;
                         _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Attack>()._gEnmey = null;
@@ -762,191 +764,198 @@ public class Character : MonoBehaviour
                                 break;
                         }
                         break;
-                    case "Warrior":
-
-                        Instantiate(_gEffect[1], gameObject.transform.position, _gEffect[_iNow_Class_Count].transform.rotation);
-                        _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Attack>()._gEnmey = null;
-                        _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.parent.gameObject.GetComponent<CameraShake>().shakeDuration = 0.5f;
-                        switch (Chess.Job)
-                        {
-                            case "Magician":
-                                if (Chess.Now_State == "Defense")
-                                {
-                                    Chess.HP -= (int.Parse(other.name) - 2) / 2;
-                                }
-                                else
-                                {
-                                    Chess.HP -= (int.Parse(other.name) - 2);
-                                }
-                                break;
-                            case "Minion":
-                                if (Chess.Now_State == "Defense")
-                                {
-                                    Chess.HP -= (int.Parse(other.name)) / 2;
-                                }
-                                else
-                                {
-                                    Chess.HP -= (int.Parse(other.name));
-                                }
-                                break;
-                            case "Warrior":
-                                if (Chess.Now_State == "Defense")
-                                {
-                                    Chess.HP -= (int.Parse(other.name)) / 2;
-                                }
-                                else
-                                {
-                                    Chess.HP -= (int.Parse(other.name));
-                                }
-                                break;
-                            case "Archer":
-                                if (Chess.Now_State == "Defense")
-                                {
-                                    Chess.HP -= ((int.Parse(other.name)) + 2) / 2;
-                                }
-                                else
-                                {
-                                    Chess.HP -= (int.Parse(other.name) + 2);
-                                }
-                                break;
-                            case "Preist":
-                                if (Chess.Now_State == "Defense")
-                                {
-                                    Chess.HP -= (int.Parse(other.name) + 2) / 2;
-                                }
-                                else
-                                {
-                                    Chess.HP -= ((int.Parse(other.name))) + 2;
-                                }
-                                break;
-                        }
-                        break;
+                    //case "Warrior":
+                    //    _gGameManager.GetComponent<GameManager>()._gWhole_UI.SetActive(true);
+                    //    Instantiate(_gEffect[1], gameObject.transform.position, _gEffect[_iNow_Class_Count].transform.rotation);
+                    //    _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Attack>()._gEnmey = null;
+                    //    _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.parent.gameObject.GetComponent<CameraShake>().shakeDuration = 0.5f;
+                    //    switch (Chess.Job)
+                    //    {
+                    //        case "Magician":
+                    //            if (Chess.Now_State == "Defense")
+                    //            {
+                    //                Chess.HP -= (int.Parse(other.name) - 2) / 2;
+                    //            }
+                    //            else
+                    //            {
+                    //                Chess.HP -= (int.Parse(other.name) - 2);
+                    //            }
+                    //            break;
+                    //        case "Minion":
+                    //            if (Chess.Now_State == "Defense")
+                    //            {
+                    //                Chess.HP -= (int.Parse(other.name)) / 2;
+                    //            }
+                    //            else
+                    //            {
+                    //                Chess.HP -= (int.Parse(other.name));
+                    //            }
+                    //            break;
+                    //        case "Warrior":
+                    //            if (Chess.Now_State == "Defense")
+                    //            {
+                    //                Chess.HP -= (int.Parse(other.name)) / 2;
+                    //            }
+                    //            else
+                    //            {
+                    //                Chess.HP -= (int.Parse(other.name));
+                    //            }
+                    //            break;
+                    //        case "Archer":
+                    //            if (Chess.Now_State == "Defense")
+                    //            {
+                    //                Chess.HP -= ((int.Parse(other.name)) + 2) / 2;
+                    //            }
+                    //            else
+                    //            {
+                    //                Chess.HP -= (int.Parse(other.name) + 2);
+                    //            }
+                    //            break;
+                    //        case "Preist":
+                    //            if (Chess.Now_State == "Defense")
+                    //            {
+                    //                Chess.HP -= (int.Parse(other.name) + 2) / 2;
+                    //            }
+                    //            else
+                    //            {
+                    //                Chess.HP -= ((int.Parse(other.name))) + 2;
+                    //            }
+                    //            break;
+                    //    }
+                    //    break;
                 }
             }
             else if (_gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Character>().Chess.Job == "Warrior")
             {
-                if(other.tag == "Warrior"&&_bAttacked != true)
+                Debug.Log(1);
+                if (other.tag == "Warrior"&&_bAttacked != true)
                 { 
-                    if(_gGameManager.GetComponent<GameManager>().m_NowPlayer.tag=="A"&&gameObject.tag=="B")
+                    for(int i = 0;i< _gGameManager.GetComponent<Path>()._lCan_Attack_Enmey.Count;i++)
                     {
-                        Instantiate(_gEffect[1], gameObject.transform.position, _gEffect[_iNow_Class_Count].transform.rotation);
-                        _bAttacked = true;
-                        _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Attack>()._gEnmey = null;
-                        _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.parent.gameObject.GetComponent<CameraShake>().shakeDuration = 0.5f;
-                        switch (Chess.Job)
+                        if (gameObject == _gGameManager.GetComponent<Path>()._lCan_Attack_Enmey[i]&&_gGameManager.GetComponent<GameManager>().m_NowPlayer.tag == "A" && gameObject.tag == "B" && _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Character>().Chess.Now_State == "Have_Attacked")
                         {
-                            case "Magician":
-                                if (Chess.Now_State == "Defense")
-                                {
-                                    Chess.HP -= (int.Parse(other.name) - 2) / 2;
-                                }
-                                else
-                                {
-                                    Chess.HP -= (int.Parse(other.name) - 2);
-                                }
-                                break;
-                            case "Minion":
-                                if (Chess.Now_State == "Defense")
-                                {
-                                    Chess.HP -= (int.Parse(other.name)) / 2;
-                                }
-                                else
-                                {
-                                    Chess.HP -= (int.Parse(other.name));
-                                }
-                                break;
-                            case "Warrior":
-                                if (Chess.Now_State == "Defense")
-                                {
-                                    Chess.HP -= (int.Parse(other.name)) / 2;
-                                }
-                                else
-                                {
-                                    Chess.HP -= (int.Parse(other.name));
-                                }
-                                break;
-                            case "Archer":
-                                if (Chess.Now_State == "Defense")
-                                {
-                                    Chess.HP -= ((int.Parse(other.name)) + 2) / 2;
-                                }
-                                else
-                                {
-                                    Chess.HP -= (int.Parse(other.name) + 2);
-                                }
-                                break;
-                            case "Preist":
-                                if (Chess.Now_State == "Defense")
-                                {
-                                    Chess.HP -= (int.Parse(other.name) + 2) / 2;
-                                }
-                                else
-                                {
-                                    Chess.HP -= ((int.Parse(other.name))) + 2;
-                                }
-                                break;
+                            Debug.Log(2);
+                            Instantiate(_gEffect[1], gameObject.transform.position, _gEffect[_iNow_Class_Count].transform.rotation);
+                            _bAttacked = true;
+                            _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Attack>()._gEnmey = null;
+                            _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.parent.gameObject.GetComponent<CameraShake>().shakeDuration = 0.5f;
+                            switch (Chess.Job)
+                            {
+                                case "Magician":
+                                    if (Chess.Now_State == "Defense")
+                                    {
+                                        Chess.HP -= (int.Parse(other.name) - 2) / 2;
+                                    }
+                                    else
+                                    {
+                                        Chess.HP -= (int.Parse(other.name) - 2);
+                                    }
+                                    break;
+                                case "Minion":
+                                    if (Chess.Now_State == "Defense")
+                                    {
+                                        Chess.HP -= (int.Parse(other.name)) / 2;
+                                    }
+                                    else
+                                    {
+                                        Chess.HP -= (int.Parse(other.name));
+                                    }
+                                    break;
+                                case "Warrior":
+                                    if (Chess.Now_State == "Defense")
+                                    {
+                                        Chess.HP -= (int.Parse(other.name)) / 2;
+                                    }
+                                    else
+                                    {
+                                        Chess.HP -= (int.Parse(other.name));
+                                    }
+                                    break;
+                                case "Archer":
+                                    if (Chess.Now_State == "Defense")
+                                    {
+                                        Chess.HP -= ((int.Parse(other.name)) + 2) / 2;
+                                    }
+                                    else
+                                    {
+                                        Chess.HP -= (int.Parse(other.name) + 2);
+                                    }
+                                    break;
+                                case "Preist":
+                                    if (Chess.Now_State == "Defense")
+                                    {
+                                        Chess.HP -= (int.Parse(other.name) + 2) / 2;
+                                    }
+                                    else
+                                    {
+                                        Chess.HP -= ((int.Parse(other.name))) + 2;
+                                    }
+                                    break;
+                            }
+                        }
+                        else if (gameObject == _gGameManager.GetComponent<Path>()._lCan_Attack_Enmey[i] && _gGameManager.GetComponent<GameManager>().m_NowPlayer.tag == "B" && gameObject.tag == "A" && _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Character>().Chess.Now_State == "Have_Attacked")
+                        {
+                            Debug.Log(3);
+                            Instantiate(_gEffect[1], gameObject.transform.position, _gEffect[_iNow_Class_Count].transform.rotation);
+                            _bAttacked = true;
+                            _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Attack>()._gEnmey = null;
+                            _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.parent.gameObject.GetComponent<CameraShake>().shakeDuration = 0.5f;
+                            switch (Chess.Job)
+                            {
+                                case "Magician":
+                                    if (Chess.Now_State == "Defense")
+                                    {
+                                        Chess.HP -= (int.Parse(other.name) - 2) / 2;
+                                    }
+                                    else
+                                    {
+                                        Chess.HP -= (int.Parse(other.name) - 2);
+                                    }
+                                    break;
+                                case "Minion":
+                                    if (Chess.Now_State == "Defense")
+                                    {
+                                        Chess.HP -= (int.Parse(other.name)) / 2;
+                                    }
+                                    else
+                                    {
+                                        Chess.HP -= (int.Parse(other.name));
+                                    }
+                                    break;
+                                case "Warrior":
+                                    if (Chess.Now_State == "Defense")
+                                    {
+                                        Chess.HP -= (int.Parse(other.name)) / 2;
+                                    }
+                                    else
+                                    {
+                                        Chess.HP -= (int.Parse(other.name));
+                                    }
+                                    break;
+                                case "Archer":
+                                    if (Chess.Now_State == "Defense")
+                                    {
+                                        Chess.HP -= ((int.Parse(other.name)) + 2) / 2;
+                                    }
+                                    else
+                                    {
+                                        Chess.HP -= (int.Parse(other.name) + 2);
+                                    }
+                                    break;
+                                case "Preist":
+                                    if (Chess.Now_State == "Defense")
+                                    {
+                                        Chess.HP -= (int.Parse(other.name) + 2) / 2;
+                                    }
+                                    else
+                                    {
+                                        Chess.HP -= ((int.Parse(other.name))) + 2;
+                                    }
+                                    break;
+                            }
                         }
                     }
-                    else if (_gGameManager.GetComponent<GameManager>().m_NowPlayer.tag == "B" && gameObject.tag == "A")
-                    {
-                        Instantiate(_gEffect[1], gameObject.transform.position, _gEffect[_iNow_Class_Count].transform.rotation);
-                        _bAttacked = true;
-                        _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Attack>()._gEnmey = null;
-                        _gGameManager.GetComponent<GameManager>()._gMove_Camera.transform.parent.gameObject.GetComponent<CameraShake>().shakeDuration = 0.5f;
-                        switch (Chess.Job)
-                        {
-                            case "Magician":
-                                if (Chess.Now_State == "Defense")
-                                {
-                                    Chess.HP -= (int.Parse(other.name) - 2) / 2;
-                                }
-                                else
-                                {
-                                    Chess.HP -= (int.Parse(other.name) - 2);
-                                }
-                                break;
-                            case "Minion":
-                                if (Chess.Now_State == "Defense")
-                                {
-                                    Chess.HP -= (int.Parse(other.name)) / 2;
-                                }
-                                else
-                                {
-                                    Chess.HP -= (int.Parse(other.name));
-                                }
-                                break;
-                            case "Warrior":
-                                if (Chess.Now_State == "Defense")
-                                {
-                                    Chess.HP -= (int.Parse(other.name)) / 2;
-                                }
-                                else
-                                {
-                                    Chess.HP -= (int.Parse(other.name));
-                                }
-                                break;
-                            case "Archer":
-                                if (Chess.Now_State == "Defense")
-                                {
-                                    Chess.HP -= ((int.Parse(other.name)) + 2) / 2;
-                                }
-                                else
-                                {
-                                    Chess.HP -= (int.Parse(other.name) + 2);
-                                }
-                                break;
-                            case "Preist":
-                                if (Chess.Now_State == "Defense")
-                                {
-                                    Chess.HP -= (int.Parse(other.name) + 2) / 2;
-                                }
-                                else
-                                {
-                                    Chess.HP -= ((int.Parse(other.name))) + 2;
-                                }
-                                break;
-                        }
-                    }
+                   
 
                 }
 
@@ -963,22 +972,29 @@ public class Character : MonoBehaviour
         AnimatorStateInfo AtkAnim = _aChess_Anime.GetCurrentAnimatorStateInfo(0);
         if(_gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Character>().Chess.Job=="Warrior")
         {
-            if (AtkAnim.normalizedTime >= 1.0f && AtkAnim.IsName("Attack"))
+          
+            if (AtkAnim.normalizedTime >= 0.9f && AtkAnim.IsName("Attack"))
             {
-                Debug.Log(1233);
+                _gGameManager.GetComponent<GameManager>()._gWhole_UI.SetActive(true);
+
+                
                // _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Attack>().Attack_Enmey(gameObject.GetComponent<Attack>()._gEnmey);
                 
                 if(_gGameManager.GetComponent<GameManager>().m_NowPlayer.tag == "A")
                 {
-                    for (int i = 0; i > _gGameManager.GetComponent<GameManager>()._gPlayer2.transform.childCount;i++)
+                   
+                    for (int i = 0; i < _gGameManager.GetComponent<GameManager>()._gPlayer2.transform.childCount;i++)
                     {
+                        
                         _gGameManager.GetComponent<GameManager>()._gPlayer2.transform.GetChild(i).GetComponent<Character>()._bAttacked = false;
                     }
                 }
                 else if (_gGameManager.GetComponent<GameManager>().m_NowPlayer.tag == "B")
                 {
-                    for (int i = 0; i > _gGameManager.GetComponent<GameManager>()._gPlayer1.transform.childCount; i++)
+
+                    for (int i = 0; i < _gGameManager.GetComponent<GameManager>()._gPlayer1.transform.childCount; i++)
                     {
+                        
                         _gGameManager.GetComponent<GameManager>()._gPlayer1.transform.GetChild(i).GetComponent<Character>()._bAttacked = false;
                     }
                 }
@@ -1002,6 +1018,8 @@ public class Character : MonoBehaviour
                 //}
                 //else
                 //{
+               
+
                 _gGameManager.GetComponent<GameManager>().m_NowPlayer.GetComponent<Attack>().Attack_Enmey(gameObject.GetComponent<Attack>()._gEnmey);
                 _gGameManager.GetComponent<GameManager>().End_Btn_Click();
 
