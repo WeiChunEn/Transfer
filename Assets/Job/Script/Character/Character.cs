@@ -1024,7 +1024,7 @@ public class Character : MonoBehaviour
                 _gGameManager.GetComponent<GameManager>().End_Btn_Click();
 
                 // }
-
+                
 
 
                 //switch (Chess.Job)

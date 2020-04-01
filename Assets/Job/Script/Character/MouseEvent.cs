@@ -571,7 +571,11 @@ public class MouseEvent : MonoBehaviour
                         Enmey = path._gEnmey.transform.GetChild(i).gameObject;
                         _gNow_Player.GetComponent<Attack>()._gEnmey = Enmey;
                         _gGameManager.GetComponent<GameManager>()._gWhole_UI.SetActive(false);
-
+                        if(_gNow_Player.GetComponent<Character>().Chess.Job=="Magician")
+                        {
+                            _gGameManager.GetComponent<Music>()._eMagi_Chant.Invoke();
+                        }
+                        
                         if (_gNow_Player.transform.position.x == Enmey.transform.position.x)
                         {
                             if((_gNow_Player.transform.position.z - Enmey.transform.position.z) < 0)
@@ -675,7 +679,10 @@ public class MouseEvent : MonoBehaviour
                         Enmey = path._gPartner.transform.GetChild(i).gameObject;
                         // _gNow_Player.GetComponent<Attack>().Attack_Enmey(Enmey);
                         _gGameManager.GetComponent<GameManager>()._gWhole_UI.SetActive(false);
-
+                        if (_gNow_Player.GetComponent<Character>().Chess.Job == "Magician")
+                        {
+                            _gGameManager.GetComponent<Music>()._eMagi_Chant.Invoke();
+                        }
                         if (_gNow_Player.transform.position.x == Enmey.transform.position.x)
                         {
                             if ((_gNow_Player.transform.position.z - Enmey.transform.position.z) < 0)

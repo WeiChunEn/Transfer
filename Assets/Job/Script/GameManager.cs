@@ -410,6 +410,7 @@ public class GameManager : MonoBehaviour
         Set_Character_Btn();
         In_And_Out();
         Attack_Btn.interactable = false;
+        
         m_NowPlayer.GetComponent<Character>()._aChess_Anime.SetBool("CancelAtk", false);
         m_NowPlayer.GetComponent<Character>()._aChess_Anime.SetBool("PreAtk", true);
         //m_NowPlayer.GetComponent<Character>()._aChess_Anime.sett

@@ -192,6 +192,8 @@ public class Attack : MonoBehaviour
                 Tmp_Ball.tag = gameObject.GetComponent<Character>().Chess.Job;
                 Instantiate(Tmp_Ball, new Vector3(Enmey.transform.position.x, Enmey.transform.position.y + 3.0f, Enmey.transform.position.z), Tmp_Ball.transform.rotation);
 
+              
+                
                 break;
             case "Warrior":
                
@@ -343,6 +345,7 @@ public class Attack : MonoBehaviour
                 }
 
                 GameObject Tmp_Arror;
+                _gGameManager.GetComponent<Music>()._eArcher_Shoot.Invoke();
                 Tmp_Arror = Instantiate(_gBallet[_iJob_Num], new Vector3(transform.position.x,transform.position.y+1.0f,transform.position.z), _gBallet[_iJob_Num].transform.rotation); ;
                 Tmp_Arror.name = gameObject.GetComponent<Character>().Chess.Attack.ToString();
                 Tmp_Arror.tag = gameObject.GetComponent<Character>().Chess.Job;

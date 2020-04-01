@@ -15,7 +15,8 @@ public class Music : MonoBehaviour
     public UnityEvent _eTransfer_Sound;
     public UnityEvent _eRecall_Sound;
     public UnityEvent _eDissolve;
-   
+    public UnityEvent _eMagi_Chant;
+    public UnityEvent _eArcher_Shoot;
 
     // Start is called before the first frame update
     void Start()
@@ -38,9 +39,12 @@ public class Music : MonoBehaviour
         }
         
     }
-    public void Set_Button_Hight()
+    public void Set_Button_Hight(Button button)
     {
-        Instantiate(_eButton_Hight);
+        if (button.interactable == true)
+        {
+            Instantiate(_eButton_Hight);
+        }
     }
 
     public void Set_Cursor_Hight()
