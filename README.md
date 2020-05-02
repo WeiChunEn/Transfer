@@ -1,4 +1,4 @@
-## Transfer
+## Transfer-PC_Game
 ### ゲーム紹介
 このゲームはSLG(Simulation game)です。<br>
 開発のチームメンバー数は二人です。<br>
