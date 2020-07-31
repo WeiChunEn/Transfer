@@ -32,5 +32,6 @@ Transfer是一款SLG(Simulation game)，也就是回合制策略模擬遊戲，<
 ![Alt text](https://imgur.com/irm5tPk.jpg "Help Menu")
 ![Alt text](https://imgur.com/PiQPZPf.jpg "Loading Scene")
 ![Alt text](https://imgur.com/sPFarEo.jpg "Game Scene")
+![Alt text](https://i.imgur.com/oG9dc73.png "Transfer Menu")
 ![Alt text](https://imgur.com/DJtGARi.jpg "Game Scene")
 ![Alt text](https://imgur.com/fvqO0ot.jpg "Win Menu")
