@@ -8,7 +8,7 @@
 ​
 プレーヤーは敵方の身分配置と身分によて自分戦略を考え。チェスを身分転換をうまく運用しながら最後まで勝方法を尽くします
 
-#### ビデオリンク(Video link)：https://drive.google.com/open?id=1zFb1r5IMgpXM_xUPz9AKI7vkCHN-jEl8<br>
+#### ビデオリンク(Video link)：https://drive.google.com/file/d/18aFPn94f8DITpGoA7paKZP955vCW5huZ/view?usp=share_link<br>
 #### メインメニュー BGM (Main Menu BGM)：https://soundcloud.com/user-926562407/transfer?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing<br>
 ### 下記図面をご参考ください
 
